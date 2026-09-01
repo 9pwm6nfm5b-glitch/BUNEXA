@@ -835,7 +835,52 @@ body.light .nav{
   }
 
 }
+/* BUNEXA BUTTON TOUCH FIX */
 
+button{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  pointer-events:auto;
+}
+
+.add-btn{
+  position:relative;
+  z-index:9999;
+  pointer-events:auto !important;
+}
+
+.menu-btn{
+  position:relative;
+  z-index:9999;
+  pointer-events:auto !important;
+}
+
+.primary,
+.secondary,
+.small-btn,
+.toggle{
+  position:relative;
+  z-index:9999;
+  pointer-events:auto !important;
+}
+
+.nav{
+  position:fixed;
+  z-index:99999 !important;
+  pointer-events:auto !important;
+}
+
+.nav button{
+  position:relative;
+  z-index:100000 !important;
+  pointer-events:auto !important;
+}
+
+.record-input{
+  position:relative;
+  z-index:9999;
+  pointer-events:auto !important;
+}
 </style>
 </head>
 <body>
