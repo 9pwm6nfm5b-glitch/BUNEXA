@@ -1,3 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>BUNEXA — Money Butler</title>
+<style>
+:root{--bg:#08090c;--card:#111319;--card2:#151820;--text:#f5f7fa;--muted:#8c94a1;--border:#292e38;--cyan:#19c5c0;--cyan-soft:rgba(25,197,192,.12);--red:#ff7070;--green:#58dfaa;--shadow:0 12px 35px rgba(0,0,0,.18)}
+body.light{--bg:#f5f9f8;--card:#fff;--card2:#f1f6f5;--text:#11161a;--muted:#727b82;--border:#dbe4e3;--cyan:#159f9c;--cyan-soft:rgba(21,159,156,.10);--red:#d85e5e;--green:#3e9d78;--shadow:0 12px 35px rgba(40,70,70,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px}
+button,input,select{font:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+input,select{touch-action:manipulation}
+.app{width:min(520px,100%);margin:auto;padding:26px 20px 110px}
+.page{display:none}.page.active{display:block}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.logo{font-size:29px;font-weight:850;letter-spacing:4px}
+.menu-btn{width:48px;height:48px;border-radius:16px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:23px;position:relative;z-index:5}
+.eyebrow{color:var(--muted);font-size:12px;letter-spacing:2px;margin-bottom:8px}
+.page-title{font-size:38px;font-weight:850;letter-spacing:-1.5px;margin-bottom:8px}
+.page-subtitle{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:22px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:25px;padding:23px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card-title{font-size:20px;font-weight:780;margin-bottom:7px}
+.card-subtitle{color:var(--muted);font-size:13px}
+.balance-label{color:var(--muted);font-size:14px}
+.balance{font-size:44px;font-weight:850;letter-spacing:-2px;margin:7px 0 22px}
+.stats,.report-grid,.goal-info{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.stat,.report-stat,.goal-mini{background:var(--card2);border:1px solid var(--border);border-radius:17px;padding:15px}
+.stat-label,.report-stat small,.goal-mini small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px;margin-bottom:7px}
+.stat-value,.report-stat strong{font-size:19px;font-weight:780}
+.income{color:var(--green)}.expense{color:var(--red)}.cyan{color:var(--cyan)}
+.safe{border-color:var(--cyan);background:var(--cyan-soft)}
+.safe-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.safe-title{font-size:19px;font-weight:780}
 .safe-text{color:var(--muted);font-size:12px;margin-top:5px;line-height:1.4}
 .safe-number{color:var(--cyan);font-size:27px;font-weight:850;white-space:nowrap}
 .quick-card{border-color:var(--cyan)}
@@ -123,7 +159,17 @@ body.light .nav{background:rgba(255,255,255,.97);border-color:var(--border)}
 <h1 class="page-title">Settings</h1><p class="page-subtitle">Keep your money setup simple.</p>
 <div class="card"><div class="card-title">Currency</div><div class="card-subtitle">Choose your preferred currency.</div><div class="field" style="margin-top:14px"><select id="currencySelect"><option value="SGD">🇸🇬 Singapore Dollar (SGD)</option><option value="MYR">🇲🇾 Malaysian Ringgit (MYR)</option></select></div></div>
 <div class="card"><div class="card-title">Language</div><div class="card-subtitle">Choose your preferred language.</div><div class="language-row"><button type="button" class="language-btn" id="langEN">English</button><button type="button" class="language-btn" id="langZH">中文</button></div></div>
-<div class="card"><div class="card-title">Regular income</div><div class="card-subtitle">Monthly income you expect.</div><div id="incomeSources"></div><button class="primary" type="button" data-action="income-open" style="margin-top:14px">+ Add income</button></div>
+<div class="card" id="languageCard">
+<div class="card-title" id="languageTitle">Language</div>
+<div class="card-subtitle" id="languageDesc">Choose your preferred language.</div>
+<div style="margin-top:14px">
+<button type="button" class="secondary" id="languageToggle" onclick="toggleLanguage()">中文</button>
+</div>
+</div>
+
+<div class="card">
+
+<div class="card-title">Regular income</div><div class="card-subtitle">Monthly income you expect.</div><div id="incomeSources"></div><button class="primary" type="button" data-action="income-open" style="margin-top:14px">+ Add income</button></div>
 <div class="card"><div class="card-title">Fixed expenses</div><div class="card-subtitle">Regular monthly expenses.</div><div id="fixedExpenses"></div><button class="primary" type="button" data-action="fixed-open" style="margin-top:14px">+ Add fixed expense</button></div>
 <div class="card"><div class="setting-row"><div><div class="setting-title">Light theme</div><div class="setting-desc">Switch between light and dark.</div></div><button class="toggle" id="themeToggle" type="button"></button></div></div>
 <div class="card"><div class="card-title">Data</div><div class="card-subtitle">Saved automatically on this device.</div><button class="secondary" type="button" data-action="clear-data" style="margin-top:14px">Clear all data</button></div>
@@ -246,7 +292,7 @@ const CATEGORY_RULES=[
   /fairprice|ntuc|sheng siong|shengxiong|prime supermarket|cold storage|giant|redmart|little farms/,
   /don don donki|donki|market place|marketplace|jasons deli|jason's deli|mustafa centre|mustafa/,
   /grocer|groceries|grocery|supermarket|wet market|vegetable|vegetables|fruit|fruits|meat|seafood|milk|eggs|egg|bread|snack|snacks|foodstuff|butcher/,
-  /7-eleven|7 eleven|7-11|7 11|7eleven|seven eleven|7️⃣eleven|便利店|超市|杂货|菜市场/
+  /7-eleven|7 eleven|7-11|7 11|7eleven|seven eleven|711|便利店|超市|杂货|菜市场/
 ]],
 ["Dining",[
   /kopi|coffee|starbucks|coffee bean|toast box|ya kun|killiney|food|dining|meal|breakfast|lunch|dinner|makan/,
@@ -278,11 +324,50 @@ const CATEGORY_RULES=[
 ];
 
 function detectCategory(text){
-  const lower=String(text||"").toLowerCase().trim();
-  for(const [category,patterns] of CATEGORY_RULES){
-    if(patterns.some(pattern=>pattern.test(lower)))return category;
-  }
-  return "Other";
+
+const lower=String(text||"").toLowerCase().trim();
+
+/* PETS */
+if(/pet lovers centre|pet lovers|polypet|pet safari|pet station|pets station|pet shop|pet store|pet food|pet grooming|pet groom|dog food|cat food|puppy|kitten|dog|cat|rabbit|hamster|bird food|aquarium|fish food|animal clinic|animal doctor|vet|veterinary|宠物|宠物店|猫粮|狗粮|猫|狗|兔|仓鼠|鱼粮/.test(lower))
+return "Pets";
+
+/* BEAUTY & WELLNESS */
+if(/guardian|watsons|watson|venus|venus beauty|salon|hair salon|haircut|hair cut|hairdresser|barber|beauty|beauty salon|facial|skincare|skin care|nail|nails|manicure|pedicure|spa|massage|gym|fitness|pilates|yoga|personal trainer|workout|wellness|aesthetic|aesthetics|brow|lash|eyelash|waxing|cosmetic|cosmetics|美发|理发|发廊|美容|美容院|美甲|按摩|水疗|健身|瑜伽|普拉提|护肤|保养|剪头发/.test(lower))
+return "Beauty & Wellness";
+
+/* ONLINE SHOPPING */
+if(/shopee|lazada|amazon|ezbuy|taobao|淘宝|temu|tiktok shop|tiktokshop|shein|zalora|qoo10|carousell|aliexpress|alibaba|ebay|etsy|online shopping|online order|online purchase|webstore|shop online|网购|网上购物|网购订单/.test(lower))
+return "Online Shopping";
+
+/* GROCERIES */
+if(/fairprice|ntuc|sheng siong|shengxiong|prime supermarket|prime supermarket|cold storage|giant|redmart|little farms|don don donki|donki|market place|marketplace|jasons deli|jason's deli|mustafa centre|mustafa|grocer|groceries|grocery|supermarket|wet market|vegetable|vegetables|fruit|fruits|meat|seafood|milk|eggs|egg|bread|snack|snacks|foodstuff|butcher|sheng siong|昇菘|菜市场|超市|杂货|蔬菜|水果|肉类|海鲜|牛奶|鸡蛋|面包/.test(lower))
+return "Groceries";
+
+/* DINING */
+if(/kopi|coffee|starbucks|coffee bean|toast box|ya kun|killiney|food|dining|meal|breakfast|lunch|dinner|makan|nasi|roti|chicken|bakery|restaurant|cafe|mcd|mcdonald|kfc|koufu|canteen|drink|tea|teh|dessert|pizza|burger|sushi|ramen|hotpot|dim sum|hawker|food court|subway|jollibee|wingstop|shake shack|genki sushi|ichiban|taco|fast food|foodpanda|deliveroo|kopitiam|食物|吃饭|餐厅|咖啡|咖啡店|早餐|午餐|晚餐|饮料|奶茶|甜点|火锅|寿司|拉面|面包|小吃|茶/.test(lower))
+return "Dining";
+
+/* TRANSPORT */
+if(/grab|gojek|mrt|bus|taxi|transport|train|erp|parking|petrol|fuel|shell|esso|caltex|spc|car wash|carpark|car park|motoring|vehicle|workshop|autocare|comfortdelgro|cdg zig|ryde|地铁|巴士|德士|出租车|交通|停车|停车费|油站|汽油|洗车|修车/.test(lower))
+return "Transport";
+
+/* ENTERTAINMENT */
+if(/cinema|movie|netflix|spotify|youtube premium|disney|prime video|apple music|apple tv|itunes|game|gaming|playstation|xbox|nintendo|steam|entertainment|concert|karaoke|bowling|arcade|theme park|universal studios|zoo|night safari|museum|电影|电影院|音乐|游戏|演唱会|卡拉ok|保龄球|游乐园|动物园|博物馆/.test(lower))
+return "Entertainment";
+
+/* TRAVEL */
+if(/travel|holiday|hotel|flight|cruise|trip|airbnb|agoda|booking.com|traveloka|trip.com|jetstar|scoot|singapore airlines|malaysia airlines|airasia|passport|tour|tourist|attraction|resort|旅行|旅游|假期|酒店|机票|飞机|邮轮|度假|景点/.test(lower))
+return "Travel";
+
+/* BILLS */
+if(/phone|wifi|internet|bill|simba|singtel|starhub|m1|electricity|utilities|utility|water|sp services|sp group|town council|mobile plan|mobile bill|insurance|premium|subscription|rent|rental|电话费|手机费|网络|网费|水电|电费|水费|保险|租金|房租|订阅/.test(lower))
+return "Bills";
+
+/* GENERAL SHOPPING */
+if(/shopping|mall|clothes|shirt|shoe|shoes|bag|uniqlo|zara|h&m|decathlon|ikea|courts|best denki|harvey norman|muji|daiso|miniso|bookstore|popular|stationery|furniture|home decor|electronics|购物|商场|衣服|鞋|包包|家具|家居|电子产品|文具|书店/.test(lower))
+return "Shopping";
+
+return "Other";
 }
 
 function isIncomeDescription(text){
@@ -293,70 +378,66 @@ function isIncomeDescription(text){
 
 /* ---------------- Quick Record ---------------- */
 
-function quickAdd(){
-  const input=document.getElementById("quickInput");
-  const status=document.getElementById("quickStatus");
-  const text=input.value.trim();
+function parseQuickRecord(text){
+const clean=String(text||"").replace(/,/g,"").trim();
+if(!clean) return null;
+let amount=null,description="";
 
-  if(!text){
-    input.focus();
-    return;
-  }
+let m=clean.match(/^\s*(?:s\$|\$|rm)?\s*(\d+(?:\.\d+)?)\s+(.+?)\s*$/i);
+if(m){ amount=parseFloat(m[1]); description=m[2].trim(); }
 
-  // Accept both:
-  //   6 kopi
-  //   kopi 6
-  //   7-11 9
-  //   9 7-11
-  // and preserve store names containing hyphens/spaces.
-  const clean=text.replace(/,/g,"").trim();
-  let amount=null;
-  let description="";
-
-  const amountFirst=clean.match(/^(?:\$|s\$|rm)?\s*(\d+(?:\.\d+)?)\s+(.+?)\s*$/i);
-  const amountLast=clean.match(/^(.+?)\s+(?:\$|s\$|rm)?\s*(\d+(?:\.\d+)?)\s*$/i);
-
-  if(amountFirst){
-    amount=parseFloat(amountFirst[1]);
-    description=amountFirst[2].trim();
-  }else if(amountLast){
-    amount=parseFloat(amountLast[2]);
-    description=amountLast[1].trim();
-  }else{
-    status.textContent="Use amount + description";
-    input.focus();
-    return;
-  }
-
-  // Reject impossible/ambiguous parses where the "description" is only a number.
-  if(!(amount>0) || !description || /^\d+(?:\.\d+)?$/.test(description)){
-    status.textContent="Use amount + description";
-    input.focus();
-    return;
-  }
-
-  if(!(amount>0))return;
-
-  const income=isIncomeDescription(description);
-
-  transactions.unshift({
-    id:Date.now()+Math.random(),
-    type:income?"income":"expense",
-    description,
-    amount,
-    category:income?"Income":detectCategory(description),
-    date:dateKey(new Date()),
-    created:new Date().toISOString()
-  });
-
-  saveAll();
-  input.value="";
-  status.textContent="✓ Recorded";
-  renderAll();
-  renderCalendar();
-
-  setTimeout(()=>{status.textContent=""},1600);
+if(amount===null){
+m=clean.match(/^\s*(.+?)\s+(?:s\$|\$|rm)?\s*(\d+(?:\.\d+)?)\s*$/i);
+if(m){ amount=parseFloat(m[2]); description=m[1].trim(); }
 }
+
+if(!Number.isFinite(amount)||amount<=0||!description) return null;
+
+description=description
+.replace(/^(消费|花费|支出|开销|记账|记录)\s*/,"")
+.replace(/\s*(消费|花费|支出|开销|记账|记录)$/,"").trim();
+
+if(!description) return null;
+
+const income=isIncomeDescription(description) ||
+/^(工资|薪水|收入|奖金|佣金|薪资|月薪|工钱|薪金|salary|paycheck|income|bonus|commission)$/i.test(description);
+
+return {amount,description,type:income?"income":"expense",
+category:income?"Income":detectCategory(description)};
+}
+
+
+
+function quickAdd(){
+const input=document.getElementById("quickInput");
+const status=document.getElementById("quickStatus");
+const text=input.value.trim();
+if(!text){input.focus();return;}
+
+const parsed=parseQuickRecord(text);
+if(!parsed){
+status.textContent=language==="zh"?"请输入金额和描述":"Use amount + description";
+input.focus();return;
+}
+
+transactions.unshift({
+id:Date.now()+Math.random(),
+type:parsed.type,
+description:parsed.description,
+amount:parsed.amount,
+category:parsed.category,
+date:dateKey(new Date()),
+created:new Date().toISOString()
+});
+
+saveAll();
+input.value="";
+status.textContent=language==="zh"?"✓ 已记录":"✓ Recorded";
+renderAll();
+if(document.getElementById("page-calendar").classList.contains("active")) renderCalendar();
+setTimeout(()=>status.textContent="",1600);
+}
+
 
 /* ---------------- Totals / Home ---------------- */
 
@@ -388,13 +469,18 @@ const ICONS={
   "Bills":"📱","Income":"💰","Other":"💳"
 };
 
+function categoryLabel(category){
+  if(language!=="zh") return category;
+  const m={"Dining":"餐饮","Groceries":"杂货","Online Shopping":"线上购物","Beauty & Wellness":"美容与健康","Pets":"宠物","Transport":"交通","Shopping":"购物","Entertainment":"娱乐","Travel":"旅游","Bills":"账单","Income":"收入","Other":"其他"};
+  return m[category]||category;
+}
 function transactionHTML(t){
   return `<div class="transaction">
     <div class="transaction-left">
       <div class="icon">${ICONS[t.category]||"💳"}</div>
       <div class="transaction-info">
         <div class="transaction-name">${escapeHTML(t.description)}</div>
-        <div class="transaction-meta">${escapeHTML(t.category)} · ${displayDate(t.date)}</div>
+        <div class="transaction-meta">${escapeHTML(categoryLabel(t.category))} · ${displayDate(t.date)}</div>
       </div>
     </div>
     <div class="transaction-right">
@@ -530,7 +616,7 @@ function renderInsight(){
   };
 
   box.innerHTML=`<div class="insight-title">💡 BUNEXA Insight</div>
-    <div class="insight-text">Your biggest spending category is <span class="insight-highlight">${escapeHTML(top[0])}</span> at <span class="insight-highlight">${money(top[1])}</span> (${percentage.toFixed(0)}% of recorded expenses).</div>
+    <div class="insight-text">${language==="zh" ? "你最大的消费类别是" : "Your biggest spending category is"} <span class="insight-highlight">${escapeHTML(top[0])}</span> at <span class="insight-highlight">${money(top[1])}</span> (${percentage.toFixed(0)}% ${language==="zh" ? "的已记录支出。" : "of recorded expenses)."}</div>
     <div class="insight-tip">${tips[top[0]]||"💡 Keep recording consistently. BUNEXA will get a clearer picture of your spending habits."}</div>`;
 }
 
@@ -906,6 +992,8 @@ const UI_TEXT={
 
 let language=localStorage.getItem("bunexa_language")||"en";
 
+function toggleLanguage(){setLanguage(language==="zh"?"en":"zh");}
+
 function setLanguage(value){
   language=value==="zh"?"zh":"en";
   localStorage.setItem("bunexa_language",language);
@@ -918,7 +1006,65 @@ function t(key){
   return UI_TEXT[language][key]||UI_TEXT.en[key]||key;
 }
 
-function applyLanguage(){
+function applyLanguage(){  const zhMap={
+    "Good evening 👋":"晚上好 👋",
+    "YOUR PERSONAL MONEY BUTLER":"你的个人理财管家",
+    "Total Balance":"总余额",
+    "INCOME":"收入",
+    "EXPENSES":"支出",
+    "Safe to Spend":"可安心消费",
+    "After fixed expenses and planned savings.":"扣除固定开销和计划储蓄后。",
+    "Quick Record":"快速记录",
+    "3-sec record":"3秒记录",
+    "Type it. Tap +. Done.":"输入内容，按 +，完成。",
+    "ONE-LINE RECORD":"一行记录",
+    "Recent transactions":"最近记录",
+    "View all":"查看全部",
+    "Reports":"报告",
+    "A clear view of your money.":"清楚掌握你的资金。",
+    "Financial overview":"财务概览",
+    "Current balance":"当前余额",
+    "TOTAL INCOME":"总收入",
+    "TOTAL EXPENSES":"总支出",
+    "Where your money goes":"钱花在哪里",
+    "Expense distribution.":"支出分布。",
+    "Expenses":"支出",
+    "Category breakdown":"分类明细",
+    "Calendar":"日历",
+    "YOUR MONEY HISTORY":"你的消费记录",
+    "See exactly what you spent, day by day.":"逐日查看你的消费。",
+    "Goals":"目标",
+    "YOUR MONEY PLAN":"你的理财计划",
+    "Turn savings into something measurable.":"让储蓄目标清晰可见。",
+    "Monthly savings outlook":"每月储蓄预览",
+    "MONTHLY SAVING":"每月储蓄",
+    "1 YEAR SAVING":"一年储蓄",
+    "Your goals":"你的目标",
+    "Settings":"设置",
+    "Keep your money setup simple.":"让你的理财设置保持简单。",
+    "Currency":"货币",
+    "Choose your preferred currency.":"选择你的货币。",
+    "Regular income":"固定收入",
+    "Monthly income you expect.":"每月预期收入。",
+    "Fixed expenses":"固定开销",
+    "Regular monthly expenses.":"每月固定开销。",
+    "Light theme":"浅色模式",
+    "Switch between light and dark.":"切换浅色与深色模式。",
+    "Data":"数据",
+    "Saved automatically on this device.":"自动保存在此设备。",
+    "Add income":"+ 添加收入",
+    "Add fixed expense":"+ 添加固定开销",
+    "Clear all data":"清除所有数据"
+  };
+  if(language==="zh"){
+    document.querySelectorAll(".app *").forEach(el=>{
+      if(el.children.length===0){
+        const v=el.textContent.trim();
+        if(zhMap[v]) el.textContent=zhMap[v];
+      }
+    });
+  }
+
   document.querySelector(".eyebrow").textContent=t("eyebrow");
   document.querySelector("#page-home .page-title").textContent=t("evening");
   document.querySelector("#page-home .balance-label").textContent=t("total");
@@ -1106,4 +1252,21 @@ renderAll();
 renderCalendar();
 </script>
 </body>
-</html>
+</htmldocument.addEventListener("click",function(e){
+  if(e.target && e.target.id==="langEN"){ setLanguage("en"); }
+  if(e.target && e.target.id==="langZH"){ setLanguage("zh"); }
+});
+document.addEventListener("click",function(e){
+  if(e.target && e.target.id==="quickAddBtn") quickAdd();
+  if(e.target && e.target.id==="langEN") setLanguage("en");
+  if(e.target && e.target.id==="langZH") setLanguage("zh");
+});
+
+document.addEventListener("keydown",function(e){
+  if(e.target && e.target.id==="quickInput" && e.key==="Enter"){
+    e.preventDefault();
+    quickAdd();
+  }
+});
+
+>
