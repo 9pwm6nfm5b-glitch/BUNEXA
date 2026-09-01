@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+
 <title>BUNEXA — Money Butler</title>
 
 <style>
+
 :root{
   --bg:#08090c;
   --card:#111319;
@@ -794,7 +800,6 @@ select{
   border-radius:30px;
   background:var(--border);
   position:relative;
-  flex:none;
 }
 
 .toggle.active{
@@ -852,7 +857,7 @@ select{
   border-radius:24px;
   padding:7px;
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:4px;
   z-index:9999;
   backdrop-filter:blur(18px);
@@ -868,8 +873,8 @@ body.light .nav{
   background:transparent;
   color:var(--muted);
   border-radius:17px;
-  padding:9px 4px;
-  font-size:11px;
+  padding:9px 3px;
+  font-size:10px;
   min-height:62px;
   position:relative;
   z-index:10000;
@@ -981,7 +986,13 @@ body.light .nav{
   .day{
     min-height:43px;
   }
+
+  .nav button{
+    font-size:9px;
+  }
+
 }
+
 </style>
 </head>
 
@@ -990,31 +1001,71 @@ body.light .nav{
 <div class="app">
 
 <!-- HOME -->
+
 <section class="page active" id="page-home">
 
   <div class="header">
+
     <div class="logo">BUNEXA</div>
-    <button class="menu-btn" onclick="go('settings')">☰</button>
+
+    <button
+      class="menu-btn"
+      onclick="go('settings')">
+      ☰
+    </button>
+
   </div>
 
-  <div class="eyebrow">YOUR PERSONAL MONEY BUTLER</div>
-  <h1 class="page-title">Good evening 👋</h1>
+  <div class="eyebrow">
+    YOUR PERSONAL MONEY BUTLER
+  </div>
+
+  <h1 class="page-title">
+    Good evening 👋
+  </h1>
 
   <div class="card">
 
-    <div class="balance-label">Total Balance</div>
-    <div class="balance" id="homeBalance">$0.00</div>
+    <div class="balance-label">
+      Total Balance
+    </div>
+
+    <div
+      class="balance"
+      id="homeBalance">
+      $0.00
+    </div>
 
     <div class="stats">
+
       <div class="stat">
-        <div class="stat-label">INCOME</div>
-        <div class="stat-value income" id="homeIncome">$0.00</div>
+
+        <div class="stat-label">
+          INCOME
+        </div>
+
+        <div
+          class="stat-value income"
+          id="homeIncome">
+          $0.00
+        </div>
+
       </div>
 
       <div class="stat">
-        <div class="stat-label">EXPENSES</div>
-        <div class="stat-value expense" id="homeExpense">$0.00</div>
+
+        <div class="stat-label">
+          EXPENSES
+        </div>
+
+        <div
+          class="stat-value expense"
+          id="homeExpense">
+          $0.00
+        </div>
+
       </div>
+
     </div>
 
   </div>
@@ -1024,13 +1075,22 @@ body.light .nav{
     <div class="safe-row">
 
       <div>
-        <div class="safe-title">Safe to Spend</div>
+
+        <div class="safe-title">
+          Safe to Spend
+        </div>
+
         <div class="safe-text">
           After fixed expenses and planned savings.
         </div>
+
       </div>
 
-      <div class="safe-number" id="safeSpend">$0.00</div>
+      <div
+        class="safe-number"
+        id="safeSpend">
+        $0.00
+      </div>
 
     </div>
 
@@ -1039,8 +1099,15 @@ body.light .nav{
   <div class="card quick-card">
 
     <div class="quick-head">
-      <h2>Quick Record</h2>
-      <span>3-sec record</span>
+
+      <h2>
+        Quick Record
+      </h2>
+
+      <span>
+        3-sec record
+      </span>
+
     </div>
 
     <div class="quick-description">
@@ -1070,37 +1137,58 @@ body.light .nav{
 
     </div>
 
-    <div class="quick-status" id="quickStatus"></div>
+    <div
+      class="quick-status"
+      id="quickStatus">
+    </div>
 
   </div>
 
   <div class="section-head">
-    <h2>Recent transactions</h2>
+
+    <h2>
+      Recent transactions
+    </h2>
 
     <button
       class="section-link"
       onclick="go('calendar')">
       View all
     </button>
+
   </div>
 
-  <div class="transactions" id="homeTransactions"></div>
+  <div
+    class="transactions"
+    id="homeTransactions">
+  </div>
 
 </section>
 
 
 <!-- REPORTS -->
-<section class="page" id="page-reports">
+
+<section
+  class="page"
+  id="page-reports">
 
   <div class="header">
-    <div class="logo">BUNEXA</div>
 
-    <button class="menu-btn" onclick="go('home')">
+    <div class="logo">
+      BUNEXA
+    </div>
+
+    <button
+      class="menu-btn"
+      onclick="go('home')">
       ⌂
     </button>
+
   </div>
 
-  <h1 class="page-title">Reports</h1>
+  <h1 class="page-title">
+    Reports
+  </h1>
 
   <p class="page-subtitle">
     A clear view of your money.
@@ -1112,7 +1200,9 @@ body.light .nav{
       Financial overview
     </div>
 
-    <div class="overview-number" id="reportBalance">
+    <div
+      class="overview-number"
+      id="reportBalance">
       $0.00
     </div>
 
@@ -1123,13 +1213,31 @@ body.light .nav{
     <div class="report-grid">
 
       <div class="report-stat">
-        <small>TOTAL INCOME</small>
-        <strong class="income" id="reportIncome">$0.00</strong>
+
+        <small>
+          TOTAL INCOME
+        </small>
+
+        <strong
+          class="income"
+          id="reportIncome">
+          $0.00
+        </strong>
+
       </div>
 
       <div class="report-stat">
-        <small>TOTAL EXPENSES</small>
-        <strong class="expense" id="reportExpense">$0.00</strong>
+
+        <small>
+          TOTAL EXPENSES
+        </small>
+
+        <strong
+          class="expense"
+          id="reportExpense">
+          $0.00
+        </strong>
+
       </div>
 
     </div>
@@ -1148,18 +1256,30 @@ body.light .nav{
 
     <div class="chart-wrap">
 
-      <div class="donut" id="donut">
+      <div
+        class="donut"
+        id="donut">
 
         <div class="donut-inner">
-          <strong id="donutTotal">$0.00</strong>
-          <span>Expenses</span>
+
+          <strong id="donutTotal">
+            $0.00
+          </strong>
+
+          <span>
+            Expenses
+          </span>
+
         </div>
 
       </div>
 
     </div>
 
-    <div class="legend" id="legend"></div>
+    <div
+      class="legend"
+      id="legend">
+    </div>
 
   </div>
 
@@ -1177,11 +1297,16 @@ body.light .nav{
 
 
 <!-- CALENDAR -->
-<section class="page" id="page-calendar">
+
+<section
+  class="page"
+  id="page-calendar">
 
   <div class="header">
 
-    <div class="logo">BUNEXA</div>
+    <div class="logo">
+      BUNEXA
+    </div>
 
     <button
       class="menu-btn"
@@ -1191,9 +1316,13 @@ body.light .nav{
 
   </div>
 
-  <div class="eyebrow">YOUR MONEY HISTORY</div>
+  <div class="eyebrow">
+    YOUR MONEY HISTORY
+  </div>
 
-  <h1 class="page-title">Calendar</h1>
+  <h1 class="page-title">
+    Calendar
+  </h1>
 
   <p class="page-subtitle">
     See exactly what you spent, day by day.
@@ -1203,19 +1332,29 @@ body.light .nav{
 
     <div class="calendar-top">
 
-      <button type="button" onclick="changeMonth(-1)">
+      <button
+        type="button"
+        onclick="changeMonth(-1)">
         ‹
       </button>
 
       <div class="calendar-selects">
 
-        <select id="monthSelect" onchange="calendarChanged()"></select>
+        <select
+          id="monthSelect"
+          onchange="calendarChanged()">
+        </select>
 
-        <select id="yearSelect" onchange="calendarChanged()"></select>
+        <select
+          id="yearSelect"
+          onchange="calendarChanged()">
+        </select>
 
       </div>
 
-      <button type="button" onclick="changeMonth(1)">
+      <button
+        type="button"
+        onclick="changeMonth(1)">
         ›
       </button>
 
@@ -1249,11 +1388,16 @@ body.light .nav{
 
 
 <!-- GOALS -->
-<section class="page" id="page-goals">
+
+<section
+  class="page"
+  id="page-goals">
 
   <div class="header">
 
-    <div class="logo">BUNEXA</div>
+    <div class="logo">
+      BUNEXA
+    </div>
 
     <button
       class="menu-btn"
@@ -1263,9 +1407,13 @@ body.light .nav{
 
   </div>
 
-  <div class="eyebrow">YOUR MONEY PLAN</div>
+  <div class="eyebrow">
+    YOUR MONEY PLAN
+  </div>
 
-  <h1 class="page-title">Goals</h1>
+  <h1 class="page-title">
+    Goals
+  </h1>
 
   <p class="page-subtitle">
     Turn savings into something measurable.
@@ -1280,17 +1428,31 @@ body.light .nav{
     <div class="report-grid">
 
       <div class="report-stat">
-        <small>MONTHLY SAVING</small>
-        <strong class="cyan" id="monthlySaving">
+
+        <small>
+          MONTHLY SAVING
+        </small>
+
+        <strong
+          class="cyan"
+          id="monthlySaving">
           $0.00
         </strong>
+
       </div>
 
       <div class="report-stat">
-        <small>1 YEAR SAVING</small>
-        <strong class="cyan" id="yearSaving">
+
+        <small>
+          1 YEAR SAVING
+        </small>
+
+        <strong
+          class="cyan"
+          id="yearSaving">
           $0.00
         </strong>
+
       </div>
 
     </div>
@@ -1299,7 +1461,9 @@ body.light .nav{
 
   <div class="section-head">
 
-    <h2>Your goals</h2>
+    <h2>
+      Your goals
+    </h2>
 
     <button
       class="section-link"
@@ -1315,11 +1479,16 @@ body.light .nav{
 
 
 <!-- SETTINGS -->
-<section class="page" id="page-settings">
+
+<section
+  class="page"
+  id="page-settings">
 
   <div class="header">
 
-    <div class="logo">BUNEXA</div>
+    <div class="logo">
+      BUNEXA
+    </div>
 
     <button
       class="menu-btn"
@@ -1329,7 +1498,9 @@ body.light .nav{
 
   </div>
 
-  <h1 class="page-title">Settings</h1>
+  <h1 class="page-title">
+    Settings
+  </h1>
 
   <p class="page-subtitle">
     Keep your money setup simple.
@@ -1348,7 +1519,9 @@ body.light .nav{
       Choose your preferred currency.
     </div>
 
-    <div class="field" style="margin-top:14px">
+    <div
+      class="field"
+      style="margin-top:14px">
 
       <select
         id="currencySelect"
@@ -1481,34 +1654,62 @@ body.light .nav{
     class="active"
     onclick="go('home')">
 
-    <span class="nav-icon">⌂</span>
+    <span class="nav-icon">
+      ⌂
+    </span>
+
     Home
 
   </button>
+
 
   <button
     id="nav-reports"
     onclick="go('reports')">
 
-    <span class="nav-icon">◴</span>
+    <span class="nav-icon">
+      ◴
+    </span>
+
     Reports
 
   </button>
+
 
   <button
     id="nav-calendar"
     onclick="go('calendar')">
 
-    <span class="nav-icon">▣</span>
+    <span class="nav-icon">
+      ▣
+    </span>
+
     Calendar
 
   </button>
+
+
+  <button
+    id="nav-goals"
+    onclick="go('goals')">
+
+    <span class="nav-icon">
+      ◎
+    </span>
+
+    Goals
+
+  </button>
+
 
   <button
     id="nav-settings"
     onclick="go('settings')">
 
-    <span class="nav-icon">⚙</span>
+    <span class="nav-icon">
+      ⚙
+    </span>
+
     Settings
 
   </button>
@@ -1518,7 +1719,9 @@ body.light .nav{
 
 <!-- INCOME MODAL -->
 
-<div class="modal" id="incomeModal">
+<div
+  class="modal"
+  id="incomeModal">
 
   <div class="modal-box">
 
@@ -1528,7 +1731,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Income source</label>
+      <label>
+        Income source
+      </label>
 
       <input
         id="incomeName"
@@ -1538,7 +1743,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Monthly amount</label>
+      <label>
+        Monthly amount
+      </label>
 
       <input
         id="incomeAmount"
@@ -1571,7 +1778,9 @@ body.light .nav{
 
 <!-- FIXED MODAL -->
 
-<div class="modal" id="fixedModal">
+<div
+  class="modal"
+  id="fixedModal">
 
   <div class="modal-box">
 
@@ -1581,7 +1790,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Expense name</label>
+      <label>
+        Expense name
+      </label>
 
       <input
         id="fixedName"
@@ -1591,7 +1802,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Monthly amount</label>
+      <label>
+        Monthly amount
+      </label>
 
       <input
         id="fixedAmount"
@@ -1624,7 +1837,9 @@ body.light .nav{
 
 <!-- GOAL MODAL -->
 
-<div class="modal" id="goalModal">
+<div
+  class="modal"
+  id="goalModal">
 
   <div class="modal-box">
 
@@ -1634,7 +1849,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Goal name</label>
+      <label>
+        Goal name
+      </label>
 
       <input
         id="goalName"
@@ -1644,7 +1861,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Target amount</label>
+      <label>
+        Target amount
+      </label>
 
       <input
         id="goalTarget"
@@ -1656,7 +1875,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Already saved</label>
+      <label>
+        Already saved
+      </label>
 
       <input
         id="goalSaved"
@@ -1668,7 +1889,9 @@ body.light .nav{
 
     <div class="field">
 
-      <label>Planned monthly saving</label>
+      <label>
+        Planned monthly saving
+      </label>
 
       <input
         id="goalMonthly"
@@ -1707,31 +1930,42 @@ body.light .nav{
 
 let transactions =
   JSON.parse(
-    localStorage.getItem("bunexa_transactions") || "[]"
+    localStorage.getItem(
+      "bunexa_transactions"
+    ) || "[]"
   );
 
 let incomes =
   JSON.parse(
-    localStorage.getItem("bunexa_incomes") || "[]"
+    localStorage.getItem(
+      "bunexa_incomes"
+    ) || "[]"
   );
 
 let fixedExpenses =
   JSON.parse(
-    localStorage.getItem("bunexa_fixed") || "[]"
+    localStorage.getItem(
+      "bunexa_fixed"
+    ) || "[]"
   );
 
 let goals =
   JSON.parse(
-    localStorage.getItem("bunexa_goals") || "[]"
+    localStorage.getItem(
+      "bunexa_goals"
+    ) || "[]"
   );
 
 let currency =
-  localStorage.getItem("bunexa_currency") || "SGD";
+  localStorage.getItem(
+    "bunexa_currency"
+  ) || "SGD";
 
+let calendarDate =
+  new Date();
 
-let calendarDate = new Date();
-
-let selectedCalendarDay = null;
+let selectedCalendarDay =
+  null;
 
 
 /* =====================================================
@@ -1784,7 +2018,9 @@ function currencySymbol(){
 function money(value){
 
   return currencySymbol() +
-    Number(value || 0).toLocaleString(
+    Number(
+      value || 0
+    ).toLocaleString(
       "en-US",
       {
         minimumFractionDigits:2,
@@ -1821,7 +2057,9 @@ function go(page){
   document
     .querySelectorAll(".page")
     .forEach(
-      p=>p.classList.remove("active")
+      p=>{
+        p.classList.remove("active");
+      }
     );
 
   const target =
@@ -1833,11 +2071,12 @@ function go(page){
     target.classList.add("active");
   }
 
-
   document
     .querySelectorAll(".nav button")
     .forEach(
-      b=>b.classList.remove("active")
+      b=>{
+        b.classList.remove("active");
+      }
     );
 
   const nav =
@@ -1848,7 +2087,6 @@ function go(page){
   if(nav){
     nav.classList.add("active");
   }
-
 
   if(page === "calendar"){
     renderCalendar();
@@ -1861,11 +2099,11 @@ function go(page){
     behavior:"smooth"
   });
 
-
+}
 
 
 /* =====================================================
-   CATEGORY
+   CATEGORY DETECTION
 ===================================================== */
 
 function detectCategory(text){
@@ -1875,67 +2113,89 @@ function detectCategory(text){
       .toLowerCase()
       .trim();
 
-  /* GROCERIES / SUPERMARKETS */
+
+  /* GROCERIES
+     Must be checked BEFORE Dining/Shopping.
+  */
 
   if(
-    /fairprice|ntuc|sheng\s*siong|shengsiong|giant|cold\s*storage|prime\s*supermarket|redmart|don\s*don\s*donki|donki|market\s*place|jasons|jason's|supermarket|grocery|groceries|wet\s*market|provisions/.test(lower)
+    /fairprice|ntuc|sheng\s*siong|giant|cold\s*storage|prime\s*supermarket|redmart|supermarket|grocer|groceries|grocery|wet\s*market|market|vegetable|vegetables|fruit|fruits|meat|seafood|milk|bread|eggs|egg|snack|snacks|ntuc\s*fairprice/.test(lower)
   ){
+
     return "Groceries";
+
   }
 
-  /* ENTERTAINMENT */
-
-  if(
-    /netflix|spotify|disney\+?|disneyplus|youtube\s*premium|youtube|apple\s*(tv|music|one|subscription)|apple\s*store|apple\.com|cinema|movie|film|game|gaming|entertainment|concert|ticket|steam|playstation|xbox/.test(lower)
-  ){
-    return "Entertainment";
-  }
 
   /* DINING */
 
   if(
-    /kopi|coffee|rice|mee|noodle|food|dining|meal|breakfast|lunch|dinner|makan|nasi|roti|chicken|bakery|restaurant|cafe|mcd|mcdonald|kfc|koufu|canteen|drink|tea|teh|toast|hawker|foodcourt|food\s*court|dessert|bubble\s*tea/.test(lower)
+    /kopi|coffee|rice|mee|noodle|food|dining|meal|breakfast|lunch|dinner|makan|nasi|roti|chicken|bakery|restaurant|cafe|mcd|mcdonald|kfc|koufu|canteen|drink|tea|teh|dessert|desserts|pizza|burger|sushi|ramen|hotpot|dim\s*sum|hawker/.test(lower)
   ){
+
     return "Dining";
+
   }
+
 
   /* TRANSPORT */
 
   if(
-    /grab|gojek|mrt|bus|taxi|transport|train|erp|parking|petrol|fuel|shell|esso|caltex|charging|charge/.test(lower)
+    /grab|gojek|mrt|bus|taxi|transport|train|erp|parking|petrol|fuel|shell|esso|caltex|station/.test(lower)
   ){
+
     return "Transport";
+
   }
 
-  /* BILLS */
+
+  /* ENTERTAINMENT */
 
   if(
-    /phone|wifi|internet|bill|simba|singtel|starhub|m1|electricity|utilities|water|sp|spgroup|town\s*council|insurance/.test(lower)
+    /cinema|movie|netflix|spotify|game|gaming|entertainment|concert|apple\s*music|apple\s*tv|apple\s*store|apple\s*subscription|icloud|itunes/.test(lower)
   ){
-    return "Bills";
+
+    return "Entertainment";
+
   }
 
-  /* SHOPPING */
-
-  if(
-    /lazada|shopee|taobao|amazon|shopping|mall|clothes|shirt|shoe|shoes|bag|fashion|uniqlo|zara|h&m|online\s*shopping|carousell/.test(lower)
-  ){
-    return "Shopping";
-  }
 
   /* TRAVEL */
 
   if(
-    /travel|holiday|hotel|flight|cruise|trip|airbnb|booking\.com|agoda|airport/.test(lower)
+    /travel|holiday|hotel|flight|cruise|trip|airbnb|agoda|booking\.com|traveloka/.test(lower)
   ){
+
     return "Travel";
+
   }
+
+
+  /* BILLS */
+
+  if(
+    /phone|wifi|internet|bill|simba|singtel|starhub|m1|electricity|utilities|utility|water|sp\s*services/.test(lower)
+  ){
+
+    return "Bills";
+
+  }
+
+
+  /* SHOPPING */
+
+  if(
+    /lazada|shopee|taobao|amazon|shopping|mall|clothes|shirt|shoe|shoes|bag|online|uniqlo|zara|h&m|decathlon|watsons|guardian/.test(lower)
+  ){
+
+    return "Shopping";
+
+  }
+
 
   return "Other";
 
 }
-
-
 
 
 /* =====================================================
@@ -1945,9 +2205,12 @@ function detectCategory(text){
 function isIncomeDescription(text){
 
   const lower =
-    text.toLowerCase();
+    String(text || "")
+      .toLowerCase()
+      .trim();
 
   return [
+
     "salary",
     "rental income",
     "rental",
@@ -1956,7 +2219,11 @@ function isIncomeDescription(text){
     "freelance",
     "bonus",
     "commission",
-    "income"
+    "income",
+    "paycheck",
+    "pay check",
+    "allowance"
+
   ].some(
     word=>lower.includes(word)
   );
@@ -1983,49 +2250,124 @@ function quickAdd(){
   const text =
     input.value.trim();
 
-
   if(!text){
+
     input.focus();
+
     return;
+
   }
 
 
   /*
-    Accepts:
+    ACCEPT:
 
     5.50 kopi
     5 kopi
     $5.50 kopi
     700 salary
+
+    ALSO:
+
+    kopi 5.50
+    salary 4200
+    fairprice 25.80
+    netflix 15.98
   */
 
-  const match =
+
+  let match =
     text.match(
-      /^\s*\$?(\d+(?:\.\d+)?)\s+(.+?)\s*$/
+      /^\s*\$?\s*(\d+(?:\.\d+)?)\s+(.+?)\s*$/
     );
+
+
+  /*
+    If amount is NOT first,
+    find amount at the end.
+  */
+
+  if(!match){
+
+    match =
+      text.match(
+        /^\s*(.+?)\s+\$?\s*(\d+(?:\.\d+)?)\s*$/
+      );
+
+    if(match){
+
+      const description =
+        match[1].trim();
+
+      const amount =
+        parseFloat(
+          match[2]
+        );
+
+      addTransaction(
+        description,
+        amount,
+        status,
+        input
+      );
+
+      return;
+
+    }
+
+  }
 
 
   if(!match){
 
     status.textContent =
-      "Use amount + description";
+      "Example: 5.50 kopi";
 
     input.focus();
 
     return;
+
   }
 
 
   const amount =
-    parseFloat(match[1]);
-
+    parseFloat(
+      match[1]
+    );
 
   const description =
     match[2].trim();
 
+  addTransaction(
+    description,
+    amount,
+    status,
+    input
+  );
 
-  if(amount <= 0){
+}
+
+
+function addTransaction(
+  description,
+  amount,
+  status,
+  input
+){
+
+  if(
+    !description ||
+    !amount ||
+    amount <= 0
+  ){
+
+    status.textContent =
+      "Please enter a valid amount.";
+
+    input.focus();
+
     return;
+
   }
 
 
@@ -2054,18 +2396,26 @@ function quickAdd(){
         ? "income"
         : "expense",
 
-    description,
+    description:
 
-    amount,
+      description,
 
-    category,
+    amount:
+
+      amount,
+
+    category:
+
+      category,
 
     date:
+
       dateKey(
         new Date()
       ),
 
     created:
+
       new Date().toISOString()
 
   });
@@ -2073,21 +2423,19 @@ function quickAdd(){
 
   saveAll();
 
-
   input.value = "";
 
   status.textContent =
-    "✓ Recorded";
-
+    "✓ Recorded as " +
+    category;
 
   renderAll();
-
 
   setTimeout(
     ()=>{
       status.textContent = "";
     },
-    1600
+    1800
   );
 
 }
@@ -2096,7 +2444,9 @@ function quickAdd(){
 /* ENTER = QUICK RECORD */
 
 document
-  .getElementById("quickInput")
+  .getElementById(
+    "quickInput"
+  )
   .addEventListener(
     "keydown",
     function(e){
@@ -2125,12 +2475,18 @@ function dateKey(date){
   const m =
     String(
       date.getMonth()+1
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   const d =
     String(
       date.getDate()
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   return `${y}-${m}-${d}`;
 
@@ -2138,6 +2494,10 @@ function dateKey(date){
 
 
 function displayDate(key){
+
+  if(!key){
+    return "";
+  }
 
   const parts =
     key.split("-");
@@ -2162,10 +2522,20 @@ function getTotals(){
     t=>{
 
       if(t.type === "income"){
-        income += Number(t.amount);
+
+        income +=
+          Number(
+            t.amount
+          );
+
       }
       else{
-        expense += Number(t.amount);
+
+        expense +=
+          Number(
+            t.amount
+          );
+
       }
 
     }
@@ -2174,7 +2544,12 @@ function getTotals(){
 
   incomes.forEach(
     i=>{
-      income += Number(i.amount);
+
+      income +=
+        Number(
+          i.amount
+        );
+
     }
   );
 
@@ -2182,7 +2557,10 @@ function getTotals(){
   const fixed =
     fixedExpenses.reduce(
       (sum,e)=>
-        sum + Number(e.amount),
+        sum +
+        Number(
+          e.amount
+        ),
       0
     );
 
@@ -2221,26 +2599,34 @@ function renderHome(){
   document.getElementById(
     "homeBalance"
   ).textContent =
-    money(totals.balance);
+    money(
+      totals.balance
+    );
 
 
   document.getElementById(
     "homeIncome"
   ).textContent =
-    money(totals.income);
+    money(
+      totals.income
+    );
 
 
   document.getElementById(
     "homeExpense"
   ).textContent =
-    money(totals.expense);
+    money(
+      totals.expense
+    );
 
 
   const planned =
     goals.reduce(
       (sum,g)=>
         sum +
-        Number(g.monthly || 0),
+        Number(
+          g.monthly || 0
+        ),
       0
     );
 
@@ -2258,7 +2644,9 @@ function renderHome(){
   document.getElementById(
     "safeSpend"
   ).textContent =
-    money(safe);
+    money(
+      safe
+    );
 
 
   const box =
@@ -2283,7 +2671,9 @@ function renderHome(){
   box.innerHTML =
     transactions
       .slice(0,5)
-      .map(transactionHTML)
+      .map(
+        transactionHTML
+      )
       .join("");
 
 }
@@ -2298,6 +2688,8 @@ function getIcon(category){
   const icons = {
 
     "Dining":"🍜",
+
+    "Groceries":"🛒",
 
     "Transport":"🚕",
 
@@ -2315,7 +2707,11 @@ function getIcon(category){
 
   };
 
-  return icons[category] || "💳";
+
+  return (
+    icons[category]
+    || "💳"
+  );
 
 }
 
@@ -2335,18 +2731,29 @@ function transactionHTML(t){
         <div class="transaction-info">
 
           <div class="transaction-name">
-            ${escapeHTML(t.description)}
+            ${escapeHTML(
+              t.description
+            )}
           </div>
 
           <div class="transaction-meta">
-            ${escapeHTML(t.category)}
+
+            ${escapeHTML(
+              t.category
+            )}
+
             ·
-            ${displayDate(t.date)}
+
+            ${displayDate(
+              t.date
+            )}
+
           </div>
 
         </div>
 
       </div>
+
 
       <div class="transaction-right">
 
@@ -2357,10 +2764,18 @@ function transactionHTML(t){
               : "expense"
           }">
 
-          ${t.type === "income" ? "+" : "-"}
-          ${money(t.amount)}
+          ${
+            t.type === "income"
+              ? "+"
+              : "-"
+          }
+
+          ${money(
+            t.amount
+          )}
 
         </div>
+
 
         <button
           type="button"
@@ -2382,12 +2797,29 @@ function transactionHTML(t){
 
 function escapeHTML(str){
 
-  return String(str)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    str
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -2396,7 +2828,9 @@ function deleteTransaction(id){
 
   transactions =
     transactions.filter(
-      t=>String(t.id) !== String(id)
+      t=>
+        String(t.id) !==
+        String(id)
     );
 
   saveAll();
@@ -2419,19 +2853,25 @@ function renderReports(){
   document.getElementById(
     "reportBalance"
   ).textContent =
-    money(totals.balance);
+    money(
+      totals.balance
+    );
 
 
   document.getElementById(
     "reportIncome"
   ).textContent =
-    money(totals.income);
+    money(
+      totals.income
+    );
 
 
   document.getElementById(
     "reportExpense"
   ).textContent =
-    money(totals.expense);
+    money(
+      totals.expense
+    );
 
 
   const cats = {};
@@ -2439,30 +2879,40 @@ function renderReports(){
 
   transactions
     .filter(
-      t=>t.type === "expense"
+      t=>
+        t.type === "expense"
     )
     .forEach(
       t=>{
 
         cats[t.category] =
-          (cats[t.category] || 0) +
-          Number(t.amount);
+          (
+            cats[t.category]
+            || 0
+          ) +
+          Number(
+            t.amount
+          );
 
       }
     );
 
 
   const entries =
-    Object.entries(cats)
+    Object.entries(
+      cats
+    )
       .sort(
-        (a,b)=>b[1]-a[1]
+        (a,b)=>
+          b[1]-a[1]
       );
 
 
   const total =
     entries.reduce(
       (sum,item)=>
-        sum + item[1],
+        sum +
+        item[1],
       0
     );
 
@@ -2470,7 +2920,9 @@ function renderReports(){
   document.getElementById(
     "donutTotal"
   ).textContent =
-    money(total);
+    money(
+      total
+    );
 
 
   const donut =
@@ -2490,8 +2942,11 @@ function renderReports(){
     let start = 0;
 
     const colors = [
+
       "var(--red)",
+
       "var(--cyan)"
+
     ];
 
     const parts = [];
@@ -2502,15 +2957,21 @@ function renderReports(){
 
         const deg =
           total
-            ? value / total * 360
+            ? value /
+              total *
+              360
             : 0;
 
         const end =
           start + deg;
 
+
         parts.push(
-          `${colors[i % 2]} ${start}deg ${end}deg`
+          `${colors[
+            i % 2
+          ]} ${start}deg ${end}deg`
         );
+
 
         start = end;
 
@@ -2547,8 +3008,11 @@ function renderReports(){
 
             const percent =
               total
-                ? value / total * 100
+                ? value /
+                  total *
+                  100
                 : 0;
+
 
             return `
 
@@ -2571,9 +3035,13 @@ function renderReports(){
                 </div>
 
                 <strong>
+
                   ${money(value)}
+
                   ·
+
                   ${percent.toFixed(0)}%
+
                 </strong>
 
               </div>
@@ -2612,8 +3080,11 @@ function renderReports(){
 
           const percent =
             total
-              ? value / total * 100
+              ? value /
+                total *
+                100
               : 0;
+
 
           return `
 
@@ -2669,6 +3140,7 @@ function setupCalendarSelectors(){
 
 
   const months = [
+
     "January",
     "February",
     "March",
@@ -2681,6 +3153,7 @@ function setupCalendarSelectors(){
     "October",
     "November",
     "December"
+
   ];
 
 
@@ -2696,15 +3169,20 @@ function setupCalendarSelectors(){
 
 
   const currentYear =
-    new Date().getFullYear();
+    new Date()
+      .getFullYear();
 
 
   let years = [];
 
 
   for(
-    let y = currentYear - 5;
-    y <= currentYear + 30;
+    let y =
+      currentYear - 5;
+
+    y <=
+      currentYear + 30;
+
     y++
   ){
 
@@ -2725,10 +3203,13 @@ function setupCalendarSelectors(){
 
 
   month.value =
-    calendarDate.getMonth();
+    calendarDate
+      .getMonth();
+
 
   year.value =
-    calendarDate.getFullYear();
+    calendarDate
+      .getFullYear();
 
 }
 
@@ -2741,6 +3222,7 @@ function calendarChanged(){
         "monthSelect"
       ).value
     );
+
 
   const year =
     Number(
@@ -2758,7 +3240,9 @@ function calendarChanged(){
     );
 
 
-  selectedCalendarDay = null;
+  selectedCalendarDay =
+    null;
+
 
   renderCalendar();
 
@@ -2770,12 +3254,13 @@ function changeMonth(amount){
   calendarDate =
     new Date(
       calendarDate.getFullYear(),
-      calendarDate.getMonth() + amount,
+      calendarDate.getMonth()
+      + amount,
       1
     );
 
 
-  let year =
+  const year =
     calendarDate.getFullYear();
 
 
@@ -2789,7 +3274,9 @@ function changeMonth(amount){
     !Array.from(
       select.options
     ).some(
-      o=>Number(o.value) === year
+      o=>
+        Number(o.value)
+        === year
     )
   ){
 
@@ -2804,7 +3291,8 @@ function changeMonth(amount){
   document.getElementById(
     "monthSelect"
   ).value =
-    calendarDate.getMonth();
+    calendarDate
+      .getMonth();
 
 
   document.getElementById(
@@ -2813,7 +3301,9 @@ function changeMonth(amount){
     year;
 
 
-  selectedCalendarDay = null;
+  selectedCalendarDay =
+    null;
+
 
   renderCalendar();
 
@@ -2848,16 +3338,20 @@ function getDayTransactions(
 function renderCalendar(){
 
   const month =
-    calendarDate.getMonth();
+    calendarDate
+      .getMonth();
+
 
   const year =
-    calendarDate.getFullYear();
+    calendarDate
+      .getFullYear();
 
 
   const monthSelect =
     document.getElementById(
       "monthSelect"
     );
+
 
   const yearSelect =
     document.getElementById(
@@ -2871,6 +3365,7 @@ function renderCalendar(){
       month;
 
   }
+
 
   if(yearSelect){
 
@@ -2947,7 +3442,10 @@ function renderCalendar(){
     const total =
       list.reduce(
         (sum,t)=>
-          sum + Number(t.amount),
+          sum +
+          Number(
+            t.amount
+          ),
         0
       );
 
@@ -3032,6 +3530,12 @@ function renderCalendarSummary(){
     selectedCalendarDay === null
   ){
 
+    const prefix =
+      `${calendarDate.getFullYear()}-${String(
+        calendarDate.getMonth()+1
+      ).padStart(2,"0")}`;
+
+
     const monthTotal =
       transactions
         .filter(
@@ -3039,12 +3543,15 @@ function renderCalendarSummary(){
             t.type === "expense" &&
             t.date &&
             t.date.startsWith(
-              `${calendarDate.getFullYear()}-${String(calendarDate.getMonth()+1).padStart(2,"0")}`
+              prefix
             )
         )
         .reduce(
           (sum,t)=>
-            sum + Number(t.amount),
+            sum +
+            Number(
+              t.amount
+            ),
           0
         );
 
@@ -3052,6 +3559,7 @@ function renderCalendarSummary(){
     box.innerHTML = `
 
       <div class="calendar-summary-title">
+
         ${calendarDate.toLocaleString(
           "en-US",
           {
@@ -3059,6 +3567,7 @@ function renderCalendarSummary(){
             year:"numeric"
           }
         )}
+
       </div>
 
       <div class="calendar-summary-total">
@@ -3070,10 +3579,13 @@ function renderCalendarSummary(){
         color:var(--muted);
         font-size:11px;
         margin-top:3px">
+
         Total spending this month
+
       </div>
 
     `;
+
 
     return;
 
@@ -3091,7 +3603,10 @@ function renderCalendarSummary(){
   const total =
     list.reduce(
       (sum,t)=>
-        sum + Number(t.amount),
+        sum +
+        Number(
+          t.amount
+        ),
       0
     );
 
@@ -3144,7 +3659,10 @@ function renderCalendarSummary(){
       color:var(--muted);
       font-size:11px;
       margin-top:3px">
-      ${list.length} expense${list.length === 1 ? "" : "s"}
+
+      ${list.length}
+      expense${list.length === 1 ? "" : "s"}
+
     </div>
 
     <div class="calendar-day-list">
@@ -3166,7 +3684,9 @@ function renderGoals(){
     goals.reduce(
       (sum,g)=>
         sum +
-        Number(g.monthly || 0),
+        Number(
+          g.monthly || 0
+        ),
       0
     );
 
@@ -3174,13 +3694,17 @@ function renderGoals(){
   document.getElementById(
     "monthlySaving"
   ).textContent =
-    money(monthly);
+    money(
+      monthly
+    );
 
 
   document.getElementById(
     "yearSaving"
   ).textContent =
-    money(monthly * 12);
+    money(
+      monthly * 12
+    );
 
 
   const box =
@@ -3208,32 +3732,47 @@ function renderGoals(){
         g=>{
 
           const target =
-            Number(g.target || 0);
+            Number(
+              g.target || 0
+            );
+
 
           const saved =
-            Number(g.saved || 0);
+            Number(
+              g.saved || 0
+            );
+
 
           const monthly =
-            Number(g.monthly || 0);
+            Number(
+              g.monthly || 0
+            );
+
 
           const percent =
             target
               ? Math.min(
                   100,
-                  saved / target * 100
+                  saved /
+                  target *
+                  100
                 )
               : 0;
+
 
           const remaining =
             Math.max(
               0,
-              target - saved
+              target -
+              saved
             );
+
 
           const months =
             monthly > 0
               ? Math.ceil(
-                  remaining / monthly
+                  remaining /
+                  monthly
                 )
               : null;
 
@@ -3277,7 +3816,9 @@ function renderGoals(){
 
                 <div class="goal-mini">
 
-                  <small>SAVED</small>
+                  <small>
+                    SAVED
+                  </small>
 
                   <strong>
                     ${money(saved)}
@@ -3285,9 +3826,12 @@ function renderGoals(){
 
                 </div>
 
+
                 <div class="goal-mini">
 
-                  <small>REMAINING</small>
+                  <small>
+                    REMAINING
+                  </small>
 
                   <strong>
                     ${money(remaining)}
@@ -3295,9 +3839,12 @@ function renderGoals(){
 
                 </div>
 
+
                 <div class="goal-mini">
 
-                  <small>MONTHLY PLAN</small>
+                  <small>
+                    MONTHLY PLAN
+                  </small>
 
                   <strong>
                     ${money(monthly)}
@@ -3305,18 +3852,24 @@ function renderGoals(){
 
                 </div>
 
+
                 <div class="goal-mini">
 
-                  <small>EST. TIME</small>
+                  <small>
+                    EST. TIME
+                  </small>
 
                   <strong>
+
                     ${
                       percent >= 100
                         ? "Completed"
                         : months
-                          ? months + " months"
+                          ? months +
+                            " months"
                           : "Set plan"
                     }
+
                   </strong>
 
                 </div>
@@ -3341,14 +3894,19 @@ function renderGoals(){
                   type="button"
                   class="small-btn"
                   onclick="addGoalSaving('${g.id}')">
+
                   + Add saving
+
                 </button>
+
 
                 <button
                   type="button"
                   class="small-btn"
                   onclick="deleteGoal('${g.id}')">
+
                   Delete
+
                 </button>
 
               </div>
@@ -3368,7 +3926,9 @@ function openGoalModal(){
 
   document.getElementById(
     "goalModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -3380,6 +3940,7 @@ function saveGoal(){
       "goalName"
     ).value.trim();
 
+
   const target =
     parseFloat(
       document.getElementById(
@@ -3387,12 +3948,14 @@ function saveGoal(){
       ).value
     );
 
+
   const saved =
     parseFloat(
       document.getElementById(
         "goalSaved"
       ).value
     ) || 0;
+
 
   const monthly =
     parseFloat(
@@ -3442,16 +4005,22 @@ function saveGoal(){
     "goalTarget",
     "goalSaved",
     "goalMonthly"
+
   ].forEach(
     id=>{
+
       document.getElementById(
         id
       ).value = "";
+
     }
   );
 
 
-  closeModal("goalModal");
+  closeModal(
+    "goalModal"
+  );
+
 
   renderAll();
 
@@ -3462,7 +4031,9 @@ function addGoalSaving(id){
 
   const goal =
     goals.find(
-      g=>String(g.id) === String(id)
+      g=>
+        String(g.id) ===
+        String(id)
     );
 
 
@@ -3483,12 +4054,16 @@ function addGoalSaving(id){
     !value ||
     value <= 0
   ){
+
     return;
+
   }
 
 
   goal.saved =
-    Number(goal.saved || 0) +
+    Number(
+      goal.saved || 0
+    ) +
     value;
 
 
@@ -3506,13 +4081,17 @@ function deleteGoal(id){
       "Delete this savings goal?"
     )
   ){
+
     return;
+
   }
 
 
   goals =
     goals.filter(
-      g=>String(g.id) !== String(id)
+      g=>
+        String(g.id) !==
+        String(id)
     );
 
 
@@ -3531,7 +4110,9 @@ function openIncomeModal(){
 
   document.getElementById(
     "incomeModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -3542,6 +4123,7 @@ function saveIncome(){
     document.getElementById(
       "incomeName"
     ).value.trim();
+
 
   const amount =
     parseFloat(
@@ -3586,12 +4168,16 @@ function saveIncome(){
     "incomeName"
   ).value = "";
 
+
   document.getElementById(
     "incomeAmount"
   ).value = "";
 
 
-  closeModal("incomeModal");
+  closeModal(
+    "incomeModal"
+  );
+
 
   renderAll();
 
@@ -3637,14 +4223,15 @@ function renderIncomeSources(){
 
             </div>
 
+
             <div>
 
               <strong class="income">
                 ${money(i.amount)}
               </strong>
 
+
               <button
-                class="edit-fixed"
                 style="
                 border:0;
                 background:none;
@@ -3652,7 +4239,9 @@ function renderIncomeSources(){
                 font-size:11px;
                 margin-left:6px"
                 onclick="editIncome('${i.id}')">
+
                 Edit
+
               </button>
 
             </div>
@@ -3670,7 +4259,9 @@ function editIncome(id){
 
   const item =
     incomes.find(
-      i=>String(i.id) === String(id)
+      i=>
+        String(i.id) ===
+        String(id)
     );
 
 
@@ -3692,7 +4283,9 @@ function editIncome(id){
     !amount ||
     amount <= 0
   ){
+
     return;
+
   }
 
 
@@ -3715,7 +4308,9 @@ function openFixedModal(){
 
   document.getElementById(
     "fixedModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -3726,6 +4321,7 @@ function saveFixedExpense(){
     document.getElementById(
       "fixedName"
     ).value.trim();
+
 
   const amount =
     parseFloat(
@@ -3770,12 +4366,16 @@ function saveFixedExpense(){
     "fixedName"
   ).value = "";
 
+
   document.getElementById(
     "fixedAmount"
   ).value = "";
 
 
-  closeModal("fixedModal");
+  closeModal(
+    "fixedModal"
+  );
+
 
   renderAll();
 
@@ -3821,11 +4421,13 @@ function renderFixedExpenses(){
 
             </div>
 
+
             <div>
 
               <strong class="expense">
                 ${money(e.amount)}
               </strong>
+
 
               <button
                 style="
@@ -3835,7 +4437,9 @@ function renderFixedExpenses(){
                 font-size:11px;
                 margin-left:6px"
                 onclick="editFixed('${e.id}')">
+
                 Edit
+
               </button>
 
             </div>
@@ -3853,7 +4457,9 @@ function editFixed(id){
 
   const item =
     fixedExpenses.find(
-      e=>String(e.id) === String(id)
+      e=>
+        String(e.id) ===
+        String(id)
     );
 
 
@@ -3875,7 +4481,9 @@ function editFixed(id){
     !amount ||
     amount <= 0
   ){
+
     return;
+
   }
 
 
@@ -3898,7 +4506,9 @@ function closeModal(id){
 
   document.getElementById(
     id
-  ).classList.remove("show");
+  ).classList.remove(
+    "show"
+  );
 
 }
 
@@ -3962,7 +4572,9 @@ function clearAllData(){
       "Delete all BUNEXA data on this device?"
     )
   ){
+
     return;
+
   }
 
 
@@ -4008,8 +4620,10 @@ function renderAll(){
 
 
   if(currencySelect){
+
     currencySelect.value =
       currency;
+
   }
 
 }
