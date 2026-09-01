@@ -1,998 +1,952 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>BUNEXA — Money Butler</title>
 
 <style>
-
 :root{
-  --bg:#08090c;
-  --card:#111319;
-  --card2:#151820;
-  --text:#f5f7fa;
-  --muted:#8c94a1;
-  --border:#292e38;
-  --cyan:#19c5c0;
-  --cyan-soft:rgba(25,197,192,.12);
-  --red:#ff7070;
-  --green:#58dfaa;
-  --shadow:0 12px 35px rgba(0,0,0,.18);
+--bg:#08090c;--card:#111319;--card2:#151820;--text:#f5f7fa;
+--muted:#8c94a1;--border:#292e38;--cyan:#19c5c0;
+--cyan-soft:rgba(25,197,192,.12);--red:#ff7070;--green:#58dfaa;
+--shadow:0 12px 35px rgba(0,0,0,.18)
 }
 
 body.light{
-  --bg:#f5f9f8;
-  --card:#fff;
-  --card2:#f1f6f5;
-  --text:#11161a;
-  --muted:#727b82;
-  --border:#dbe4e3;
-  --cyan:#159f9c;
-  --cyan-soft:rgba(21,159,156,.10);
-  --red:#d85e5e;
-  --green:#3e9d78;
-  --shadow:0 12px 35px rgba(40,70,70,.08);
+--bg:#f5f9f8;--card:#fff;--card2:#f1f6f5;--text:#11161a;
+--muted:#727b82;--border:#dbe4e3;--cyan:#159f9c;
+--cyan-soft:rgba(21,159,156,.10);--red:#d85e5e;--green:#3e9d78;
+--shadow:0 12px 35px rgba(40,70,70,.08)
 }
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0
 }
 
 html{
-  -webkit-text-size-adjust:100%;
+-webkit-text-size-adjust:100%
 }
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  padding-bottom:100px;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:var(--bg);
+color:var(--text);
+min-height:100vh;
+padding-bottom:100px
 }
 
-button,
-input,
-select{
-  font:inherit;
+button,input,select{
+font:inherit
 }
 
 button{
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
+cursor:pointer;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation
 }
 
-input,
-select{
-  touch-action:manipulation;
+input,select{
+touch-action:manipulation
 }
 
 .app{
-  width:min(520px,100%);
-  margin:auto;
-  padding:26px 20px 110px;
+width:min(520px,100%);
+margin:auto;
+padding:26px 20px 110px
 }
 
 .page{
-  display:none;
+display:none
 }
 
 .page.active{
-  display:block;
+display:block
 }
 
-/* HEADER */
-
 .header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:28px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:28px
 }
 
 .logo{
-  font-size:29px;
-  font-weight:850;
-  letter-spacing:4px;
+font-size:29px;
+font-weight:850;
+letter-spacing:4px
 }
 
 .menu-btn{
-  width:48px;
-  height:48px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  font-size:23px;
-  position:relative;
-  z-index:5;
+width:48px;
+height:48px;
+border-radius:16px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+font-size:23px;
+position:relative;
+z-index:5
 }
 
-/* TEXT */
-
 .eyebrow{
-  color:var(--muted);
-  font-size:12px;
-  letter-spacing:2px;
-  margin-bottom:8px;
+color:var(--muted);
+font-size:12px;
+letter-spacing:2px;
+margin-bottom:8px
 }
 
 .page-title{
-  font-size:38px;
-  font-weight:850;
-  letter-spacing:-1.5px;
-  margin-bottom:8px;
+font-size:38px;
+font-weight:850;
+letter-spacing:-1.5px;
+margin-bottom:8px
 }
 
 .page-subtitle{
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.5;
-  margin-bottom:22px;
+color:var(--muted);
+font-size:15px;
+line-height:1.5;
+margin-bottom:22px
 }
 
-/* CARD */
-
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:23px;
-  margin-bottom:16px;
-  box-shadow:var(--shadow);
+background:var(--card);
+border:1px solid var(--border);
+border-radius:25px;
+padding:23px;
+margin-bottom:16px;
+box-shadow:var(--shadow)
 }
 
 .card-title{
-  font-size:20px;
-  font-weight:780;
-  margin-bottom:7px;
+font-size:20px;
+font-weight:780;
+margin-bottom:7px
 }
 
 .card-subtitle{
-  color:var(--muted);
-  font-size:13px;
+color:var(--muted);
+font-size:13px
 }
 
-/* BALANCE */
-
 .balance-label{
-  color:var(--muted);
-  font-size:14px;
+color:var(--muted);
+font-size:14px
 }
 
 .balance{
-  font-size:44px;
-  font-weight:850;
-  letter-spacing:-2px;
-  margin:7px 0 22px;
+font-size:44px;
+font-weight:850;
+letter-spacing:-2px;
+margin:7px 0 22px
 }
 
 .stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:11px
 }
 
 .stat{
-  background:var(--card2);
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:15px;
+background:var(--card2);
+border:1px solid var(--border);
+border-radius:17px;
+padding:15px
 }
 
 .stat-label{
-  color:var(--muted);
-  font-size:11px;
-  letter-spacing:1px;
-  margin-bottom:7px;
+color:var(--muted);
+font-size:11px;
+letter-spacing:1px;
+margin-bottom:7px
 }
 
 .stat-value{
-  font-size:19px;
-  font-weight:780;
+font-size:19px;
+font-weight:780
 }
 
 .income{
-  color:var(--green);
+color:var(--green)
 }
 
 .expense{
-  color:var(--red);
+color:var(--red)
 }
 
 .cyan{
-  color:var(--cyan);
+color:var(--cyan)
 }
 
-/* SAFE */
-
 .safe{
-  border-color:var(--cyan);
-  background:var(--cyan-soft);
+border-color:var(--cyan);
+background:var(--cyan-soft)
 }
 
 .safe-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px
 }
 
 .safe-title{
-  font-size:19px;
-  font-weight:780;
+font-size:19px;
+font-weight:780
 }
 
 .safe-text{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
-  line-height:1.4;
+color:var(--muted);
+font-size:12px;
+margin-top:5px;
+line-height:1.4
 }
 
 .safe-number{
-  color:var(--cyan);
-  font-size:27px;
-  font-weight:850;
-  white-space:nowrap;
+color:var(--cyan);
+font-size:27px;
+font-weight:850;
+white-space:nowrap
 }
 
-/* QUICK RECORD */
-
 .quick-card{
-  border-color:var(--cyan);
+border-color:var(--cyan)
 }
 
 .quick-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:6px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:6px
 }
 
 .quick-head h2{
-  font-size:22px;
+font-size:22px
 }
 
 .quick-head span{
-  color:var(--muted);
-  font-size:14px;
+color:var(--muted);
+font-size:14px
 }
 
 .quick-description{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:20px;
+color:var(--muted);
+font-size:13px;
+margin-bottom:20px
 }
 
 .record-label{
-  color:var(--cyan);
-  font-size:12px;
-  font-weight:850;
-  letter-spacing:2px;
-  margin-bottom:9px;
+color:var(--cyan);
+font-size:12px;
+font-weight:850;
+letter-spacing:2px;
+margin-bottom:9px
 }
 
 .record-row{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 70px;
-  gap:10px;
+display:grid;
+grid-template-columns:minmax(0,1fr) 70px;
+gap:10px
 }
 
 .record-input{
-  width:100%;
-  min-width:0;
-  height:64px;
-  border-radius:20px;
-  border:2px solid var(--cyan);
-  background:var(--card2);
-  color:var(--text);
-  padding:0 17px;
-  outline:none;
-  font-size:19px;
-  position:relative;
-  z-index:2;
+width:100%;
+min-width:0;
+height:64px;
+border-radius:20px;
+border:2px solid var(--cyan);
+background:var(--card2);
+color:var(--text);
+padding:0 17px;
+outline:none;
+font-size:19px;
+position:relative;
+z-index:2
 }
 
 .record-input:focus{
-  box-shadow:0 0 0 3px var(--cyan-soft);
+box-shadow:0 0 0 3px var(--cyan-soft)
 }
 
 .record-input::placeholder{
-  color:var(--muted);
+color:var(--muted)
 }
 
 .add-btn{
-  height:64px;
-  border:0;
-  border-radius:20px;
-  background:var(--cyan);
-  color:#fff;
-  font-size:34px;
-  font-weight:500;
-  position:relative;
-  z-index:3;
+height:64px;
+border:0;
+border-radius:20px;
+background:var(--cyan);
+color:#fff;
+font-size:34px;
+font-weight:500;
+position:relative;
+z-index:3
 }
 
 .quick-status{
-  min-height:18px;
-  color:var(--cyan);
-  font-size:12px;
-  margin-top:9px;
+min-height:18px;
+color:var(--cyan);
+font-size:12px;
+margin-top:9px
 }
 
-/* SECTION */
-
 .section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:28px 0 13px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:28px 0 13px
 }
 
 .section-head h2{
-  font-size:21px;
+font-size:21px
 }
 
 .section-link{
-  color:var(--cyan);
-  font-size:14px;
-  border:0;
-  background:none;
+color:var(--cyan);
+font-size:14px;
+border:0;
+background:none
 }
 
-/* TRANSACTION */
-
 .transactions{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+display:flex;
+flex-direction:column;
+gap:10px
 }
 
 .transaction{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:14px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:var(--card);
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:14px;
+border:1px solid var(--border);
+border-radius:18px;
+background:var(--card)
 }
 
 .transaction-left{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  min-width:0;
+display:flex;
+align-items:center;
+gap:11px;
+min-width:0
 }
 
 .icon{
-  width:44px;
-  height:44px;
-  flex:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:14px;
-  background:var(--card2);
-  font-size:21px;
+width:44px;
+height:44px;
+flex:none;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:14px;
+background:var(--card2);
+font-size:21px
 }
 
 .transaction-info{
-  min-width:0;
+min-width:0
 }
 
 .transaction-name{
-  font-weight:750;
-  font-size:15px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+font-weight:750;
+font-size:15px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
 }
 
 .transaction-meta{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:4px;
+color:var(--muted);
+font-size:11px;
+margin-top:4px
 }
 
 .transaction-right{
-  text-align:right;
-  flex:none;
+text-align:right;
+flex:none
 }
 
 .transaction-money{
-  font-weight:850;
-  font-size:15px;
-  white-space:nowrap;
+font-weight:850;
+font-size:15px;
+white-space:nowrap
 }
 
 .delete-btn{
-  border:0;
-  background:none;
-  color:var(--muted);
-  font-size:11px;
-  margin-top:4px;
+border:0;
+background:none;
+color:var(--muted);
+font-size:11px;
+margin-top:4px
 }
 
-/* REPORTS */
-
 .overview-number{
-  font-size:41px;
-  font-weight:850;
-  margin:13px 0 5px;
+font-size:41px;
+font-weight:850;
+margin:13px 0 5px
 }
 
 .report-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-  margin-top:17px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:11px;
+margin-top:17px
 }
 
 .report-stat{
-  background:var(--card2);
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:15px;
+background:var(--card2);
+border:1px solid var(--border);
+border-radius:17px;
+padding:15px
 }
 
 .report-stat small{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:1px;
-  margin-bottom:7px;
+display:block;
+color:var(--muted);
+font-size:10px;
+letter-spacing:1px;
+margin-bottom:7px
 }
 
 .report-stat strong{
-  font-size:19px;
+font-size:19px
 }
 
 .chart-wrap{
-  display:flex;
-  justify-content:center;
-  margin:20px 0;
+display:flex;
+justify-content:center;
+margin:20px 0
 }
 
 .donut{
-  width:190px;
-  height:190px;
-  border-radius:50%;
-  background:var(--card2);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+width:200px;
+height:200px;
+border-radius:50%;
+background:var(--card2);
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s
 }
 
 .donut-inner{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:var(--card);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+width:124px;
+height:124px;
+border-radius:50%;
+background:var(--card);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center
 }
 
 .donut-inner strong{
-  font-size:20px;
+font-size:20px
 }
 
 .donut-inner span{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:3px;
+color:var(--muted);
+font-size:11px;
+margin-top:3px
 }
 
 .legend{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+display:flex;
+flex-direction:column;
+gap:10px
 }
 
 .legend-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:13px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:13px
 }
 
 .legend-left{
-  display:flex;
-  align-items:center;
-  gap:8px;
+display:flex;
+align-items:center;
+gap:8px
 }
 
 .dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-}
-
-.dot-cyan{
-  background:var(--cyan);
-}
-
-.dot-red{
-  background:var(--red);
+width:10px;
+height:10px;
+border-radius:50%;
+flex:none
 }
 
 .category-row{
-  margin-bottom:14px;
+margin-bottom:14px
 }
 
 .category-top{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:6px;
-  font-size:12px;
+display:flex;
+justify-content:space-between;
+margin-bottom:6px;
+font-size:12px
 }
 
 .progress{
-  height:8px;
-  background:var(--card2);
-  border-radius:20px;
-  overflow:hidden;
+height:8px;
+background:var(--card2);
+border-radius:20px;
+overflow:hidden
 }
 
 .progress-fill{
-  height:100%;
-  background:var(--red);
-  border-radius:20px;
+height:100%;
+border-radius:20px
 }
 
-/* CALENDAR */
+.insight-card{
+border-color:var(--cyan);
+background:var(--cyan-soft)
+}
+
+.insight-title{
+font-size:19px;
+font-weight:800;
+margin-bottom:8px
+}
+
+.insight-text{
+color:var(--muted);
+font-size:13px;
+line-height:1.6
+}
+
+.insight-highlight{
+color:var(--cyan);
+font-weight:800
+}
+
+.insight-tip{
+margin-top:12px;
+padding:12px;
+border-radius:14px;
+background:var(--card);
+border:1px solid var(--border);
+font-size:12px;
+line-height:1.5
+}
 
 .calendar-card{
-  padding:18px;
+padding:18px
 }
 
 .calendar-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-  margin-bottom:16px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:8px;
+margin-bottom:16px
 }
 
 .calendar-top button{
-  width:38px;
-  height:38px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  color:var(--text);
-  border-radius:12px;
+width:38px;
+height:38px;
+border:1px solid var(--border);
+background:var(--card2);
+color:var(--text);
+border-radius:12px
 }
 
 .calendar-selects{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  flex:1;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+flex:1
 }
 
 .calendar-selects select{
-  width:100%;
-  border:1px solid var(--border);
-  background:var(--card2);
-  color:var(--text);
-  border-radius:12px;
-  padding:9px;
-  outline:none;
+width:100%;
+border:1px solid var(--border);
+background:var(--card2);
+color:var(--text);
+border-radius:12px;
+padding:9px;
+outline:none
 }
 
 .weekdays,
 .calendar-grid{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:5px;
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px
 }
 
 .weekdays{
-  margin-bottom:6px;
+margin-bottom:6px
 }
 
 .weekdays div{
-  text-align:center;
-  color:var(--muted);
-  font-size:10px;
-  padding:5px 0;
+text-align:center;
+color:var(--muted);
+font-size:10px;
+padding:5px 0
 }
 
 .day{
-  min-height:47px;
-  border:1px solid transparent;
-  border-radius:11px;
-  background:var(--card2);
-  color:var(--text);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  padding:4px 2px;
+min-height:47px;
+border:1px solid transparent;
+border-radius:11px;
+background:var(--card2);
+color:var(--text);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:4px 2px
 }
 
 .day.empty{
-  background:transparent;
+background:transparent
 }
 
 .day.has-data{
-  border-color:var(--cyan);
+border-color:var(--cyan)
 }
 
 .day.today{
-  box-shadow:inset 0 0 0 1px var(--cyan);
+box-shadow:inset 0 0 0 1px var(--cyan)
 }
 
 .day-number{
-  font-size:12px;
-  font-weight:700;
+font-size:12px;
+font-weight:700
 }
 
 .day-total{
-  color:var(--red);
-  font-size:8px;
-  margin-top:3px;
-  white-space:nowrap;
-  overflow:hidden;
-  max-width:100%;
+color:var(--red);
+font-size:8px;
+margin-top:3px;
+white-space:nowrap;
+overflow:hidden;
+max-width:100%
 }
 
 .calendar-summary{
-  margin-top:15px;
-  padding:15px;
-  background:var(--card2);
-  border-radius:17px;
+margin-top:15px;
+padding:15px;
+background:var(--card2);
+border-radius:17px
 }
 
 .calendar-summary-title{
-  font-size:15px;
-  font-weight:750;
+font-size:15px;
+font-weight:750
 }
 
 .calendar-summary-total{
-  color:var(--red);
-  font-size:25px;
-  font-weight:850;
-  margin-top:5px;
+color:var(--red);
+font-size:25px;
+font-weight:850;
+margin-top:5px
 }
 
 .calendar-day-list{
-  margin-top:12px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+margin-top:12px;
+display:flex;
+flex-direction:column;
+gap:8px
 }
 
-/* GOALS */
-
 .goal-card{
-  position:relative;
-  overflow:hidden;
+position:relative;
+overflow:hidden
 }
 
 .goal-top{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
+display:flex;
+justify-content:space-between;
+gap:12px
 }
 
 .goal-name{
-  font-size:20px;
-  font-weight:800;
+font-size:20px;
+font-weight:800
 }
 
 .goal-target{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
+color:var(--muted);
+font-size:12px;
+margin-top:5px
 }
 
 .goal-percent{
-  color:var(--cyan);
-  font-size:23px;
-  font-weight:850;
+color:var(--cyan);
+font-size:23px;
+font-weight:850
 }
 
 .goal-progress{
-  height:12px;
-  background:var(--card2);
-  border-radius:20px;
-  overflow:hidden;
-  margin:17px 0 11px;
+height:12px;
+background:var(--card2);
+border-radius:20px;
+overflow:hidden;
+margin:17px 0 11px
 }
 
 .goal-progress-fill{
-  height:100%;
-  background:var(--cyan);
-  border-radius:20px;
+height:100%;
+background:var(--cyan);
+border-radius:20px
 }
 
 .goal-info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px
 }
 
 .goal-mini{
-  background:var(--card2);
-  border-radius:14px;
-  padding:12px;
+background:var(--card2);
+border-radius:14px;
+padding:12px
 }
 
 .goal-mini small{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  margin-bottom:5px;
+display:block;
+color:var(--muted);
+font-size:10px;
+margin-bottom:5px
 }
 
 .goal-mini strong{
-  font-size:15px;
+font-size:15px
 }
 
 .goal-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:11px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-top:11px
 }
 
 .small-btn{
-  padding:11px;
-  border-radius:13px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  color:var(--text);
+padding:11px;
+border-radius:13px;
+border:1px solid var(--border);
+background:var(--card2);
+color:var(--text)
 }
 
 .goal-success{
-  margin-top:11px;
-  padding:11px;
-  border-radius:13px;
-  background:var(--cyan-soft);
-  color:var(--cyan);
-  font-size:12px;
-  font-weight:700;
+margin-top:11px;
+padding:11px;
+border-radius:13px;
+background:var(--cyan-soft);
+color:var(--cyan);
+font-size:12px;
+font-weight:700
 }
 
-/* SETTINGS */
-
 .setting-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  padding:16px 0;
-  border-bottom:1px solid var(--border);
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+padding:16px 0;
+border-bottom:1px solid var(--border)
 }
 
 .setting-row:last-child{
-  border-bottom:0;
+border-bottom:0
 }
 
 .setting-title{
-  font-weight:700;
+font-weight:700
 }
 
 .setting-desc{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:4px;
+color:var(--muted);
+font-size:11px;
+margin-top:4px
 }
 
 .toggle{
-  width:53px;
-  height:30px;
-  border:0;
-  border-radius:30px;
-  background:var(--border);
-  position:relative;
+width:53px;
+height:30px;
+border:0;
+border-radius:30px;
+background:var(--border);
+position:relative
 }
 
 .toggle.active{
-  background:var(--cyan);
+background:var(--cyan)
 }
 
 .toggle::after{
-  content:"";
-  position:absolute;
-  top:4px;
-  left:4px;
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  background:#fff;
-  transition:.2s;
+content:"";
+position:absolute;
+top:4px;
+left:4px;
+width:22px;
+height:22px;
+border-radius:50%;
+background:#fff;
+transition:.2s
 }
 
 .toggle.active::after{
-  left:27px;
+left:27px
 }
 
-/* BUTTONS */
-
 .primary{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:15px;
-  background:var(--cyan);
-  color:#fff;
-  font-weight:800;
+width:100%;
+padding:14px;
+border:0;
+border-radius:15px;
+background:var(--cyan);
+color:#fff;
+font-weight:800
 }
 
 .secondary{
-  width:100%;
-  padding:13px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  background:var(--card2);
-  color:var(--text);
-  font-weight:700;
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:15px;
+background:var(--card2);
+color:var(--text);
+font-weight:700
 }
 
-/* NAV */
-
 .nav{
-  position:fixed;
-  left:50%;
-  bottom:12px;
-  transform:translateX(-50%);
-  width:min(490px,calc(100% - 26px));
-  background:rgba(20,23,28,.97);
-  border:1px solid #303640;
-  border-radius:24px;
-  padding:7px;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:4px;
-  z-index:9999;
-  backdrop-filter:blur(18px);
+position:fixed;
+left:50%;
+bottom:12px;
+transform:translateX(-50%);
+width:min(490px,calc(100% - 26px));
+background:rgba(20,23,28,.97);
+border:1px solid #303640;
+border-radius:24px;
+padding:7px;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:4px;
+z-index:9999;
+backdrop-filter:blur(18px)
 }
 
 body.light .nav{
-  background:rgba(255,255,255,.97);
-  border-color:var(--border);
+background:rgba(255,255,255,.97);
+border-color:var(--border)
 }
 
 .nav button{
-  border:0;
-  background:transparent;
-  color:var(--muted);
-  border-radius:17px;
-  padding:9px 3px;
-  font-size:10px;
-  min-height:62px;
-  position:relative;
-  z-index:10000;
+border:0;
+background:transparent;
+color:var(--muted);
+border-radius:17px;
+padding:9px 4px;
+font-size:10px;
+min-height:62px
 }
 
 .nav button.active{
-  background:var(--card2);
-  color:var(--text);
+background:var(--card2);
+color:var(--text)
 }
 
 .nav-icon{
-  display:block;
-  font-size:19px;
-  margin-bottom:4px;
+display:block;
+font-size:19px;
+margin-bottom:4px
 }
 
-/* MODAL */
-
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  padding:14px;
-  z-index:20000;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+display:none;
+align-items:flex-end;
+justify-content:center;
+padding:14px;
+z-index:20000
 }
 
 .modal.show{
-  display:flex;
+display:flex
 }
 
 .modal-box{
-  width:min(500px,100%);
-  max-height:88vh;
-  overflow:auto;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:22px;
+width:min(500px,100%);
+max-height:88vh;
+overflow:auto;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:25px;
+padding:22px
 }
 
 .modal-title{
-  font-size:23px;
-  font-weight:800;
-  margin-bottom:17px;
+font-size:23px;
+font-weight:800;
+margin-bottom:17px
 }
 
 .field{
-  margin-bottom:12px;
+margin-bottom:12px
 }
 
 .field label{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
-  margin-bottom:6px;
+display:block;
+color:var(--muted);
+font-size:11px;
+margin-bottom:6px
 }
 
 .field input,
 .field select{
-  width:100%;
-  padding:13px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  color:var(--text);
-  outline:none;
+width:100%;
+padding:13px;
+border-radius:14px;
+border:1px solid var(--border);
+background:var(--card2);
+color:var(--text);
+outline:none
 }
 
 .modal-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
+margin-top:15px
 }
-
-/* EMPTY */
 
 .empty{
-  text-align:center;
-  padding:23px 10px;
-  color:var(--muted);
-  font-size:13px;
+text-align:center;
+padding:23px 10px;
+color:var(--muted);
+font-size:13px
 }
-
-/* RESPONSIVE */
 
 @media(max-width:380px){
-
-  .app{
-    padding-left:15px;
-    padding-right:15px;
-  }
-
-  .page-title{
-    font-size:33px;
-  }
-
-  .balance{
-    font-size:38px;
-  }
-
-  .safe-number{
-    font-size:23px;
-  }
-
-  .day{
-    min-height:43px;
-  }
-
-  .nav button{
-    font-size:9px;
-  }
-
+.app{
+padding-left:15px;
+padding-right:15px
 }
-
+.page-title{
+font-size:33px
+}
+.balance{
+font-size:38px
+}
+.safe-number{
+font-size:23px
+}
+.day{
+min-height:43px
+}
+}
 </style>
 </head>
 
@@ -1001,926 +955,843 @@ body.light .nav{
 <div class="app">
 
 <!-- HOME -->
-
 <section class="page active" id="page-home">
 
-  <div class="header">
+<div class="header">
+<div class="logo">BUNEXA</div>
+<button class="menu-btn" onclick="go('settings')">☰</button>
+</div>
 
-    <div class="logo">BUNEXA</div>
+<div class="eyebrow">YOUR PERSONAL MONEY BUTLER</div>
 
-    <button
-      class="menu-btn"
-      onclick="go('settings')">
-      ☰
-    </button>
+<h1 class="page-title">
+Good evening 👋
+</h1>
 
-  </div>
+<div class="card">
 
-  <div class="eyebrow">
-    YOUR PERSONAL MONEY BUTLER
-  </div>
+<div class="balance-label">
+Total Balance
+</div>
 
-  <h1 class="page-title">
-    Good evening 👋
-  </h1>
+<div class="balance" id="homeBalance">
+$0.00
+</div>
 
-  <div class="card">
+<div class="stats">
 
-    <div class="balance-label">
-      Total Balance
-    </div>
+<div class="stat">
+<div class="stat-label">INCOME</div>
+<div class="stat-value income" id="homeIncome">
+$0.00
+</div>
+</div>
 
-    <div
-      class="balance"
-      id="homeBalance">
-      $0.00
-    </div>
+<div class="stat">
+<div class="stat-label">EXPENSES</div>
+<div class="stat-value expense" id="homeExpense">
+$0.00
+</div>
+</div>
 
-    <div class="stats">
+</div>
+</div>
 
-      <div class="stat">
+<div class="card safe">
 
-        <div class="stat-label">
-          INCOME
-        </div>
+<div class="safe-row">
 
-        <div
-          class="stat-value income"
-          id="homeIncome">
-          $0.00
-        </div>
+<div>
 
-      </div>
+<div class="safe-title">
+Safe to Spend
+</div>
 
-      <div class="stat">
+<div class="safe-text">
+After fixed expenses and planned savings.
+</div>
 
-        <div class="stat-label">
-          EXPENSES
-        </div>
+</div>
 
-        <div
-          class="stat-value expense"
-          id="homeExpense">
-          $0.00
-        </div>
+<div class="safe-number" id="safeSpend">
+$0.00
+</div>
 
-      </div>
+</div>
+</div>
 
-    </div>
+<div class="card quick-card">
 
-  </div>
+<div class="quick-head">
+<h2>Quick Record</h2>
+<span>3-sec record</span>
+</div>
 
-  <div class="card safe">
+<div class="quick-description">
+Type it. Tap +. Done.
+</div>
 
-    <div class="safe-row">
+<div class="record-label">
+ONE-LINE RECORD
+</div>
 
-      <div>
+<div class="record-row">
 
-        <div class="safe-title">
-          Safe to Spend
-        </div>
+<input
+id="quickInput"
+class="record-input"
+type="text"
+inputmode="text"
+autocomplete="off"
+placeholder="5.50 sheng siong">
 
-        <div class="safe-text">
-          After fixed expenses and planned savings.
-        </div>
+<button
+type="button"
+class="add-btn"
+onclick="quickAdd()">
++
+</button>
 
-      </div>
+</div>
 
-      <div
-        class="safe-number"
-        id="safeSpend">
-        $0.00
-      </div>
+<div class="quick-status" id="quickStatus"></div>
 
-    </div>
+</div>
 
-  </div>
+<div class="section-head">
 
-  <div class="card quick-card">
+<h2>
+Recent transactions
+</h2>
 
-    <div class="quick-head">
+<button
+class="section-link"
+onclick="go('calendar')">
+View all
+</button>
 
-      <h2>
-        Quick Record
-      </h2>
+</div>
 
-      <span>
-        3-sec record
-      </span>
-
-    </div>
-
-    <div class="quick-description">
-      Type it. Tap +. Done.
-    </div>
-
-    <div class="record-label">
-      ONE-LINE RECORD
-    </div>
-
-    <div class="record-row">
-
-      <input
-        id="quickInput"
-        class="record-input"
-        type="text"
-        inputmode="text"
-        autocomplete="off"
-        placeholder="5.50 kopi">
-
-      <button
-        type="button"
-        class="add-btn"
-        onclick="quickAdd()">
-        +
-      </button>
-
-    </div>
-
-    <div
-      class="quick-status"
-      id="quickStatus">
-    </div>
-
-  </div>
-
-  <div class="section-head">
-
-    <h2>
-      Recent transactions
-    </h2>
-
-    <button
-      class="section-link"
-      onclick="go('calendar')">
-      View all
-    </button>
-
-  </div>
-
-  <div
-    class="transactions"
-    id="homeTransactions">
-  </div>
+<div
+class="transactions"
+id="homeTransactions">
+</div>
 
 </section>
-
 
 <!-- REPORTS -->
+<section class="page" id="page-reports">
 
-<section
-  class="page"
-  id="page-reports">
+<div class="header">
 
-  <div class="header">
+<div class="logo">
+BUNEXA
+</div>
 
-    <div class="logo">
-      BUNEXA
-    </div>
+<button
+class="menu-btn"
+onclick="go('home')">
+⌂
+</button>
 
-    <button
-      class="menu-btn"
-      onclick="go('home')">
-      ⌂
-    </button>
+</div>
 
-  </div>
+<h1 class="page-title">
+Reports
+</h1>
 
-  <h1 class="page-title">
-    Reports
-  </h1>
+<p class="page-subtitle">
+A clear view of your money.
+</p>
 
-  <p class="page-subtitle">
-    A clear view of your money.
-  </p>
+<div class="card">
 
-  <div class="card">
+<div class="card-title">
+Financial overview
+</div>
 
-    <div class="card-title">
-      Financial overview
-    </div>
+<div
+class="overview-number"
+id="reportBalance">
+$0.00
+</div>
 
-    <div
-      class="overview-number"
-      id="reportBalance">
-      $0.00
-    </div>
+<div class="card-subtitle">
+Current balance
+</div>
 
-    <div class="card-subtitle">
-      Current balance
-    </div>
+<div class="report-grid">
 
-    <div class="report-grid">
+<div class="report-stat">
+<small>TOTAL INCOME</small>
+<strong
+class="income"
+id="reportIncome">
+$0.00
+</strong>
+</div>
 
-      <div class="report-stat">
+<div class="report-stat">
+<small>TOTAL EXPENSES</small>
+<strong
+class="expense"
+id="reportExpense">
+$0.00
+</strong>
+</div>
 
-        <small>
-          TOTAL INCOME
-        </small>
+</div>
+</div>
 
-        <strong
-          class="income"
-          id="reportIncome">
-          $0.00
-        </strong>
+<div class="card">
 
-      </div>
+<div class="card-title">
+Where your money goes
+</div>
 
-      <div class="report-stat">
+<div class="card-subtitle">
+Expense distribution.
+</div>
 
-        <small>
-          TOTAL EXPENSES
-        </small>
+<div class="chart-wrap">
 
-        <strong
-          class="expense"
-          id="reportExpense">
-          $0.00
-        </strong>
+<div
+class="donut"
+id="donut">
 
-      </div>
+<div class="donut-inner">
 
-    </div>
+<strong
+id="donutTotal">
+$0.00
+</strong>
 
-  </div>
+<span>
+Expenses
+</span>
 
-  <div class="card">
+</div>
 
-    <div class="card-title">
-      Where your money goes
-    </div>
+</div>
 
-    <div class="card-subtitle">
-      Expense distribution.
-    </div>
+</div>
 
-    <div class="chart-wrap">
+<div
+class="legend"
+id="legend">
+</div>
 
-      <div
-        class="donut"
-        id="donut">
+</div>
 
-        <div class="donut-inner">
+<div class="card">
 
-          <strong id="donutTotal">
-            $0.00
-          </strong>
+<div class="card-title">
+Category breakdown
+</div>
 
-          <span>
-            Expenses
-          </span>
+<div id="categories">
+</div>
 
-        </div>
+</div>
 
-      </div>
-
-    </div>
-
-    <div
-      class="legend"
-      id="legend">
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div class="card-title">
-      Category breakdown
-    </div>
-
-    <div id="categories"></div>
-
-  </div>
+<div
+class="card insight-card"
+id="insightCard">
+</div>
 
 </section>
-
 
 <!-- CALENDAR -->
-
 <section
-  class="page"
-  id="page-calendar">
+class="page"
+id="page-calendar">
 
-  <div class="header">
+<div class="header">
 
-    <div class="logo">
-      BUNEXA
-    </div>
+<div class="logo">
+BUNEXA
+</div>
 
-    <button
-      class="menu-btn"
-      onclick="go('home')">
-      ⌂
-    </button>
+<button
+class="menu-btn"
+onclick="go('home')">
+⌂
+</button>
 
-  </div>
+</div>
 
-  <div class="eyebrow">
-    YOUR MONEY HISTORY
-  </div>
+<div class="eyebrow">
+YOUR MONEY HISTORY
+</div>
 
-  <h1 class="page-title">
-    Calendar
-  </h1>
+<h1 class="page-title">
+Calendar
+</h1>
 
-  <p class="page-subtitle">
-    See exactly what you spent, day by day.
-  </p>
+<p class="page-subtitle">
+See exactly what you spent, day by day.
+</p>
 
-  <div class="card calendar-card">
+<div class="card calendar-card">
 
-    <div class="calendar-top">
+<div class="calendar-top">
 
-      <button
-        type="button"
-        onclick="changeMonth(-1)">
-        ‹
-      </button>
+<button
+type="button"
+onclick="changeMonth(-1)">
+‹
+</button>
 
-      <div class="calendar-selects">
+<div class="calendar-selects">
 
-        <select
-          id="monthSelect"
-          onchange="calendarChanged()">
-        </select>
+<select
+id="monthSelect"
+onchange="calendarChanged()">
+</select>
 
-        <select
-          id="yearSelect"
-          onchange="calendarChanged()">
-        </select>
+<select
+id="yearSelect"
+onchange="calendarChanged()">
+</select>
 
-      </div>
+</div>
 
-      <button
-        type="button"
-        onclick="changeMonth(1)">
-        ›
-      </button>
+<button
+type="button"
+onclick="changeMonth(1)">
+›
+</button>
 
-    </div>
+</div>
 
-    <div class="weekdays">
+<div class="weekdays">
 
-      <div>Sun</div>
-      <div>Mon</div>
-      <div>Tue</div>
-      <div>Wed</div>
-      <div>Thu</div>
-      <div>Fri</div>
-      <div>Sat</div>
+<div>Sun</div>
+<div>Mon</div>
+<div>Tue</div>
+<div>Wed</div>
+<div>Thu</div>
+<div>Fri</div>
+<div>Sat</div>
 
-    </div>
+</div>
 
-    <div
-      class="calendar-grid"
-      id="calendarGrid">
-    </div>
+<div
+class="calendar-grid"
+id="calendarGrid">
+</div>
 
-    <div
-      class="calendar-summary"
-      id="calendarSummary">
-    </div>
+<div
+class="calendar-summary"
+id="calendarSummary">
+</div>
 
-  </div>
+</div>
 
 </section>
-
 
 <!-- GOALS -->
-
 <section
-  class="page"
-  id="page-goals">
+class="page"
+id="page-goals">
 
-  <div class="header">
+<div class="header">
 
-    <div class="logo">
-      BUNEXA
-    </div>
+<div class="logo">
+BUNEXA
+</div>
 
-    <button
-      class="menu-btn"
-      onclick="openGoalModal()">
-      +
-    </button>
+<button
+class="menu-btn"
+onclick="openGoalModal()">
++
+</button>
 
-  </div>
+</div>
 
-  <div class="eyebrow">
-    YOUR MONEY PLAN
-  </div>
+<div class="eyebrow">
+YOUR MONEY PLAN
+</div>
 
-  <h1 class="page-title">
-    Goals
-  </h1>
+<h1 class="page-title">
+Goals
+</h1>
 
-  <p class="page-subtitle">
-    Turn savings into something measurable.
-  </p>
+<p class="page-subtitle">
+Turn savings into something measurable.
+</p>
 
-  <div class="card">
+<div class="card">
 
-    <div class="card-title">
-      Monthly savings outlook
-    </div>
+<div class="card-title">
+Monthly savings outlook
+</div>
 
-    <div class="report-grid">
+<div class="report-grid">
 
-      <div class="report-stat">
+<div class="report-stat">
 
-        <small>
-          MONTHLY SAVING
-        </small>
+<small>
+MONTHLY SAVING
+</small>
 
-        <strong
-          class="cyan"
-          id="monthlySaving">
-          $0.00
-        </strong>
+<strong
+class="cyan"
+id="monthlySaving">
+$0.00
+</strong>
 
-      </div>
+</div>
 
-      <div class="report-stat">
+<div class="report-stat">
 
-        <small>
-          1 YEAR SAVING
-        </small>
+<small>
+1 YEAR SAVING
+</small>
 
-        <strong
-          class="cyan"
-          id="yearSaving">
-          $0.00
-        </strong>
+<strong
+class="cyan"
+id="yearSaving">
+$0.00
+</strong>
 
-      </div>
+</div>
 
-    </div>
+</div>
+</div>
 
-  </div>
+<div class="section-head">
 
-  <div class="section-head">
+<h2>
+Your goals
+</h2>
 
-    <h2>
-      Your goals
-    </h2>
+<button
+class="section-link"
+onclick="openGoalModal()">
++ Add goal
+</button>
 
-    <button
-      class="section-link"
-      onclick="openGoalModal()">
-      + Add goal
-    </button>
+</div>
 
-  </div>
-
-  <div id="goalsList"></div>
+<div id="goalsList">
+</div>
 
 </section>
-
 
 <!-- SETTINGS -->
-
 <section
-  class="page"
-  id="page-settings">
+class="page"
+id="page-settings">
 
-  <div class="header">
+<div class="header">
 
-    <div class="logo">
-      BUNEXA
-    </div>
+<div class="logo">
+BUNEXA
+</div>
 
-    <button
-      class="menu-btn"
-      onclick="go('home')">
-      ⌂
-    </button>
+<button
+class="menu-btn"
+onclick="go('home')">
+⌂
+</button>
 
-  </div>
+</div>
 
-  <h1 class="page-title">
-    Settings
-  </h1>
+<h1 class="page-title">
+Settings
+</h1>
 
-  <p class="page-subtitle">
-    Keep your money setup simple.
-  </p>
+<p class="page-subtitle">
+Keep your money setup simple.
+</p>
 
+<div class="card">
 
-  <!-- CURRENCY -->
+<div class="card-title">
+Currency
+</div>
 
-  <div class="card">
+<div class="card-subtitle">
+Choose your preferred currency.
+</div>
 
-    <div class="card-title">
-      Currency
-    </div>
+<div
+class="field"
+style="margin-top:14px">
 
-    <div class="card-subtitle">
-      Choose your preferred currency.
-    </div>
+<select
+id="currencySelect"
+onchange="changeCurrency()">
 
-    <div
-      class="field"
-      style="margin-top:14px">
+<option value="SGD">
+🇸🇬 Singapore Dollar (SGD)
+</option>
 
-      <select
-        id="currencySelect"
-        onchange="changeCurrency()">
+<option value="MYR">
+🇲🇾 Malaysian Ringgit (MYR)
+</option>
 
-        <option value="SGD">
-          🇸🇬 Singapore Dollar (SGD)
-        </option>
+</select>
 
-        <option value="MYR">
-          🇲🇾 Malaysian Ringgit (MYR)
-        </option>
+</div>
 
-      </select>
+</div>
 
-    </div>
+<div class="card">
 
-  </div>
+<div class="card-title">
+Regular income
+</div>
 
+<div class="card-subtitle">
+Monthly income you expect.
+</div>
 
-  <!-- INCOME -->
+<div id="incomeSources">
+</div>
 
-  <div class="card">
+<button
+class="primary"
+style="margin-top:14px"
+onclick="openIncomeModal()">
++ Add income
+</button>
 
-    <div class="card-title">
-      Regular income
-    </div>
+</div>
 
-    <div class="card-subtitle">
-      Monthly income you expect.
-    </div>
+<div class="card">
 
-    <div id="incomeSources"></div>
+<div class="card-title">
+Fixed expenses
+</div>
 
-    <button
-      class="primary"
-      style="margin-top:14px"
-      onclick="openIncomeModal()">
-      + Add income
-    </button>
+<div class="card-subtitle">
+Regular monthly expenses.
+</div>
 
-  </div>
+<div id="fixedExpenses">
+</div>
 
+<button
+class="primary"
+style="margin-top:14px"
+onclick="openFixedModal()">
++ Add fixed expense
+</button>
 
-  <!-- FIXED -->
+</div>
 
-  <div class="card">
+<div class="card">
 
-    <div class="card-title">
-      Fixed expenses
-    </div>
+<div class="setting-row">
 
-    <div class="card-subtitle">
-      Regular monthly expenses.
-    </div>
+<div>
 
-    <div id="fixedExpenses"></div>
+<div class="setting-title">
+Light theme
+</div>
 
-    <button
-      class="primary"
-      style="margin-top:14px"
-      onclick="openFixedModal()">
-      + Add fixed expense
-    </button>
+<div class="setting-desc">
+Switch between light and dark.
+</div>
 
-  </div>
+</div>
 
+<button
+class="toggle"
+id="themeToggle"
+onclick="toggleTheme">
+</button>
 
-  <!-- THEME -->
+</div>
 
-  <div class="card">
+</div>
 
-    <div class="setting-row">
+<div class="card">
 
-      <div>
+<div class="card-title">
+Data
+</div>
 
-        <div class="setting-title">
-          Light theme
-        </div>
+<div class="card-subtitle">
+Saved automatically on this device.
+</div>
 
-        <div class="setting-desc">
-          Switch between light and dark.
-        </div>
+<button
+class="secondary"
+style="margin-top:14px"
+onclick="clearAllData()">
+Clear all data
+</button>
 
-      </div>
-
-      <button
-        class="toggle"
-        id="themeToggle"
-        onclick="toggleTheme()">
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- DATA -->
-
-  <div class="card">
-
-    <div class="card-title">
-      Data
-    </div>
-
-    <div class="card-subtitle">
-      Saved automatically on this device.
-    </div>
-
-    <button
-      class="secondary"
-      style="margin-top:14px"
-      onclick="clearAllData()">
-      Clear all data
-    </button>
-
-  </div>
+</div>
 
 </section>
 
 </div>
 
-
-<!-- NAV -->
-
+<!-- NAVIGATION -->
 <div class="nav">
 
-  <button
-    id="nav-home"
-    class="active"
-    onclick="go('home')">
+<button
+id="nav-home"
+class="active"
+onclick="go('home')">
 
-    <span class="nav-icon">
-      ⌂
-    </span>
+<span class="nav-icon">
+⌂
+</span>
 
-    Home
+Home
 
-  </button>
+</button>
 
+<button
+id="nav-reports"
+onclick="go('reports')">
 
-  <button
-    id="nav-reports"
-    onclick="go('reports')">
+<span class="nav-icon">
+◴
+</span>
 
-    <span class="nav-icon">
-      ◴
-    </span>
+Reports
 
-    Reports
+</button>
 
-  </button>
+<button
+id="nav-calendar"
+onclick="go('calendar')">
 
+<span class="nav-icon">
+▣
+</span>
 
-  <button
-    id="nav-calendar"
-    onclick="go('calendar')">
+Calendar
 
-    <span class="nav-icon">
-      ▣
-    </span>
+</button>
 
-    Calendar
+<button
+id="nav-goals"
+onclick="go('goals')">
 
-  </button>
+<span class="nav-icon">
+◎
+</span>
 
+Goals
 
-  <button
-    id="nav-goals"
-    onclick="go('goals')">
+</button>
 
-    <span class="nav-icon">
-      ◎
-    </span>
+<button
+id="nav-settings"
+onclick="go('settings')">
 
-    Goals
+<span class="nav-icon">
+⚙
+</span>
 
-  </button>
+Settings
 
-
-  <button
-    id="nav-settings"
-    onclick="go('settings')">
-
-    <span class="nav-icon">
-      ⚙
-    </span>
-
-    Settings
-
-  </button>
+</button>
 
 </div>
-
 
 <!-- INCOME MODAL -->
-
 <div
-  class="modal"
-  id="incomeModal">
+class="modal"
+id="incomeModal">
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <div class="modal-title">
-      Add income
-    </div>
+<div class="modal-title">
+Add income
+</div>
 
-    <div class="field">
+<div class="field">
 
-      <label>
-        Income source
-      </label>
+<label>
+Income source
+</label>
 
-      <input
-        id="incomeName"
-        placeholder="Salary / Rental / Part-time">
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Monthly amount
-      </label>
-
-      <input
-        id="incomeAmount"
-        type="number"
-        step="0.01"
-        placeholder="3000">
-
-    </div>
-
-    <div class="modal-actions">
-
-      <button
-        class="secondary"
-        onclick="closeModal('incomeModal')">
-        Cancel
-      </button>
-
-      <button
-        class="primary"
-        onclick="saveIncome()">
-        Save
-      </button>
-
-    </div>
-
-  </div>
+<input
+id="incomeName"
+placeholder="Salary / Rental / Part-time">
 
 </div>
 
+<div class="field">
+
+<label>
+Monthly amount
+</label>
+
+<input
+id="incomeAmount"
+type="number"
+step="0.01"
+placeholder="3000">
+
+</div>
+
+<div class="modal-actions">
+
+<button
+class="secondary"
+onclick="closeModal('incomeModal')">
+Cancel
+</button>
+
+<button
+class="primary"
+onclick="saveIncome()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
 
 <!-- FIXED MODAL -->
-
 <div
-  class="modal"
-  id="fixedModal">
+class="modal"
+id="fixedModal">
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <div class="modal-title">
-      Fixed expense
-    </div>
+<div class="modal-title">
+Fixed expense
+</div>
 
-    <div class="field">
+<div class="field">
 
-      <label>
-        Expense name
-      </label>
+<label>
+Expense name
+</label>
 
-      <input
-        id="fixedName"
-        placeholder="Rental / Phone / Insurance">
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Monthly amount
-      </label>
-
-      <input
-        id="fixedAmount"
-        type="number"
-        step="0.01"
-        placeholder="500">
-
-    </div>
-
-    <div class="modal-actions">
-
-      <button
-        class="secondary"
-        onclick="closeModal('fixedModal')">
-        Cancel
-      </button>
-
-      <button
-        class="primary"
-        onclick="saveFixedExpense()">
-        Save
-      </button>
-
-    </div>
-
-  </div>
+<input
+id="fixedName"
+placeholder="Rental / Phone / Insurance">
 
 </div>
 
+<div class="field">
+
+<label>
+Monthly amount
+</label>
+
+<input
+id="fixedAmount"
+type="number"
+step="0.01"
+placeholder="500">
+
+</div>
+
+<div class="modal-actions">
+
+<button
+class="secondary"
+onclick="closeModal('fixedModal')">
+Cancel
+</button>
+
+<button
+class="primary"
+onclick="saveFixedExpense()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
 
 <!-- GOAL MODAL -->
-
 <div
-  class="modal"
-  id="goalModal">
+class="modal"
+id="goalModal">
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <div class="modal-title">
-      Create a savings goal
-    </div>
+<div class="modal-title">
+Create a savings goal
+</div>
 
-    <div class="field">
+<div class="field">
 
-      <label>
-        Goal name
-      </label>
+<label>
+Goal name
+</label>
 
-      <input
-        id="goalName"
-        placeholder="Emergency Fund / Holiday / Car">
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Target amount
-      </label>
-
-      <input
-        id="goalTarget"
-        type="number"
-        step="0.01"
-        placeholder="10000">
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Already saved
-      </label>
-
-      <input
-        id="goalSaved"
-        type="number"
-        step="0.01"
-        placeholder="0">
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Planned monthly saving
-      </label>
-
-      <input
-        id="goalMonthly"
-        type="number"
-        step="0.01"
-        placeholder="500">
-
-    </div>
-
-    <div class="modal-actions">
-
-      <button
-        class="secondary"
-        onclick="closeModal('goalModal')">
-        Cancel
-      </button>
-
-      <button
-        class="primary"
-        onclick="saveGoal()">
-        Save Goal
-      </button>
-
-    </div>
-
-  </div>
+<input
+id="goalName"
+placeholder="Emergency Fund / Holiday / Car">
 
 </div>
 
+<div class="field">
+
+<label>
+Target amount
+</label>
+
+<input
+id="goalTarget"
+type="number"
+step="0.01"
+placeholder="10000">
+
+</div>
+
+<div class="field">
+
+<label>
+Already saved
+</label>
+
+<input
+id="goalSaved"
+type="number"
+step="0.01"
+placeholder="0">
+
+</div>
+
+<div class="field">
+
+<label>
+Planned monthly saving
+</label>
+
+<input
+id="goalMonthly"
+type="number"
+step="0.01"
+placeholder="500">
+
+</div>
+
+<div class="modal-actions">
+
+<button
+class="secondary"
+onclick="closeModal('goalModal')">
+Cancel
+</button>
+
+<button
+class="primary"
+onclick="saveGoal()">
+Save Goal
+</button>
+
+</div>
+
+</div>
+</div>
 
 <script>
 
@@ -1929,44 +1800,33 @@ body.light .nav{
 ===================================================== */
 
 let transactions =
-  JSON.parse(
-    localStorage.getItem(
-      "bunexa_transactions"
-    ) || "[]"
-  );
+JSON.parse(
+localStorage.getItem("bunexa_transactions") || "[]"
+);
 
 let incomes =
-  JSON.parse(
-    localStorage.getItem(
-      "bunexa_incomes"
-    ) || "[]"
-  );
+JSON.parse(
+localStorage.getItem("bunexa_incomes") || "[]"
+);
 
 let fixedExpenses =
-  JSON.parse(
-    localStorage.getItem(
-      "bunexa_fixed"
-    ) || "[]"
-  );
+JSON.parse(
+localStorage.getItem("bunexa_fixed") || "[]"
+);
 
 let goals =
-  JSON.parse(
-    localStorage.getItem(
-      "bunexa_goals"
-    ) || "[]"
-  );
+JSON.parse(
+localStorage.getItem("bunexa_goals") || "[]"
+);
 
 let currency =
-  localStorage.getItem(
-    "bunexa_currency"
-  ) || "SGD";
+localStorage.getItem("bunexa_currency") || "SGD";
 
 let calendarDate =
-  new Date();
+new Date();
 
 let selectedCalendarDay =
-  null;
-
+null;
 
 /* =====================================================
    STORAGE
@@ -1974,79 +1834,57 @@ let selectedCalendarDay =
 
 function saveAll(){
 
-  localStorage.setItem(
-    "bunexa_transactions",
-    JSON.stringify(transactions)
-  );
+localStorage.setItem(
+"bunexa_transactions",
+JSON.stringify(transactions)
+);
 
-  localStorage.setItem(
-    "bunexa_incomes",
-    JSON.stringify(incomes)
-  );
+localStorage.setItem(
+"bunexa_incomes",
+JSON.stringify(incomes)
+);
 
-  localStorage.setItem(
-    "bunexa_fixed",
-    JSON.stringify(fixedExpenses)
-  );
+localStorage.setItem(
+"bunexa_fixed",
+JSON.stringify(fixedExpenses)
+);
 
-  localStorage.setItem(
-    "bunexa_goals",
-    JSON.stringify(goals)
-  );
+localStorage.setItem(
+"bunexa_goals",
+JSON.stringify(goals)
+);
 
-  localStorage.setItem(
-    "bunexa_currency",
-    currency
-  );
+localStorage.setItem(
+"bunexa_currency",
+currency
+);
 
 }
 
-
 /* =====================================================
-   CURRENCY
+   MONEY
 ===================================================== */
 
 function currencySymbol(){
 
-  return currency === "MYR"
-    ? "RM"
-    : "S$";
+return currency === "MYR"
+? "RM"
+: "S$";
 
 }
-
 
 function money(value){
 
-  return currencySymbol() +
-    Number(
-      value || 0
-    ).toLocaleString(
-      "en-US",
-      {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      }
-    );
+return currencySymbol() +
+Number(value || 0).toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
 
 }
-
-
-function changeCurrency(){
-
-  const select =
-    document.getElementById(
-      "currencySelect"
-    );
-
-  currency =
-    select.value;
-
-  saveAll();
-
-  renderAll();
-
-}
-
 
 /* =====================================================
    NAVIGATION
@@ -2054,182 +1892,466 @@ function changeCurrency(){
 
 function go(page){
 
-  document
-    .querySelectorAll(".page")
-    .forEach(
-      p=>{
-        p.classList.remove("active");
-      }
-    );
+document
+.querySelectorAll(".page")
+.forEach(
+p => p.classList.remove("active")
+);
 
-  const target =
-    document.getElementById(
-      "page-" + page
-    );
+const target =
+document.getElementById(
+"page-" + page
+);
 
-  if(target){
-    target.classList.add("active");
-  }
+if(target){
+target.classList.add("active");
+}
 
-  document
-    .querySelectorAll(".nav button")
-    .forEach(
-      b=>{
-        b.classList.remove("active");
-      }
-    );
+document
+.querySelectorAll(".nav button")
+.forEach(
+b => b.classList.remove("active")
+);
 
-  const nav =
-    document.getElementById(
-      "nav-" + page
-    );
+const nav =
+document.getElementById(
+"nav-" + page
+);
 
-  if(nav){
-    nav.classList.add("active");
-  }
+if(nav){
+nav.classList.add("active");
+}
 
-  if(page === "calendar"){
-    renderCalendar();
-  }
+if(page === "calendar"){
+renderCalendar();
+}
 
-  renderAll();
+renderAll();
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
-
 /* =====================================================
-   CATEGORY DETECTION
+   SMART CATEGORY SYSTEM
 ===================================================== */
 
 function detectCategory(text){
 
-  const lower =
-    String(text || "")
-      .toLowerCase()
-      .trim();
+const lower =
+String(text || "")
+.toLowerCase()
+.trim();
 
+/* PETS */
 
-  /* GROCERIES
-     Must be checked BEFORE Dining/Shopping.
-  */
+if(
+/pet lovers centre|
+pet lovers|
+polypet|
+pet safari|
+pet station|
+pets station|
+pet shop|
+pet store|
+pet food|
+pet grooming|
+pet groom|
+dog food|
+cat food|
+puppy|
+kitten|
+dog|
+cat|
+rabbit|
+hamster|
+bird food|
+aquarium|
+fish food|
+animal clinic|
+animal doctor|
+vet|
+veterinary/.test(lower)
+){
 
-  if(
-    /fairprice|ntuc|sheng\s*siong|giant|cold\s*storage|prime\s*supermarket|redmart|supermarket|grocer|groceries|grocery|wet\s*market|market|vegetable|vegetables|fruit|fruits|meat|seafood|milk|bread|eggs|egg|snack|snacks|ntuc\s*fairprice/.test(lower)
-  ){
-
-    return "Groceries";
-
-  }
-
-
-  /* DINING */
-
-  if(
-    /kopi|coffee|rice|mee|noodle|food|dining|meal|breakfast|lunch|dinner|makan|nasi|roti|chicken|bakery|restaurant|cafe|mcd|mcdonald|kfc|koufu|canteen|drink|tea|teh|dessert|desserts|pizza|burger|sushi|ramen|hotpot|dim\s*sum|hawker/.test(lower)
-  ){
-
-    return "Dining";
-
-  }
-
-
-  /* TRANSPORT */
-
-  if(
-    /grab|gojek|mrt|bus|taxi|transport|train|erp|parking|petrol|fuel|shell|esso|caltex|station/.test(lower)
-  ){
-
-    return "Transport";
-
-  }
-
-
-  /* ENTERTAINMENT */
-
-  if(
-    /cinema|movie|netflix|spotify|game|gaming|entertainment|concert|apple\s*music|apple\s*tv|apple\s*store|apple\s*subscription|icloud|itunes/.test(lower)
-  ){
-
-    return "Entertainment";
-
-  }
-
-
-  /* TRAVEL */
-
-  if(
-    /travel|holiday|hotel|flight|cruise|trip|airbnb|agoda|booking\.com|traveloka/.test(lower)
-  ){
-
-    return "Travel";
-
-  }
-
-
-  /* BILLS */
-
-  if(
-    /phone|wifi|internet|bill|simba|singtel|starhub|m1|electricity|utilities|utility|water|sp\s*services/.test(lower)
-  ){
-
-    return "Bills";
-
-  }
-
-
-  /* SHOPPING */
-
-  if(
-    /lazada|shopee|taobao|amazon|shopping|mall|clothes|shirt|shoe|shoes|bag|online|uniqlo|zara|h&m|decathlon|watsons|guardian/.test(lower)
-  ){
-
-    return "Shopping";
-
-  }
-
-
-  return "Other";
+return "Pets";
 
 }
 
+/* BEAUTY & WELLNESS */
+
+if(
+/guardian|
+watsons|
+watson|
+venus|
+venus beauty|
+salon|
+hair salon|
+haircut|
+hair cut|
+hairdresser|
+barber|
+beauty|
+beauty salon|
+facial|
+skincare|
+skin care|
+nail|
+nails|
+manicure|
+pedicure|
+spa|
+massage|
+gym|
+fitness|
+pilates|
+yoga|
+personal trainer|
+workout|
+wellness|
+aesthetic|
+aesthetics|
+brow|
+lash|
+eyelash|
+waxing|
+cosmetic|
+cosmetics/.test(lower)
+){
+
+return "Beauty & Wellness";
+
+}
+
+/* ONLINE SHOPPING */
+
+if(
+/shopee|
+lazada|
+amazon|
+ezbuy|
+taobao|
+temu|
+tiktok shop|
+tiktokshop|
+shein|
+zalora|
+qoo10|
+carousell|
+aliexpress|
+alibaba|
+ebay|
+etsy|
+online shopping|
+online order|
+online purchase|
+webstore|
+shop online/.test(lower)
+){
+
+return "Online Shopping";
+
+}
+
+/* GROCERIES */
+
+if(
+/fairprice|
+ntuc|
+sheng siong|
+shengxiong|
+prime supermarket|
+prime|
+cold storage|
+giant|
+redmart|
+little farms|
+don don donki|
+donki|
+market place|
+marketplace|
+jasons deli|
+jason's deli|
+mustafa centre|
+mustafa|
+grocer|
+groceries|
+grocery|
+supermarket|
+wet market|
+vegetable|
+vegetables|
+fruit|
+fruits|
+meat|
+seafood|
+milk|
+eggs|
+egg|
+bread|
+snack|
+snacks|
+foodstuff|
+butcher/.test(lower)
+){
+
+return "Groceries";
+
+}
+
+/* DINING */
+
+if(
+/kopi|
+coffee|
+starbucks|
+coffee bean|
+toast box|
+ya kun|
+killiney|
+food|
+dining|
+meal|
+breakfast|
+lunch|
+dinner|
+makan|
+nasi|
+roti|
+chicken|
+bakery|
+restaurant|
+cafe|
+mcd|
+mcdonald|
+kfc|
+koufu|
+canteen|
+drink|
+tea|
+teh|
+dessert|
+pizza|
+burger|
+sushi|
+ramen|
+hotpot|
+dim sum|
+hawker|
+food court|
+subway|
+jollibee|
+wingstop|
+shake shack|
+genki sushi|
+ichiban|
+taco|
+fast food|
+foodpanda|
+deliveroo/.test(lower)
+){
+
+return "Dining";
+
+}
+
+/* TRANSPORT */
+
+if(
+/grab|
+gojek|
+mrt|
+bus|
+taxi|
+transport|
+train|
+erp|
+parking|
+petrol|
+fuel|
+shell|
+esso|
+caltex|
+spc|
+car wash|
+carpark|
+car park|
+motoring|
+vehicle|
+workshop|
+autocare|
+comfortdelgro|
+cdg zig|
+ryde/.test(lower)
+){
+
+return "Transport";
+
+}
+
+/* ENTERTAINMENT */
+
+if(
+/cinema|
+movie|
+netflix|
+spotify|
+youtube premium|
+disney|
+prime video|
+apple music|
+apple tv|
+itunes|
+game|
+gaming|
+playstation|
+xbox|
+nintendo|
+steam|
+entertainment|
+concert|
+karaoke|
+bowling|
+arcade|
+theme park|
+universal studios|
+zoo|
+night safari|
+museum/.test(lower)
+){
+
+return "Entertainment";
+
+}
+
+/* TRAVEL */
+
+if(
+/travel|
+holiday|
+hotel|
+flight|
+cruise|
+trip|
+airbnb|
+agoda|
+booking.com|
+traveloka|
+trip.com|
+jetstar|
+scoot|
+singapore airlines|
+malaysia airlines|
+airasia|
+passport|
+tour|
+tourist|
+attraction|
+resort/.test(lower)
+){
+
+return "Travel";
+
+}
+
+/* BILLS */
+
+if(
+/phone|
+wifi|
+internet|
+bill|
+simba|
+singtel|
+starhub|
+m1|
+electricity|
+utilities|
+utility|
+water|
+sp services|
+sp group|
+town council|
+mobile plan|
+mobile bill|
+insurance|
+premium|
+subscription|
+rent|
+rental/.test(lower)
+){
+
+return "Bills";
+
+}
+
+/* GENERAL SHOPPING */
+
+if(
+/shopping|
+mall|
+clothes|
+shirt|
+shoe|
+shoes|
+bag|
+uniqlo|
+zara|
+h&m|
+decathlon|
+ikea|
+courts|
+best denki|
+harvey norman|
+muji|
+daiso|
+miniso|
+bookstore|
+popular|
+stationery|
+furniture|
+home decor|
+electronics/.test(lower)
+){
+
+return "Shopping";
+
+}
+
+return "Other";
+
+}
 
 /* =====================================================
-   INCOME DETECTION
+   INCOME
 ===================================================== */
 
 function isIncomeDescription(text){
 
-  const lower =
-    String(text || "")
-      .toLowerCase()
-      .trim();
+const lower =
+String(text || "")
+.toLowerCase();
 
-  return [
-
-    "salary",
-    "rental income",
-    "rental",
-    "part-time",
-    "part time",
-    "freelance",
-    "bonus",
-    "commission",
-    "income",
-    "paycheck",
-    "pay check",
-    "allowance"
-
-  ].some(
-    word=>lower.includes(word)
-  );
+return [
+"salary",
+"rental income",
+"rental",
+"part-time",
+"part time",
+"freelance",
+"bonus",
+"commission",
+"income",
+"paycheck"
+].some(
+word => lower.includes(word)
+);
 
 }
-
 
 /* =====================================================
    QUICK RECORD
@@ -2237,231 +2359,128 @@ function isIncomeDescription(text){
 
 function quickAdd(){
 
-  const input =
-    document.getElementById(
-      "quickInput"
-    );
+const input =
+document.getElementById(
+"quickInput"
+);
 
-  const status =
-    document.getElementById(
-      "quickStatus"
-    );
+const status =
+document.getElementById(
+"quickStatus"
+);
 
-  const text =
-    input.value.trim();
+const text =
+input.value.trim();
 
-  if(!text){
+if(!text){
 
-    input.focus();
+input.focus();
 
-    return;
-
-  }
-
-
-  /*
-    ACCEPT:
-
-    5.50 kopi
-    5 kopi
-    $5.50 kopi
-    700 salary
-
-    ALSO:
-
-    kopi 5.50
-    salary 4200
-    fairprice 25.80
-    netflix 15.98
-  */
-
-
-  let match =
-    text.match(
-      /^\s*\$?\s*(\d+(?:\.\d+)?)\s+(.+?)\s*$/
-    );
-
-
-  /*
-    If amount is NOT first,
-    find amount at the end.
-  */
-
-  if(!match){
-
-    match =
-      text.match(
-        /^\s*(.+?)\s+\$?\s*(\d+(?:\.\d+)?)\s*$/
-      );
-
-    if(match){
-
-      const description =
-        match[1].trim();
-
-      const amount =
-        parseFloat(
-          match[2]
-        );
-
-      addTransaction(
-        description,
-        amount,
-        status,
-        input
-      );
-
-      return;
-
-    }
-
-  }
-
-
-  if(!match){
-
-    status.textContent =
-      "Example: 5.50 kopi";
-
-    input.focus();
-
-    return;
-
-  }
-
-
-  const amount =
-    parseFloat(
-      match[1]
-    );
-
-  const description =
-    match[2].trim();
-
-  addTransaction(
-    description,
-    amount,
-    status,
-    input
-  );
+return;
 
 }
 
+const match =
+text.match(
+/^\s*(?:\$|s\$|rm)?\s*(\d+(?:\.\d+)?)\s+(.+?)\s*$/i
+);
 
-function addTransaction(
-  description,
-  amount,
-  status,
-  input
-){
+if(!match){
 
-  if(
-    !description ||
-    !amount ||
-    amount <= 0
-  ){
+status.textContent =
+"Use amount + description";
 
-    status.textContent =
-      "Please enter a valid amount.";
+input.focus();
 
-    input.focus();
-
-    return;
-
-  }
-
-
-  const income =
-    isIncomeDescription(
-      description
-    );
-
-
-  const category =
-    income
-      ? "Income"
-      : detectCategory(
-          description
-        );
-
-
-  transactions.unshift({
-
-    id:
-      Date.now() +
-      Math.random(),
-
-    type:
-      income
-        ? "income"
-        : "expense",
-
-    description:
-
-      description,
-
-    amount:
-
-      amount,
-
-    category:
-
-      category,
-
-    date:
-
-      dateKey(
-        new Date()
-      ),
-
-    created:
-
-      new Date().toISOString()
-
-  });
-
-
-  saveAll();
-
-  input.value = "";
-
-  status.textContent =
-    "✓ Recorded as " +
-    category;
-
-  renderAll();
-
-  setTimeout(
-    ()=>{
-      status.textContent = "";
-    },
-    1800
-  );
+return;
 
 }
 
+const amount =
+parseFloat(match[1]);
 
-/* ENTER = QUICK RECORD */
+const description =
+match[2].trim();
+
+if(amount <= 0){
+return;
+}
+
+const income =
+isIncomeDescription(
+description
+);
+
+const category =
+income
+? "Income"
+: detectCategory(
+description
+);
+
+transactions.unshift({
+
+id:
+Date.now() +
+Math.random(),
+
+type:
+income
+? "income"
+: "expense",
+
+description,
+
+amount,
+
+category,
+
+date:
+dateKey(
+new Date()
+),
+
+created:
+new Date().toISOString()
+
+});
+
+saveAll();
+
+input.value = "";
+
+status.textContent =
+"✓ Recorded";
+
+renderAll();
+
+setTimeout(
+()=>{
+status.textContent = "";
+},
+1600
+);
+
+}
 
 document
-  .getElementById(
-    "quickInput"
-  )
-  .addEventListener(
-    "keydown",
-    function(e){
+.getElementById(
+"quickInput"
+)
+.addEventListener(
+"keydown",
+function(e){
 
-      if(e.key === "Enter"){
+if(e.key === "Enter"){
 
-        e.preventDefault();
+e.preventDefault();
 
-        quickAdd();
+quickAdd();
 
-      }
+}
 
-    }
-  );
-
+}
+);
 
 /* =====================================================
    DATE
@@ -2469,43 +2488,22 @@ document
 
 function dateKey(date){
 
-  const y =
-    date.getFullYear();
-
-  const m =
-    String(
-      date.getMonth()+1
-    ).padStart(
-      2,
-      "0"
-    );
-
-  const d =
-    String(
-      date.getDate()
-    ).padStart(
-      2,
-      "0"
-    );
-
-  return `${y}-${m}-${d}`;
+return `${date.getFullYear()}-${String(
+date.getMonth()+1
+).padStart(2,"0")}-${String(
+date.getDate()
+).padStart(2,"0")}`;
 
 }
-
 
 function displayDate(key){
 
-  if(!key){
-    return "";
-  }
+const p =
+key.split("-");
 
-  const parts =
-    key.split("-");
-
-  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+return `${p[2]}/${p[1]}/${p[0]}`;
 
 }
-
 
 /* =====================================================
    TOTALS
@@ -2513,78 +2511,54 @@ function displayDate(key){
 
 function getTotals(){
 
-  let income = 0;
+let income = 0;
+let expense = 0;
 
-  let expense = 0;
+transactions.forEach(
+t => {
 
-
-  transactions.forEach(
-    t=>{
-
-      if(t.type === "income"){
-
-        income +=
-          Number(
-            t.amount
-          );
-
-      }
-      else{
-
-        expense +=
-          Number(
-            t.amount
-          );
-
-      }
-
-    }
-  );
-
-
-  incomes.forEach(
-    i=>{
-
-      income +=
-        Number(
-          i.amount
-        );
-
-    }
-  );
-
-
-  const fixed =
-    fixedExpenses.reduce(
-      (sum,e)=>
-        sum +
-        Number(
-          e.amount
-        ),
-      0
-    );
-
-
-  return {
-
-    income,
-
-    expense,
-
-    fixed,
-
-    balance:
-      income - expense,
-
-    afterFixed:
-      income -
-      expense -
-      fixed
-
-  };
-
+if(t.type === "income"){
+income += Number(t.amount);
+}
+else{
+expense += Number(t.amount);
 }
 
+}
+);
+
+incomes.forEach(
+i=>{
+income += Number(i.amount);
+}
+);
+
+const fixed =
+fixedExpenses.reduce(
+(sum,e)=>
+sum + Number(e.amount),
+0
+);
+
+return {
+
+income,
+
+expense,
+
+fixed,
+
+balance:
+income - expense,
+
+afterFixed:
+income -
+expense -
+fixed
+
+};
+
+}
 
 /* =====================================================
    HOME
@@ -2592,253 +2566,196 @@ function getTotals(){
 
 function renderHome(){
 
-  const totals =
-    getTotals();
+const totals =
+getTotals();
 
+document.getElementById(
+"homeBalance"
+).textContent =
+money(totals.balance);
 
-  document.getElementById(
-    "homeBalance"
-  ).textContent =
-    money(
-      totals.balance
-    );
+document.getElementById(
+"homeIncome"
+).textContent =
+money(totals.income);
 
+document.getElementById(
+"homeExpense"
+).textContent =
+money(totals.expense);
 
-  document.getElementById(
-    "homeIncome"
-  ).textContent =
-    money(
-      totals.income
-    );
+const planned =
+goals.reduce(
+(sum,g)=>
+sum + Number(g.monthly || 0),
+0
+);
 
+const safe =
+Math.max(
+0,
+totals.income -
+totals.expense -
+totals.fixed -
+planned
+);
 
-  document.getElementById(
-    "homeExpense"
-  ).textContent =
-    money(
-      totals.expense
-    );
+document.getElementById(
+"safeSpend"
+).textContent =
+money(safe);
 
+const box =
+document.getElementById(
+"homeTransactions"
+);
 
-  const planned =
-    goals.reduce(
-      (sum,g)=>
-        sum +
-        Number(
-          g.monthly || 0
-        ),
-      0
-    );
+if(!transactions.length){
 
+box.innerHTML =
+`<div class="card empty">
+No transactions yet.<br>
+Start with Quick Record.
+</div>`;
 
-  const safe =
-    Math.max(
-      0,
-      totals.income -
-      totals.expense -
-      totals.fixed -
-      planned
-    );
-
-
-  document.getElementById(
-    "safeSpend"
-  ).textContent =
-    money(
-      safe
-    );
-
-
-  const box =
-    document.getElementById(
-      "homeTransactions"
-    );
-
-
-  if(!transactions.length){
-
-    box.innerHTML =
-      `<div class="card empty">
-        No transactions yet.<br>
-        Start with Quick Record.
-      </div>`;
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    transactions
-      .slice(0,5)
-      .map(
-        transactionHTML
-      )
-      .join("");
+return;
 
 }
 
+box.innerHTML =
+transactions
+.slice(0,5)
+.map(transactionHTML)
+.join("");
+
+}
+
+/* =====================================================
+   ICONS
+===================================================== */
+
+function getIcon(category){
+
+const icons = {
+
+"Dining":"🍜",
+
+"Groceries":"🛒",
+
+"Online Shopping":"📦",
+
+"Beauty & Wellness":"💆",
+
+"Pets":"🐾",
+
+"Transport":"🚕",
+
+"Shopping":"🛍️",
+
+"Entertainment":"🎬",
+
+"Travel":"✈️",
+
+"Bills":"📱",
+
+"Income":"💰",
+
+"Other":"💳"
+
+};
+
+return icons[category] || "💳";
+
+}
 
 /* =====================================================
    TRANSACTION
 ===================================================== */
 
-function getIcon(category){
-
-  const icons = {
-
-    "Dining":"🍜",
-
-    "Groceries":"🛒",
-
-    "Transport":"🚕",
-
-    "Shopping":"🛍️",
-
-    "Entertainment":"🎬",
-
-    "Travel":"✈️",
-
-    "Bills":"📱",
-
-    "Income":"💰",
-
-    "Other":"💳"
-
-  };
-
-
-  return (
-    icons[category]
-    || "💳"
-  );
-
-}
-
-
 function transactionHTML(t){
 
-  return `
+return `
 
-    <div class="transaction">
+<div class="transaction">
 
-      <div class="transaction-left">
+<div class="transaction-left">
 
-        <div class="icon">
-          ${getIcon(t.category)}
-        </div>
+<div class="icon">
+${getIcon(t.category)}
+</div>
 
-        <div class="transaction-info">
+<div class="transaction-info">
 
-          <div class="transaction-name">
-            ${escapeHTML(
-              t.description
-            )}
-          </div>
+<div class="transaction-name">
+${escapeHTML(t.description)}
+</div>
 
-          <div class="transaction-meta">
+<div class="transaction-meta">
+${escapeHTML(t.category)}
+·
+${displayDate(t.date)}
+</div>
 
-            ${escapeHTML(
-              t.category
-            )}
+</div>
 
-            ·
+</div>
 
-            ${displayDate(
-              t.date
-            )}
+<div class="transaction-right">
 
-          </div>
+<div
+class="transaction-money ${
+t.type === "income"
+? "income"
+: "expense"
+}">
 
-        </div>
+${t.type === "income" ? "+" : "-"}
+${money(t.amount)}
 
-      </div>
+</div>
 
+<button
+type="button"
+class="delete-btn"
+onclick="deleteTransaction('${t.id}')">
 
-      <div class="transaction-right">
+Delete
 
-        <div
-          class="transaction-money ${
-            t.type === "income"
-              ? "income"
-              : "expense"
-          }">
+</button>
 
-          ${
-            t.type === "income"
-              ? "+"
-              : "-"
-          }
+</div>
 
-          ${money(
-            t.amount
-          )}
+</div>
 
-        </div>
-
-
-        <button
-          type="button"
-          class="delete-btn"
-          onclick="deleteTransaction('${t.id}')">
-
-          Delete
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
+`;
 
 }
-
 
 function escapeHTML(str){
 
-  return String(
-    str
-  )
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+return String(str)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
-
 
 function deleteTransaction(id){
 
-  transactions =
-    transactions.filter(
-      t=>
-        String(t.id) !==
-        String(id)
-    );
+transactions =
+transactions.filter(
+t =>
+String(t.id) !==
+String(id)
+);
 
-  saveAll();
+saveAll();
 
-  renderAll();
+renderAll();
 
 }
-
 
 /* =====================================================
    REPORTS
@@ -2846,281 +2763,423 @@ function deleteTransaction(id){
 
 function renderReports(){
 
-  const totals =
-    getTotals();
+const totals =
+getTotals();
 
+document.getElementById(
+"reportBalance"
+).textContent =
+money(totals.balance);
 
-  document.getElementById(
-    "reportBalance"
-  ).textContent =
-    money(
-      totals.balance
-    );
+document.getElementById(
+"reportIncome"
+).textContent =
+money(totals.income);
 
+document.getElementById(
+"reportExpense"
+).textContent =
+money(totals.expense);
 
-  document.getElementById(
-    "reportIncome"
-  ).textContent =
-    money(
-      totals.income
-    );
+const cats = {};
 
+transactions
+.filter(
+t => t.type === "expense"
+)
+.forEach(
+t => {
 
-  document.getElementById(
-    "reportExpense"
-  ).textContent =
-    money(
-      totals.expense
-    );
+cats[t.category] =
+(cats[t.category] || 0) +
+Number(t.amount);
 
+}
+);
 
-  const cats = {};
+const entries =
+Object.entries(cats)
+.sort(
+(a,b) =>
+b[1] - a[1]
+);
 
+const total =
+entries.reduce(
+(sum,item) =>
+sum + item[1],
+0
+);
 
-  transactions
-    .filter(
-      t=>
-        t.type === "expense"
-    )
-    .forEach(
-      t=>{
+document.getElementById(
+"donutTotal"
+).textContent =
+money(total);
 
-        cats[t.category] =
-          (
-            cats[t.category]
-            || 0
-          ) +
-          Number(
-            t.amount
-          );
+/* DIFFERENT COLOR FOR EVERY CATEGORY */
 
-      }
-    );
+const colors = {
 
+"Dining":"#FF8A65",
 
-  const entries =
-    Object.entries(
-      cats
-    )
-      .sort(
-        (a,b)=>
-          b[1]-a[1]
-      );
+"Groceries":"#66BB6A",
 
+"Online Shopping":"#7E57C2",
 
-  const total =
-    entries.reduce(
-      (sum,item)=>
-        sum +
-        item[1],
-      0
-    );
+"Beauty & Wellness":"#EC6F9E",
 
+"Pets":"#8D6E63",
 
-  document.getElementById(
-    "donutTotal"
-  ).textContent =
-    money(
-      total
-    );
+"Transport":"#42A5F5",
 
+"Shopping":"#26A69A",
 
-  const donut =
-    document.getElementById(
-      "donut"
-    );
+"Entertainment":"#FFA726",
 
+"Travel":"#5C6BC0",
 
-  if(!entries.length){
+"Bills":"#78909C",
 
-    donut.style.background =
-      "var(--card2)";
+"Other":"#B0BEC5"
 
-  }
-  else{
+};
 
-    let start = 0;
+const donut =
+document.getElementById(
+"donut"
+);
 
-    const colors = [
+if(!entries.length){
 
-      "var(--red)",
+donut.style.background =
+"var(--card2)";
 
-      "var(--cyan)"
+}
+else{
 
-    ];
+let start = 0;
 
-    const parts = [];
+const parts = [];
 
+entries.forEach(
+([category,value])=>{
 
-    entries.forEach(
-      ([cat,value],i)=>{
+const degrees =
+total
+? value / total * 360
+: 0;
 
-        const deg =
-          total
-            ? value /
-              total *
-              360
-            : 0;
+const end =
+start + degrees;
 
-        const end =
-          start + deg;
+const color =
+colors[category] ||
+"#B0BEC5";
 
+parts.push(
+`${color} ${start}deg ${end}deg`
+);
 
-        parts.push(
-          `${colors[
-            i % 2
-          ]} ${start}deg ${end}deg`
-        );
+start = end;
 
+}
+);
 
-        start = end;
-
-      }
-    );
-
-
-    donut.style.background =
-      `conic-gradient(${parts.join(",")})`;
-
-  }
-
-
-  const legend =
-    document.getElementById(
-      "legend"
-    );
-
-
-  if(!entries.length){
-
-    legend.innerHTML =
-      `<div class="empty">
-        No expense data yet.
-      </div>`;
-
-  }
-  else{
-
-    legend.innerHTML =
-      entries
-        .map(
-          ([cat,value],i)=>{
-
-            const percent =
-              total
-                ? value /
-                  total *
-                  100
-                : 0;
-
-
-            return `
-
-              <div class="legend-row">
-
-                <div class="legend-left">
-
-                  <span
-                    class="dot ${
-                      i % 2 === 0
-                        ? "dot-red"
-                        : "dot-cyan"
-                    }">
-                  </span>
-
-                  <span>
-                    ${escapeHTML(cat)}
-                  </span>
-
-                </div>
-
-                <strong>
-
-                  ${money(value)}
-
-                  ·
-
-                  ${percent.toFixed(0)}%
-
-                </strong>
-
-              </div>
-
-            `;
-
-          }
-        )
-        .join("");
-
-  }
-
-
-  const categoryBox =
-    document.getElementById(
-      "categories"
-    );
-
-
-  if(!entries.length){
-
-    categoryBox.innerHTML =
-      `<div class="empty">
-        Add expenses to see your breakdown.
-      </div>`;
-
-    return;
-
-  }
-
-
-  categoryBox.innerHTML =
-    entries
-      .map(
-        ([cat,value])=>{
-
-          const percent =
-            total
-              ? value /
-                total *
-                100
-              : 0;
-
-
-          return `
-
-            <div class="category-row">
-
-              <div class="category-top">
-
-                <span>
-                  ${escapeHTML(cat)}
-                </span>
-
-                <strong>
-                  ${money(value)}
-                </strong>
-
-              </div>
-
-              <div class="progress">
-
-                <div
-                  class="progress-fill"
-                  style="width:${percent}%">
-                </div>
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-      .join("");
+donut.style.background =
+`conic-gradient(${parts.join(",")})`;
 
 }
 
+/* LEGEND */
+
+const legend =
+document.getElementById(
+"legend"
+);
+
+if(!entries.length){
+
+legend.innerHTML =
+`<div class="empty">
+No expense data yet.
+</div>`;
+
+}
+else{
+
+legend.innerHTML =
+entries
+.map(
+([category,value])=>{
+
+const percent =
+total
+? value / total * 100
+: 0;
+
+const color =
+colors[category] ||
+"#B0BEC5";
+
+return `
+
+<div class="legend-row">
+
+<div class="legend-left">
+
+<span
+class="dot"
+style="background:${color}">
+</span>
+
+<span>
+${escapeHTML(category)}
+</span>
+
+</div>
+
+<strong>
+${money(value)}
+·
+${percent.toFixed(0)}%
+</strong>
+
+</div>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+/* CATEGORY BREAKDOWN */
+
+const categoryBox =
+document.getElementById(
+"categories"
+);
+
+if(!entries.length){
+
+categoryBox.innerHTML =
+`<div class="empty">
+Add expenses to see your breakdown.
+</div>`;
+
+}
+else{
+
+categoryBox.innerHTML =
+entries
+.map(
+([category,value])=>{
+
+const percent =
+total
+? value / total * 100
+: 0;
+
+const color =
+colors[category] ||
+"#B0BEC5";
+
+return `
+
+<div class="category-row">
+
+<div class="category-top">
+
+<span>
+${escapeHTML(category)}
+</span>
+
+<strong>
+${money(value)}
+</strong>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+style="
+width:${percent}%;
+background:${color};
+">
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+renderInsight();
+
+}
+
+/* =====================================================
+   BUNEXA INSIGHT
+===================================================== */
+
+function renderInsight(){
+
+const box =
+document.getElementById(
+"insightCard"
+);
+
+if(!box){
+return;
+}
+
+const expenses =
+transactions.filter(
+t =>
+t.type === "expense"
+);
+
+if(!expenses.length){
+
+box.innerHTML = `
+
+<div class="insight-title">
+💡 BUNEXA Insight
+</div>
+
+<div class="insight-text">
+Start recording your spending and
+BUNEXA will help you understand
+where your money is going.
+</div>
+
+<div class="insight-tip">
+Tip: Use Quick Record after every
+purchase. It only takes a few seconds.
+</div>
+
+`;
+
+return;
+
+}
+
+const cats = {};
+
+expenses.forEach(
+t => {
+
+cats[t.category] =
+(cats[t.category] || 0) +
+Number(t.amount);
+
+}
+);
+
+const entries =
+Object.entries(cats)
+.sort(
+(a,b) =>
+b[1] - a[1]
+);
+
+const topCategory =
+entries[0][0];
+
+const topAmount =
+entries[0][1];
+
+const total =
+expenses.reduce(
+(sum,t)=>
+sum + Number(t.amount),
+0
+);
+
+const percentage =
+total
+? topAmount / total * 100
+: 0;
+
+const tips = {
+
+"Online Shopping":
+"💡 Online Shopping is your biggest category. Consider setting a monthly shopping limit.",
+
+"Dining":
+"💡 Dining is your biggest category. Small daily savings from coffee, meals and delivery can add up.",
+
+"Transport":
+"💡 Transport is your biggest category. Compare MRT, bus, ride-hailing, parking and petrol costs.",
+
+"Entertainment":
+"💡 Entertainment is your biggest category. Review subscriptions and recurring entertainment costs.",
+
+"Beauty & Wellness":
+"💡 Beauty & Wellness is your biggest category. Separate essential wellness spending from optional treatments.",
+
+"Groceries":
+"💡 Groceries are your biggest category. Meal planning and comparing supermarket prices may help.",
+
+"Pets":
+"💡 Pet expenses are your biggest category. Consider keeping a separate monthly pet budget.",
+
+"Travel":
+"💡 Travel is your biggest category. A dedicated travel fund can make large trips easier to manage.",
+
+"Bills":
+"💡 Bills are your biggest category. Review recurring plans and subscriptions.",
+
+"Shopping":
+"💡 Shopping is your biggest category. Consider setting a monthly discretionary shopping limit."
+
+};
+
+const tip =
+tips[topCategory] ||
+"💡 Keep recording consistently. BUNEXA will get a clearer picture of your spending habits.";
+
+box.innerHTML = `
+
+<div class="insight-title">
+💡 BUNEXA Insight
+</div>
+
+<div class="insight-text">
+
+Your biggest spending category is
+
+<span class="insight-highlight">
+${escapeHTML(topCategory)}
+</span>
+
+at
+
+<span class="insight-highlight">
+${money(topAmount)}
+</span>
+
+(${percentage.toFixed(0)}%
+of recorded expenses).
+
+</div>
+
+<div class="insight-tip">
+${tip}
+</div>
+
+`;
+
+}
 
 /* =====================================================
    CALENDAR
@@ -3128,551 +3187,430 @@ function renderReports(){
 
 function setupCalendarSelectors(){
 
-  const month =
-    document.getElementById(
-      "monthSelect"
-    );
+const month =
+document.getElementById(
+"monthSelect"
+);
 
-  const year =
-    document.getElementById(
-      "yearSelect"
-    );
+const year =
+document.getElementById(
+"yearSelect"
+);
 
+const months = [
 
-  const months = [
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
 
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+];
 
-  ];
+month.innerHTML =
+months
+.map(
+(name,i)=>
+`<option value="${i}">
+${name}
+</option>`
+)
+.join("");
 
+const currentYear =
+new Date().getFullYear();
 
-  month.innerHTML =
-    months
-      .map(
-        (name,i)=>
-          `<option value="${i}">
-            ${name}
-          </option>`
-      )
-      .join("");
+let years = [];
 
+for(
+let y = currentYear - 5;
+y <= currentYear + 30;
+y++
+){
 
-  const currentYear =
-    new Date()
-      .getFullYear();
-
-
-  let years = [];
-
-
-  for(
-    let y =
-      currentYear - 5;
-
-    y <=
-      currentYear + 30;
-
-    y++
-  ){
-
-    years.push(y);
-
-  }
-
-
-  year.innerHTML =
-    years
-      .map(
-        y=>
-          `<option value="${y}">
-            ${y}
-          </option>`
-      )
-      .join("");
-
-
-  month.value =
-    calendarDate
-      .getMonth();
-
-
-  year.value =
-    calendarDate
-      .getFullYear();
+years.push(y);
 
 }
 
+year.innerHTML =
+years
+.map(
+y =>
+`<option value="${y}">
+${y}
+</option>`
+)
+.join("");
+
+month.value =
+calendarDate.getMonth();
+
+year.value =
+calendarDate.getFullYear();
+
+}
 
 function calendarChanged(){
 
-  const month =
-    Number(
-      document.getElementById(
-        "monthSelect"
-      ).value
-    );
+calendarDate =
+new Date(
+Number(
+document.getElementById(
+"yearSelect"
+).value
+),
+Number(
+document.getElementById(
+"monthSelect"
+).value
+),
+1
+);
 
+selectedCalendarDay =
+null;
 
-  const year =
-    Number(
-      document.getElementById(
-        "yearSelect"
-      ).value
-    );
-
-
-  calendarDate =
-    new Date(
-      year,
-      month,
-      1
-    );
-
-
-  selectedCalendarDay =
-    null;
-
-
-  renderCalendar();
+renderCalendar();
 
 }
-
 
 function changeMonth(amount){
 
-  calendarDate =
-    new Date(
-      calendarDate.getFullYear(),
-      calendarDate.getMonth()
-      + amount,
-      1
-    );
+calendarDate =
+new Date(
+calendarDate.getFullYear(),
+calendarDate.getMonth() + amount,
+1
+);
 
+const year =
+calendarDate.getFullYear();
 
-  const year =
-    calendarDate.getFullYear();
+const select =
+document.getElementById(
+"yearSelect"
+);
 
-
-  const select =
-    document.getElementById(
-      "yearSelect"
-    );
-
-
-  if(
-    !Array.from(
-      select.options
-    ).some(
-      o=>
-        Number(o.value)
-        === year
-    )
-  ){
-
-    select.innerHTML +=
-      `<option value="${year}">
-        ${year}
-      </option>`;
-
-  }
-
-
-  document.getElementById(
-    "monthSelect"
-  ).value =
-    calendarDate
-      .getMonth();
-
-
-  document.getElementById(
-    "yearSelect"
-  ).value =
-    year;
-
-
-  selectedCalendarDay =
-    null;
-
-
-  renderCalendar();
-
-}
-
-
-function getDayTransactions(
-  year,
-  month,
-  day
+if(
+!Array.from(
+select.options
+).some(
+o =>
+Number(o.value) === year
+)
 ){
 
-  const key =
-    dateKey(
-      new Date(
-        year,
-        month,
-        day
-      )
-    );
-
-
-  return transactions.filter(
-    t=>
-      t.date === key &&
-      t.type === "expense"
-  );
+select.innerHTML +=
+`<option value="${year}">
+${year}
+</option>`;
 
 }
 
+document.getElementById(
+"monthSelect"
+).value =
+calendarDate.getMonth();
+
+document.getElementById(
+"yearSelect"
+).value =
+year;
+
+selectedCalendarDay =
+null;
+
+renderCalendar();
+
+}
+
+function getDayTransactions(
+year,
+month,
+day
+){
+
+const key =
+dateKey(
+new Date(
+year,
+month,
+day
+)
+);
+
+return transactions.filter(
+t =>
+t.date === key &&
+t.type === "expense"
+);
+
+}
 
 function renderCalendar(){
 
-  const month =
-    calendarDate
-      .getMonth();
+const month =
+calendarDate.getMonth();
 
+const year =
+calendarDate.getFullYear();
 
-  const year =
-    calendarDate
-      .getFullYear();
+const grid =
+document.getElementById(
+"calendarGrid"
+);
 
+if(!grid){
+return;
+}
 
-  const monthSelect =
-    document.getElementById(
-      "monthSelect"
-    );
+const first =
+new Date(
+year,
+month,
+1
+);
 
+const last =
+new Date(
+year,
+month + 1,
+0
+);
 
-  const yearSelect =
-    document.getElementById(
-      "yearSelect"
-    );
+const firstDay =
+first.getDay();
 
+const days =
+last.getDate();
 
-  if(monthSelect){
+let html = "";
 
-    monthSelect.value =
-      month;
+for(
+let i = 0;
+i < firstDay;
+i++
+){
 
-  }
-
-
-  if(yearSelect){
-
-    yearSelect.value =
-      year;
-
-  }
-
-
-  const grid =
-    document.getElementById(
-      "calendarGrid"
-    );
-
-
-  if(!grid){
-    return;
-  }
-
-
-  const first =
-    new Date(
-      year,
-      month,
-      1
-    );
-
-
-  const last =
-    new Date(
-      year,
-      month + 1,
-      0
-    );
-
-
-  const firstDay =
-    first.getDay();
-
-
-  const days =
-    last.getDate();
-
-
-  let html = "";
-
-
-  for(
-    let i=0;
-    i<firstDay;
-    i++
-  ){
-
-    html +=
-      `<div class="day empty"></div>`;
-
-  }
-
-
-  for(
-    let day=1;
-    day<=days;
-    day++
-  ){
-
-    const list =
-      getDayTransactions(
-        year,
-        month,
-        day
-      );
-
-
-    const total =
-      list.reduce(
-        (sum,t)=>
-          sum +
-          Number(
-            t.amount
-          ),
-        0
-      );
-
-
-    const today =
-      dateKey(
-        new Date()
-      ) ===
-      dateKey(
-        new Date(
-          year,
-          month,
-          day
-        )
-      );
-
-
-    html += `
-
-      <button
-        type="button"
-        class="day ${
-          list.length
-            ? "has-data"
-            : ""
-        } ${
-          today
-            ? "today"
-            : ""
-        }"
-        onclick="selectCalendarDay(${day})">
-
-        <span class="day-number">
-          ${day}
-        </span>
-
-        ${
-          total > 0
-            ? `
-              <span class="day-total">
-                ${money(total)}
-              </span>
-            `
-            : ""
-        }
-
-      </button>
-
-    `;
-
-  }
-
-
-  grid.innerHTML =
-    html;
-
-
-  renderCalendarSummary();
+html +=
+`<div class="day empty"></div>`;
 
 }
 
+for(
+let day = 1;
+day <= days;
+day++
+){
+
+const list =
+getDayTransactions(
+year,
+month,
+day
+);
+
+const total =
+list.reduce(
+(sum,t)=>
+sum + Number(t.amount),
+0
+);
+
+const today =
+dateKey(
+new Date()
+) ===
+dateKey(
+new Date(
+year,
+month,
+day
+)
+);
+
+html += `
+
+<button
+type="button"
+class="day ${
+list.length
+? "has-data"
+: ""
+} ${
+today
+? "today"
+: ""
+}"
+onclick="selectCalendarDay(${day})">
+
+<span class="day-number">
+${day}
+</span>
+
+${
+total > 0
+? `
+<span class="day-total">
+${money(total)}
+</span>
+`
+: ""
+}
+
+</button>
+
+`;
+
+}
+
+grid.innerHTML =
+html;
+
+renderCalendarSummary();
+
+}
 
 function selectCalendarDay(day){
 
-  selectedCalendarDay =
-    day;
+selectedCalendarDay =
+day;
 
-  renderCalendarSummary();
+renderCalendarSummary();
 
 }
-
 
 function renderCalendarSummary(){
 
-  const box =
-    document.getElementById(
-      "calendarSummary"
-    );
+const box =
+document.getElementById(
+"calendarSummary"
+);
 
+if(
+selectedCalendarDay === null
+){
 
-  if(
-    selectedCalendarDay === null
-  ){
+const prefix =
+`${calendarDate.getFullYear()}-${String(
+calendarDate.getMonth()+1
+).padStart(2,"0")}`;
 
-    const prefix =
-      `${calendarDate.getFullYear()}-${String(
-        calendarDate.getMonth()+1
-      ).padStart(2,"0")}`;
+const monthTotal =
+transactions
+.filter(
+t =>
+t.type === "expense" &&
+t.date &&
+t.date.startsWith(prefix)
+)
+.reduce(
+(sum,t)=>
+sum + Number(t.amount),
+0
+);
 
+box.innerHTML = `
 
-    const monthTotal =
-      transactions
-        .filter(
-          t=>
-            t.type === "expense" &&
-            t.date &&
-            t.date.startsWith(
-              prefix
-            )
-        )
-        .reduce(
-          (sum,t)=>
-            sum +
-            Number(
-              t.amount
-            ),
-          0
-        );
+<div class="calendar-summary-title">
 
+${calendarDate.toLocaleString(
+"en-US",
+{
+month:"long",
+year:"numeric"
+}
+)}
 
-    box.innerHTML = `
+</div>
 
-      <div class="calendar-summary-title">
+<div class="calendar-summary-total">
+${money(monthTotal)}
+</div>
 
-        ${calendarDate.toLocaleString(
-          "en-US",
-          {
-            month:"long",
-            year:"numeric"
-          }
-        )}
+<div
+style="
+color:var(--muted);
+font-size:11px;
+margin-top:3px">
 
-      </div>
+Total spending this month
 
-      <div class="calendar-summary-total">
-        ${money(monthTotal)}
-      </div>
+</div>
 
-      <div
-        style="
-        color:var(--muted);
-        font-size:11px;
-        margin-top:3px">
+`;
 
-        Total spending this month
-
-      </div>
-
-    `;
-
-
-    return;
-
-  }
-
-
-  const list =
-    getDayTransactions(
-      calendarDate.getFullYear(),
-      calendarDate.getMonth(),
-      selectedCalendarDay
-    );
-
-
-  const total =
-    list.reduce(
-      (sum,t)=>
-        sum +
-        Number(
-          t.amount
-        ),
-      0
-    );
-
-
-  const key =
-    dateKey(
-      new Date(
-        calendarDate.getFullYear(),
-        calendarDate.getMonth(),
-        selectedCalendarDay
-      )
-    );
-
-
-  let items = "";
-
-
-  if(!list.length){
-
-    items =
-      `<div class="empty">
-        No spending recorded on this day.
-      </div>`;
-
-  }
-  else{
-
-    items =
-      list
-        .map(
-          transactionHTML
-        )
-        .join("");
-
-  }
-
-
-  box.innerHTML = `
-
-    <div class="calendar-summary-title">
-      ${displayDate(key)}
-    </div>
-
-    <div class="calendar-summary-total">
-      ${money(total)}
-    </div>
-
-    <div
-      style="
-      color:var(--muted);
-      font-size:11px;
-      margin-top:3px">
-
-      ${list.length}
-      expense${list.length === 1 ? "" : "s"}
-
-    </div>
-
-    <div class="calendar-day-list">
-      ${items}
-    </div>
-
-  `;
+return;
 
 }
 
+const list =
+getDayTransactions(
+calendarDate.getFullYear(),
+calendarDate.getMonth(),
+selectedCalendarDay
+);
+
+const total =
+list.reduce(
+(sum,t)=>
+sum + Number(t.amount),
+0
+);
+
+const key =
+dateKey(
+new Date(
+calendarDate.getFullYear(),
+calendarDate.getMonth(),
+selectedCalendarDay
+)
+);
+
+const items =
+list.length
+? list.map(transactionHTML).join("")
+: `
+<div class="empty">
+No spending recorded on this day.
+</div>
+`;
+
+box.innerHTML = `
+
+<div class="calendar-summary-title">
+${displayDate(key)}
+</div>
+
+<div class="calendar-summary-total">
+${money(total)}
+</div>
+
+<div
+style="
+color:var(--muted);
+font-size:11px;
+margin-top:3px">
+
+${list.length}
+expense${list.length === 1 ? "" : "s"}
+
+</div>
+
+<div class="calendar-day-list">
+${items}
+</div>
+
+`;
+
+}
 
 /* =====================================================
    GOALS
@@ -3680,427 +3618,361 @@ function renderCalendarSummary(){
 
 function renderGoals(){
 
-  const monthly =
-    goals.reduce(
-      (sum,g)=>
-        sum +
-        Number(
-          g.monthly || 0
-        ),
-      0
-    );
-
-
-  document.getElementById(
-    "monthlySaving"
-  ).textContent =
-    money(
-      monthly
-    );
-
-
-  document.getElementById(
-    "yearSaving"
-  ).textContent =
-    money(
-      monthly * 12
-    );
-
-
-  const box =
-    document.getElementById(
-      "goalsList"
-    );
-
-
-  if(!goals.length){
-
-    box.innerHTML =
-      `<div class="card empty">
-        No savings goals yet.<br>
-        Add your first goal.
-      </div>`;
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    goals
-      .map(
-        g=>{
-
-          const target =
-            Number(
-              g.target || 0
-            );
-
-
-          const saved =
-            Number(
-              g.saved || 0
-            );
-
-
-          const monthly =
-            Number(
-              g.monthly || 0
-            );
-
-
-          const percent =
-            target
-              ? Math.min(
-                  100,
-                  saved /
-                  target *
-                  100
-                )
-              : 0;
-
-
-          const remaining =
-            Math.max(
-              0,
-              target -
-              saved
-            );
-
-
-          const months =
-            monthly > 0
-              ? Math.ceil(
-                  remaining /
-                  monthly
-                )
-              : null;
-
-
-          return `
-
-            <div class="card goal-card">
-
-              <div class="goal-top">
-
-                <div>
-
-                  <div class="goal-name">
-                    ${escapeHTML(g.name)}
-                  </div>
-
-                  <div class="goal-target">
-                    Target ${money(target)}
-                  </div>
-
-                </div>
-
-                <div class="goal-percent">
-                  ${percent.toFixed(0)}%
-                </div>
-
-              </div>
-
-
-              <div class="goal-progress">
-
-                <div
-                  class="goal-progress-fill"
-                  style="width:${percent}%">
-                </div>
-
-              </div>
-
-
-              <div class="goal-info">
-
-                <div class="goal-mini">
-
-                  <small>
-                    SAVED
-                  </small>
-
-                  <strong>
-                    ${money(saved)}
-                  </strong>
-
-                </div>
-
-
-                <div class="goal-mini">
-
-                  <small>
-                    REMAINING
-                  </small>
-
-                  <strong>
-                    ${money(remaining)}
-                  </strong>
-
-                </div>
-
-
-                <div class="goal-mini">
-
-                  <small>
-                    MONTHLY PLAN
-                  </small>
-
-                  <strong>
-                    ${money(monthly)}
-                  </strong>
-
-                </div>
-
-
-                <div class="goal-mini">
-
-                  <small>
-                    EST. TIME
-                  </small>
-
-                  <strong>
-
-                    ${
-                      percent >= 100
-                        ? "Completed"
-                        : months
-                          ? months +
-                            " months"
-                          : "Set plan"
-                    }
-
-                  </strong>
-
-                </div>
-
-              </div>
-
-
-              ${
-                percent >= 100
-                  ? `
-                    <div class="goal-success">
-                      🎉 Goal achieved.
-                    </div>
-                  `
-                  : ""
-              }
-
-
-              <div class="goal-actions">
-
-                <button
-                  type="button"
-                  class="small-btn"
-                  onclick="addGoalSaving('${g.id}')">
-
-                  + Add saving
-
-                </button>
-
-
-                <button
-                  type="button"
-                  class="small-btn"
-                  onclick="deleteGoal('${g.id}')">
-
-                  Delete
-
-                </button>
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-      .join("");
+const monthly =
+goals.reduce(
+(sum,g)=>
+sum + Number(g.monthly || 0),
+0
+);
+
+document.getElementById(
+"monthlySaving"
+).textContent =
+money(monthly);
+
+document.getElementById(
+"yearSaving"
+).textContent =
+money(monthly * 12);
+
+const box =
+document.getElementById(
+"goalsList"
+);
+
+if(!goals.length){
+
+box.innerHTML =
+`<div class="card empty">
+No savings goals yet.<br>
+Add your first goal.
+</div>`;
+
+return;
 
 }
 
+box.innerHTML =
+goals
+.map(
+g => {
+
+const target =
+Number(g.target || 0);
+
+const saved =
+Number(g.saved || 0);
+
+const monthly =
+Number(g.monthly || 0);
+
+const percent =
+target
+? Math.min(
+100,
+saved / target * 100
+)
+: 0;
+
+const remaining =
+Math.max(
+0,
+target - saved
+);
+
+const months =
+monthly > 0
+? Math.ceil(
+remaining / monthly
+)
+: null;
+
+return `
+
+<div class="card goal-card">
+
+<div class="goal-top">
+
+<div>
+
+<div class="goal-name">
+${escapeHTML(g.name)}
+</div>
+
+<div class="goal-target">
+Target ${money(target)}
+</div>
+
+</div>
+
+<div class="goal-percent">
+${percent.toFixed(0)}%
+</div>
+
+</div>
+
+<div class="goal-progress">
+
+<div
+class="goal-progress-fill"
+style="width:${percent}%">
+</div>
+
+</div>
+
+<div class="goal-info">
+
+<div class="goal-mini">
+
+<small>
+SAVED
+</small>
+
+<strong>
+${money(saved)}
+</strong>
+
+</div>
+
+<div class="goal-mini">
+
+<small>
+REMAINING
+</small>
+
+<strong>
+${money(remaining)}
+</strong>
+
+</div>
+
+<div class="goal-mini">
+
+<small>
+MONTHLY PLAN
+</small>
+
+<strong>
+${money(monthly)}
+</strong>
+
+</div>
+
+<div class="goal-mini">
+
+<small>
+EST. TIME
+</small>
+
+<strong>
+
+${
+percent >= 100
+? "Completed"
+: months
+? months + " months"
+: "Set plan"
+}
+
+</strong>
+
+</div>
+
+</div>
+
+${
+percent >= 100
+? `
+<div class="goal-success">
+🎉 Goal achieved.
+</div>
+`
+: ""
+}
+
+<div class="goal-actions">
+
+<button
+type="button"
+class="small-btn"
+onclick="addGoalSaving('${g.id}')">
+
++ Add saving
+
+</button>
+
+<button
+type="button"
+class="small-btn"
+onclick="deleteGoal('${g.id}')">
+
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+)
+.join("");
+
+}
 
 function openGoalModal(){
 
-  document.getElementById(
-    "goalModal"
-  ).classList.add(
-    "show"
-  );
+document.getElementById(
+"goalModal"
+).classList.add("show");
 
 }
-
 
 function saveGoal(){
 
-  const name =
-    document.getElementById(
-      "goalName"
-    ).value.trim();
+const name =
+document.getElementById(
+"goalName"
+).value.trim();
 
+const target =
+parseFloat(
+document.getElementById(
+"goalTarget"
+).value
+);
 
-  const target =
-    parseFloat(
-      document.getElementById(
-        "goalTarget"
-      ).value
-    );
+const saved =
+parseFloat(
+document.getElementById(
+"goalSaved"
+).value
+) || 0;
 
+const monthly =
+parseFloat(
+document.getElementById(
+"goalMonthly"
+).value
+) || 0;
 
-  const saved =
-    parseFloat(
-      document.getElementById(
-        "goalSaved"
-      ).value
-    ) || 0;
+if(
+!name ||
+!target ||
+target <= 0
+){
 
+alert(
+"Please enter a goal name and target."
+);
 
-  const monthly =
-    parseFloat(
-      document.getElementById(
-        "goalMonthly"
-      ).value
-    ) || 0;
-
-
-  if(
-    !name ||
-    !target ||
-    target <= 0
-  ){
-
-    alert(
-      "Please enter a goal name and target."
-    );
-
-    return;
-
-  }
-
-
-  goals.push({
-
-    id:
-      Date.now() +
-      Math.random(),
-
-    name,
-
-    target,
-
-    saved,
-
-    monthly
-
-  });
-
-
-  saveAll();
-
-
-  [
-    "goalName",
-    "goalTarget",
-    "goalSaved",
-    "goalMonthly"
-
-  ].forEach(
-    id=>{
-
-      document.getElementById(
-        id
-      ).value = "";
-
-    }
-  );
-
-
-  closeModal(
-    "goalModal"
-  );
-
-
-  renderAll();
+return;
 
 }
 
+goals.push({
+
+id:
+Date.now() +
+Math.random(),
+
+name,
+
+target,
+
+saved,
+
+monthly
+
+});
+
+saveAll();
+
+[
+"goalName",
+"goalTarget",
+"goalSaved",
+"goalMonthly"
+]
+.forEach(
+id => {
+
+document.getElementById(
+id
+).value = "";
+
+}
+);
+
+closeModal(
+"goalModal"
+);
+
+renderAll();
+
+}
 
 function addGoalSaving(id){
 
-  const goal =
-    goals.find(
-      g=>
-        String(g.id) ===
-        String(id)
-    );
+const goal =
+goals.find(
+g =>
+String(g.id) ===
+String(id)
+);
 
-
-  if(!goal){
-    return;
-  }
-
-
-  const value =
-    parseFloat(
-      prompt(
-        "How much did you save?"
-      )
-    );
-
-
-  if(
-    !value ||
-    value <= 0
-  ){
-
-    return;
-
-  }
-
-
-  goal.saved =
-    Number(
-      goal.saved || 0
-    ) +
-    value;
-
-
-  saveAll();
-
-  renderAll();
-
+if(!goal){
+return;
 }
 
+const value =
+parseFloat(
+prompt(
+"How much did you save?"
+)
+);
+
+if(
+!value ||
+value <= 0
+){
+return;
+}
+
+goal.saved =
+Number(goal.saved || 0) +
+value;
+
+saveAll();
+
+renderAll();
+
+}
 
 function deleteGoal(id){
 
-  if(
-    !confirm(
-      "Delete this savings goal?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  goals =
-    goals.filter(
-      g=>
-        String(g.id) !==
-        String(id)
-    );
-
-
-  saveAll();
-
-  renderAll();
-
+if(
+!confirm(
+"Delete this savings goal?"
+)
+){
+return;
 }
 
+goals =
+goals.filter(
+g =>
+String(g.id) !==
+String(id)
+);
+
+saveAll();
+
+renderAll();
+
+}
 
 /* =====================================================
    INCOME
@@ -4108,197 +3980,172 @@ function deleteGoal(id){
 
 function openIncomeModal(){
 
-  document.getElementById(
-    "incomeModal"
-  ).classList.add(
-    "show"
-  );
+document.getElementById(
+"incomeModal"
+).classList.add("show");
 
 }
-
 
 function saveIncome(){
 
-  const name =
-    document.getElementById(
-      "incomeName"
-    ).value.trim();
+const name =
+document.getElementById(
+"incomeName"
+).value.trim();
 
+const amount =
+parseFloat(
+document.getElementById(
+"incomeAmount"
+).value
+);
 
-  const amount =
-    parseFloat(
-      document.getElementById(
-        "incomeAmount"
-      ).value
-    );
+if(
+!name ||
+!amount ||
+amount <= 0
+){
 
+alert(
+"Please enter income source and amount."
+);
 
-  if(
-    !name ||
-    !amount ||
-    amount <= 0
-  ){
-
-    alert(
-      "Please enter income source and amount."
-    );
-
-    return;
-
-  }
-
-
-  incomes.push({
-
-    id:
-      Date.now() +
-      Math.random(),
-
-    name,
-
-    amount
-
-  });
-
-
-  saveAll();
-
-
-  document.getElementById(
-    "incomeName"
-  ).value = "";
-
-
-  document.getElementById(
-    "incomeAmount"
-  ).value = "";
-
-
-  closeModal(
-    "incomeModal"
-  );
-
-
-  renderAll();
+return;
 
 }
 
+incomes.push({
+
+id:
+Date.now() +
+Math.random(),
+
+name,
+
+amount
+
+});
+
+saveAll();
+
+document.getElementById(
+"incomeName"
+).value = "";
+
+document.getElementById(
+"incomeAmount"
+).value = "";
+
+closeModal(
+"incomeModal"
+);
+
+renderAll();
+
+}
 
 function renderIncomeSources(){
 
-  const box =
-    document.getElementById(
-      "incomeSources"
-    );
+const box =
+document.getElementById(
+"incomeSources"
+);
 
+if(!incomes.length){
 
-  if(!incomes.length){
+box.innerHTML =
+`<div class="empty">
+No regular income added yet.
+</div>`;
 
-    box.innerHTML =
-      `<div class="empty">
-        No regular income added yet.
-      </div>`;
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    incomes
-      .map(
-        i=>`
-
-          <div class="setting-row">
-
-            <div>
-
-              <div class="setting-title">
-                ${escapeHTML(i.name)}
-              </div>
-
-              <div class="setting-desc">
-                Monthly income
-              </div>
-
-            </div>
-
-
-            <div>
-
-              <strong class="income">
-                ${money(i.amount)}
-              </strong>
-
-
-              <button
-                style="
-                border:0;
-                background:none;
-                color:var(--cyan);
-                font-size:11px;
-                margin-left:6px"
-                onclick="editIncome('${i.id}')">
-
-                Edit
-
-              </button>
-
-            </div>
-
-          </div>
-
-        `
-      )
-      .join("");
+return;
 
 }
 
+box.innerHTML =
+incomes
+.map(
+i => `
+
+<div class="setting-row">
+
+<div>
+
+<div class="setting-title">
+${escapeHTML(i.name)}
+</div>
+
+<div class="setting-desc">
+Monthly income
+</div>
+
+</div>
+
+<div>
+
+<strong class="income">
+${money(i.amount)}
+</strong>
+
+<button
+style="
+border:0;
+background:none;
+color:var(--cyan);
+font-size:11px;
+margin-left:6px"
+onclick="editIncome('${i.id}')">
+
+Edit
+
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+}
 
 function editIncome(id){
 
-  const item =
-    incomes.find(
-      i=>
-        String(i.id) ===
-        String(id)
-    );
+const item =
+incomes.find(
+i =>
+String(i.id) ===
+String(id)
+);
 
-
-  if(!item){
-    return;
-  }
-
-
-  const amount =
-    parseFloat(
-      prompt(
-        "Update monthly income:",
-        item.amount
-      )
-    );
-
-
-  if(
-    !amount ||
-    amount <= 0
-  ){
-
-    return;
-
-  }
-
-
-  item.amount =
-    amount;
-
-
-  saveAll();
-
-  renderAll();
-
+if(!item){
+return;
 }
 
+const amount =
+parseFloat(
+prompt(
+"Update monthly income:",
+item.amount
+)
+);
+
+if(
+!amount ||
+amount <= 0
+){
+return;
+}
+
+item.amount =
+amount;
+
+saveAll();
+
+renderAll();
+
+}
 
 /* =====================================================
    FIXED EXPENSE
@@ -4306,197 +4153,172 @@ function editIncome(id){
 
 function openFixedModal(){
 
-  document.getElementById(
-    "fixedModal"
-  ).classList.add(
-    "show"
-  );
+document.getElementById(
+"fixedModal"
+).classList.add("show");
 
 }
-
 
 function saveFixedExpense(){
 
-  const name =
-    document.getElementById(
-      "fixedName"
-    ).value.trim();
+const name =
+document.getElementById(
+"fixedName"
+).value.trim();
 
+const amount =
+parseFloat(
+document.getElementById(
+"fixedAmount"
+).value
+);
 
-  const amount =
-    parseFloat(
-      document.getElementById(
-        "fixedAmount"
-      ).value
-    );
+if(
+!name ||
+!amount ||
+amount <= 0
+){
 
+alert(
+"Please enter expense name and amount."
+);
 
-  if(
-    !name ||
-    !amount ||
-    amount <= 0
-  ){
-
-    alert(
-      "Please enter expense name and amount."
-    );
-
-    return;
-
-  }
-
-
-  fixedExpenses.push({
-
-    id:
-      Date.now() +
-      Math.random(),
-
-    name,
-
-    amount
-
-  });
-
-
-  saveAll();
-
-
-  document.getElementById(
-    "fixedName"
-  ).value = "";
-
-
-  document.getElementById(
-    "fixedAmount"
-  ).value = "";
-
-
-  closeModal(
-    "fixedModal"
-  );
-
-
-  renderAll();
+return;
 
 }
 
+fixedExpenses.push({
+
+id:
+Date.now() +
+Math.random(),
+
+name,
+
+amount
+
+});
+
+saveAll();
+
+document.getElementById(
+"fixedName"
+).value = "";
+
+document.getElementById(
+"fixedAmount"
+).value = "";
+
+closeModal(
+"fixedModal"
+);
+
+renderAll();
+
+}
 
 function renderFixedExpenses(){
 
-  const box =
-    document.getElementById(
-      "fixedExpenses"
-    );
+const box =
+document.getElementById(
+"fixedExpenses"
+);
 
+if(!fixedExpenses.length){
 
-  if(!fixedExpenses.length){
+box.innerHTML =
+`<div class="empty">
+No fixed expenses added yet.
+</div>`;
 
-    box.innerHTML =
-      `<div class="empty">
-        No fixed expenses added yet.
-      </div>`;
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    fixedExpenses
-      .map(
-        e=>`
-
-          <div class="setting-row">
-
-            <div>
-
-              <div class="setting-title">
-                ${escapeHTML(e.name)}
-              </div>
-
-              <div class="setting-desc">
-                Monthly fixed expense
-              </div>
-
-            </div>
-
-
-            <div>
-
-              <strong class="expense">
-                ${money(e.amount)}
-              </strong>
-
-
-              <button
-                style="
-                border:0;
-                background:none;
-                color:var(--cyan);
-                font-size:11px;
-                margin-left:6px"
-                onclick="editFixed('${e.id}')">
-
-                Edit
-
-              </button>
-
-            </div>
-
-          </div>
-
-        `
-      )
-      .join("");
+return;
 
 }
 
+box.innerHTML =
+fixedExpenses
+.map(
+e => `
+
+<div class="setting-row">
+
+<div>
+
+<div class="setting-title">
+${escapeHTML(e.name)}
+</div>
+
+<div class="setting-desc">
+Monthly fixed expense
+</div>
+
+</div>
+
+<div>
+
+<strong class="expense">
+${money(e.amount)}
+</strong>
+
+<button
+style="
+border:0;
+background:none;
+color:var(--cyan);
+font-size:11px;
+margin-left:6px"
+onclick="editFixed('${e.id}')">
+
+Edit
+
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+}
 
 function editFixed(id){
 
-  const item =
-    fixedExpenses.find(
-      e=>
-        String(e.id) ===
-        String(id)
-    );
+const item =
+fixedExpenses.find(
+e =>
+String(e.id) ===
+String(id)
+);
 
-
-  if(!item){
-    return;
-  }
-
-
-  const amount =
-    parseFloat(
-      prompt(
-        "Update monthly expense:",
-        item.amount
-      )
-    );
-
-
-  if(
-    !amount ||
-    amount <= 0
-  ){
-
-    return;
-
-  }
-
-
-  item.amount =
-    amount;
-
-
-  saveAll();
-
-  renderAll();
-
+if(!item){
+return;
 }
 
+const amount =
+parseFloat(
+prompt(
+"Update monthly expense:",
+item.amount
+)
+);
+
+if(
+!amount ||
+amount <= 0
+){
+return;
+}
+
+item.amount =
+amount;
+
+saveAll();
+
+renderAll();
+
+}
 
 /* =====================================================
    MODAL
@@ -4504,14 +4326,28 @@ function editFixed(id){
 
 function closeModal(id){
 
-  document.getElementById(
-    id
-  ).classList.remove(
-    "show"
-  );
+document.getElementById(
+id
+).classList.remove("show");
 
 }
 
+/* =====================================================
+   CURRENCY
+===================================================== */
+
+function changeCurrency(){
+
+currency =
+document.getElementById(
+"currencySelect"
+).value;
+
+saveAll();
+
+renderAll();
+
+}
 
 /* =====================================================
    THEME
@@ -4519,134 +4355,120 @@ function closeModal(id){
 
 function toggleTheme(){
 
-  document.body.classList.toggle(
-    "light"
-  );
+document.body.classList.toggle(
+"light"
+);
 
+const light =
+document.body.classList.contains(
+"light"
+);
 
-  const light =
-    document.body.classList.contains(
-      "light"
-    );
+localStorage.setItem(
+"bunexa_theme",
+light
+? "light"
+: "dark"
+);
 
-
-  localStorage.setItem(
-    "bunexa_theme",
-    light
-      ? "light"
-      : "dark"
-  );
-
-
-  updateThemeButton();
+updateThemeButton();
 
 }
-
 
 function updateThemeButton(){
 
-  const light =
-    document.body.classList.contains(
-      "light"
-    );
+const light =
+document.body.classList.contains(
+"light"
+);
 
-
-  document.getElementById(
-    "themeToggle"
-  ).classList.toggle(
-    "active",
-    light
-  );
+document.getElementById(
+"themeToggle"
+).classList.toggle(
+"active",
+light
+);
 
 }
 
-
 /* =====================================================
-   CLEAR
+   CLEAR DATA
 ===================================================== */
 
 function clearAllData(){
 
-  if(
-    !confirm(
-      "Delete all BUNEXA data on this device?"
-    )
-  ){
+if(
+!confirm(
+"Delete all BUNEXA data on this device?"
+)
+){
+return;
+}
 
-    return;
+transactions = [];
 
-  }
+incomes = [];
 
+fixedExpenses = [];
 
-  transactions = [];
+goals = [];
 
-  incomes = [];
+saveAll();
 
-  fixedExpenses = [];
-
-  goals = [];
-
-
-  saveAll();
-
-  renderAll();
+renderAll();
 
 }
 
-
 /* =====================================================
-   RENDER
+   RENDER ALL
 ===================================================== */
 
 function renderAll(){
 
-  renderHome();
+renderHome();
 
-  renderReports();
+renderReports();
 
-  renderGoals();
+renderGoals();
 
-  renderIncomeSources();
+renderIncomeSources();
 
-  renderFixedExpenses();
+renderFixedExpenses();
 
-  updateThemeButton();
+updateThemeButton();
 
+const currencySelect =
+document.getElementById(
+"currencySelect"
+);
 
-  const currencySelect =
-    document.getElementById(
-      "currencySelect"
-    );
+if(currencySelect){
 
-
-  if(currencySelect){
-
-    currencySelect.value =
-      currency;
-
-  }
+currencySelect.value =
+currency;
 
 }
 
+}
 
 /* =====================================================
    INIT
 ===================================================== */
 
 const savedTheme =
-  localStorage.getItem(
-    "bunexa_theme"
-  );
+localStorage.getItem(
+"bunexa_theme"
+);
 
+if(
+savedTheme === "light"
+){
 
-if(savedTheme === "light"){
-
-  document.body.classList.add(
-    "light"
-  );
+document.body.classList.add(
+"light"
+);
 
 }
-
 
 setupCalendarSelectors();
 
