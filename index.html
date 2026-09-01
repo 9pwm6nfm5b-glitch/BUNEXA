@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-
 <title>BUNEXA — Money Butler</title>
 
 <style>
-
 :root{
   --bg:#08090c;
   --card:#111319;
@@ -19,11 +17,12 @@
   --cyan-soft:rgba(25,197,192,.12);
   --red:#ff7070;
   --green:#58dfaa;
+  --shadow:0 12px 35px rgba(0,0,0,.18);
 }
 
 body.light{
   --bg:#f5f9f8;
-  --card:#ffffff;
+  --card:#fff;
   --card2:#f1f6f5;
   --text:#11161a;
   --muted:#727b82;
@@ -32,6 +31,7 @@ body.light{
   --cyan-soft:rgba(21,159,156,.10);
   --red:#d85e5e;
   --green:#3e9d78;
+  --shadow:0 12px 35px rgba(40,70,70,.08);
 }
 
 *{
@@ -40,12 +40,16 @@ body.light{
   padding:0;
 }
 
+html{
+  -webkit-text-size-adjust:100%;
+}
+
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
-  transition:.25s;
+  padding-bottom:100px;
 }
 
 button,
@@ -57,12 +61,18 @@ select{
 button{
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+input,
+select{
+  touch-action:manipulation;
 }
 
 .app{
   width:min(520px,100%);
   margin:auto;
-  padding:28px 20px 120px;
+  padding:26px 20px 110px;
 }
 
 .page{
@@ -79,11 +89,11 @@ button{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:30px;
+  margin-bottom:28px;
 }
 
 .logo{
-  font-size:30px;
+  font-size:29px;
   font-weight:850;
   letter-spacing:4px;
 }
@@ -95,79 +105,93 @@ button{
   border:1px solid var(--border);
   background:var(--card);
   color:var(--text);
-  font-size:22px;
+  font-size:23px;
+  position:relative;
+  z-index:5;
 }
 
 /* TEXT */
 
 .eyebrow{
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
   letter-spacing:2px;
   margin-bottom:8px;
 }
 
 .page-title{
   font-size:38px;
-  font-weight:800;
+  font-weight:850;
   letter-spacing:-1.5px;
   margin-bottom:8px;
 }
 
 .page-subtitle{
   color:var(--muted);
-  font-size:16px;
+  font-size:15px;
   line-height:1.5;
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 
-/* CARDS */
+/* CARD */
 
 .card{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:25px;
-  padding:24px;
+  padding:23px;
   margin-bottom:16px;
+  box-shadow:var(--shadow);
+}
+
+.card-title{
+  font-size:20px;
+  font-weight:780;
+  margin-bottom:7px;
+}
+
+.card-subtitle{
+  color:var(--muted);
+  font-size:13px;
 }
 
 /* BALANCE */
 
 .balance-label{
   color:var(--muted);
-  font-size:15px;
+  font-size:14px;
 }
 
 .balance{
   font-size:44px;
-  font-weight:800;
-  margin:8px 0 24px;
+  font-weight:850;
   letter-spacing:-2px;
+  margin:7px 0 22px;
 }
 
 .stats{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:11px;
 }
 
 .stat{
   background:var(--card2);
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:16px;
+  border-radius:17px;
+  padding:15px;
 }
 
 .stat-label{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
   letter-spacing:1px;
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
 
 .stat-value{
-  font-size:20px;
-  font-weight:750;
+  font-size:19px;
+  font-weight:780;
 }
 
 .income{
@@ -182,17 +206,50 @@ button{
   color:var(--cyan);
 }
 
+/* SAFE */
+
+.safe{
+  border-color:var(--cyan);
+  background:var(--cyan-soft);
+}
+
+.safe-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.safe-title{
+  font-size:19px;
+  font-weight:780;
+}
+
+.safe-text{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+  line-height:1.4;
+}
+
+.safe-number{
+  color:var(--cyan);
+  font-size:27px;
+  font-weight:850;
+  white-space:nowrap;
+}
+
 /* QUICK RECORD */
 
 .quick-card{
-  border:1px solid var(--cyan);
+  border-color:var(--cyan);
 }
 
 .quick-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 
 .quick-head h2{
@@ -201,25 +258,26 @@ button{
 
 .quick-head span{
   color:var(--muted);
+  font-size:14px;
 }
 
 .quick-description{
   color:var(--muted);
-  font-size:14px;
+  font-size:13px;
   margin-bottom:20px;
 }
 
 .record-label{
   color:var(--cyan);
-  font-size:13px;
-  font-weight:800;
+  font-size:12px;
+  font-weight:850;
   letter-spacing:2px;
-  margin-bottom:10px;
+  margin-bottom:9px;
 }
 
 .record-row{
   display:grid;
-  grid-template-columns:1fr 72px;
+  grid-template-columns:minmax(0,1fr) 70px;
   gap:10px;
 }
 
@@ -231,55 +289,61 @@ button{
   border:2px solid var(--cyan);
   background:var(--card2);
   color:var(--text);
-  padding:0 18px;
+  padding:0 17px;
   outline:none;
-  font-size:20px;
+  font-size:19px;
+  position:relative;
+  z-index:2;
+}
+
+.record-input:focus{
+  box-shadow:0 0 0 3px var(--cyan-soft);
 }
 
 .record-input::placeholder{
   color:var(--muted);
 }
 
-.record-input:focus{
-  border-color:var(--cyan);
-  box-shadow:0 0 0 4px var(--cyan-soft);
-}
-
 .add-btn{
+  height:64px;
   border:0;
   border-radius:20px;
   background:var(--cyan);
   color:#fff;
   font-size:34px;
   font-weight:500;
+  position:relative;
+  z-index:3;
 }
 
-.hint{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:10px;
+.quick-status{
+  min-height:18px;
+  color:var(--cyan);
+  font-size:12px;
+  margin-top:9px;
 }
 
-/* SECTIONS */
+/* SECTION */
 
 .section-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin:28px 0 14px;
+  margin:28px 0 13px;
 }
 
 .section-head h2{
   font-size:21px;
 }
 
-.section-head span{
+.section-link{
   color:var(--cyan);
   font-size:14px;
-  cursor:pointer;
+  border:0;
+  background:none;
 }
 
-/* TRANSACTIONS */
+/* TRANSACTION */
 
 .transactions{
   display:flex;
@@ -291,8 +355,8 @@ button{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px;
-  padding:15px;
+  gap:10px;
+  padding:14px;
   border:1px solid var(--border);
   border-radius:18px;
   background:var(--card);
@@ -301,13 +365,13 @@ button{
 .transaction-left{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:11px;
   min-width:0;
 }
 
 .icon{
-  width:45px;
-  height:45px;
+  width:44px;
+  height:44px;
   flex:none;
   display:flex;
   align-items:center;
@@ -322,7 +386,7 @@ button{
 }
 
 .transaction-name{
-  font-weight:700;
+  font-weight:750;
   font-size:15px;
   white-space:nowrap;
   overflow:hidden;
@@ -331,12 +395,18 @@ button{
 
 .transaction-meta{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
   margin-top:4px;
 }
 
+.transaction-right{
+  text-align:right;
+  flex:none;
+}
+
 .transaction-money{
-  font-weight:800;
+  font-weight:850;
+  font-size:15px;
   white-space:nowrap;
 }
 
@@ -345,85 +415,52 @@ button{
   background:none;
   color:var(--muted);
   font-size:11px;
-  margin-top:5px;
-}
-
-/* SAFE TO SPEND */
-
-.safe{
-  border:1px solid var(--cyan);
-  background:var(--cyan-soft);
-}
-
-.safe-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-}
-
-.safe-title{
-  font-size:20px;
-  font-weight:750;
-}
-
-.safe-number{
-  color:var(--cyan);
-  font-size:30px;
-  font-weight:850;
-  white-space:nowrap;
-}
-
-.safe-text{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:6px;
+  margin-top:4px;
 }
 
 /* REPORTS */
 
 .overview-number{
-  font-size:42px;
+  font-size:41px;
   font-weight:850;
-  margin:14px 0 6px;
+  margin:13px 0 5px;
 }
 
 .report-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:18px;
+  gap:11px;
+  margin-top:17px;
 }
 
 .report-stat{
   background:var(--card2);
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:17px;
+  border-radius:17px;
+  padding:15px;
 }
 
 .report-stat small{
   display:block;
   color:var(--muted);
-  font-size:11px;
+  font-size:10px;
   letter-spacing:1px;
   margin-bottom:7px;
 }
 
 .report-stat strong{
-  font-size:21px;
+  font-size:19px;
 }
 
 .chart-wrap{
   display:flex;
   justify-content:center;
-  align-items:center;
   margin:20px 0;
 }
 
 .donut{
-  width:210px;
-  height:210px;
+  width:190px;
+  height:190px;
   border-radius:50%;
   background:var(--card2);
   display:flex;
@@ -432,8 +469,8 @@ button{
 }
 
 .donut-inner{
-  width:135px;
-  height:135px;
+  width:120px;
+  height:120px;
   border-radius:50%;
   background:var(--card);
   display:flex;
@@ -443,59 +480,61 @@ button{
 }
 
 .donut-inner strong{
-  font-size:23px;
+  font-size:20px;
 }
 
 .donut-inner span{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
+  margin-top:3px;
 }
 
 .legend{
   display:flex;
   flex-direction:column;
-  gap:11px;
+  gap:10px;
 }
 
 .legend-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  font-size:13px;
 }
 
 .legend-left{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:8px;
 }
 
 .dot{
-  width:11px;
-  height:11px;
+  width:10px;
+  height:10px;
   border-radius:50%;
 }
 
-.dot.red-dot{
-  background:var(--red);
-}
-
-.dot.cyan-dot{
+.dot-cyan{
   background:var(--cyan);
 }
 
+.dot-red{
+  background:var(--red);
+}
+
 .category-row{
-  margin-bottom:15px;
+  margin-bottom:14px;
 }
 
 .category-top{
   display:flex;
   justify-content:space-between;
   margin-bottom:6px;
-  font-size:13px;
+  font-size:12px;
 }
 
 .progress{
-  height:9px;
+  height:8px;
   background:var(--card2);
   border-radius:20px;
   overflow:hidden;
@@ -505,6 +544,130 @@ button{
   height:100%;
   background:var(--red);
   border-radius:20px;
+}
+
+/* CALENDAR */
+
+.calendar-card{
+  padding:18px;
+}
+
+.calendar-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+}
+
+.calendar-top button{
+  width:38px;
+  height:38px;
+  border:1px solid var(--border);
+  background:var(--card2);
+  color:var(--text);
+  border-radius:12px;
+}
+
+.calendar-selects{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  flex:1;
+}
+
+.calendar-selects select{
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--card2);
+  color:var(--text);
+  border-radius:12px;
+  padding:9px;
+  outline:none;
+}
+
+.weekdays,
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.weekdays{
+  margin-bottom:6px;
+}
+
+.weekdays div{
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  padding:5px 0;
+}
+
+.day{
+  min-height:47px;
+  border:1px solid transparent;
+  border-radius:11px;
+  background:var(--card2);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:4px 2px;
+}
+
+.day.empty{
+  background:transparent;
+}
+
+.day.has-data{
+  border-color:var(--cyan);
+}
+
+.day.today{
+  box-shadow:inset 0 0 0 1px var(--cyan);
+}
+
+.day-number{
+  font-size:12px;
+  font-weight:700;
+}
+
+.day-total{
+  color:var(--red);
+  font-size:8px;
+  margin-top:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  max-width:100%;
+}
+
+.calendar-summary{
+  margin-top:15px;
+  padding:15px;
+  background:var(--card2);
+  border-radius:17px;
+}
+
+.calendar-summary-title{
+  font-size:15px;
+  font-weight:750;
+}
+
+.calendar-summary-total{
+  color:var(--red);
+  font-size:25px;
+  font-weight:850;
+  margin-top:5px;
+}
+
+.calendar-day-list{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
 /* GOALS */
@@ -521,66 +684,64 @@ button{
 }
 
 .goal-name{
-  font-size:21px;
+  font-size:20px;
   font-weight:800;
 }
 
 .goal-target{
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
   margin-top:5px;
 }
 
 .goal-percent{
   color:var(--cyan);
-  font-size:24px;
+  font-size:23px;
   font-weight:850;
 }
 
 .goal-progress{
-  height:13px;
+  height:12px;
   background:var(--card2);
   border-radius:20px;
   overflow:hidden;
-  margin:18px 0 12px;
+  margin:17px 0 11px;
 }
 
 .goal-progress-fill{
   height:100%;
-  width:0;
   background:var(--cyan);
   border-radius:20px;
-  transition:.3s;
 }
 
 .goal-info{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:9px;
 }
 
 .goal-mini{
   background:var(--card2);
-  border-radius:15px;
-  padding:13px;
+  border-radius:14px;
+  padding:12px;
 }
 
 .goal-mini small{
   display:block;
   color:var(--muted);
-  font-size:11px;
+  font-size:10px;
   margin-bottom:5px;
 }
 
 .goal-mini strong{
-  font-size:16px;
+  font-size:15px;
 }
 
 .goal-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:12px;
+  gap:8px;
+  margin-top:11px;
 }
 
 .small-btn{
@@ -592,49 +753,13 @@ button{
 }
 
 .goal-success{
-  margin-top:12px;
-  padding:12px;
-  border-radius:14px;
+  margin-top:11px;
+  padding:11px;
+  border-radius:13px;
   background:var(--cyan-soft);
   color:var(--cyan);
-  font-weight:700;
-  font-size:13px;
-}
-
-/* FIXED */
-
-.fixed-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.fixed-item:last-child{
-  border-bottom:0;
-}
-
-.fixed-name{
-  font-weight:700;
-}
-
-.fixed-meta{
-  color:var(--muted);
   font-size:12px;
-  margin-top:3px;
-}
-
-.fixed-amount{
-  font-weight:800;
-}
-
-.edit-fixed{
-  margin-left:7px;
-  border:0;
-  background:none;
-  color:var(--cyan);
-  font-size:12px;
+  font-weight:700;
 }
 
 /* SETTINGS */
@@ -644,7 +769,12 @@ button{
   justify-content:space-between;
   align-items:center;
   gap:15px;
-  padding:17px 0;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.setting-row:last-child{
+  border-bottom:0;
 }
 
 .setting-title{
@@ -653,7 +783,7 @@ button{
 
 .setting-desc{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
   margin-top:4px;
 }
 
@@ -664,6 +794,7 @@ button{
   border-radius:30px;
   background:var(--border);
   position:relative;
+  flex:none;
 }
 
 .toggle.active{
@@ -690,9 +821,9 @@ button{
 
 .primary{
   width:100%;
-  padding:15px;
+  padding:14px;
   border:0;
-  border-radius:16px;
+  border-radius:15px;
   background:var(--cyan);
   color:#fff;
   font-weight:800;
@@ -700,74 +831,12 @@ button{
 
 .secondary{
   width:100%;
-  padding:14px;
+  padding:13px;
   border:1px solid var(--border);
-  border-radius:16px;
+  border-radius:15px;
   background:var(--card2);
   color:var(--text);
   font-weight:700;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:100;
-  padding:15px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:min(500px,100%);
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:23px;
-  max-height:85vh;
-  overflow:auto;
-}
-
-.modal-title{
-  font-size:24px;
-  font-weight:800;
-  margin-bottom:18px;
-}
-
-.field{
-  margin-bottom:12px;
-}
-
-.field label{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:6px;
-}
-
-.field input,
-.field select{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  color:var(--text);
-  outline:none;
-}
-
-.modal-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
 }
 
 /* NAV */
@@ -775,22 +844,22 @@ button{
 .nav{
   position:fixed;
   left:50%;
-  bottom:14px;
+  bottom:12px;
   transform:translateX(-50%);
-  width:min(520px,calc(100% - 28px));
-  background:rgba(20,23,28,.95);
+  width:min(490px,calc(100% - 26px));
+  background:rgba(20,23,28,.97);
   border:1px solid #303640;
   border-radius:24px;
-  padding:8px;
+  padding:7px;
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:4px;
-  z-index:50;
-  backdrop-filter:blur(20px);
+  z-index:9999;
+  backdrop-filter:blur(18px);
 }
 
 body.light .nav{
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,.97);
   border-color:var(--border);
 }
 
@@ -799,8 +868,11 @@ body.light .nav{
   background:transparent;
   color:var(--muted);
   border-radius:17px;
-  padding:10px 4px;
-  font-size:10px;
+  padding:9px 4px;
+  font-size:11px;
+  min-height:62px;
+  position:relative;
+  z-index:10000;
 }
 
 .nav button.active{
@@ -814,13 +886,85 @@ body.light .nav{
   margin-bottom:4px;
 }
 
-.empty{
-  text-align:center;
-  padding:25px 10px;
-  color:var(--muted);
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:14px;
+  z-index:20000;
 }
 
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(500px,100%);
+  max-height:88vh;
+  overflow:auto;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:22px;
+}
+
+.modal-title{
+  font-size:23px;
+  font-weight:800;
+  margin-bottom:17px;
+}
+
+.field{
+  margin-bottom:12px;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:6px;
+}
+
+.field input,
+.field select{
+  width:100%;
+  padding:13px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--card2);
+  color:var(--text);
+  outline:none;
+}
+
+.modal-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:15px;
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:23px 10px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* RESPONSIVE */
+
 @media(max-width:380px){
+
+  .app{
+    padding-left:15px;
+    padding-right:15px;
+  }
 
   .page-title{
     font-size:33px;
@@ -831,58 +975,16 @@ body.light .nav{
   }
 
   .safe-number{
-    font-size:25px;
+    font-size:23px;
   }
 
-}
-/* BUNEXA BUTTON TOUCH FIX */
-
-button{
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-  pointer-events:auto;
-}
-
-.add-btn{
-  position:relative;
-  z-index:9999;
-  pointer-events:auto !important;
-}
-
-.menu-btn{
-  position:relative;
-  z-index:9999;
-  pointer-events:auto !important;
-}
-
-.primary,
-.secondary,
-.small-btn,
-.toggle{
-  position:relative;
-  z-index:9999;
-  pointer-events:auto !important;
-}
-
-.nav{
-  position:fixed;
-  z-index:99999 !important;
-  pointer-events:auto !important;
-}
-
-.nav button{
-  position:relative;
-  z-index:100000 !important;
-  pointer-events:auto !important;
-}
-
-.record-input{
-  position:relative;
-  z-index:9999;
-  pointer-events:auto !important;
+  .day{
+    min-height:43px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <div class="app">
@@ -890,916 +992,718 @@ button{
 <!-- HOME -->
 <section class="page active" id="page-home">
 
-<div class="header">
-<div class="logo">BUNEXA</div>
+  <div class="header">
+    <div class="logo">BUNEXA</div>
+    <button class="menu-btn" onclick="go('settings')">☰</button>
+  </div>
 
-<button
-class="menu-btn"
-onclick="go('settings')">
-☰
-</button>
+  <div class="eyebrow">YOUR PERSONAL MONEY BUTLER</div>
+  <h1 class="page-title">Good evening 👋</h1>
 
-</div>
+  <div class="card">
 
-<div class="eyebrow">
-YOUR PERSONAL MONEY BUTLER
-</div>
+    <div class="balance-label">Total Balance</div>
+    <div class="balance" id="homeBalance">$0.00</div>
 
-<h1 class="page-title" id="greeting">
-Good evening 👋
-</h1>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">INCOME</div>
+        <div class="stat-value income" id="homeIncome">$0.00</div>
+      </div>
 
-<p class="page-subtitle">
-Money logging in 3 seconds. The rest, BUNEXA handles.
-</p>
+      <div class="stat">
+        <div class="stat-label">EXPENSES</div>
+        <div class="stat-value expense" id="homeExpense">$0.00</div>
+      </div>
+    </div>
 
-<div class="card">
+  </div>
 
-<div class="balance-label">
-Total Balance
-</div>
+  <div class="card safe">
 
-<div
-class="balance"
-id="homeBalance">
-$0.00
-</div>
+    <div class="safe-row">
 
-<div class="stats">
+      <div>
+        <div class="safe-title">Safe to Spend</div>
+        <div class="safe-text">
+          After fixed expenses and planned savings.
+        </div>
+      </div>
 
-<div class="stat">
-<div class="stat-label">INCOME</div>
-<div
-class="stat-value income"
-id="homeIncome">
-$0.00
-</div>
-</div>
+      <div class="safe-number" id="safeSpend">$0.00</div>
 
-<div class="stat">
-<div class="stat-label">EXPENSES</div>
-<div
-class="stat-value expense"
-id="homeExpense">
-$0.00
-</div>
-</div>
+    </div>
 
-</div>
-</div>
+  </div>
 
-<div class="card safe">
+  <div class="card quick-card">
 
-<div class="safe-row">
+    <div class="quick-head">
+      <h2>Quick Record</h2>
+      <span>3-sec record</span>
+    </div>
 
-<div>
+    <div class="quick-description">
+      Type it. Tap +. Done.
+    </div>
 
-<div class="safe-title">
-Safe to Spend
-</div>
+    <div class="record-label">
+      ONE-LINE RECORD
+    </div>
 
-<div class="safe-text">
-After fixed expenses and planned savings.
-</div>
+    <div class="record-row">
 
-</div>
+      <input
+        id="quickInput"
+        class="record-input"
+        type="text"
+        inputmode="text"
+        autocomplete="off"
+        placeholder="5.50 kopi">
 
-<div
-class="safe-number"
-id="safeSpend">
-$0.00
-</div>
+      <button
+        type="button"
+        class="add-btn"
+        onclick="quickAdd()">
+        +
+      </button>
 
-</div>
+    </div>
 
-</div>
+    <div class="quick-status" id="quickStatus"></div>
 
-<div class="card quick-card">
+  </div>
 
-<div class="quick-head">
+  <div class="section-head">
+    <h2>Recent transactions</h2>
 
-<h2>
-Quick Record
-</h2>
+    <button
+      class="section-link"
+      onclick="go('calendar')">
+      View all
+    </button>
+  </div>
 
-<span>
-Just type it
-</span>
-
-</div>
-
-<div class="quick-description">
-Record a transaction in one line.
-</div>
-
-<div class="record-label">
-ONE-LINE RECORD
-</div>
-
-<div class="record-row">
-
-<input
-id="quickInput"
-class="record-input"
-type="text"
-inputmode="text"
-autocomplete="off"
-placeholder="Amount + description"
->
-
-<button
-class="add-btn"
-type="button"
-onclick="quickAdd()">
-+
-</button>
-
-</div>
-
-<div class="hint">
-Type amount + description, then press +.
-</div>
-
-</div>
-
-<div class="section-head">
-
-<h2>
-Recent transactions
-</h2>
-
-<span onclick="go('reports')">
-View all
-</span>
-
-</div>
-
-<div
-class="transactions"
-id="homeTransactions">
-</div>
+  <div class="transactions" id="homeTransactions"></div>
 
 </section>
 
 
 <!-- REPORTS -->
+<section class="page" id="page-reports">
 
-<section
-class="page"
-id="page-reports">
+  <div class="header">
+    <div class="logo">BUNEXA</div>
 
-<div class="header">
+    <button class="menu-btn" onclick="go('home')">
+      ⌂
+    </button>
+  </div>
 
-<div class="logo">
-BUNEXA
-</div>
+  <h1 class="page-title">Reports</h1>
 
-<button
-class="menu-btn"
-onclick="go('home')">
-⌂
-</button>
+  <p class="page-subtitle">
+    A clear view of your money.
+  </p>
 
-</div>
+  <div class="card">
 
-<h1 class="page-title">
-Reports
-</h1>
+    <div class="card-title">
+      Financial overview
+    </div>
 
-<p class="page-subtitle">
-A clear view of your money.
-</p>
+    <div class="overview-number" id="reportBalance">
+      $0.00
+    </div>
 
-<div class="card">
+    <div class="card-subtitle">
+      Current balance
+    </div>
 
-<div class="card-title">
-Financial overview
-</div>
+    <div class="report-grid">
 
-<div
-class="overview-number"
-id="reportBalance">
-$0.00
-</div>
+      <div class="report-stat">
+        <small>TOTAL INCOME</small>
+        <strong class="income" id="reportIncome">$0.00</strong>
+      </div>
 
-<div class="card-subtitle">
-Current balance
-</div>
+      <div class="report-stat">
+        <small>TOTAL EXPENSES</small>
+        <strong class="expense" id="reportExpense">$0.00</strong>
+      </div>
 
-<div class="report-grid">
+    </div>
 
-<div class="report-stat">
+  </div>
 
-<small>
-TOTAL INCOME
-</small>
+  <div class="card">
 
-<strong
-class="income"
-id="reportIncome">
-$0.00
-</strong>
+    <div class="card-title">
+      Where your money goes
+    </div>
 
-</div>
+    <div class="card-subtitle">
+      Expense distribution.
+    </div>
 
-<div class="report-stat">
+    <div class="chart-wrap">
 
-<small>
-TOTAL EXPENSES
-</small>
+      <div class="donut" id="donut">
 
-<strong
-class="expense"
-id="reportExpense">
-$0.00
-</strong>
+        <div class="donut-inner">
+          <strong id="donutTotal">$0.00</strong>
+          <span>Expenses</span>
+        </div>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-</div>
+    <div class="legend" id="legend"></div>
 
-<div class="card">
+  </div>
 
-<div class="card-title">
-Where your money goes
-</div>
+  <div class="card">
 
-<div class="card-subtitle">
-Expense distribution by category.
-</div>
+    <div class="card-title">
+      Category breakdown
+    </div>
 
-<div class="chart-wrap">
+    <div id="categories"></div>
 
-<div
-class="donut"
-id="donut">
-
-<div class="donut-inner">
-
-<strong
-id="donutTotal">
-$0
-</strong>
-
-<span>
-Expenses
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div
-class="legend"
-id="legend">
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-title">
-Category breakdown
-</div>
-
-<div id="categories">
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-title">
-Year & Month
-</div>
-
-<div class="report-grid">
-
-<div class="field">
-
-<label>
-Year
-</label>
-
-<select id="reportYear">
-</select>
-
-</div>
-
-<div class="field">
-
-<label>
-Month
-</label>
-
-<select id="reportMonth">
-</select>
-
-</div>
-
-</div>
-
-<div id="reportCalendar">
-</div>
-
-</div>
-
-</section>
-
-
-<!-- GOALS -->
-
-<section
-class="page"
-id="page-goals">
-
-<div class="header">
-
-<div class="logo">
-BUNEXA
-</div>
-
-<button
-class="menu-btn"
-onclick="openGoalModal()">
-+
-</button>
-
-</div>
-
-<div class="eyebrow">
-YOUR MONEY PLAN
-</div>
-
-<h1 class="page-title">
-Goals
-</h1>
-
-<p class="page-subtitle">
-Turn your savings into something measurable.
-</p>
-
-<div class="card">
-
-<div class="card-title">
-Monthly savings outlook
-</div>
-
-<div class="report-grid">
-
-<div class="report-stat">
-
-<small>
-EST. MONTHLY SAVINGS
-</small>
-
-<strong
-class="cyan"
-id="monthlySaving">
-$0.00
-</strong>
-
-</div>
-
-<div class="report-stat">
-
-<small>
-EST. 1 YEAR SAVINGS
-</small>
-
-<strong
-class="cyan"
-id="yearSaving">
-$0.00
-</strong>
-
-</div>
-
-</div>
-
-<div
-style="
-margin-top:15px;
-color:var(--muted);
-font-size:13px">
-
-Based on your regular income and monthly fixed expenses.
-
-</div>
-
-</div>
-
-<div class="section-head">
-
-<h2>
-Your goals
-</h2>
-
-<span onclick="openGoalModal()">
-+ Add goal
-</span>
-
-</div>
-
-<div id="goalsList">
-</div>
-
-<div class="card">
-
-<div class="card-title">
-BUNEXA Motivation
-</div>
-
-<p
-id="motivation"
-style="
-margin-top:10px;
-line-height:1.6;
-color:var(--muted)">
-
-Start with one small goal. BUNEXA will help you build a clearer financial picture.
-
-</p>
-
-</div>
+  </div>
 
 </section>
 
 
 <!-- CALENDAR -->
+<section class="page" id="page-calendar">
 
-<section
-class="page"
-id="page-calendar">
+  <div class="header">
 
-<div class="header">
+    <div class="logo">BUNEXA</div>
 
-<div class="logo">
-BUNEXA
-</div>
+    <button
+      class="menu-btn"
+      onclick="go('home')">
+      ⌂
+    </button>
 
-<button
-class="menu-btn"
-onclick="go('home')">
-⌂
-</button>
+  </div>
 
-</div>
+  <div class="eyebrow">YOUR MONEY HISTORY</div>
 
-<div class="eyebrow">
-MONEY CALENDAR
-</div>
+  <h1 class="page-title">Calendar</h1>
 
-<h1 class="page-title">
-Calendar
-</h1>
+  <p class="page-subtitle">
+    See exactly what you spent, day by day.
+  </p>
 
-<p class="page-subtitle">
-See exactly when your money was spent.
-</p>
+  <div class="card calendar-card">
 
-<div class="card">
+    <div class="calendar-top">
 
-<div
-class="section-head"
-style="margin-top:0">
+      <button type="button" onclick="changeMonth(-1)">
+        ‹
+      </button>
 
-<button
-class="secondary"
-style="width:auto;padding:9px 15px"
-onclick="changeMonth(-1)">
-‹
-</button>
+      <div class="calendar-selects">
 
-<h2
-id="calendarTitle">
-Month
-</h2>
+        <select id="monthSelect" onchange="calendarChanged()"></select>
 
-<button
-class="secondary"
-style="width:auto;padding:9px 15px"
-onclick="changeMonth(1)">
-›
-</button>
+        <select id="yearSelect" onchange="calendarChanged()"></select>
 
-</div>
+      </div>
 
-<div id="fullCalendar">
-</div>
+      <button type="button" onclick="changeMonth(1)">
+        ›
+      </button>
 
-</div>
+    </div>
 
-<div class="card">
+    <div class="weekdays">
 
-<div
-class="card-title"
-id="selectedDateTitle">
-Select a date
-</div>
+      <div>Sun</div>
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
 
-<div
-id="dayTransactions"
-class="empty">
+    </div>
 
-Tap a date to view transactions.
+    <div
+      class="calendar-grid"
+      id="calendarGrid">
+    </div>
 
-</div>
+    <div
+      class="calendar-summary"
+      id="calendarSummary">
+    </div>
 
-</div>
+  </div>
+
+</section>
+
+
+<!-- GOALS -->
+<section class="page" id="page-goals">
+
+  <div class="header">
+
+    <div class="logo">BUNEXA</div>
+
+    <button
+      class="menu-btn"
+      onclick="openGoalModal()">
+      +
+    </button>
+
+  </div>
+
+  <div class="eyebrow">YOUR MONEY PLAN</div>
+
+  <h1 class="page-title">Goals</h1>
+
+  <p class="page-subtitle">
+    Turn savings into something measurable.
+  </p>
+
+  <div class="card">
+
+    <div class="card-title">
+      Monthly savings outlook
+    </div>
+
+    <div class="report-grid">
+
+      <div class="report-stat">
+        <small>MONTHLY SAVING</small>
+        <strong class="cyan" id="monthlySaving">
+          $0.00
+        </strong>
+      </div>
+
+      <div class="report-stat">
+        <small>1 YEAR SAVING</small>
+        <strong class="cyan" id="yearSaving">
+          $0.00
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="section-head">
+
+    <h2>Your goals</h2>
+
+    <button
+      class="section-link"
+      onclick="openGoalModal()">
+      + Add goal
+    </button>
+
+  </div>
+
+  <div id="goalsList"></div>
 
 </section>
 
 
 <!-- SETTINGS -->
+<section class="page" id="page-settings">
 
-<section
-class="page"
-id="page-settings">
+  <div class="header">
 
-<div class="header">
+    <div class="logo">BUNEXA</div>
 
-<div class="logo">
-BUNEXA
-</div>
+    <button
+      class="menu-btn"
+      onclick="go('home')">
+      ⌂
+    </button>
 
-<button
-class="menu-btn"
-onclick="go('home')">
-⌂
-</button>
+  </div>
 
-</div>
+  <h1 class="page-title">Settings</h1>
 
-<h1 class="page-title">
-Settings
-</h1>
+  <p class="page-subtitle">
+    Keep your money setup simple.
+  </p>
 
-<p class="page-subtitle">
-Keep your money setup simple and flexible.
-</p>
 
-<div class="card">
+  <!-- CURRENCY -->
 
-<div class="card-title">
-Income
-</div>
+  <div class="card">
 
-<div class="card-subtitle">
-Add or update your regular income.
-</div>
+    <div class="card-title">
+      Currency
+    </div>
 
-<div
-id="incomeSources"
-style="margin-top:10px">
-</div>
+    <div class="card-subtitle">
+      Choose your preferred currency.
+    </div>
 
-<button
-class="primary"
-style="margin-top:14px"
-onclick="openIncomeModal()">
+    <div class="field" style="margin-top:14px">
 
-+ Add income
+      <select
+        id="currencySelect"
+        onchange="changeCurrency()">
 
-</button>
+        <option value="SGD">
+          🇸🇬 Singapore Dollar (SGD)
+        </option>
 
-</div>
+        <option value="MYR">
+          🇲🇾 Malaysian Ringgit (MYR)
+        </option>
 
-<div class="card">
+      </select>
 
-<div class="card-title">
-Fixed expenses
-</div>
+    </div>
 
-<div class="card-subtitle">
-Regular monthly expenses you expect to pay.
-</div>
+  </div>
 
-<div id="fixedExpenses">
-</div>
 
-<button
-class="primary"
-style="margin-top:14px"
-onclick="openFixedModal()">
+  <!-- INCOME -->
 
-+ Add fixed expense
+  <div class="card">
 
-</button>
+    <div class="card-title">
+      Regular income
+    </div>
 
-</div>
+    <div class="card-subtitle">
+      Monthly income you expect.
+    </div>
 
-<div class="card">
+    <div id="incomeSources"></div>
 
-<div class="setting-row">
+    <button
+      class="primary"
+      style="margin-top:14px"
+      onclick="openIncomeModal()">
+      + Add income
+    </button>
 
-<div>
+  </div>
 
-<div class="setting-title">
-Light theme
-</div>
 
-<div class="setting-desc">
-Switch between light and dark.
-</div>
+  <!-- FIXED -->
 
-</div>
+  <div class="card">
 
-<button
-class="toggle"
-id="themeToggle"
-onclick="toggleTheme()">
-</button>
+    <div class="card-title">
+      Fixed expenses
+    </div>
 
-</div>
+    <div class="card-subtitle">
+      Regular monthly expenses.
+    </div>
 
-</div>
+    <div id="fixedExpenses"></div>
 
-<div class="card">
+    <button
+      class="primary"
+      style="margin-top:14px"
+      onclick="openFixedModal()">
+      + Add fixed expense
+    </button>
 
-<div class="card-title">
-Data
-</div>
+  </div>
 
-<div class="card-subtitle">
-Your information is stored on this device.
-</div>
 
-<button
-class="secondary"
-style="margin-top:15px"
-onclick="clearAllData()">
+  <!-- THEME -->
 
-Clear all data
+  <div class="card">
 
-</button>
+    <div class="setting-row">
 
-</div>
+      <div>
+
+        <div class="setting-title">
+          Light theme
+        </div>
+
+        <div class="setting-desc">
+          Switch between light and dark.
+        </div>
+
+      </div>
+
+      <button
+        class="toggle"
+        id="themeToggle"
+        onclick="toggleTheme()">
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- DATA -->
+
+  <div class="card">
+
+    <div class="card-title">
+      Data
+    </div>
+
+    <div class="card-subtitle">
+      Saved automatically on this device.
+    </div>
+
+    <button
+      class="secondary"
+      style="margin-top:14px"
+      onclick="clearAllData()">
+      Clear all data
+    </button>
+
+  </div>
 
 </section>
 
 </div>
 
+
 <!-- NAV -->
 
 <div class="nav">
 
-<button
-id="nav-home"
-class="active"
-onclick="go('home')">
+  <button
+    id="nav-home"
+    class="active"
+    onclick="go('home')">
 
-<span class="nav-icon">⌂</span>
-Home
+    <span class="nav-icon">⌂</span>
+    Home
 
-</button>
+  </button>
 
-<button
-id="nav-reports"
-onclick="go('reports')">
+  <button
+    id="nav-reports"
+    onclick="go('reports')">
 
-<span class="nav-icon">◴</span>
-Reports
+    <span class="nav-icon">◴</span>
+    Reports
 
-</button>
+  </button>
 
-<button
-id="nav-goals"
-onclick="go('goals')">
+  <button
+    id="nav-calendar"
+    onclick="go('calendar')">
 
-<span class="nav-icon">◎</span>
-Goals
+    <span class="nav-icon">▣</span>
+    Calendar
 
-</button>
+  </button>
 
-<button
-id="nav-calendar"
-onclick="go('calendar')">
+  <button
+    id="nav-settings"
+    onclick="go('settings')">
 
-<span class="nav-icon">▣</span>
-Calendar
+    <span class="nav-icon">⚙</span>
+    Settings
 
-</button>
-
-<button
-id="nav-settings"
-onclick="go('settings')">
-
-<span class="nav-icon">⚙</span>
-Settings
-
-</button>
-
-</div>
-
-<!-- MODALS -->
-
-<div
-class="modal"
-id="incomeModal">
-
-<div class="modal-box">
-
-<div class="modal-title">
-Add income
-</div>
-
-<div class="field">
-
-<label>
-Income source
-</label>
-
-<input
-id="incomeName"
-placeholder="Salary / Rental Income / Part-time">
-
-</div>
-
-<div class="field">
-
-<label>
-Monthly amount
-</label>
-
-<input
-id="incomeAmount"
-type="number"
-step="0.01"
-placeholder="3000">
-
-</div>
-
-<div class="modal-actions">
-
-<button
-class="secondary"
-onclick="closeModal('incomeModal')">
-Cancel
-</button>
-
-<button
-class="primary"
-onclick="saveIncome">
-Save
-</button>
-
-</div>
-
-</div>
+  </button>
 
 </div>
 
 
-<div
-class="modal"
-id="fixedModal">
+<!-- INCOME MODAL -->
 
-<div class="modal-box">
+<div class="modal" id="incomeModal">
 
-<div class="modal-title">
-Fixed expense
-</div>
+  <div class="modal-box">
 
-<div class="field">
+    <div class="modal-title">
+      Add income
+    </div>
 
-<label>
-Expense name
-</label>
+    <div class="field">
 
-<input
-id="fixedName"
-placeholder="Rent / Phone / Insurance / Utilities">
+      <label>Income source</label>
 
-</div>
+      <input
+        id="incomeName"
+        placeholder="Salary / Rental / Part-time">
 
-<div class="field">
+    </div>
 
-<label>
-Monthly amount
-</label>
+    <div class="field">
 
-<input
-id="fixedAmount"
-type="number"
-step="0.01"
-placeholder="500">
+      <label>Monthly amount</label>
 
-</div>
+      <input
+        id="incomeAmount"
+        type="number"
+        step="0.01"
+        placeholder="3000">
 
-<div class="modal-actions">
+    </div>
 
-<button
-class="secondary"
-onclick="closeModal('fixedModal')">
-Cancel
-</button>
+    <div class="modal-actions">
 
-<button
-class="primary"
-onclick="saveFixedExpense()">
-Save
-</button>
+      <button
+        class="secondary"
+        onclick="closeModal('incomeModal')">
+        Cancel
+      </button>
 
-</div>
+      <button
+        class="primary"
+        onclick="saveIncome()">
+        Save
+      </button>
 
-</div>
+    </div>
+
+  </div>
 
 </div>
 
 
-<div
-class="modal"
-id="goalModal">
+<!-- FIXED MODAL -->
 
-<div class="modal-box">
+<div class="modal" id="fixedModal">
 
-<div class="modal-title">
-Create a savings goal
-</div>
+  <div class="modal-box">
 
-<div class="field">
+    <div class="modal-title">
+      Fixed expense
+    </div>
 
-<label>
-Goal name
-</label>
+    <div class="field">
 
-<input
-id="goalName"
-placeholder="Emergency Fund / Holiday / Car">
+      <label>Expense name</label>
 
-</div>
+      <input
+        id="fixedName"
+        placeholder="Rental / Phone / Insurance">
 
-<div class="field">
+    </div>
 
-<label>
-Target amount
-</label>
+    <div class="field">
 
-<input
-id="goalTarget"
-type="number"
-step="0.01"
-placeholder="10000">
+      <label>Monthly amount</label>
 
-</div>
+      <input
+        id="fixedAmount"
+        type="number"
+        step="0.01"
+        placeholder="500">
 
-<div class="field">
+    </div>
 
-<label>
-Already saved
-</label>
+    <div class="modal-actions">
 
-<input
-id="goalSaved"
-type="number"
-step="0.01"
-placeholder="0">
+      <button
+        class="secondary"
+        onclick="closeModal('fixedModal')">
+        Cancel
+      </button>
 
-</div>
+      <button
+        class="primary"
+        onclick="saveFixedExpense()">
+        Save
+      </button>
 
-<div class="field">
+    </div>
 
-<label>
-Planned monthly saving
-</label>
-
-<input
-id="goalMonthly"
-type="number"
-step="0.01"
-placeholder="500">
+  </div>
 
 </div>
 
-<div class="modal-actions">
 
-<button
-class="secondary"
-onclick="closeModal('goalModal')">
-Cancel
-</button>
+<!-- GOAL MODAL -->
 
-<button
-class="primary"
-onclick="saveGoal()">
-Save Goal
-</button>
+<div class="modal" id="goalModal">
+
+  <div class="modal-box">
+
+    <div class="modal-title">
+      Create a savings goal
+    </div>
+
+    <div class="field">
+
+      <label>Goal name</label>
+
+      <input
+        id="goalName"
+        placeholder="Emergency Fund / Holiday / Car">
+
+    </div>
+
+    <div class="field">
+
+      <label>Target amount</label>
+
+      <input
+        id="goalTarget"
+        type="number"
+        step="0.01"
+        placeholder="10000">
+
+    </div>
+
+    <div class="field">
+
+      <label>Already saved</label>
+
+      <input
+        id="goalSaved"
+        type="number"
+        step="0.01"
+        placeholder="0">
+
+    </div>
+
+    <div class="field">
+
+      <label>Planned monthly saving</label>
+
+      <input
+        id="goalMonthly"
+        type="number"
+        step="0.01"
+        placeholder="500">
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button
+        class="secondary"
+        onclick="closeModal('goalModal')">
+        Cancel
+      </button>
+
+      <button
+        class="primary"
+        onclick="saveGoal()">
+        Save Goal
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
-</div>
 
-</div>
 <script>
 
-/* =========================================================
-   BUNEXA DATA
-========================================================= */
+/* =====================================================
+   DATA
+===================================================== */
 
 let transactions =
   JSON.parse(
@@ -1824,16 +1728,15 @@ let goals =
 let currency =
   localStorage.getItem("bunexa_currency") || "SGD";
 
-let calendarDate =
-  new Date();
 
-let selectedCalendarDate =
-  null;
+let calendarDate = new Date();
+
+let selectedCalendarDay = null;
 
 
-/* =========================================================
+/* =====================================================
    STORAGE
-========================================================= */
+===================================================== */
 
 function saveAll(){
 
@@ -1865,10 +1768,9 @@ function saveAll(){
 }
 
 
-/* =========================================================
+/* =====================================================
    CURRENCY
-   SINGAPORE + MALAYSIA ONLY
-========================================================= */
+===================================================== */
 
 function currencySymbol(){
 
@@ -1882,18 +1784,37 @@ function currencySymbol(){
 function money(value){
 
   return currencySymbol() +
-    Number(value || 0)
-      .toLocaleString("en-US",{
+    Number(value || 0).toLocaleString(
+      "en-US",
+      {
         minimumFractionDigits:2,
         maximumFractionDigits:2
-      });
+      }
+    );
 
 }
 
 
-/* =========================================================
+function changeCurrency(){
+
+  const select =
+    document.getElementById(
+      "currencySelect"
+    );
+
+  currency =
+    select.value;
+
+  saveAll();
+
+  renderAll();
+
+}
+
+
+/* =====================================================
    NAVIGATION
-========================================================= */
+===================================================== */
 
 function go(page){
 
@@ -1912,6 +1833,7 @@ function go(page){
     target.classList.add("active");
   }
 
+
   document
     .querySelectorAll(".nav button")
     .forEach(
@@ -1927,20 +1849,119 @@ function go(page){
     nav.classList.add("active");
   }
 
+
+  if(page === "calendar"){
+    renderCalendar();
+  }
+
+  renderAll();
+
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
 
-  renderAll();
+}
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+function detectCategory(text){
+
+  const lower =
+    text.toLowerCase();
+
+
+  /* DINING */
+
+  if(
+    /kopi|coffee|rice|mee|noodle|food|dining|meal|breakfast|lunch|dinner|makan|nasi|roti|chicken|bakery|restaurant|cafe|mcd|kfc|koufu|canteen|drink|tea|teh/.test(lower)
+  ){
+    return "Dining";
+  }
+
+
+  /* TRANSPORT */
+
+  if(
+    /grab|gojek|mrt|bus|taxi|transport|train|erp|parking|petrol|fuel/.test(lower)
+  ){
+    return "Transport";
+  }
+
+
+  /* SHOPPING */
+
+  if(
+    /lazada|shopee|taobao|amazon|shopping|mall|clothes|shirt|shoe|bag|apple|online/.test(lower)
+  ){
+    return "Shopping";
+  }
+
+
+  /* ENTERTAINMENT */
+
+  if(
+    /cinema|movie|netflix|spotify|game|entertainment|concert/.test(lower)
+  ){
+    return "Entertainment";
+  }
+
+
+  /* TRAVEL */
+
+  if(
+    /travel|holiday|hotel|flight|cruise|trip/.test(lower)
+  ){
+    return "Travel";
+  }
+
+
+  /* BILLS */
+
+  if(
+    /phone|wifi|internet|bill|simba|singtel|starhub|m1|electricity|utilities/.test(lower)
+  ){
+    return "Bills";
+  }
+
+
+  return "Other";
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   INCOME DETECTION
+===================================================== */
+
+function isIncomeDescription(text){
+
+  const lower =
+    text.toLowerCase();
+
+  return [
+    "salary",
+    "rental income",
+    "rental",
+    "part-time",
+    "part time",
+    "freelance",
+    "bonus",
+    "commission",
+    "income"
+  ].some(
+    word=>lower.includes(word)
+  );
+
+}
+
+
+/* =====================================================
    QUICK RECORD
-   THE MAIN BUNEXA SELLING POINT
-========================================================= */
+===================================================== */
 
 function quickAdd(){
 
@@ -1949,8 +1970,14 @@ function quickAdd(){
       "quickInput"
     );
 
+  const status =
+    document.getElementById(
+      "quickStatus"
+    );
+
   const text =
     input.value.trim();
+
 
   if(!text){
     input.focus();
@@ -1959,28 +1986,24 @@ function quickAdd(){
 
 
   /*
-    Fast format:
+    Accepts:
 
-    5.50 Grab
-    3.20 kopi
-    2.20 rice
-    4 mee
-
-    First number = amount
-    Everything after it = description
+    5.50 kopi
+    5 kopi
+    $5.50 kopi
+    700 salary
   */
 
   const match =
     text.match(
-      /^\s*(?:S\$|RM|\$)?\s*(\d+(?:\.\d+)?)\s+(.+?)\s*$/
+      /^\s*\$?(\d+(?:\.\d+)?)\s+(.+?)\s*$/
     );
 
 
   if(!match){
 
-    alert(
-      "Enter amount + description"
-    );
+    status.textContent =
+      "Use amount + description";
 
     input.focus();
 
@@ -1991,125 +2014,38 @@ function quickAdd(){
   const amount =
     parseFloat(match[1]);
 
+
   const description =
     match[2].trim();
 
-  const lower =
-    description.toLowerCase();
 
-
-  if(!amount || amount <= 0){
-
-    input.focus();
-
+  if(amount <= 0){
     return;
   }
 
 
-  /* =======================================================
-     INCOME DETECTION
-  ======================================================= */
-
-  const incomeWords = [
-
-    "salary",
-    "rental income",
-    "rental",
-    "part-time",
-    "part time",
-    "freelance",
-    "bonus",
-    "commission",
-    "income",
-    "pay",
-    "allowance"
-
-  ];
-
-
-  const isIncome =
-    incomeWords.some(
-      word =>
-        lower.includes(word)
+  const income =
+    isIncomeDescription(
+      description
     );
 
 
-  /* =======================================================
-     CATEGORY DETECTION
+  const category =
+    income
+      ? "Income"
+      : detectCategory(
+          description
+        );
 
-     KOPI / RICE / MEE
-     ALL = DINING
-  ======================================================= */
-
-  let category = "Other";
-
-
-  if(
-    /kopi|coffee|rice|mee|noodle|noodles|food|meal|dining|restaurant|makan|lunch|dinner|breakfast|koufu|hawker|canteen|mcd|kfc|subway/.test(lower)
-  ){
-
-    category = "Dining";
-
-  }
-
-  else if(
-    /grab|gojek|bus|mrt|taxi|transport|train|parking|erp|petrol|fuel/.test(lower)
-  ){
-
-    category = "Transport";
-
-  }
-
-  else if(
-    /lazada|shopee|taobao|amazon|apple|online|shopping|zara|uniqlo/.test(lower)
-  ){
-
-    category = "Online Shopping";
-
-  }
-
-  else if(
-    /cinema|movie|entertainment|game|gaming|concert|karaoke/.test(lower)
-  ){
-
-    category = "Entertainment";
-
-  }
-
-  else if(
-    /cruise|travel|holiday|hotel|flight|airbnb|trip/.test(lower)
-  ){
-
-    category = "Travel";
-
-  }
-
-  else if(
-    /phone|simba|singtel|starhub|m1|telecom|internet|wifi|bill|electricity|utilities/.test(lower)
-  ){
-
-    category = "Bills";
-
-  }
-
-
-  if(isIncome){
-
-    category = "Income";
-
-  }
-
-
-  /* =======================================================
-     CREATE TRANSACTION
-  ======================================================= */
 
   transactions.unshift({
 
-    id:Date.now(),
+    id:
+      Date.now() +
+      Math.random(),
 
     type:
-      isIncome
+      income
         ? "income"
         : "expense",
 
@@ -2120,22 +2056,12 @@ function quickAdd(){
     category,
 
     date:
-      new Date()
-        .toLocaleDateString(
-          "en-GB"
-        ),
+      dateKey(
+        new Date()
+      ),
 
-    year:
-      new Date().getFullYear(),
-
-    month:
-      new Date().getMonth()+1,
-
-    day:
-      new Date().getDate(),
-
-    timestamp:
-      Date.now()
+    created:
+      new Date().toISOString()
 
   });
 
@@ -2145,28 +2071,24 @@ function quickAdd(){
 
   input.value = "";
 
+  status.textContent =
+    "✓ Recorded";
 
-  /* INSTANT UPDATE */
 
   renderAll();
 
 
-  /*
-    Keep focus so another transaction
-    can be entered immediately.
-  */
-
   setTimeout(
-    ()=>input.focus(),
-    50
+    ()=>{
+      status.textContent = "";
+    },
+    1600
   );
 
 }
 
 
-/* =========================================================
-   ENTER = QUICK RECORD
-========================================================= */
+/* ENTER = QUICK RECORD */
 
 document
   .getElementById("quickInput")
@@ -2186,9 +2108,43 @@ document
   );
 
 
-/* =========================================================
+/* =====================================================
+   DATE
+===================================================== */
+
+function dateKey(date){
+
+  const y =
+    date.getFullYear();
+
+  const m =
+    String(
+      date.getMonth()+1
+    ).padStart(2,"0");
+
+  const d =
+    String(
+      date.getDate()
+    ).padStart(2,"0");
+
+  return `${y}-${m}-${d}`;
+
+}
+
+
+function displayDate(key){
+
+  const parts =
+    key.split("-");
+
+  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+}
+
+
+/* =====================================================
    TOTALS
-========================================================= */
+===================================================== */
 
 function getTotals(){
 
@@ -2201,32 +2157,19 @@ function getTotals(){
     t=>{
 
       if(t.type === "income"){
-
-        income +=
-          Number(t.amount);
-
+        income += Number(t.amount);
       }
       else{
-
-        expense +=
-          Number(t.amount);
-
+        expense += Number(t.amount);
       }
 
     }
   );
 
 
-  /*
-    Regular monthly income
-  */
-
   incomes.forEach(
     i=>{
-
-      income +=
-        Number(i.amount);
-
+      income += Number(i.amount);
     }
   );
 
@@ -2260,41 +2203,9 @@ function getTotals(){
 }
 
 
-/* =========================================================
-   ICONS
-========================================================= */
-
-function getIcon(category){
-
-  const icons = {
-
-    "Dining":"🍜",
-
-    "Transport":"🚌",
-
-    "Online Shopping":"🛍️",
-
-    "Entertainment":"🎬",
-
-    "Travel":"✈️",
-
-    "Bills":"📱",
-
-    "Income":"💰",
-
-    "Other":"💳"
-
-  };
-
-
-  return icons[category] || "💳";
-
-}
-
-
-/* =========================================================
+/* =====================================================
    HOME
-========================================================= */
+===================================================== */
 
 function renderHome(){
 
@@ -2320,10 +2231,11 @@ function renderHome(){
     money(totals.expense);
 
 
-  const plannedSaving =
+  const planned =
     goals.reduce(
       (sum,g)=>
-        sum + Number(g.monthly || 0),
+        sum +
+        Number(g.monthly || 0),
       0
     );
 
@@ -2334,7 +2246,7 @@ function renderHome(){
       totals.income -
       totals.expense -
       totals.fixed -
-      plannedSaving
+      planned
     );
 
 
@@ -2350,19 +2262,13 @@ function renderHome(){
     );
 
 
-  if(transactions.length === 0){
+  if(!transactions.length){
 
-    box.innerHTML = `
-
-      <div class="card empty">
-
+    box.innerHTML =
+      `<div class="card empty">
         No transactions yet.<br>
-
-        Start with Quick Record above.
-
-      </div>
-
-    `;
+        Start with Quick Record.
+      </div>`;
 
     return;
 
@@ -2372,17 +2278,42 @@ function renderHome(){
   box.innerHTML =
     transactions
       .slice(0,5)
-      .map(
-        transactionHTML
-      )
+      .map(transactionHTML)
       .join("");
 
 }
 
 
-/* =========================================================
-   TRANSACTION HTML
-========================================================= */
+/* =====================================================
+   TRANSACTION
+===================================================== */
+
+function getIcon(category){
+
+  const icons = {
+
+    "Dining":"🍜",
+
+    "Transport":"🚕",
+
+    "Shopping":"🛍️",
+
+    "Entertainment":"🎬",
+
+    "Travel":"✈️",
+
+    "Bills":"📱",
+
+    "Income":"💰",
+
+    "Other":"💳"
+
+  };
+
+  return icons[category] || "💳";
+
+}
+
 
 function transactionHTML(t){
 
@@ -2399,54 +2330,37 @@ function transactionHTML(t){
         <div class="transaction-info">
 
           <div class="transaction-name">
-
-            ${escapeHTML(
-              t.description
-            )}
-
+            ${escapeHTML(t.description)}
           </div>
 
           <div class="transaction-meta">
-
-            ${escapeHTML(
-              t.category
-            )}
-
+            ${escapeHTML(t.category)}
             ·
-
-            ${escapeHTML(
-              t.date
-            )}
-
+            ${displayDate(t.date)}
           </div>
 
         </div>
 
       </div>
 
-
-      <div
-        style="text-align:right">
+      <div class="transaction-right">
 
         <div
-          class="transaction-money
-          ${t.type === "income"
-            ? "income"
-            : "expense"}">
+          class="transaction-money ${
+            t.type === "income"
+              ? "income"
+              : "expense"
+          }">
 
-          ${t.type === "income"
-            ? "+"
-            : "-"}
-
+          ${t.type === "income" ? "+" : "-"}
           ${money(t.amount)}
 
         </div>
 
-
         <button
-          class="delete-btn"
           type="button"
-          onclick="deleteTransaction(${t.id})">
+          class="delete-btn"
+          onclick="deleteTransaction('${t.id}')">
 
           Delete
 
@@ -2461,10 +2375,6 @@ function transactionHTML(t){
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
 function escapeHTML(str){
 
   return String(str)
@@ -2477,15 +2387,11 @@ function escapeHTML(str){
 }
 
 
-/* =========================================================
-   DELETE TRANSACTION
-========================================================= */
-
 function deleteTransaction(id){
 
   transactions =
     transactions.filter(
-      t=>t.id !== id
+      t=>String(t.id) !== String(id)
     );
 
   saveAll();
@@ -2495,9 +2401,9 @@ function deleteTransaction(id){
 }
 
 
-/* =========================================================
+/* =====================================================
    REPORTS
-========================================================= */
+===================================================== */
 
 function renderReports(){
 
@@ -2523,7 +2429,7 @@ function renderReports(){
     money(totals.expense);
 
 
-  const categories = {};
+  const cats = {};
 
 
   transactions
@@ -2533,40 +2439,33 @@ function renderReports(){
     .forEach(
       t=>{
 
-        if(
-          !categories[t.category]
-        ){
-
-          categories[t.category] = 0;
-
-        }
-
-        categories[t.category] +=
+        cats[t.category] =
+          (cats[t.category] || 0) +
           Number(t.amount);
 
       }
     );
 
 
-  const totalExpense =
-    Object.values(categories)
-      .reduce(
-        (a,b)=>a+b,
-        0
+  const entries =
+    Object.entries(cats)
+      .sort(
+        (a,b)=>b[1]-a[1]
       );
+
+
+  const total =
+    entries.reduce(
+      (sum,item)=>
+        sum + item[1],
+      0
+    );
 
 
   document.getElementById(
     "donutTotal"
   ).textContent =
-    money(totalExpense);
-
-
-  const entries =
-    Object.entries(categories)
-      .sort(
-        (a,b)=>b[1]-a[1]
-      );
+    money(total);
 
 
   const donut =
@@ -2583,24 +2482,12 @@ function renderReports(){
   }
   else{
 
-    const colors = [
-
-      "var(--red)",
-
-      "var(--cyan)",
-
-      "var(--red)",
-
-      "var(--cyan)",
-
-      "var(--red)",
-
-      "var(--cyan)"
-
-    ];
-
-
     let start = 0;
+
+    const colors = [
+      "var(--red)",
+      "var(--cyan)"
+    ];
 
     const parts = [];
 
@@ -2608,22 +2495,17 @@ function renderReports(){
     entries.forEach(
       ([cat,value],i)=>{
 
-        const degree =
-          totalExpense
-            ? value /
-              totalExpense *
-              360
+        const deg =
+          total
+            ? value / total * 360
             : 0;
 
-
         const end =
-          start + degree;
-
+          start + deg;
 
         parts.push(
-          `${colors[i % colors.length]} ${start}deg ${end}deg`
+          `${colors[i % 2]} ${start}deg ${end}deg`
         );
-
 
         start = end;
 
@@ -2637,8 +2519,6 @@ function renderReports(){
   }
 
 
-  /* LEGEND */
-
   const legend =
     document.getElementById(
       "legend"
@@ -2647,13 +2527,10 @@ function renderReports(){
 
   if(!entries.length){
 
-    legend.innerHTML = `
-
-      <div class="empty">
+    legend.innerHTML =
+      `<div class="empty">
         No expense data yet.
-      </div>
-
-    `;
+      </div>`;
 
   }
   else{
@@ -2664,12 +2541,9 @@ function renderReports(){
           ([cat,value],i)=>{
 
             const percent =
-              totalExpense
-                ? value /
-                  totalExpense *
-                  100
+              total
+                ? value / total * 100
                 : 0;
-
 
             return `
 
@@ -2677,12 +2551,13 @@ function renderReports(){
 
                 <div class="legend-left">
 
-                  <div
-                    class="dot
-                    ${i % 2 === 0
-                      ? "red-dot"
-                      : "cyan-dot"}">
-                  </div>
+                  <span
+                    class="dot ${
+                      i % 2 === 0
+                        ? "dot-red"
+                        : "dot-cyan"
+                    }">
+                  </span>
 
                   <span>
                     ${escapeHTML(cat)}
@@ -2691,11 +2566,9 @@ function renderReports(){
                 </div>
 
                 <strong>
-
                   ${money(value)}
                   ·
                   ${percent.toFixed(0)}%
-
                 </strong>
 
               </div>
@@ -2709,8 +2582,6 @@ function renderReports(){
   }
 
 
-  /* CATEGORY BREAKDOWN */
-
   const categoryBox =
     document.getElementById(
       "categories"
@@ -2719,16 +2590,10 @@ function renderReports(){
 
   if(!entries.length){
 
-    categoryBox.innerHTML = `
-
-      <div class="empty">
-
-        Add expenses to see your
-        spending breakdown.
-
-      </div>
-
-    `;
+    categoryBox.innerHTML =
+      `<div class="empty">
+        Add expenses to see your breakdown.
+      </div>`;
 
     return;
 
@@ -2741,12 +2606,9 @@ function renderReports(){
         ([cat,value])=>{
 
           const percent =
-            totalExpense
-              ? value /
-                totalExpense *
-                100
+            total
+              ? value / total * 100
               : 0;
-
 
           return `
 
@@ -2781,66 +2643,27 @@ function renderReports(){
       )
       .join("");
 
-
-  renderReportCalendar();
-
 }
 
 
-/* =========================================================
-   REPORT YEAR / MONTH
-   2027 ONWARDS
-========================================================= */
+/* =====================================================
+   CALENDAR
+===================================================== */
 
-function setupReportSelectors(){
-
-  const year =
-    document.getElementById(
-      "reportYear"
-    );
+function setupCalendarSelectors(){
 
   const month =
     document.getElementById(
-      "reportMonth"
+      "monthSelect"
+    );
+
+  const year =
+    document.getElementById(
+      "yearSelect"
     );
 
 
-  if(!year || !month){
-    return;
-  }
-
-
-  const currentYear =
-    new Date().getFullYear();
-
-
-  year.innerHTML = "";
-
-
-  /*
-    Start from 2027.
-    Continue for many years.
-  */
-
-  for(
-    let y = 2027;
-    y <= 2050;
-    y++
-  ){
-
-    year.innerHTML += `
-
-      <option value="${y}">
-        ${y}
-      </option>
-
-    `;
-
-  }
-
-
   const months = [
-
     "January",
     "February",
     "March",
@@ -2853,151 +2676,474 @@ function setupReportSelectors(){
     "October",
     "November",
     "December"
-
   ];
 
 
   month.innerHTML =
     months
       .map(
-        (m,i)=>
-          `<option value="${i+1}">
-            ${m}
+        (name,i)=>
+          `<option value="${i}">
+            ${name}
           </option>`
       )
       .join("");
 
 
-  /*
-    Default to current year if
-    it is 2027 or later.
-  */
+  const currentYear =
+    new Date().getFullYear();
 
-  year.value =
-    currentYear >= 2027
-      ? currentYear
-      : 2027;
+
+  let years = [];
+
+
+  for(
+    let y = currentYear - 5;
+    y <= currentYear + 30;
+    y++
+  ){
+
+    years.push(y);
+
+  }
+
+
+  year.innerHTML =
+    years
+      .map(
+        y=>
+          `<option value="${y}">
+            ${y}
+          </option>`
+      )
+      .join("");
 
 
   month.value =
-    new Date().getMonth()+1;
+    calendarDate.getMonth();
 
-
-  year.onchange =
-    renderReportCalendar;
-
-  month.onchange =
-    renderReportCalendar;
+  year.value =
+    calendarDate.getFullYear();
 
 }
 
 
-/* =========================================================
-   REPORT CALENDAR
-========================================================= */
+function calendarChanged(){
 
-function renderReportCalendar(){
-
-  const box =
-    document.getElementById(
-      "reportCalendar"
+  const month =
+    Number(
+      document.getElementById(
+        "monthSelect"
+      ).value
     );
 
-  const yearEl =
-    document.getElementById(
-      "reportYear"
+  const year =
+    Number(
+      document.getElementById(
+        "yearSelect"
+      ).value
     );
 
-  const monthEl =
+
+  calendarDate =
+    new Date(
+      year,
+      month,
+      1
+    );
+
+
+  selectedCalendarDay = null;
+
+  renderCalendar();
+
+}
+
+
+function changeMonth(amount){
+
+  calendarDate =
+    new Date(
+      calendarDate.getFullYear(),
+      calendarDate.getMonth() + amount,
+      1
+    );
+
+
+  let year =
+    calendarDate.getFullYear();
+
+
+  const select =
     document.getElementById(
-      "reportMonth"
+      "yearSelect"
     );
 
 
   if(
-    !box ||
-    !yearEl ||
-    !monthEl
+    !Array.from(
+      select.options
+    ).some(
+      o=>Number(o.value) === year
+    )
   ){
+
+    select.innerHTML +=
+      `<option value="${year}">
+        ${year}
+      </option>`;
+
+  }
+
+
+  document.getElementById(
+    "monthSelect"
+  ).value =
+    calendarDate.getMonth();
+
+
+  document.getElementById(
+    "yearSelect"
+  ).value =
+    year;
+
+
+  selectedCalendarDay = null;
+
+  renderCalendar();
+
+}
+
+
+function getDayTransactions(
+  year,
+  month,
+  day
+){
+
+  const key =
+    dateKey(
+      new Date(
+        year,
+        month,
+        day
+      )
+    );
+
+
+  return transactions.filter(
+    t=>
+      t.date === key &&
+      t.type === "expense"
+  );
+
+}
+
+
+function renderCalendar(){
+
+  const month =
+    calendarDate.getMonth();
+
+  const year =
+    calendarDate.getFullYear();
+
+
+  const monthSelect =
+    document.getElementById(
+      "monthSelect"
+    );
+
+  const yearSelect =
+    document.getElementById(
+      "yearSelect"
+    );
+
+
+  if(monthSelect){
+
+    monthSelect.value =
+      month;
+
+  }
+
+  if(yearSelect){
+
+    yearSelect.value =
+      year;
+
+  }
+
+
+  const grid =
+    document.getElementById(
+      "calendarGrid"
+    );
+
+
+  if(!grid){
     return;
   }
 
 
-  const year =
-    Number(yearEl.value);
-
-  const month =
-    Number(monthEl.value);
-
-
-  const days =
+  const first =
     new Date(
       year,
       month,
+      1
+    );
+
+
+  const last =
+    new Date(
+      year,
+      month + 1,
       0
-    ).getDate();
+    );
 
 
-  let total = 0;
+  const firstDay =
+    first.getDay();
 
 
-  transactions.forEach(
-    t=>{
+  const days =
+    last.getDate();
 
-      if(
-        Number(t.year) === year &&
-        Number(t.month) === month &&
-        t.type === "expense"
-      ){
 
-        total +=
-          Number(t.amount);
+  let html = "";
 
-      }
 
-    }
-  );
+  for(
+    let i=0;
+    i<firstDay;
+    i++
+  ){
+
+    html +=
+      `<div class="day empty"></div>`;
+
+  }
+
+
+  for(
+    let day=1;
+    day<=days;
+    day++
+  ){
+
+    const list =
+      getDayTransactions(
+        year,
+        month,
+        day
+      );
+
+
+    const total =
+      list.reduce(
+        (sum,t)=>
+          sum + Number(t.amount),
+        0
+      );
+
+
+    const today =
+      dateKey(
+        new Date()
+      ) ===
+      dateKey(
+        new Date(
+          year,
+          month,
+          day
+        )
+      );
+
+
+    html += `
+
+      <button
+        type="button"
+        class="day ${
+          list.length
+            ? "has-data"
+            : ""
+        } ${
+          today
+            ? "today"
+            : ""
+        }"
+        onclick="selectCalendarDay(${day})">
+
+        <span class="day-number">
+          ${day}
+        </span>
+
+        ${
+          total > 0
+            ? `
+              <span class="day-total">
+                ${money(total)}
+              </span>
+            `
+            : ""
+        }
+
+      </button>
+
+    `;
+
+  }
+
+
+  grid.innerHTML =
+    html;
+
+
+  renderCalendarSummary();
+
+}
+
+
+function selectCalendarDay(day){
+
+  selectedCalendarDay =
+    day;
+
+  renderCalendarSummary();
+
+}
+
+
+function renderCalendarSummary(){
+
+  const box =
+    document.getElementById(
+      "calendarSummary"
+    );
+
+
+  if(
+    selectedCalendarDay === null
+  ){
+
+    const monthTotal =
+      transactions
+        .filter(
+          t=>
+            t.type === "expense" &&
+            t.date &&
+            t.date.startsWith(
+              `${calendarDate.getFullYear()}-${String(calendarDate.getMonth()+1).padStart(2,"0")}`
+            )
+        )
+        .reduce(
+          (sum,t)=>
+            sum + Number(t.amount),
+          0
+        );
+
+
+    box.innerHTML = `
+
+      <div class="calendar-summary-title">
+        ${calendarDate.toLocaleString(
+          "en-US",
+          {
+            month:"long",
+            year:"numeric"
+          }
+        )}
+      </div>
+
+      <div class="calendar-summary-total">
+        ${money(monthTotal)}
+      </div>
+
+      <div
+        style="
+        color:var(--muted);
+        font-size:11px;
+        margin-top:3px">
+        Total spending this month
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const list =
+    getDayTransactions(
+      calendarDate.getFullYear(),
+      calendarDate.getMonth(),
+      selectedCalendarDay
+    );
+
+
+  const total =
+    list.reduce(
+      (sum,t)=>
+        sum + Number(t.amount),
+      0
+    );
+
+
+  const key =
+    dateKey(
+      new Date(
+        calendarDate.getFullYear(),
+        calendarDate.getMonth(),
+        selectedCalendarDay
+      )
+    );
+
+
+  let items = "";
+
+
+  if(!list.length){
+
+    items =
+      `<div class="empty">
+        No spending recorded on this day.
+      </div>`;
+
+  }
+  else{
+
+    items =
+      list
+        .map(
+          transactionHTML
+        )
+        .join("");
+
+  }
 
 
   box.innerHTML = `
 
+    <div class="calendar-summary-title">
+      ${displayDate(key)}
+    </div>
+
+    <div class="calendar-summary-total">
+      ${money(total)}
+    </div>
+
     <div
       style="
-      margin-top:15px;
-      padding:15px;
-      border-radius:18px;
-      background:var(--card2);
-      border:1px solid var(--border);">
+      color:var(--muted);
+      font-size:11px;
+      margin-top:3px">
+      ${list.length} expense${list.length === 1 ? "" : "s"}
+    </div>
 
-      <div
-        style="
-        color:var(--muted);
-        font-size:12px;">
-
-        ${year} · Month ${month}
-
-      </div>
-
-      <div
-        style="
-        font-size:25px;
-        font-weight:800;
-        margin-top:5px;">
-
-        ${money(total)}
-
-      </div>
-
-      <div
-        style="
-        color:var(--muted);
-        font-size:12px;
-        margin-top:3px;">
-
-        Total spending
-
-      </div>
-
+    <div class="calendar-day-list">
+      ${items}
     </div>
 
   `;
@@ -3005,9 +3151,9 @@ function renderReportCalendar(){
 }
 
 
-/* =========================================================
+/* =====================================================
    GOALS
-========================================================= */
+===================================================== */
 
 function renderGoals(){
 
@@ -3040,19 +3186,11 @@ function renderGoals(){
 
   if(!goals.length){
 
-    box.innerHTML = `
-
-      <div class="card empty">
-
+    box.innerHTML =
+      `<div class="card empty">
         No savings goals yet.<br>
-
-        Create your first goal above.
-
-      </div>
-
-    `;
-
-    updateMotivation();
+        Add your first goal.
+      </div>`;
 
     return;
 
@@ -3073,30 +3211,24 @@ function renderGoals(){
           const monthly =
             Number(g.monthly || 0);
 
-
           const percent =
-            target > 0
+            target
               ? Math.min(
                   100,
-                  saved /
-                  target *
-                  100
+                  saved / target * 100
                 )
               : 0;
-
 
           const remaining =
             Math.max(
               0,
-              target-saved
+              target - saved
             );
-
 
           const months =
             monthly > 0
               ? Math.ceil(
-                  remaining /
-                  monthly
+                  remaining / monthly
                 )
               : null;
 
@@ -3110,23 +3242,17 @@ function renderGoals(){
                 <div>
 
                   <div class="goal-name">
-
                     ${escapeHTML(g.name)}
-
                   </div>
 
                   <div class="goal-target">
-
                     Target ${money(target)}
-
                   </div>
 
                 </div>
 
                 <div class="goal-percent">
-
                   ${percent.toFixed(0)}%
-
                 </div>
 
               </div>
@@ -3154,7 +3280,6 @@ function renderGoals(){
 
                 </div>
 
-
                 <div class="goal-mini">
 
                   <small>REMAINING</small>
@@ -3164,7 +3289,6 @@ function renderGoals(){
                   </strong>
 
                 </div>
-
 
                 <div class="goal-mini">
 
@@ -3176,21 +3300,18 @@ function renderGoals(){
 
                 </div>
 
-
                 <div class="goal-mini">
 
                   <small>EST. TIME</small>
 
                   <strong>
-
                     ${
                       percent >= 100
-                      ? "Completed"
-                      : months
-                        ? months + " months"
-                        : "Set plan"
+                        ? "Completed"
+                        : months
+                          ? months + " months"
+                          : "Set plan"
                     }
-
                   </strong>
 
                 </div>
@@ -3200,37 +3321,29 @@ function renderGoals(){
 
               ${
                 percent >= 100
-                ? `
-
-                  <div class="goal-success">
-
-                    🎉 Goal achieved. Great work!
-
-                  </div>
-
-                `
-                : ""
+                  ? `
+                    <div class="goal-success">
+                      🎉 Goal achieved.
+                    </div>
+                  `
+                  : ""
               }
 
 
               <div class="goal-actions">
 
                 <button
-                  class="small-btn"
                   type="button"
-                  onclick="addGoalSaving(${g.id})">
-
+                  class="small-btn"
+                  onclick="addGoalSaving('${g.id}')">
                   + Add saving
-
                 </button>
 
                 <button
-                  class="small-btn"
                   type="button"
-                  onclick="deleteGoal(${g.id})">
-
+                  class="small-btn"
+                  onclick="deleteGoal('${g.id}')">
                   Delete
-
                 </button>
 
               </div>
@@ -3243,77 +3356,8 @@ function renderGoals(){
       )
       .join("");
 
-
-  updateMotivation();
-
 }
 
-
-/* =========================================================
-   GOAL MOTIVATION
-========================================================= */
-
-function updateMotivation(){
-
-  const el =
-    document.getElementById(
-      "motivation"
-    );
-
-
-  if(!el){
-    return;
-  }
-
-
-  if(!goals.length){
-
-    el.textContent =
-      "Start with one small goal. BUNEXA will calculate your monthly saving plan and help you stay on track.";
-
-    return;
-
-  }
-
-
-  const completed =
-    goals.filter(
-      g=>
-        Number(g.saved || 0) >=
-        Number(g.target || 0)
-    ).length;
-
-
-  if(
-    completed === goals.length
-  ){
-
-    el.textContent =
-      "🏆 Amazing. You have reached all your current savings goals.";
-
-  }
-  else{
-
-    const totalSaved =
-      goals.reduce(
-        (sum,g)=>
-          sum +
-          Number(g.saved || 0),
-        0
-      );
-
-
-    el.textContent =
-      `You're building momentum. ${money(totalSaved)} is already allocated toward your goals. Keep going.`;
-
-  }
-
-}
-
-
-/* =========================================================
-   GOAL MODAL
-========================================================= */
 
 function openGoalModal(){
 
@@ -3331,7 +3375,6 @@ function saveGoal(){
       "goalName"
     ).value.trim();
 
-
   const target =
     parseFloat(
       document.getElementById(
@@ -3339,14 +3382,12 @@ function saveGoal(){
       ).value
     );
 
-
   const saved =
     parseFloat(
       document.getElementById(
         "goalSaved"
       ).value
     ) || 0;
-
 
   const monthly =
     parseFloat(
@@ -3363,7 +3404,7 @@ function saveGoal(){
   ){
 
     alert(
-      "Please enter a goal name and target amount."
+      "Please enter a goal name and target."
     );
 
     return;
@@ -3373,7 +3414,9 @@ function saveGoal(){
 
   goals.push({
 
-    id:Date.now(),
+    id:
+      Date.now() +
+      Math.random(),
 
     name,
 
@@ -3389,27 +3432,21 @@ function saveGoal(){
   saveAll();
 
 
-  document.getElementById(
-    "goalName"
-  ).value = "";
-
-  document.getElementById(
-    "goalTarget"
-  ).value = "";
-
-  document.getElementById(
-    "goalSaved"
-  ).value = "";
-
-  document.getElementById(
+  [
+    "goalName",
+    "goalTarget",
+    "goalSaved",
     "goalMonthly"
-  ).value = "";
-
-
-  closeModal(
-    "goalModal"
+  ].forEach(
+    id=>{
+      document.getElementById(
+        id
+      ).value = "";
+    }
   );
 
+
+  closeModal("goalModal");
 
   renderAll();
 
@@ -3420,7 +3457,7 @@ function addGoalSaving(id){
 
   const goal =
     goals.find(
-      g=>g.id === id
+      g=>String(g.id) === String(id)
     );
 
 
@@ -3432,7 +3469,7 @@ function addGoalSaving(id){
   const value =
     parseFloat(
       prompt(
-        "How much did you save toward this goal?"
+        "How much did you save?"
       )
     );
 
@@ -3464,15 +3501,13 @@ function deleteGoal(id){
       "Delete this savings goal?"
     )
   ){
-
     return;
-
   }
 
 
   goals =
     goals.filter(
-      g=>g.id !== id
+      g=>String(g.id) !== String(id)
     );
 
 
@@ -3483,9 +3518,9 @@ function deleteGoal(id){
 }
 
 
-/* =========================================================
+/* =====================================================
    INCOME
-========================================================= */
+===================================================== */
 
 function openIncomeModal(){
 
@@ -3503,7 +3538,6 @@ function saveIncome(){
       "incomeName"
     ).value.trim();
 
-
   const amount =
     parseFloat(
       document.getElementById(
@@ -3519,7 +3553,7 @@ function saveIncome(){
   ){
 
     alert(
-      "Please enter an income source and amount."
+      "Please enter income source and amount."
     );
 
     return;
@@ -3529,7 +3563,9 @@ function saveIncome(){
 
   incomes.push({
 
-    id:Date.now(),
+    id:
+      Date.now() +
+      Math.random(),
 
     name,
 
@@ -3550,10 +3586,7 @@ function saveIncome(){
   ).value = "";
 
 
-  closeModal(
-    "incomeModal"
-  );
-
+  closeModal("incomeModal");
 
   renderAll();
 
@@ -3568,22 +3601,12 @@ function renderIncomeSources(){
     );
 
 
-  if(!box){
-    return;
-  }
-
-
   if(!incomes.length){
 
-    box.innerHTML = `
-
-      <div class="empty">
-
+    box.innerHTML =
+      `<div class="empty">
         No regular income added yet.
-
-      </div>
-
-    `;
+      </div>`;
 
     return;
 
@@ -3595,41 +3618,36 @@ function renderIncomeSources(){
       .map(
         i=>`
 
-          <div class="fixed-item">
+          <div class="setting-row">
 
             <div>
 
-              <div class="fixed-name">
-
+              <div class="setting-title">
                 ${escapeHTML(i.name)}
-
               </div>
 
-              <div class="fixed-meta">
-
+              <div class="setting-desc">
                 Monthly income
-
               </div>
 
             </div>
 
-
             <div>
 
-              <span
-                class="fixed-amount income">
-
+              <strong class="income">
                 ${money(i.amount)}
-
-              </span>
+              </strong>
 
               <button
                 class="edit-fixed"
-                type="button"
-                onclick="editIncome(${i.id})">
-
+                style="
+                border:0;
+                background:none;
+                color:var(--cyan);
+                font-size:11px;
+                margin-left:6px"
+                onclick="editIncome('${i.id}')">
                 Edit
-
               </button>
 
             </div>
@@ -3647,7 +3665,7 @@ function editIncome(id){
 
   const item =
     incomes.find(
-      i=>i.id === id
+      i=>String(i.id) === String(id)
     );
 
 
@@ -3656,7 +3674,7 @@ function editIncome(id){
   }
 
 
-  const newAmount =
+  const amount =
     parseFloat(
       prompt(
         "Update monthly income:",
@@ -3666,17 +3684,15 @@ function editIncome(id){
 
 
   if(
-    !newAmount ||
-    newAmount <= 0
+    !amount ||
+    amount <= 0
   ){
-
     return;
-
   }
 
 
   item.amount =
-    newAmount;
+    amount;
 
 
   saveAll();
@@ -3686,9 +3702,9 @@ function editIncome(id){
 }
 
 
-/* =========================================================
+/* =====================================================
    FIXED EXPENSE
-========================================================= */
+===================================================== */
 
 function openFixedModal(){
 
@@ -3706,7 +3722,6 @@ function saveFixedExpense(){
       "fixedName"
     ).value.trim();
 
-
   const amount =
     parseFloat(
       document.getElementById(
@@ -3722,7 +3737,7 @@ function saveFixedExpense(){
   ){
 
     alert(
-      "Please enter an expense name and amount."
+      "Please enter expense name and amount."
     );
 
     return;
@@ -3732,7 +3747,9 @@ function saveFixedExpense(){
 
   fixedExpenses.push({
 
-    id:Date.now(),
+    id:
+      Date.now() +
+      Math.random(),
 
     name,
 
@@ -3753,10 +3770,7 @@ function saveFixedExpense(){
   ).value = "";
 
 
-  closeModal(
-    "fixedModal"
-  );
-
+  closeModal("fixedModal");
 
   renderAll();
 
@@ -3771,22 +3785,12 @@ function renderFixedExpenses(){
     );
 
 
-  if(!box){
-    return;
-  }
-
-
   if(!fixedExpenses.length){
 
-    box.innerHTML = `
-
-      <div class="empty">
-
+    box.innerHTML =
+      `<div class="empty">
         No fixed expenses added yet.
-
-      </div>
-
-    `;
+      </div>`;
 
     return;
 
@@ -3798,41 +3802,35 @@ function renderFixedExpenses(){
       .map(
         e=>`
 
-          <div class="fixed-item">
+          <div class="setting-row">
 
             <div>
 
-              <div class="fixed-name">
-
+              <div class="setting-title">
                 ${escapeHTML(e.name)}
-
               </div>
 
-              <div class="fixed-meta">
-
+              <div class="setting-desc">
                 Monthly fixed expense
-
               </div>
 
             </div>
 
-
             <div>
 
-              <span
-                class="fixed-amount expense">
-
+              <strong class="expense">
                 ${money(e.amount)}
-
-              </span>
+              </strong>
 
               <button
-                class="edit-fixed"
-                type="button"
-                onclick="editFixed(${e.id})">
-
+                style="
+                border:0;
+                background:none;
+                color:var(--cyan);
+                font-size:11px;
+                margin-left:6px"
+                onclick="editFixed('${e.id}')">
                 Edit
-
               </button>
 
             </div>
@@ -3850,7 +3848,7 @@ function editFixed(id){
 
   const item =
     fixedExpenses.find(
-      e=>e.id === id
+      e=>String(e.id) === String(id)
     );
 
 
@@ -3859,7 +3857,7 @@ function editFixed(id){
   }
 
 
-  const newAmount =
+  const amount =
     parseFloat(
       prompt(
         "Update monthly expense:",
@@ -3869,17 +3867,15 @@ function editFixed(id){
 
 
   if(
-    !newAmount ||
-    newAmount <= 0
+    !amount ||
+    amount <= 0
   ){
-
     return;
-
   }
 
 
   item.amount =
-    newAmount;
+    amount;
 
 
   saveAll();
@@ -3889,30 +3885,22 @@ function editFixed(id){
 }
 
 
-/* =========================================================
+/* =====================================================
    MODAL
-========================================================= */
+===================================================== */
 
 function closeModal(id){
 
-  const modal =
-    document.getElementById(id);
-
-
-  if(modal){
-
-    modal.classList.remove(
-      "show"
-    );
-
-  }
+  document.getElementById(
+    id
+  ).classList.remove("show");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    THEME
-========================================================= */
+===================================================== */
 
 function toggleTheme(){
 
@@ -3942,24 +3930,15 @@ function toggleTheme(){
 
 function updateThemeButton(){
 
-  const button =
-    document.getElementById(
-      "themeToggle"
-    );
-
-
-  if(!button){
-    return;
-  }
-
-
   const light =
     document.body.classList.contains(
       "light"
     );
 
 
-  button.classList.toggle(
+  document.getElementById(
+    "themeToggle"
+  ).classList.toggle(
     "active",
     light
   );
@@ -3967,20 +3946,18 @@ function updateThemeButton(){
 }
 
 
-/* =========================================================
-   CLEAR DATA
-========================================================= */
+/* =====================================================
+   CLEAR
+===================================================== */
 
 function clearAllData(){
 
   if(
     !confirm(
-      "This will delete all BUNEXA data on this device. Continue?"
+      "Delete all BUNEXA data on this device?"
     )
   ){
-
     return;
-
   }
 
 
@@ -4000,2033 +3977,65 @@ function clearAllData(){
 }
 
 
-/* =========================================================
-   CALENDAR HELPERS
-========================================================= */
+/* =====================================================
+   RENDER
+===================================================== */
 
-function dateKey(year,month,day){
+function renderAll(){
 
-  return (
-    year +
-    "-" +
-    String(month).padStart(2,"0") +
-    "-" +
-    String(day).padStart(2,"0")
+  renderHome();
+
+  renderReports();
+
+  renderGoals();
+
+  renderIncomeSources();
+
+  renderFixedExpenses();
+
+  updateThemeButton();
+
+
+  const currencySelect =
+    document.getElementById(
+      "currencySelect"
+    );
+
+
+  if(currencySelect){
+    currencySelect.value =
+      currency;
+  }
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+const savedTheme =
+  localStorage.getItem(
+    "bunexa_theme"
+  );
+
+
+if(savedTheme === "light"){
+
+  document.body.classList.add(
+    "light"
   );
 
 }
 
 
-function transactionsForDate(
-  year,
-  month,
-  day
-){
+setupCalendarSelectors();
 
-  return transactions.filter(
-    t=>{
+renderAll();
 
-      return (
-        Number(t.year) === Number(year) &&
-        Number(t.month) === Number(month) &&
-        Number(t.day) === Number(day)
-      );
+renderCalendar();
 
-    }
-  );
+</script>
 
-}
-
-
-/* =========================================================
-   FULL CALENDAR
-========================================================= */
-
-function renderCalendar(){
-
-  const box =
-    document.getElementById(
-      "fullCalendar"
-    );
-
-
-  if(!box){
-    return;
-  }
-
-
-  const year =
-    calendarDate.getFullYear();
-
-  const month =
-    calendarDate.getMonth();
-
-
-  /*
-    Calendar can move forward from 2027.
-  */
-
-  if(year < 2027){
-
-    calendarDate =
-      new Date(
-        2027,
-        0,
-        1
-      );
-
-  }
-
-
-  const actualYear =
-    calendarDate.getFullYear();
-
-  const actualMonth =
-    calendarDate.getMonth();
-
-
-  const firstDay =
-    new Date(
-      actualYear,
-      actualMonth,
-      1
-    ).getDay();
-
-
-  const daysInMonth =
-    new Date(
-      actualYear,
-      actualMonth + 1,
-      0
-    ).getDate();
-
-
-  const monthName =
-    new Date(
-      actualYear,
-      actualMonth,
-      1
-    ).toLocaleString(
-      "en-US",
-      {
-        month:"long"
-      }
-    );
-
-
-  document.getElementById(
-    "calendarTitle"
-  ).textContent =
-    monthName +
-    " " +
-    actualYear;
-
-
-  let html = `
-
-    <div
-      style="
-      display:grid;
-      grid-template-columns:repeat(7,1fr);
-      gap:5px;
-      margin-top:15px;">
-
-  `;
-
-
-  const weekdays = [
-
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S"
-
-  ];
-
-
-  weekdays.forEach(
-    d=>{
-
-      html += `
-
-        <div
-          style="
-          text-align:center;
-          color:var(--muted);
-          font-size:11px;
-          padding:7px 0;">
-
-          ${d}
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  for(
-    let i=0;
-    i<firstDay;
-    i++
-  ){
-
-    html += `
-
-      <div></div>
-
-    `;
-
-  }
-
-
-  for(
-    let day=1;
-    day<=daysInMonth;
-    day++
-  ){
-
-    const dayTransactions =
-      transactionsForDate(
-        actualYear,
-        actualMonth + 1,
-        day
-      );
-
-
-    let expense = 0;
-
-    let income = 0;
-
-
-    dayTransactions.forEach(
-      t=>{
-
-        if(
-          t.type === "income"
-        ){
-
-          income +=
-            Number(t.amount);
-
-        }
-        else{
-
-          expense +=
-            Number(t.amount);
-
-        }
-
-      }
-    );
-
-
-    const hasData =
-      dayTransactions.length > 0;
-
-
-    const isSelected =
-      selectedCalendarDate ===
-      dateKey(
-        actualYear,
-        actualMonth + 1,
-        day
-      );
-
-
-    html += `
-
-      <button
-        type="button"
-        onclick="selectCalendarDay(${actualYear},${actualMonth + 1},${day})"
-
-        style="
-        min-height:66px;
-        border-radius:13px;
-        border:
-          ${isSelected
-            ? "2px solid var(--cyan)"
-            : "1px solid var(--border)"};
-        background:
-          ${isSelected
-            ? "var(--cyan-soft)"
-            : "var(--card2)"};
-        color:var(--text);
-        padding:5px 3px;
-        display:flex;
-        flex-direction:column;
-        justify-content:flex-start;
-        align-items:center;">
-
-        <strong
-          style="font-size:13px">
-
-          ${day}
-
-        </strong>
-
-        ${
-          hasData
-          ? `
-
-            <span
-              style="
-              margin-top:4px;
-              font-size:9px;
-              color:var(--red);
-              font-weight:700;">
-
-              ${expense > 0
-                ? "-" + money(expense)
-                : ""}
-
-            </span>
-
-            <span
-              style="
-              font-size:9px;
-              color:var(--green);
-              font-weight:700;">
-
-              ${income > 0
-                ? "+" + money(income)
-                : ""}
-
-            </span>
-
-          `
-          : ""
-        }
-
-      </button>
-
-    `;
-
-  }
-
-
-  html += `
-
-    </div>
-
-  `;
-
-
-  box.innerHTML =
-    html;
-
-}
-
-
-/* =========================================================
-   SELECT CALENDAR DAY
-========================================================= */
-
-function selectCalendarDay(
-  year,
-  month,
-  day
-){
-
-  selectedCalendarDate =
-    dateKey(
-      year,
-      month,
-      day
-    );
-
-
-  renderCalendar();
-
-  renderSelectedDay();
-
-}
-
-
-/* =========================================================
-   SELECTED DAY DETAILS
-========================================================= */
-
-function renderSelectedDay(){
-
-  const title =
-    document.getElementById(
-      "selectedDateTitle"
-    );
-
-  const box =
-    document.getElementById(
-      "dayTransactions"
-    );
-
-
-  if(
-    !title ||
-    !box
-  ){
-
-    return;
-
-  }
-
-
-  if(!selectedCalendarDate){
-
-    title.textContent =
-      "Select a date";
-
-    box.innerHTML =
-      "Tap a date to view transactions.";
-
-    return;
-
-  }
-
-
-  const parts =
-    selectedCalendarDate
-      .split("-")
-      .map(Number);
-
-
-  const year =
-    parts[0];
-
-  const month =
-    parts[1];
-
-  const day =
-    parts[2];
-
-
-  const list =
-    transactionsForDate(
-      year,
-      month,
-      day
-    );
-
-
-  const dateObject =
-    new Date(
-      year,
-      month - 1,
-      day
-    );
-
-
-  title.textContent =
-    dateObject.toLocaleDateString(
-      "en-US",
-      {
-        weekday:"long",
-        month:"long",
-        day:"numeric",
-        year:"numeric"
-      }
-    );
-
-
-  if(!list.length){
-
-    box.innerHTML = `
-
-      <div class="empty">
-
-        No transactions on this day.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  box.className =
-    "transactions";
-
-
-  box.innerHTML =
-    list
-      .map(
-        transactionHTML
-      )
-      .join("");
-
-}
-
-
-/* =========================================================
-   CHANGE CALENDAR MONTH
-========================================================= */
-
-function changeMonth(direction){
-
-  const currentYear =
-    calendarDate.getFullYear();
-
-
-  /*
-    Never allow calendar
-    before January 2027.
-  */
-
-  const next =
-    new Date(
-      calendarDate.getFullYear(),
-      calendarDate.getMonth() +
-        direction,
-      1
-    );
-
-
-  if(
-    next.getFullYear() < 2027
-  ){
-
-    return;
-
-  }
-
-
-  calendarDate =
-    next;
-
-
-  selectedCalendarDate =
-    null;
-
-
-  renderCalendar();
-
-  renderSelectedDay();
-
-}
-
-
-/* =========================================================
-   SETTINGS — CURRENCY SELECTOR
-   Only Singapore / Malaysia
-========================================================= */
-
-function setupCurrencySelector(){
-
-  const settingsCard =
-    document.querySelector(
-      "#page-settings .card"
-    );
-
-
-  if(!settingsCard){
-    return;
-  }
-
-
-  /*
-    Prevent duplicate insertion.
-  */
-
-  if(
-    document.getElementById(
-      "currencySetting"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  const card =
-    document.createElement(
-      "div"
-    );
-
-
-  card.className =
-    "card";
-
-
-  card.id =
-    "currencySetting";
-
-
-  card.innerHTML = `
-
-    <div class="card-title">
-
-      Currency
-
-    </div>
-
-    <div class="card-subtitle">
-
-      Choose your spending currency.
-
-    </div>
-
-    <div
-      style="
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-top:14px;">
-
-      <button
-        type="button"
-        id="sgdCurrency"
-        class="secondary"
-        onclick="setCurrency('SGD')">
-
-        🇸🇬 Singapore<br>
-        S$
-
-      </button>
-
-      <button
-        type="button"
-        id="myrCurrency"
-        class="secondary"
-        onclick="setCurrency('MYR')">
-
-        🇲🇾 Malaysia<br>
-        RM
-
-      </button>
-
-    </div>
-
-  `;
-
-
-  /*
-    Put currency card before
-    theme card.
-  */
-
-  const themeCard =
-    document.getElementById(
-      "themeToggle"
-    )?.closest(".card");
-
-
-  if(themeCard){
-
-    themeCard.parentNode.insertBefore(
-      card,
-      themeCard
-    );
-
-  }
-  else{
-
-    settingsCard.parentNode.appendChild(
-      card
-    );
-
-  }
-
-
-  updateCurrencyButtons();
-
-}
-
-
-/* =========================================================
-   SET CURRENCY
-========================================================= */
-
-function setCurrency(value){
-
-  if(
-    value !== "SGD" &&
-    value !== "MYR"
-  ){
-
-    return;
-
-  }
-
-
-  currency =
-    value;
-
-
-  localStorage.setItem(
-    "bunexa_currency",
-    currency
-  );
-
-
-  updateCurrencyButtons();
-
-  renderAll();
-
-}
-
-
-/* =========================================================
-   CURRENCY BUTTON STATE
-========================================================= */
-
-function updateCurrencyButtons(){
-
-  const sgd =
-    document.getElementById(
-      "sgdCurrency"
-    );
-
-  const myr =
-    document.getElementById(
-      "myrCurrency"
-    );
-
-
-  if(sgd){
-
-    sgd.style.borderColor =
-      currency === "SGD"
-        ? "var(--cyan)"
-        : "var(--border)";
-
-    sgd.style.background =
-      currency === "SGD"
-        ? "var(--cyan-soft)"
-        : "var(--card2)";
-
-  }
-
-
-  if(myr){
-
-    myr.style.borderColor =
-      currency === "MYR"
-        ? "var(--cyan)"
-        : "var(--border)";
-
-    myr.style.background =
-      currency === "MYR"
-        ? "var(--cyan-soft)"
-        : "var(--card2)";
-
-  }
-
-}/* =========================================================
-   BUNEXA FINAL PART 3
-   CALENDAR + DATE FILTER + MYR/SGD + DINING
-========================================================= */
-
-(function(){
-
-  /* ---------- CURRENCY ---------- */
-
-  window.bunexaCurrency =
-    localStorage.getItem("bunexa_currency") || "SGD";
-
-  window.bunexaCurrencySymbol = function(){
-
-    return bunexaCurrency === "MYR" ? "RM" : "$";
-
-  };
-
-
-  /* Replace money display with SGD / MYR */
-
-  window.money = function(value){
-
-    return bunexaCurrencySymbol() +
-      Number(value || 0).toLocaleString("en-US",{
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      });
-
-  };
-
-
-  /* ---------- BETTER CATEGORY ---------- */
-
-  window.getBunexaCategory = function(description){
-
-    const text =
-      String(description || "").toLowerCase();
-
-
-    /* Dining */
-
-    if(
-      /kopi|coffee|mee|noodle|rice|nasi|makan|food|dining|meal|restaurant|cafe|hawker|koufu|canteen|lunch|dinner|breakfast|dessert|bakery|bread|drink|tea|bubble tea|mcd|mcdo|kfc|subway|starbucks/.test(text)
-    ){
-      return "Dining";
-    }
-
-
-    if(
-      /grab|gojek|mrt|bus|taxi|transport|train|ride/.test(text)
-    ){
-      return "Transport";
-    }
-
-
-    if(
-      /lazada|shopee|taobao|amazon|apple|online|shopping/.test(text)
-    ){
-      return "Shopping";
-    }
-
-
-    if(
-      /cinema|movie|entertainment|game|concert/.test(text)
-    ){
-      return "Entertainment";
-    }
-
-
-    if(
-      /flight|hotel|holiday|travel|trip|cruise/.test(text)
-    ){
-      return "Travel";
-    }
-
-
-    if(
-      /phone|internet|wifi|bill|simba|singtel|starhub|m1|electricity|utilities/.test(text)
-    ){
-      return "Bills";
-    }
-
-
-    return "Other";
-
-  };
-
-
-  /* ---------- DINING ICON ---------- */
-
-  window.getIcon = function(category){
-
-    const icons = {
-
-      "Dining":"🍜",
-      "Food":"🍜",
-      "Transport":"🚌",
-      "Shopping":"🛍️",
-      "Online Shopping":"🛍️",
-      "Entertainment":"🎬",
-      "Travel":"✈️",
-      "Bills":"📱",
-      "Income":"💰",
-      "Other":"💳"
-
-    };
-
-    return icons[category] || "💳";
-
-  };
-
-
-  /* ---------- QUICK RECORD ---------- */
-
-  window.quickAdd = function(){
-
-    const input =
-      document.getElementById("quickInput");
-
-    if(!input) return;
-
-
-    const text =
-      input.value.trim();
-
-
-    if(!text) return;
-
-
-    /*
-      FAST RECORD
-
-      5.50 Grab
-      3.20 kopi
-      2.20 rice
-      800 salary
-      1500 rental income
-    */
-
-    const match =
-      text.match(
-        /^\s*\$?\s*(\d+(?:\.\d+)?)\s+(.+?)\s*$/
-      );
-
-
-    if(!match){
-
-      alert(
-        "Enter amount + description\nExample: 5.50 Grab"
-      );
-
-      return;
-
-    }
-
-
-    const amount =
-      parseFloat(match[1]);
-
-
-    const description =
-      match[2].trim();
-
-
-    const lower =
-      description.toLowerCase();
-
-
-    const incomeWords = [
-      "salary",
-      "rental income",
-      "rental",
-      "part-time",
-      "part time",
-      "freelance",
-      "bonus",
-      "commission",
-      "income"
-    ];
-
-
-    const isIncome =
-      incomeWords.some(
-        word=>lower.includes(word)
-      );
-
-
-    let category =
-      getBunexaCategory(description);
-
-
-    if(isIncome){
-      category = "Income";
-    }
-
-
-    transactions.unshift({
-
-      id:Date.now(),
-
-      type:
-        isIncome
-        ? "income"
-        : "expense",
-
-      description,
-
-      amount,
-
-      category,
-
-      date:
-        new Date().toISOString(),
-
-      currency:
-        bunexaCurrency
-
-    });
-
-
-    saveAll();
-
-
-    input.value = "";
-
-
-    renderAll();
-
-
-    /* Quick feedback */
-
-    input.blur();
-
-  };
-
-
-  /* ---------- CURRENCY SETTINGS ---------- */
-
-  function addCurrencySetting(){
-
-    const settingsPage =
-      document.getElementById("page-settings");
-
-    if(!settingsPage) return;
-
-
-    if(document.getElementById("currencyCard")){
-      return;
-    }
-
-
-    const card =
-      document.createElement("div");
-
-
-    card.className = "card";
-
-    card.id = "currencyCard";
-
-
-    card.innerHTML = `
-
-      <div class="card-title">
-        Currency
-      </div>
-
-      <div class="card-subtitle">
-        Choose the currency you use most.
-      </div>
-
-      <div
-        style="
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-        margin-top:15px;
-        "
-      >
-
-        <button
-          id="currencySGD"
-          class="secondary"
-          onclick="setBunexaCurrency('SGD')"
-        >
-          🇸🇬 Singapore<br>
-          <strong>SGD $</strong>
-        </button>
-
-        <button
-          id="currencyMYR"
-          class="secondary"
-          onclick="setBunexaCurrency('MYR')"
-        >
-          🇲🇾 Malaysia<br>
-          <strong>MYR RM</strong>
-        </button>
-
-      </div>
-
-    `;
-
-
-    const firstCard =
-      settingsPage.querySelector(".card");
-
-
-    if(firstCard){
-      firstCard.before(card);
-    }
-    else{
-      settingsPage.appendChild(card);
-    }
-
-
-    updateCurrencyButtons();
-
-  }
-
-
-  window.setBunexaCurrency =
-    function(currency){
-
-      if(
-        currency !== "SGD" &&
-        currency !== "MYR"
-      ){
-        return;
-      }
-
-
-      bunexaCurrency =
-        currency;
-
-
-      localStorage.setItem(
-        "bunexa_currency",
-        currency
-      );
-
-
-      updateCurrencyButtons();
-
-
-      renderAll();
-
-
-      renderCalendar();
-
-    };
-
-
-  function updateCurrencyButtons(){
-
-    const sgd =
-      document.getElementById(
-        "currencySGD"
-      );
-
-    const myr =
-      document.getElementById(
-        "currencyMYR"
-      );
-
-
-    if(!sgd || !myr) return;
-
-
-    sgd.style.border =
-      bunexaCurrency === "SGD"
-      ? "2px solid var(--cyan)"
-      : "1px solid var(--border)";
-
-
-    myr.style.border =
-      bunexaCurrency === "MYR"
-      ? "2px solid var(--cyan)"
-      : "1px solid var(--border)";
-
-  }
-
-
-  /* =======================================================
-     CALENDAR PAGE
-  ======================================================= */
-
-  function addCalendarPage(){
-
-    if(document.getElementById("page-calendar")){
-      return;
-    }
-
-
-    const page =
-      document.createElement("section");
-
-
-    page.className = "page";
-
-    page.id = "page-calendar";
-
-
-    page.innerHTML = `
-
-      <div class="header">
-
-        <div class="logo">
-          BUNEXA
-        </div>
-
-        <button
-          class="menu-btn"
-          onclick="go('home')"
-        >
-          ⌂
-        </button>
-
-      </div>
-
-
-      <div class="eyebrow">
-        YOUR MONEY TIMELINE
-      </div>
-
-
-      <h1 class="page-title">
-        Calendar
-      </h1>
-
-
-      <p class="page-subtitle">
-        See exactly what you spent, earned and recorded on every day.
-      </p>
-
-
-      <div class="card">
-
-        <div
-          style="
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          gap:10px;
-          "
-        >
-
-          <button
-            class="secondary"
-            style="width:auto;padding:10px 15px"
-            onclick="calendarPrev()"
-          >
-            ‹
-          </button>
-
-
-          <strong
-            id="calendarMonthTitle"
-            style="font-size:19px"
-          >
-          </strong>
-
-
-          <button
-            class="secondary"
-            style="width:auto;padding:10px 15px"
-            onclick="calendarNext()"
-          >
-            ›
-          </button>
-
-        </div>
-
-
-        <div
-          style="
-          display:grid;
-          grid-template-columns:repeat(7,1fr);
-          gap:5px;
-          margin-top:20px;
-          "
-        >
-
-          <div class="calendar-week">Mon</div>
-          <div class="calendar-week">Tue</div>
-          <div class="calendar-week">Wed</div>
-          <div class="calendar-week">Thu</div>
-          <div class="calendar-week">Fri</div>
-          <div class="calendar-week">Sat</div>
-          <div class="calendar-week">Sun</div>
-
-        </div>
-
-
-        <div
-          id="calendarGrid"
-          style="
-          display:grid;
-          grid-template-columns:repeat(7,1fr);
-          gap:5px;
-          margin-top:5px;
-          "
-        >
-        </div>
-
-      </div>
-
-
-      <div
-        class="card"
-        id="calendarDayCard"
-      >
-
-        <div class="card-title">
-          Select a day
-        </div>
-
-        <div class="card-subtitle">
-          Tap a date to see all transactions.
-        </div>
-
-      </div>
-
-
-      <div
-        class="card"
-        id="calendarYearSummary"
-      >
-      </div>
-
-    `;
-
-
-    document
-      .querySelector(".app")
-      .appendChild(page);
-
-
-    /* Add nav button */
-
-    const nav =
-      document.querySelector(".nav");
-
-
-    if(nav){
-
-      const button =
-        document.createElement("button");
-
-
-      button.id =
-        "nav-calendar";
-
-
-      button.onclick =
-        function(){
-          go("calendar");
-        };
-
-
-      button.innerHTML = `
-
-        <span class="nav-icon">
-          📅
-        </span>
-
-        Calendar
-
-      `;
-
-
-      nav.appendChild(button);
-
-
-      nav.style.gridTemplateColumns =
-        "repeat(5,1fr)";
-
-    }
-
-
-    renderCalendar();
-
-  }
-
-
-  /* ---------- CALENDAR STATE ---------- */
-
-  let calendarDate =
-    new Date();
-
-
-  window.calendarPrev =
-    function(){
-
-      calendarDate =
-        new Date(
-          calendarDate.getFullYear(),
-          calendarDate.getMonth()-1,
-          1
-        );
-
-
-      renderCalendar();
-
-    };
-
-
-  window.calendarNext =
-    function(){
-
-      calendarDate =
-        new Date(
-          calendarDate.getFullYear(),
-          calendarDate.getMonth()+1,
-          1
-        );
-
-
-      renderCalendar();
-
-    };
-
-
-  /* ---------- NORMALISE DATE ---------- */
-
-  function transactionDate(t){
-
-    if(!t.date){
-      return new Date();
-    }
-
-
-    let d =
-      new Date(t.date);
-
-
-    if(isNaN(d.getTime())){
-
-      const parts =
-        String(t.date).split("/");
-
-
-      if(parts.length === 3){
-
-        d =
-          new Date(
-            parts[2],
-            parts[1]-1,
-            parts[0]
-          );
-
-      }
-
-    }
-
-
-    return isNaN(d.getTime())
-      ? new Date()
-      : d;
-
-  }
-
-
-  function sameDay(a,b){
-
-    return(
-      a.getFullYear() === b.getFullYear() &&
-      a.getMonth() === b.getMonth() &&
-      a.getDate() === b.getDate()
-    );
-
-  }
-
-
-  /* ---------- RENDER CALENDAR ---------- */
-
-  window.renderCalendar =
-    function(){
-
-      const grid =
-        document.getElementById(
-          "calendarGrid"
-        );
-
-
-      if(!grid) return;
-
-
-      const title =
-        document.getElementById(
-          "calendarMonthTitle"
-        );
-
-
-      const year =
-        calendarDate.getFullYear();
-
-
-      const month =
-        calendarDate.getMonth();
-
-
-      title.textContent =
-        calendarDate.toLocaleDateString(
-          "en-US",
-          {
-            month:"long",
-            year:"numeric"
-          }
-        );
-
-
-      const first =
-        new Date(year,month,1);
-
-
-      const last =
-        new Date(year,month+1,0);
-
-
-      /*
-        Monday = 0
-      */
-
-      let start =
-        first.getDay()-1;
-
-
-      if(start < 0){
-        start = 6;
-      }
-
-
-      const days =
-        last.getDate();
-
-
-      let html = "";
-
-
-      for(let i=0;i<start;i++){
-
-        html += `
-          <div></div>
-        `;
-
-      }
-
-
-      for(
-        let day=1;
-        day<=days;
-        day++
-      ){
-
-        const date =
-          new Date(
-            year,
-            month,
-            day
-          );
-
-
-        const dayTransactions =
-          transactions.filter(
-            t=>sameDay(
-              transactionDate(t),
-              date
-            )
-          );
-
-
-        const spent =
-          dayTransactions
-            .filter(
-              t=>t.type==="expense"
-            )
-            .reduce(
-              (sum,t)=>
-                sum+Number(t.amount||0),
-              0
-            );
-
-
-        const earned =
-          dayTransactions
-            .filter(
-              t=>t.type==="income"
-            )
-            .reduce(
-              (sum,t)=>
-                sum+Number(t.amount||0),
-              0
-            );
-
-
-        const today =
-          sameDay(
-            date,
-            new Date()
-          );
-
-
-        html += `
-
-          <button
-            onclick="showCalendarDay(${year},${month},${day})"
-            style="
-            min-height:72px;
-            border-radius:12px;
-            border:1px solid ${
-              today
-              ? "var(--cyan)"
-              : "var(--border)"
-            };
-            background:var(--card2);
-            color:var(--text);
-            padding:6px 3px;
-            text-align:center;
-            "
-          >
-
-            <div
-              style="
-              font-weight:800;
-              font-size:14px;
-              "
-            >
-              ${day}
-            </div>
-
-
-            ${
-              spent > 0
-              ? `
-                <div
-                  style="
-                  color:var(--red);
-                  font-size:9px;
-                  margin-top:4px;
-                  white-space:nowrap;
-                  overflow:hidden;
-                  "
-                >
-                  -${money(spent)}
-                </div>
-              `
-              : ""
-            }
-
-
-            ${
-              earned > 0
-              ? `
-                <div
-                  style="
-                  color:var(--green);
-                  font-size:9px;
-                  margin-top:2px;
-                  white-space:nowrap;
-                  overflow:hidden;
-                  "
-                >
-                  +${money(earned)}
-                </div>
-              `
-              : ""
-            }
-
-          </button>
-
-        `;
-
-      }
-
-
-      grid.innerHTML = html;
-
-
-      renderYearSummary();
-
-    };
-
-
-  /* ---------- DAY DETAIL ---------- */
-
-  window.showCalendarDay =
-    function(year,month,day){
-
-      const selected =
-        new Date(
-          year,
-          month,
-          day
-        );
-
-
-      const list =
-        transactions.filter(
-          t=>sameDay(
-            transactionDate(t),
-            selected
-          )
-        );
-
-
-      const box =
-        document.getElementById(
-          "calendarDayCard"
-        );
-
-
-      if(!box) return;
-
-
-      const dateText =
-        selected.toLocaleDateString(
-          "en-US",
-          {
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-          }
-        );
-
-
-      if(list.length === 0){
-
-        box.innerHTML = `
-
-          <div class="card-title">
-            ${dateText}
-          </div>
-
-          <div class="empty">
-            No transactions recorded.
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      let income = 0;
-      let expense = 0;
-
-
-      list.forEach(t=>{
-
-        if(t.type==="income"){
-          income += Number(t.amount||0);
-        }
-        else{
-          expense += Number(t.amount||0);
-        }
-
-      });
-
-
-      box.innerHTML = `
-
-        <div class="card-title">
-          ${dateText}
-        </div>
-
-
-        <div
-          style="
-          display:grid;
-          grid-template-columns:1fr 1fr;
-          gap:10px;
-          margin:15px 0;
-          "
-        >
-
-          <div class="stat">
-
-            <div class="stat-label">
-              SPENT
-            </div>
-
-            <div class="stat-value expense">
-              ${money(expense)}
-            </div>
-
-          </div>
-
-
-          <div class="stat">
-
-            <div class="stat-label">
-              RECEIVED
-            </div>
-
-            <div class="stat-value income">
-              ${money(income)}
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div
-          style="
-          display:flex;
-          flex-direction:column;
-          gap:8px;
-          "
-        >
-
-          ${list.map(t=>`
-
-            <div
-              style="
-              display:flex;
-              justify-content:space-between;
-              align-items:center;
-              gap:10px;
-              padding:12px;
-              border:1px solid var(--border);
-              border-radius:14px;
-              background:var(--card2);
-              "
-            >
-
-              <div>
-
-                <strong>
-                  ${escapeHTML(t.description)}
-                </strong>
-
-                <div
-                  style="
-                  color:var(--muted);
-                  font-size:11px;
-                  margin-top:3px;
-                  "
-                >
-                  ${escapeHTML(t.category)}
-                </div>
-
-              </div>
-
-
-              <strong
-                class="${
-                  t.type==="income"
-                  ? "income"
-                  : "expense"
-                }"
-              >
-                ${
-                  t.type==="income"
-                  ? "+"
-                  : "-"
-                }${money(t.amount)}
-              </strong>
-
-            </div>
-
-          `).join("")}
-
-        </div>
-
-      `;
-
-    };
-
-
-  /* ---------- YEAR SUMMARY ---------- */
-
-  function renderYearSummary(){
-
-    const box =
-      document.getElementById(
-        "calendarYearSummary"
-      );
-
-
-    if(!box) return;
-
-
-    const year =
-      calendarDate.getFullYear();
-
-
-    const yearTransactions =
-      transactions.filter(
-        t=>
-          transactionDate(t)
-            .getFullYear() === year
-      );
-
-
-    const spent =
-      yearTransactions
-        .filter(t=>t.type==="expense")
-        .reduce(
-          (sum,t)=>
-            sum+Number(t.amount||0),
-          0
-        );
-
-
-    const income =
-      yearTransactions
-        .filter(t=>t.type==="income")
-        .reduce(
-          (sum,t)=>
-            sum+Number(t.amount||0),
-          0
-        );
-
-
-    box.innerHTML = `
-
-      <div class="card-title">
-        ${year} summary
-      </div>
-
-      <div class="report-grid">
-
-        <div class="report-stat">
-
-          <small>
-            TOTAL SPENT
-          </small>
-
-          <strong class="expense">
-            ${money(spent)}
-          </strong>
-
-        </div>
-
-
-        <div class="report-stat">
-
-          <small>
-            TOTAL RECEIVED
-          </small>
-
-          <strong class="income">
-            ${money(income)}
-          </strong>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* ---------- CALENDAR CSS ---------- */
-
-  const style =
-    document.createElement("style");
-
-
-  style.textContent = `
-
-    .calendar-week{
-      text-align:center;
-      color:var(--muted);
-      font-size:10px;
-      font-weight:700;
-      padding:5px 0;
-    }
-
-    #page-calendar button{
-      -webkit-tap-highlight-color:transparent;
-      touch-action:manipulation;
-    }
-
-  `;
-
-
-  document.head.appendChild(style);
-
-
-  /* =======================================================
-     REMOVE OLD EXAMPLE TEXT
-  ======================================================= */
-
-  function cleanExamples(){
-
-    document
-      .querySelectorAll(".hint")
-      .forEach(el=>{
-
-        el.textContent =
-          "Fast entry — amount + description.";
-
-      });
-
-
-    document
-      .querySelectorAll(".quick-description")
-      .forEach(el=>{
-
-        el.textContent =
-          "Record it in seconds. Just type the amount and what you spent on.";
-
-      });
-
-  }
-
-
-  /* =======================================================
-     ADD QUICK RECORD SELLING POINT
-  ======================================================= */
-
-  function improveQuickRecord(){
-
-    const label =
-      document.querySelector(
-        ".record-label"
-      );
-
-
-    if(label){
-
-      label.textContent =
-        "3-SECOND RECORD";
-
-    }
-
-
-    const input =
-      document.getElementById(
-        "quickInput"
-      );
-
-
-    if(input){
-
-      input.placeholder =
-        "5.50 Grab";
-
-    }
-
-
-    const button =
-      document.querySelector(
-        ".add-btn"
-      );
-
-
-    if(button){
-
-      button.type =
-        "button";
-
-      button.setAttribute(
-        "aria-label",
-        "Add transaction"
-      );
-
-    }
-
-  }
-
-
-  /* =======================================================
-     MAKE ALL BUTTONS TOUCH FRIENDLY
-  ======================================================= */
-
-  function fixTouchButtons(){
-
-    document
-      .querySelectorAll("button")
-      .forEach(btn=>{
-
-        btn.style.touchAction =
-          "manipulation";
-
-        btn.style.webkitTapHighlightColor =
-          "transparent";
-
-      });
-
-  }
-
-
-  /* =======================================================
-     INITIALISE AFTER ENTIRE ORIGINAL SCRIPT LOADS
-  ======================================================= */
-
-  window.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-      addCalendarPage();
-
-      addCurrencySetting();
-
-      cleanExamples();
-
-      improveQuickRecord();
-
-      fixTouchButtons();
-
-      renderCalendar();
-
-    }
-  );
-
-
-})();
+</body>
+</html>
