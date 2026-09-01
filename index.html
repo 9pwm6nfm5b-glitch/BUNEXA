@@ -1861,7 +1861,7 @@ function go(page){
     behavior:"smooth"
   });
 
-}
+
 
 
 /* =====================================================
@@ -1871,66 +1871,71 @@ function go(page){
 function detectCategory(text){
 
   const lower =
-    text.toLowerCase();
+    String(text || "")
+      .toLowerCase()
+      .trim();
 
-
-  /* DINING */
-
-  if(
-    /kopi|coffee|rice|mee|noodle|food|dining|meal|breakfast|lunch|dinner|makan|nasi|roti|chicken|bakery|restaurant|cafe|mcd|kfc|koufu|canteen|drink|tea|teh/.test(lower)
-  ){
-    return "Dining";
-  }
-
-
-  /* TRANSPORT */
+  /* GROCERIES / SUPERMARKETS */
 
   if(
-    /grab|gojek|mrt|bus|taxi|transport|train|erp|parking|petrol|fuel/.test(lower)
+    /fairprice|ntuc|sheng\s*siong|shengsiong|giant|cold\s*storage|prime\s*supermarket|redmart|don\s*don\s*donki|donki|market\s*place|jasons|jason's|supermarket|grocery|groceries|wet\s*market|provisions/.test(lower)
   ){
-    return "Transport";
+    return "Groceries";
   }
-
-
-  /* SHOPPING */
-
-  if(
-    /lazada|shopee|taobao|amazon|shopping|mall|clothes|shirt|shoe|bag|apple|online/.test(lower)
-  ){
-    return "Shopping";
-  }
-
 
   /* ENTERTAINMENT */
 
   if(
-    /cinema|movie|netflix|spotify|game|entertainment|concert/.test(lower)
+    /netflix|spotify|disney\+?|disneyplus|youtube\s*premium|youtube|apple\s*(tv|music|one|subscription)|apple\s*store|apple\.com|cinema|movie|film|game|gaming|entertainment|concert|ticket|steam|playstation|xbox/.test(lower)
   ){
     return "Entertainment";
   }
 
-
-  /* TRAVEL */
+  /* DINING */
 
   if(
-    /travel|holiday|hotel|flight|cruise|trip/.test(lower)
+    /kopi|coffee|rice|mee|noodle|food|dining|meal|breakfast|lunch|dinner|makan|nasi|roti|chicken|bakery|restaurant|cafe|mcd|mcdonald|kfc|koufu|canteen|drink|tea|teh|toast|hawker|foodcourt|food\s*court|dessert|bubble\s*tea/.test(lower)
   ){
-    return "Travel";
+    return "Dining";
   }
 
+  /* TRANSPORT */
+
+  if(
+    /grab|gojek|mrt|bus|taxi|transport|train|erp|parking|petrol|fuel|shell|esso|caltex|charging|charge/.test(lower)
+  ){
+    return "Transport";
+  }
 
   /* BILLS */
 
   if(
-    /phone|wifi|internet|bill|simba|singtel|starhub|m1|electricity|utilities/.test(lower)
+    /phone|wifi|internet|bill|simba|singtel|starhub|m1|electricity|utilities|water|sp|spgroup|town\s*council|insurance/.test(lower)
   ){
     return "Bills";
   }
 
+  /* SHOPPING */
+
+  if(
+    /lazada|shopee|taobao|amazon|shopping|mall|clothes|shirt|shoe|shoes|bag|fashion|uniqlo|zara|h&m|online\s*shopping|carousell/.test(lower)
+  ){
+    return "Shopping";
+  }
+
+  /* TRAVEL */
+
+  if(
+    /travel|holiday|hotel|flight|cruise|trip|airbnb|booking\.com|agoda|airport/.test(lower)
+  ){
+    return "Travel";
+  }
 
   return "Other";
 
 }
+
+
 
 
 /* =====================================================
