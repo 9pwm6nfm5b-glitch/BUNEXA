@@ -1,39 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>BUNEXA — Money Butler</title>
-<style>
-:root{--bg:#08090c;--card:#111319;--card2:#151820;--text:#f5f7fa;--muted:#8c94a1;--border:#292e38;--cyan:#19c5c0;--cyan-soft:rgba(25,197,192,.12);--red:#ff7070;--green:#58dfaa;--shadow:0 12px 35px rgba(0,0,0,.18)}
-body.light{--bg:#f5f9f8;--card:#fff;--card2:#f1f6f5;--text:#11161a;--muted:#727b82;--border:#dbe4e3;--cyan:#159f9c;--cyan-soft:rgba(21,159,156,.10);--red:#d85e5e;--green:#3e9d78;--shadow:0 12px 35px rgba(40,70,70,.08)}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px}
-button,input,select{font:inherit}
-button{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-input,select{touch-action:manipulation}
-.app{width:min(520px,100%);margin:auto;padding:26px 20px 110px}
-.page{display:none}.page.active{display:block}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-.logo{font-size:29px;font-weight:850;letter-spacing:4px}
-.menu-btn{width:48px;height:48px;border-radius:16px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:23px;position:relative;z-index:5}
-.eyebrow{color:var(--muted);font-size:12px;letter-spacing:2px;margin-bottom:8px}
-.page-title{font-size:38px;font-weight:850;letter-spacing:-1.5px;margin-bottom:8px}
-.page-subtitle{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:22px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:25px;padding:23px;margin-bottom:16px;box-shadow:var(--shadow)}
-.card-title{font-size:20px;font-weight:780;margin-bottom:7px}
-.card-subtitle{color:var(--muted);font-size:13px}
-.balance-label{color:var(--muted);font-size:14px}
-.balance{font-size:44px;font-weight:850;letter-spacing:-2px;margin:7px 0 22px}
-.stats,.report-grid,.goal-info{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.stat,.report-stat,.goal-mini{background:var(--card2);border:1px solid var(--border);border-radius:17px;padding:15px}
-.stat-label,.report-stat small,.goal-mini small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px;margin-bottom:7px}
-.stat-value,.report-stat strong{font-size:19px;font-weight:780}
-.income{color:var(--green)}.expense{color:var(--red)}.cyan{color:var(--cyan)}
-.safe{border-color:var(--cyan);background:var(--cyan-soft)}
-.safe-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.safe-title{font-size:19px;font-weight:780}
 .safe-text{color:var(--muted);font-size:12px;margin-top:5px;line-height:1.4}
 .safe-number{color:var(--cyan);font-size:27px;font-weight:850;white-space:nowrap}
 .quick-card{border-color:var(--cyan)}
