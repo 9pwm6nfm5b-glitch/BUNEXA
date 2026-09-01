@@ -7,28 +7,33 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:#08090c;
   color:#f5f5f5;
   min-height:100vh;
 }
+
 .app{
   max-width:520px;
   margin:auto;
   padding:28px 20px 110px;
 }
+
 .top{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:32px;
 }
+
 .logo{
   font-size:30px;
   font-weight:800;
   letter-spacing:-1px;
 }
+
 .menu{
   width:44px;
   height:44px;
@@ -39,16 +44,19 @@ body{
   justify-content:center;
   font-size:21px;
 }
+
 .greeting{
   color:#8f96a3;
-  font-size:14px;
+  font-size:13px;
   margin-bottom:8px;
 }
+
 .title{
   font-size:30px;
   font-weight:700;
   margin-bottom:22px;
 }
+
 .balance{
   background:linear-gradient(145deg,#181b22,#101217);
   border:1px solid #292d35;
@@ -56,38 +64,50 @@ body{
   padding:24px;
   margin-bottom:18px;
 }
+
 .balance-label{
   color:#949aa6;
   font-size:14px;
 }
+
 .amount{
   font-size:38px;
   font-weight:750;
   margin:8px 0 22px;
   letter-spacing:-1px;
 }
+
 .stats{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
 }
+
 .stat{
   background:#0d0f13;
   border:1px solid #252932;
   border-radius:16px;
   padding:15px;
 }
+
 .stat-label{
   color:#858c99;
   font-size:12px;
   margin-bottom:7px;
 }
+
 .stat-value{
   font-size:17px;
   font-weight:650;
 }
-.income{color:#5ee6a8}
-.expense{color:#ff7272}
+
+.income{
+  color:#5ee6a8;
+}
+
+.expense{
+  color:#ff7272;
+}
 
 .section{
   display:flex;
@@ -95,9 +115,11 @@ body{
   align-items:center;
   margin:28px 0 14px;
 }
+
 .section h2{
   font-size:19px;
 }
+
 .section span{
   color:#8d94a0;
   font-size:13px;
@@ -108,6 +130,7 @@ body{
   grid-template-columns:1fr 1fr;
   gap:12px;
 }
+
 .action{
   border:1px solid #292d35;
   background:#111319;
@@ -117,11 +140,13 @@ body{
   text-align:left;
   font-size:15px;
 }
+
 .action strong{
   display:block;
   font-size:25px;
   margin-bottom:8px;
 }
+
 .action small{
   color:#858c98;
 }
@@ -131,6 +156,7 @@ body{
   flex-direction:column;
   gap:10px;
 }
+
 .transaction{
   display:flex;
   align-items:center;
@@ -140,11 +166,13 @@ body{
   border-radius:17px;
   padding:15px;
 }
+
 .left{
   display:flex;
   align-items:center;
   gap:12px;
 }
+
 .icon{
   width:42px;
   height:42px;
@@ -155,18 +183,96 @@ body{
   justify-content:center;
   font-size:19px;
 }
+
 .name{
   font-weight:600;
   font-size:14px;
 }
+
 .date{
   color:#777e8a;
   font-size:11px;
   margin-top:4px;
 }
+
 .money{
   font-weight:700;
   font-size:14px;
+}
+
+.quick-box{
+  background:#111319;
+  border:2px solid #16c7bc;
+  border-radius:22px;
+  padding:18px;
+}
+
+.quick-label{
+  font-size:11px;
+  color:#16c7bc;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.quick-input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#fff;
+  font-size:20px;
+  padding:8px 0;
+}
+
+.quick-input::placeholder{
+  color:#646a75;
+}
+
+.quick-hint{
+  color:#777e8a;
+  font-size:10px;
+  margin-top:7px;
+}
+
+.quick-add{
+  width:100%;
+  margin-top:13px;
+  padding:15px;
+  border:0;
+  border-radius:14px;
+  background:#16c7bc;
+  color:#061010;
+  font-size:15px;
+  font-weight:800;
+}
+
+.preview{
+  display:none;
+  margin-top:12px;
+  padding:12px;
+  border-radius:14px;
+  background:#18211f;
+}
+
+.preview-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.preview-name{
+  font-weight:700;
+}
+
+.preview-category{
+  color:#7faaa6;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.preview-amount{
+  font-size:20px;
+  font-weight:800;
 }
 
 .nav{
@@ -184,6 +290,7 @@ body{
   gap:5px;
   backdrop-filter:blur(18px);
 }
+
 .nav button{
   background:transparent;
   border:0;
@@ -192,62 +299,31 @@ body{
   border-radius:16px;
   font-size:11px;
 }
+
 .nav button:first-child{
   background:#292d35;
   color:#fff;
 }
+
 .nav-icon{
   display:block;
   font-size:19px;
   margin-bottom:3px;
 }
 
-.modal{
-  display:none;
+.toast{
   position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  align-items:flex-end;
-  justify-content:center;
-  padding:15px;
-}
-.modal-box{
-  width:min(500px,100%);
-  background:#15171d;
-  border:1px solid #30343d;
-  border-radius:25px;
-  padding:24px;
-}
-.modal-box h2{
-  margin-bottom:20px;
-}
-input,select{
-  width:100%;
-  padding:15px;
-  margin-bottom:12px;
-  background:#0c0e12;
-  color:#fff;
-  border:1px solid #30343d;
-  border-radius:14px;
-  font-size:15px;
-}
-.save{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:15px;
+  bottom:95px;
+  left:50%;
+  transform:translateX(-50%);
   background:#fff;
   color:#08090c;
+  padding:12px 18px;
+  border-radius:14px;
+  font-size:12px;
   font-weight:700;
-  font-size:15px;
-}
-.close{
-  margin-top:10px;
-  width:100%;
-  padding:12px;
-  border:0;
-  background:transparent;
-  color:#999;
+  display:none;
+  z-index:99;
 }
 </style>
 </head>
@@ -261,25 +337,108 @@ input,select{
     <div class="menu">☰</div>
   </div>
 
-  <div class="greeting">YOUR PERSONAL MONEY BUTLER</div>
-  <div class="title">Good evening 👋</div>
+  <div class="greeting">
+    YOUR PERSONAL MONEY BUTLER
+  </div>
+
+  <div class="title">
+    Good evening 👋
+  </div>
 
   <div class="balance">
-    <div class="balance-label">Total Balance</div>
-    <div class="amount" id="balance">$0.00</div>
+
+    <div class="balance-label">
+      Total Balance
+    </div>
+
+    <div class="amount" id="balance">
+      $0.00
+    </div>
 
     <div class="stats">
+
       <div class="stat">
-        <div class="stat-label">INCOME</div>
-        <div class="stat-value income" id="income">$0.00</div>
+        <div class="stat-label">
+          INCOME
+        </div>
+
+        <div class="stat-value income" id="income">
+          $0.00
+        </div>
       </div>
 
       <div class="stat">
-        <div class="stat-label">EXPENSES</div>
-        <div class="stat-value expense" id="expense">$0.00</div>
+        <div class="stat-label">
+          EXPENSES
+        </div>
+
+        <div class="stat-value expense" id="expense">
+          $0.00
+        </div>
       </div>
+
     </div>
+
   </div>
+
+
+  <!-- QUICK RECORD -->
+
+  <div class="section">
+    <h2>Quick Record</h2>
+    <span>Just type it</span>
+  </div>
+
+  <div class="quick-box">
+
+    <div class="quick-label">
+      ⚡ ONE-LINE RECORD
+    </div>
+
+    <input
+      id="quickInput"
+      class="quick-input"
+      autocomplete="off"
+      placeholder="5.5 Koufu"
+    >
+
+    <div class="quick-hint">
+      Example: 5.5 Koufu · 7.8 Bus · 450 Cruises
+    </div>
+
+    <div class="preview" id="preview">
+
+      <div class="preview-top">
+
+        <div>
+          <div class="preview-name" id="previewName">
+            Koufu
+          </div>
+
+          <div class="preview-category" id="previewCategory">
+            Food
+          </div>
+        </div>
+
+        <div class="preview-amount" id="previewAmount">
+          -$5.50
+        </div>
+
+      </div>
+
+    </div>
+
+    <button
+      class="quick-add"
+      id="quickAdd"
+    >
+      Add
+    </button>
+
+  </div>
+
+
+  <!-- QUICK ACTIONS -->
 
   <div class="section">
     <h2>Quick actions</h2>
@@ -287,191 +446,736 @@ input,select{
   </div>
 
   <div class="actions">
-    <button class="action" onclick="openModal('income')">
+
+    <button class="action" onclick="openQuick('income')">
       <strong>＋</strong>
       Add income
-      <small>Record money in</small>
+      <small>Quick record</small>
     </button>
 
-    <button class="action" onclick="openModal('expense')">
+    <button class="action" onclick="openQuick('expense')">
       <strong>−</strong>
       Add expense
-      <small>Record money out</small>
+      <small>Quick record</small>
     </button>
+
   </div>
+
+
+  <!-- TRANSACTIONS -->
 
   <div class="section">
     <h2>Recent transactions</h2>
     <span id="count">0 items</span>
   </div>
 
-  <div class="transactions" id="transactions">
-    <div class="transaction">
-      <div class="left">
-        <div class="icon">💰</div>
-        <div>
-          <div class="name">No transactions yet</div>
-          <div class="date">Add your first transaction</div>
-        </div>
-      </div>
-      <div class="money">—</div>
-    </div>
-  </div>
+  <div
+    class="transactions"
+    id="transactions"
+  ></div>
 
 </div>
 
+
+<!-- NAV -->
+
 <div class="nav">
+
   <button>
     <span class="nav-icon">⌂</span>
     Home
   </button>
-  <button onclick="openModal('expense')">
+
+  <button onclick="focusQuick()">
     <span class="nav-icon">＋</span>
     Add
   </button>
+
   <button>
     <span class="nav-icon">◴</span>
     Reports
   </button>
+
   <button>
     <span class="nav-icon">⚙</span>
     Settings
   </button>
+
 </div>
 
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <h2 id="modalTitle">Add transaction</h2>
 
-    <input id="description" placeholder="Description">
+<div class="toast" id="toast"></div>
 
-    <input id="amount" type="number" step="0.01" placeholder="Amount">
-
-    <select id="category">
-      <option>Food</option>
-      <option>Transport</option>
-      <option>Shopping</option>
-      <option>Bills</option>
-      <option>Salary</option>
-      <option>Other</option>
-    </select>
-
-    <button class="save" onclick="saveTransaction()">Save transaction</button>
-    <button class="close" onclick="closeModal()">Cancel</button>
-  </div>
-</div>
 
 <script>
+
 let transactions =
-  JSON.parse(localStorage.getItem("bunexa_transactions") || "[]");
+  JSON.parse(
+    localStorage.getItem("bunexa_transactions") || "[]"
+  );
 
-let currentType = "expense";
 
-function openModal(type){
-  currentType = type;
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("modalTitle").textContent =
-    type === "income" ? "Add income" : "Add expense";
-}
+/* --------------------------------
+   MERCHANT DATABASE — V1
+-------------------------------- */
 
-function closeModal(){
-  document.getElementById("modal").style.display = "none";
-}
+const merchants = [
 
-function saveTransaction(){
+  {
+    keys:["koufu"],
+    name:"Koufu",
+    category:"Food",
+    icon:"🍜"
+  },
 
-  const description =
-    document.getElementById("description").value.trim();
+  {
+    keys:["food republic"],
+    name:"Food Republic",
+    category:"Food",
+    icon:"🍜"
+  },
 
-  const amount =
-    parseFloat(document.getElementById("amount").value);
+  {
+    keys:["food"],
+    name:"Food",
+    category:"Food",
+    icon:"🍜"
+  },
 
-  const category =
-    document.getElementById("category").value;
+  {
+    keys:["mcdonald","mcd"],
+    name:"McDonald's",
+    category:"Food",
+    icon:"🍔"
+  },
 
-  if(!description || !amount || amount <= 0){
-    alert("Please enter a description and valid amount.");
-    return;
+  {
+    keys:["kfc"],
+    name:"KFC",
+    category:"Food",
+    icon:"🍗"
+  },
+
+  {
+    keys:["starbucks"],
+    name:"Starbucks",
+    category:"Food",
+    icon:"☕"
+  },
+
+  {
+    keys:["toast box"],
+    name:"Toast Box",
+    category:"Food",
+    icon:"🍞"
+  },
+
+  {
+    keys:["ya kun","yakun"],
+    name:"Ya Kun",
+    category:"Food",
+    icon:"☕"
+  },
+
+  {
+    keys:["sheng siong","shengxiong"],
+    name:"Sheng Siong",
+    category:"Groceries",
+    icon:"🛒"
+  },
+
+  {
+    keys:["fairprice","ntuc"],
+    name:"FairPrice",
+    category:"Groceries",
+    icon:"🛒"
+  },
+
+  {
+    keys:["cold storage"],
+    name:"Cold Storage",
+    category:"Groceries",
+    icon:"🛒"
+  },
+
+  {
+    keys:["giant"],
+    name:"Giant",
+    category:"Groceries",
+    icon:"🛒"
+  },
+
+  {
+    keys:["grab"],
+    name:"Grab",
+    category:"Transport",
+    icon:"🚕"
+  },
+
+  {
+    keys:["bus"],
+    name:"Bus",
+    category:"Transport",
+    icon:"🚌"
+  },
+
+  {
+    keys:["taxi"],
+    name:"Taxi",
+    category:"Transport",
+    icon:"🚕"
+  },
+
+  {
+    keys:["petrol"],
+    name:"Petrol",
+    category:"Transport",
+    icon:"⛽"
+  },
+
+  {
+    keys:["cinema"],
+    name:"Cinema",
+    category:"Entertainment",
+    icon:"🎬"
+  },
+
+  {
+    keys:["cruises","cruise"],
+    name:"Cruises",
+    category:"Travel",
+    icon:"🚢"
+  },
+
+  {
+    keys:["simba tele","simba"],
+    name:"Simba Tele",
+    category:"Telecom",
+    icon:"📱"
+  },
+
+  {
+    keys:["salary"],
+    name:"Salary",
+    category:"Income",
+    icon:"💰",
+    income:true
+  },
+
+  {
+    keys:["bonus"],
+    name:"Bonus",
+    category:"Income",
+    icon:"💰",
+    income:true
+  },
+
+  {
+    keys:["aws"],
+    name:"AWS",
+    category:"Income",
+    icon:"💰",
+    income:true
+  },
+
+  {
+    keys:["overtime","ot"],
+    name:"Overtime",
+    category:"Income",
+    icon:"💰",
+    income:true
   }
 
-  transactions.unshift({
-    type:currentType,
-    description,
-    amount,
-    category,
+];
+
+
+/* --------------------------------
+   PARSE ONE-LINE INPUT
+-------------------------------- */
+
+function parseInput(text){
+
+  text = text.trim();
+
+  if(!text){
+    return null;
+  }
+
+  const amountMatch =
+    text.match(/(?:^|\s)(?:\$|rm|myr)?\s*(\d+(?:\.\d{1,2})?)(?=\s|$)/i);
+
+  if(!amountMatch){
+    return null;
+  }
+
+  const amount =
+    parseFloat(amountMatch[1]);
+
+  let name =
+    text.replace(amountMatch[0]," ").trim();
+
+  name =
+    name.replace(/\s+/g," ").trim();
+
+
+  const lower =
+    name.toLowerCase();
+
+  let found = null;
+
+
+  for(const merchant of merchants){
+
+    for(const key of merchant.keys){
+
+      if(lower.includes(key)){
+        found = merchant;
+        break;
+      }
+
+    }
+
+    if(found) break;
+  }
+
+
+  /*
+    Automatic category detection
+  */
+
+  if(!found){
+
+    if(/lunch|dinner|breakfast|meal|food/.test(lower)){
+
+      found = {
+        name:name || "Food",
+        category:"Food",
+        icon:"🍜"
+      };
+
+    }
+
+    else if(/movie|movies/.test(lower)){
+
+      found = {
+        name:name || "Cinema",
+        category:"Entertainment",
+        icon:"🎬"
+      };
+
+    }
+
+    else if(/train|mrt|bus|taxi|transport/.test(lower)){
+
+      found = {
+        name:name || "Transport",
+        category:"Transport",
+        icon:"🚌"
+      };
+
+    }
+
+    else {
+
+      found = {
+        name:name || "Shop",
+        category:"Shop",
+        icon:"🏪"
+      };
+
+    }
+
+  }
+
+
+  let type =
+    found.income ? "income" : "expense";
+
+
+  /*
+    +500 / -500 support
+  */
+
+  if(text.includes("+")){
+    type = "income";
+  }
+
+  if(text.includes("-")){
+    type = "expense";
+  }
+
+
+  return {
+
+    type:type,
+
+    description:found.name,
+
+    amount:amount,
+
+    category:found.category,
+
+    icon:found.icon,
+
     date:new Date().toLocaleDateString()
-  });
+
+  };
+
+}
+
+
+/* --------------------------------
+   PREVIEW
+-------------------------------- */
+
+function showPreview(){
+
+  const text =
+    document.getElementById("quickInput").value;
+
+  const result =
+    parseInput(text);
+
+  const preview =
+    document.getElementById("preview");
+
+
+  if(!result){
+
+    preview.style.display="none";
+
+    return;
+
+  }
+
+
+  preview.style.display="block";
+
+
+  document.getElementById("previewName")
+    .textContent =
+    result.icon+" "+result.description;
+
+
+  document.getElementById("previewCategory")
+    .textContent =
+    result.category;
+
+
+  document.getElementById("previewAmount")
+    .textContent =
+    (result.type === "income" ? "+" : "-")
+    +
+    "$"
+    +
+    result.amount.toFixed(2);
+
+}
+
+
+/* --------------------------------
+   ADD TRANSACTION
+-------------------------------- */
+
+function addTransaction(){
+
+  const input =
+    document.getElementById("quickInput");
+
+  const text =
+    input.value.trim();
+
+
+  const result =
+    parseInput(text);
+
+
+  if(!result){
+
+    showToast(
+      "Type something like 5.5 Koufu"
+    );
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  transactions.unshift(result);
+
 
   localStorage.setItem(
     "bunexa_transactions",
     JSON.stringify(transactions)
   );
 
-  document.getElementById("description").value = "";
-  document.getElementById("amount").value = "";
 
-  closeModal();
+  input.value="";
+
+  document.getElementById("preview")
+    .style.display="none";
+
+
   render();
+
+
+  showToast(
+    "✓ "+result.description+
+    " "+(result.type==="income"?"+":"-")+
+    "$"+result.amount.toFixed(2)
+  );
+
+
+  /*
+    Keep focus so user can immediately
+    enter the next transaction.
+  */
+
+  setTimeout(()=>{
+    input.focus();
+  },100);
+
 }
+
+
+/* --------------------------------
+   RENDER HOME
+-------------------------------- */
 
 function render(){
 
-  let income = 0;
-  let expense = 0;
+  let income=0;
+
+  let expense=0;
+
 
   transactions.forEach(t=>{
-    if(t.type === "income") income += t.amount;
-    else expense += t.amount;
+
+    if(t.type==="income"){
+
+      income += t.amount;
+
+    }else{
+
+      expense += t.amount;
+
+    }
+
   });
 
-  document.getElementById("income").textContent =
-    "$" + income.toFixed(2);
 
-  document.getElementById("expense").textContent =
-    "$" + expense.toFixed(2);
+  document.getElementById("income")
+    .textContent =
+    "$"+income.toFixed(2);
 
-  document.getElementById("balance").textContent =
-    "$" + (income-expense).toFixed(2);
 
-  document.getElementById("count").textContent =
-    transactions.length + " items";
+  document.getElementById("expense")
+    .textContent =
+    "$"+expense.toFixed(2);
 
-  const box = document.getElementById("transactions");
 
-  if(transactions.length === 0){
-    box.innerHTML = `
+  document.getElementById("balance")
+    .textContent =
+    "$"+(income-expense).toFixed(2);
+
+
+  document.getElementById("count")
+    .textContent =
+    transactions.length+" items";
+
+
+  const box =
+    document.getElementById("transactions");
+
+
+  if(transactions.length===0){
+
+    box.innerHTML=`
+
       <div class="transaction">
+
         <div class="left">
-          <div class="icon">💰</div>
-          <div>
-            <div class="name">No transactions yet</div>
-            <div class="date">Add your first transaction</div>
+
+          <div class="icon">
+            💰
           </div>
+
+          <div>
+
+            <div class="name">
+              No transactions yet
+            </div>
+
+            <div class="date">
+              Try: 5.5 Koufu
+            </div>
+
+          </div>
+
         </div>
-        <div class="money">—</div>
-      </div>`;
+
+        <div class="money">
+          —
+        </div>
+
+      </div>
+
+    `;
+
     return;
+
   }
 
-  box.innerHTML = transactions.slice(0,10).map(t=>`
-    <div class="transaction">
-      <div class="left">
-        <div class="icon">
-          ${t.type === "income" ? "💰" : "🛍️"}
+
+  box.innerHTML =
+    transactions
+      .slice(0,10)
+      .map(t=>`
+
+        <div class="transaction">
+
+          <div class="left">
+
+            <div class="icon">
+              ${t.icon || "🛍️"}
+            </div>
+
+            <div>
+
+              <div class="name">
+                ${t.description}
+              </div>
+
+              <div class="date">
+                ${t.category} · ${t.date}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="money ${
+            t.type
+          }">
+
+            ${
+              t.type==="income"
+              ? "+"
+              : "-"
+            }$${t.amount.toFixed(2)}
+
+          </div>
+
         </div>
-        <div>
-          <div class="name">${t.description}</div>
-          <div class="date">${t.category} · ${t.date}</div>
-        </div>
-      </div>
-      <div class="money ${t.type}">
-        ${t.type === "income" ? "+" : "-"}$${t.amount.toFixed(2)}
-      </div>
-    </div>
-  `).join("");
+
+      `)
+      .join("");
+
 }
 
+
+/* --------------------------------
+   QUICK ACTIONS
+-------------------------------- */
+
+function openQuick(type){
+
+  const input =
+    document.getElementById("quickInput");
+
+  input.value =
+    type==="income"
+    ? "salary "
+    : "";
+
+  input.focus();
+
+  showPreview();
+
+}
+
+
+function focusQuick(){
+
+  const input =
+    document.getElementById("quickInput");
+
+  input.focus();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* --------------------------------
+   TOAST
+-------------------------------- */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.style.display="block";
+
+
+  setTimeout(()=>{
+
+    toast.style.display="none";
+
+  },1500);
+
+}
+
+
+/* --------------------------------
+   EVENTS
+-------------------------------- */
+
+document
+  .getElementById("quickInput")
+  .addEventListener(
+    "input",
+    showPreview
+  );
+
+
+document
+  .getElementById("quickInput")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key==="Enter"){
+
+        event.preventDefault();
+
+        addTransaction();
+
+      }
+
+    }
+  );
+
+
+document
+  .getElementById("quickAdd")
+  .addEventListener(
+    "click",
+    addTransaction
+  );
+
+
 render();
+
 </script>
 
 </body>
