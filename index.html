@@ -2,307 +2,492 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#18aaa5">
 <title>BUNEXA — Money Butler</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f8f8;
+  --card:#ffffff;
+  --soft:#edf7f6;
+  --input:#f8fbfb;
+  --text:#172124;
+  --muted:#7b8789;
+  --line:#dce6e5;
+  --accent:#18aaa5;
+  --accent-dark:#128b87;
+  --green:#32ad78;
+  --red:#e96565;
+  --shadow:0 8px 28px rgba(28,76,75,.07);
+}
+
+body.dark{
+  --bg:#080a0b;
+  --card:#121516;
+  --soft:#192221;
+  --input:#0d1011;
+  --text:#f4f7f7;
+  --muted:#929b9d;
+  --line:#293132;
+  --accent:#20b8b2;
+  --accent-dark:#35c7c1;
+  --green:#48c991;
+  --red:#ff7474;
+  --shadow:0 8px 28px rgba(0,0,0,.25);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#08090c;
-  color:#f5f5f5;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
   min-height:100vh;
+  transition:.25s ease;
+}
+
+button,input{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
 }
 
 .app{
-  max-width:520px;
+  width:min(520px,100%);
   margin:auto;
-  padding:28px 20px 110px;
+  padding:22px 18px 120px;
 }
 
-.top{
+/* HEADER */
+
+.header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:32px;
+  justify-content:space-between;
+  margin-bottom:34px;
 }
 
-.logo{
-  font-size:30px;
-  font-weight:800;
-  letter-spacing:-1px;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.menu{
-  width:44px;
-  height:44px;
-  border:1px solid #292d35;
-  border-radius:14px;
+.logo-mark{
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  background:var(--accent);
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:21px;
+  font-size:20px;
+  font-weight:800;
 }
 
-.greeting{
-  color:#8f96a3;
-  font-size:13px;
-  margin-bottom:8px;
+.logo{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:3px;
+}
+
+.theme-btn{
+  width:43px;
+  height:43px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--card);
+  color:var(--text);
+  font-size:19px;
+}
+
+/* HOME */
+
+.eyebrow{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:1.4px;
+  margin-bottom:7px;
 }
 
 .title{
   font-size:30px;
-  font-weight:700;
-  margin-bottom:22px;
+  font-weight:780;
+  letter-spacing:-1px;
+  margin-bottom:21px;
 }
 
+/* BALANCE */
+
 .balance{
-  background:linear-gradient(145deg,#181b22,#101217);
-  border:1px solid #292d35;
-  border-radius:24px;
-  padding:24px;
-  margin-bottom:18px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:23px;
+  box-shadow:var(--shadow);
+  margin-bottom:24px;
 }
 
 .balance-label{
-  color:#949aa6;
-  font-size:14px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-.amount{
-  font-size:38px;
-  font-weight:750;
-  margin:8px 0 22px;
-  letter-spacing:-1px;
+.balance-number{
+  font-size:42px;
+  font-weight:800;
+  letter-spacing:-2px;
+  margin:7px 0 22px;
 }
 
 .stats{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:11px;
 }
 
 .stat{
-  background:#0d0f13;
-  border:1px solid #252932;
+  background:var(--soft);
   border-radius:16px;
-  padding:15px;
+  padding:14px;
 }
 
 .stat-label{
-  color:#858c99;
-  font-size:12px;
-  margin-bottom:7px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:.7px;
+  margin-bottom:6px;
 }
 
 .stat-value{
-  font-size:17px;
-  font-weight:650;
+  font-size:18px;
+  font-weight:750;
 }
 
 .income{
-  color:#5ee6a8;
+  color:var(--green);
 }
 
 .expense{
-  color:#ff7272;
+  color:var(--red);
 }
+
+/* QUICK RECORD */
+
+.quick-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:23px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:27px;
+}
+
+.quick-title{
+  font-size:18px;
+  font-weight:760;
+  margin-bottom:4px;
+}
+
+.quick-subtitle{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:14px;
+}
+
+.quick-label{
+  color:var(--accent-dark);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  margin-bottom:9px;
+}
+
+.input-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 6px 6px 14px;
+  background:var(--input);
+  border:2px solid var(--line);
+  border-radius:16px;
+  transition:.2s;
+}
+
+.input-row:focus-within{
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px rgba(24,170,165,.09);
+}
+
+.quick-input{
+  min-width:0;
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--text);
+  font-size:17px;
+  padding:10px 0;
+}
+
+.quick-input::placeholder{
+  color:#98a2a3;
+}
+
+.add-btn{
+  width:44px;
+  height:44px;
+  flex-shrink:0;
+  border:0;
+  border-radius:13px;
+  background:var(--accent);
+  color:#fff;
+  font-size:25px;
+  font-weight:500;
+}
+
+.quick-example{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+  margin-top:10px;
+}
+
+/* SECTION */
 
 .section{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin:28px 0 14px;
+  justify-content:space-between;
+  margin:0 2px 12px;
 }
 
-.section h2{
+.section-title{
   font-size:19px;
+  font-weight:760;
 }
 
-.section span{
-  color:#8d94a0;
-  font-size:13px;
+.section-action{
+  border:0;
+  background:none;
+  color:var(--accent-dark);
+  font-size:12px;
+  font-weight:700;
 }
 
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.action{
-  border:1px solid #292d35;
-  background:#111319;
-  border-radius:18px;
-  padding:20px 14px;
-  color:#fff;
-  text-align:left;
-  font-size:15px;
-}
-
-.action strong{
-  display:block;
-  font-size:25px;
-  margin-bottom:8px;
-}
-
-.action small{
-  color:#858c98;
-}
+/* TRANSACTIONS */
 
 .transactions{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:9px;
 }
 
 .transaction{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  background:#111319;
-  border:1px solid #252932;
-  border-radius:17px;
-  padding:15px;
+  gap:10px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:13px;
 }
 
-.left{
+.transaction-left{
+  min-width:0;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:11px;
 }
 
 .icon{
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  background:#1d2028;
+  width:43px;
+  height:43px;
+  flex-shrink:0;
+  border-radius:14px;
+  background:var(--soft);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:19px;
 }
 
-.name{
-  font-weight:600;
-  font-size:14px;
+.transaction-info{
+  min-width:0;
 }
 
-.date{
-  color:#777e8a;
+.transaction-name{
+  font-size:14px;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:190px;
+}
+
+.transaction-meta{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.transaction-right{
+  flex-shrink:0;
+  text-align:right;
+}
+
+.transaction-money{
+  font-size:14px;
+  font-weight:760;
+}
+
+.delete{
+  border:0;
+  background:none;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.empty{
+  text-align:center;
+  padding:27px 15px;
+  background:var(--card);
+  border:1px dashed var(--line);
+  border-radius:18px;
+}
+
+.empty-icon{
+  font-size:27px;
+  margin-bottom:8px;
+}
+
+.empty-title{
+  font-size:14px;
+  font-weight:700;
+}
+
+.empty-text{
+  color:var(--muted);
   font-size:11px;
   margin-top:4px;
 }
 
-.money{
-  font-weight:700;
+/* PAGES */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* REPORT */
+
+.report-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:19px;
+  margin-bottom:12px;
+  box-shadow:var(--shadow);
+}
+
+.report-title{
+  font-size:16px;
+  font-weight:750;
+  margin-bottom:12px;
+}
+
+.report-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+
+.report-row:last-child{
+  border-bottom:0;
+}
+
+/* SETTINGS */
+
+.settings-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+}
+
+.settings-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:17px;
+  border-bottom:1px solid var(--line);
   font-size:14px;
 }
 
-.quick-box{
-  background:#111319;
-  border:2px solid #16c7bc;
-  border-radius:22px;
-  padding:18px;
+.settings-row:last-child{
+  border-bottom:0;
 }
 
-.quick-label{
-  font-size:11px;
-  color:#16c7bc;
-  font-weight:800;
-  margin-bottom:10px;
+.settings-value{
+  color:var(--muted);
+  font-size:13px;
 }
 
-.quick-input{
-  width:100%;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:#fff;
-  font-size:20px;
-  padding:8px 0;
+.danger{
+  color:var(--red);
 }
 
-.quick-input::placeholder{
-  color:#646a75;
-}
-
-.quick-hint{
-  color:#777e8a;
-  font-size:10px;
-  margin-top:7px;
-}
-
-.quick-add{
-  width:100%;
-  margin-top:13px;
-  padding:15px;
-  border:0;
-  border-radius:14px;
-  background:#16c7bc;
-  color:#061010;
-  font-size:15px;
-  font-weight:800;
-}
-
-.preview{
-  display:none;
-  margin-top:12px;
-  padding:12px;
-  border-radius:14px;
-  background:#18211f;
-}
-
-.preview-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.preview-name{
-  font-weight:700;
-}
-
-.preview-category{
-  color:#7faaa6;
-  font-size:11px;
-  margin-top:3px;
-}
-
-.preview-amount{
-  font-size:20px;
-  font-weight:800;
-}
+/* BOTTOM NAV */
 
 .nav{
   position:fixed;
-  bottom:14px;
+  z-index:30;
+  bottom:12px;
   left:50%;
   transform:translateX(-50%);
-  width:min(480px,calc(100% - 28px));
-  background:rgba(20,22,28,.96);
-  border:1px solid #30343d;
-  border-radius:24px;
-  padding:9px;
+  width:min(490px,calc(100% - 26px));
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:5px;
+  gap:4px;
+  padding:8px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:0 10px 35px rgba(20,60,60,.13);
   backdrop-filter:blur(18px);
 }
 
 .nav button{
-  background:transparent;
   border:0;
-  color:#818894;
-  padding:9px 4px;
+  background:transparent;
+  color:var(--muted);
   border-radius:16px;
-  font-size:11px;
+  padding:8px 4px;
+  font-size:10px;
 }
 
-.nav button:first-child{
-  background:#292d35;
-  color:#fff;
+.nav button.active{
+  background:var(--soft);
+  color:var(--accent-dark);
+  font-weight:750;
 }
 
 .nav-icon{
@@ -311,19 +496,50 @@ body{
   margin-bottom:3px;
 }
 
+/* TOAST */
+
 .toast{
   position:fixed;
-  bottom:95px;
+  z-index:100;
   left:50%;
-  transform:translateX(-50%);
-  background:#fff;
-  color:#08090c;
-  padding:12px 18px;
-  border-radius:14px;
+  bottom:95px;
+  transform:translate(-50%,15px);
+  background:#172625;
+  color:#fff;
+  padding:11px 16px;
+  border-radius:13px;
   font-size:12px;
-  font-weight:700;
-  display:none;
-  z-index:99;
+  font-weight:650;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+  white-space:nowrap;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* MOBILE */
+
+@media(max-width:380px){
+  .app{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .title{
+    font-size:27px;
+  }
+
+  .balance-number{
+    font-size:37px;
+  }
+
+  .transaction-name{
+    max-width:145px;
+  }
 }
 </style>
 </head>
@@ -332,147 +548,292 @@ body{
 
 <div class="app">
 
-  <div class="top">
-    <div class="logo">BUNEXA</div>
-    <div class="menu">☰</div>
-  </div>
+  <!-- HOME -->
 
-  <div class="greeting">
-    YOUR PERSONAL MONEY BUTLER
-  </div>
+  <div id="homePage" class="page active">
 
-  <div class="title">
-    Good evening 👋
-  </div>
+    <div class="header">
 
-  <div class="balance">
-
-    <div class="balance-label">
-      Total Balance
-    </div>
-
-    <div class="amount" id="balance">
-      $0.00
-    </div>
-
-    <div class="stats">
-
-      <div class="stat">
-        <div class="stat-label">
-          INCOME
-        </div>
-
-        <div class="stat-value income" id="income">
-          $0.00
-        </div>
+      <div class="brand">
+        <div class="logo-mark">B</div>
+        <div class="logo">BUNEXA</div>
       </div>
 
-      <div class="stat">
-        <div class="stat-label">
-          EXPENSES
-        </div>
+      <button
+        class="theme-btn"
+        id="themeBtn"
+        onclick="toggleTheme()"
+      >
+        ☀
+      </button>
 
-        <div class="stat-value expense" id="expense">
-          $0.00
-        </div>
+    </div>
+
+    <div class="eyebrow">
+      YOUR PERSONAL MONEY BUTLER
+    </div>
+
+    <div class="title" id="greeting">
+      Good evening 👋
+    </div>
+
+
+    <!-- BALANCE -->
+
+    <div class="balance">
+
+      <div class="balance-label">
+        Total Balance
       </div>
 
-    </div>
+      <div
+        class="balance-number"
+        id="balance"
+      >
+        $0.00
+      </div>
 
-  </div>
+      <div class="stats">
 
+        <div class="stat">
 
-  <!-- QUICK RECORD -->
-
-  <div class="section">
-    <h2>Quick Record</h2>
-    <span>Just type it</span>
-  </div>
-
-  <div class="quick-box">
-
-    <div class="quick-label">
-      ⚡ ONE-LINE RECORD
-    </div>
-
-    <input
-      id="quickInput"
-      class="quick-input"
-      autocomplete="off"
-      placeholder="5.5 Koufu"
-    >
-
-    <div class="quick-hint">
-      Example: 5.5 Koufu · 7.8 Bus · 450 Cruises
-    </div>
-
-    <div class="preview" id="preview">
-
-      <div class="preview-top">
-
-        <div>
-          <div class="preview-name" id="previewName">
-            Koufu
+          <div class="stat-label">
+            INCOME
           </div>
 
-          <div class="preview-category" id="previewCategory">
-            Food
+          <div
+            class="stat-value income"
+            id="income"
+          >
+            $0.00
           </div>
+
         </div>
 
-        <div class="preview-amount" id="previewAmount">
-          -$5.50
+        <div class="stat">
+
+          <div class="stat-label">
+            EXPENSES
+          </div>
+
+          <div
+            class="stat-value expense"
+            id="expense"
+          >
+            $0.00
+          </div>
+
         </div>
 
       </div>
 
     </div>
 
-    <button
-      class="quick-add"
-      id="quickAdd"
-    >
-      Add
-    </button>
+
+    <!-- QUICK RECORD -->
+
+    <div class="quick-card">
+
+      <div class="quick-title">
+        Quick Record
+      </div>
+
+      <div class="quick-subtitle">
+        Record a transaction in one line.
+      </div>
+
+      <div class="quick-label">
+        ONE-LINE RECORD
+      </div>
+
+      <div class="input-row">
+
+        <input
+          id="quickInput"
+          class="quick-input"
+          type="text"
+          inputmode="decimal"
+          autocomplete="off"
+          placeholder="Enter amount and description"
+        >
+
+        <button
+          class="add-btn"
+          onclick="quickAdd()"
+        >
+          +
+        </button>
+
+      </div>
+
+      <div class="quick-example">
+        Example: 3.2 Lazada · Grab 5.5 · Koufu 3
+      </div>
+
+    </div>
+
+
+    <!-- RECENT TRANSACTIONS -->
+
+    <div class="section">
+
+      <div class="section-title">
+        Recent transactions
+      </div>
+
+      <button
+        class="section-action"
+        onclick="showPage('reports')"
+      >
+        View all
+      </button>
+
+    </div>
+
+    <div
+      id="transactions"
+      class="transactions"
+    ></div>
 
   </div>
 
 
-  <!-- QUICK ACTIONS -->
+  <!-- REPORTS -->
 
-  <div class="section">
-    <h2>Quick actions</h2>
-    <span>Manage money</span>
+  <div id="reportsPage" class="page">
+
+    <div class="header">
+
+      <div class="brand">
+        <div class="logo-mark">B</div>
+        <div class="logo">BUNEXA</div>
+      </div>
+
+      <button
+        class="theme-btn"
+        onclick="toggleTheme()"
+      >
+        ☀
+      </button>
+
+    </div>
+
+    <div class="eyebrow">
+      MONEY OVERVIEW
+    </div>
+
+    <div class="title">
+      Reports
+    </div>
+
+    <div class="report-card">
+
+      <div class="report-title">
+        Overview
+      </div>
+
+      <div class="report-row">
+        <span>Total income</span>
+        <strong
+          class="income"
+          id="reportIncome"
+        >
+          $0.00
+        </strong>
+      </div>
+
+      <div class="report-row">
+        <span>Total expenses</span>
+        <strong
+          class="expense"
+          id="reportExpense"
+        >
+          $0.00
+        </strong>
+      </div>
+
+      <div class="report-row">
+        <span>Net balance</span>
+        <strong id="reportBalance">
+          $0.00
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="report-card">
+
+      <div class="report-title">
+        Spending by category
+      </div>
+
+      <div id="categoryReport"></div>
+
+    </div>
+
   </div>
 
-  <div class="actions">
 
-    <button class="action" onclick="openQuick('income')">
-      <strong>＋</strong>
-      Add income
-      <small>Quick record</small>
-    </button>
+  <!-- SETTINGS -->
 
-    <button class="action" onclick="openQuick('expense')">
-      <strong>−</strong>
-      Add expense
-      <small>Quick record</small>
-    </button>
+  <div id="settingsPage" class="page">
+
+    <div class="header">
+
+      <div class="brand">
+        <div class="logo-mark">B</div>
+        <div class="logo">BUNEXA</div>
+      </div>
+
+      <button
+        class="theme-btn"
+        onclick="toggleTheme()"
+      >
+        ☀
+      </button>
+
+    </div>
+
+    <div class="eyebrow">
+      PREFERENCES
+    </div>
+
+    <div class="title">
+      Settings
+    </div>
+
+    <div class="settings-card">
+
+      <div class="settings-row">
+        <span>Currency</span>
+        <span class="settings-value">
+          SGD
+        </span>
+      </div>
+
+      <div class="settings-row">
+        <span>Quick Record</span>
+        <span class="settings-value">
+          Enabled
+        </span>
+      </div>
+
+      <div
+        class="settings-row danger"
+        onclick="clearData()"
+      >
+        <span>
+          Clear all transactions
+        </span>
+
+        <span>
+          ›
+        </span>
+      </div>
+
+    </div>
 
   </div>
-
-
-  <!-- TRANSACTIONS -->
-
-  <div class="section">
-    <h2>Recent transactions</h2>
-    <span id="count">0 items</span>
-  </div>
-
-  <div
-    class="transactions"
-    id="transactions"
-  ></div>
 
 </div>
 
@@ -481,22 +842,34 @@ body{
 
 <div class="nav">
 
-  <button>
+  <button
+    id="navHome"
+    class="active"
+    onclick="showPage('home')"
+  >
     <span class="nav-icon">⌂</span>
     Home
   </button>
 
-  <button onclick="focusQuick()">
+  <button
+    onclick="focusQuick()"
+  >
     <span class="nav-icon">＋</span>
     Add
   </button>
 
-  <button>
+  <button
+    id="navReports"
+    onclick="showPage('reports')"
+  >
     <span class="nav-icon">◴</span>
     Reports
   </button>
 
-  <button>
+  <button
+    id="navSettings"
+    onclick="showPage('settings')"
+  >
     <span class="nav-icon">⚙</span>
     Settings
   </button>
@@ -504,396 +877,105 @@ body{
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+  id="toast"
+  class="toast"
+>
+  Transaction saved
+</div>
 
 
 <script>
 
+/* =========================================
+   STORAGE
+========================================= */
+
 let transactions =
   JSON.parse(
-    localStorage.getItem("bunexa_transactions") || "[]"
+    localStorage.getItem(
+      "bunexa_transactions"
+    ) || "[]"
   );
 
 
-/* --------------------------------
-   MERCHANT DATABASE — V1
--------------------------------- */
-
-const merchants = [
-
-  {
-    keys:["koufu"],
-    name:"Koufu",
-    category:"Food",
-    icon:"🍜"
-  },
-
-  {
-    keys:["food republic"],
-    name:"Food Republic",
-    category:"Food",
-    icon:"🍜"
-  },
-
-  {
-    keys:["food"],
-    name:"Food",
-    category:"Food",
-    icon:"🍜"
-  },
-
-  {
-    keys:["mcdonald","mcd"],
-    name:"McDonald's",
-    category:"Food",
-    icon:"🍔"
-  },
-
-  {
-    keys:["kfc"],
-    name:"KFC",
-    category:"Food",
-    icon:"🍗"
-  },
-
-  {
-    keys:["starbucks"],
-    name:"Starbucks",
-    category:"Food",
-    icon:"☕"
-  },
-
-  {
-    keys:["toast box"],
-    name:"Toast Box",
-    category:"Food",
-    icon:"🍞"
-  },
-
-  {
-    keys:["ya kun","yakun"],
-    name:"Ya Kun",
-    category:"Food",
-    icon:"☕"
-  },
-
-  {
-    keys:["sheng siong","shengxiong"],
-    name:"Sheng Siong",
-    category:"Groceries",
-    icon:"🛒"
-  },
-
-  {
-    keys:["fairprice","ntuc"],
-    name:"FairPrice",
-    category:"Groceries",
-    icon:"🛒"
-  },
-
-  {
-    keys:["cold storage"],
-    name:"Cold Storage",
-    category:"Groceries",
-    icon:"🛒"
-  },
-
-  {
-    keys:["giant"],
-    name:"Giant",
-    category:"Groceries",
-    icon:"🛒"
-  },
-
-  {
-    keys:["grab"],
-    name:"Grab",
-    category:"Transport",
-    icon:"🚕"
-  },
-
-  {
-    keys:["bus"],
-    name:"Bus",
-    category:"Transport",
-    icon:"🚌"
-  },
-
-  {
-    keys:["taxi"],
-    name:"Taxi",
-    category:"Transport",
-    icon:"🚕"
-  },
-
-  {
-    keys:["petrol"],
-    name:"Petrol",
-    category:"Transport",
-    icon:"⛽"
-  },
-
-  {
-    keys:["cinema"],
-    name:"Cinema",
-    category:"Entertainment",
-    icon:"🎬"
-  },
-
-  {
-    keys:["cruises","cruise"],
-    name:"Cruises",
-    category:"Travel",
-    icon:"🚢"
-  },
-
-  {
-    keys:["simba tele","simba"],
-    name:"Simba Tele",
-    category:"Telecom",
-    icon:"📱"
-  },
-
-  {
-    keys:["salary"],
-    name:"Salary",
-    category:"Income",
-    icon:"💰",
-    income:true
-  },
-
-  {
-    keys:["bonus"],
-    name:"Bonus",
-    category:"Income",
-    icon:"💰",
-    income:true
-  },
-
-  {
-    keys:["aws"],
-    name:"AWS",
-    category:"Income",
-    icon:"💰",
-    income:true
-  },
-
-  {
-    keys:["overtime","ot"],
-    name:"Overtime",
-    category:"Income",
-    icon:"💰",
-    income:true
-  }
-
-];
-
-
-/* --------------------------------
-   PARSE ONE-LINE INPUT
--------------------------------- */
-
-function parseInput(text){
-
-  text = text.trim();
-
-  if(!text){
-    return null;
-  }
-
-  const amountMatch =
-    text.match(/(?:^|\s)(?:\$|rm|myr)?\s*(\d+(?:\.\d{1,2})?)(?=\s|$)/i);
-
-  if(!amountMatch){
-    return null;
-  }
-
-  const amount =
-    parseFloat(amountMatch[1]);
-
-  let name =
-    text.replace(amountMatch[0]," ").trim();
-
-  name =
-    name.replace(/\s+/g," ").trim();
-
-
-  const lower =
-    name.toLowerCase();
-
-  let found = null;
-
-
-  for(const merchant of merchants){
-
-    for(const key of merchant.keys){
-
-      if(lower.includes(key)){
-        found = merchant;
-        break;
-      }
-
-    }
-
-    if(found) break;
-  }
-
-
-  /*
-    Automatic category detection
-  */
-
-  if(!found){
-
-    if(/lunch|dinner|breakfast|meal|food/.test(lower)){
-
-      found = {
-        name:name || "Food",
-        category:"Food",
-        icon:"🍜"
-      };
-
-    }
-
-    else if(/movie|movies/.test(lower)){
-
-      found = {
-        name:name || "Cinema",
-        category:"Entertainment",
-        icon:"🎬"
-      };
-
-    }
-
-    else if(/train|mrt|bus|taxi|transport/.test(lower)){
-
-      found = {
-        name:name || "Transport",
-        category:"Transport",
-        icon:"🚌"
-      };
-
-    }
-
-    else {
-
-      found = {
-        name:name || "Shop",
-        category:"Shop",
-        icon:"🏪"
-      };
-
-    }
-
-  }
-
-
-  let type =
-    found.income ? "income" : "expense";
-
-
-  /*
-    +500 / -500 support
-  */
-
-  if(text.includes("+")){
-    type = "income";
-  }
-
-  if(text.includes("-")){
-    type = "expense";
-  }
-
-
-  return {
-
-    type:type,
-
-    description:found.name,
-
-    amount:amount,
-
-    category:found.category,
-
-    icon:found.icon,
-
-    date:new Date().toLocaleDateString()
-
-  };
+/* =========================================
+   THEME
+========================================= */
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "bunexa_theme"
+    ) || "light";
+
+  document.body.classList.toggle(
+    "dark",
+    theme === "dark"
+  );
+
+  document
+    .querySelectorAll(".theme-btn")
+    .forEach(btn=>{
+      btn.textContent =
+        theme === "dark"
+          ? "☀"
+          : "☾";
+    });
 
 }
 
 
-/* --------------------------------
-   PREVIEW
--------------------------------- */
+function toggleTheme(){
 
-function showPreview(){
+  const isDark =
+    document.body.classList.contains(
+      "dark"
+    );
+
+  localStorage.setItem(
+    "bunexa_theme",
+    isDark
+      ? "light"
+      : "dark"
+  );
+
+  applyTheme();
+
+}
+
+
+/* =========================================
+   QUICK RECORD
+========================================= */
+
+function quickAdd(){
+
+  const input =
+    document.getElementById(
+      "quickInput"
+    );
 
   const text =
-    document.getElementById("quickInput").value;
+    input.value.trim();
 
-  const result =
-    parseInput(text);
+  if(!text){
 
-  const preview =
-    document.getElementById("preview");
-
-
-  if(!result){
-
-    preview.style.display="none";
-
+    input.focus();
     return;
 
   }
 
 
-  preview.style.display="block";
+  const parsed =
+    parseQuickEntry(text);
 
 
-  document.getElementById("previewName")
-    .textContent =
-    result.icon+" "+result.description;
-
-
-  document.getElementById("previewCategory")
-    .textContent =
-    result.category;
-
-
-  document.getElementById("previewAmount")
-    .textContent =
-    (result.type === "income" ? "+" : "-")
-    +
-    "$"
-    +
-    result.amount.toFixed(2);
-
-}
-
-
-/* --------------------------------
-   ADD TRANSACTION
--------------------------------- */
-
-function addTransaction(){
-
-  const input =
-    document.getElementById("quickInput");
-
-  const text =
-    input.value.trim();
-
-
-  const result =
-    parseInput(text);
-
-
-  if(!result){
+  if(!parsed){
 
     showToast(
-      "Type something like 5.5 Koufu"
+      "Enter an amount and description."
     );
 
     input.focus();
@@ -903,121 +985,540 @@ function addTransaction(){
   }
 
 
-  transactions.unshift(result);
+  const transaction = {
+
+    type:parsed.type,
+
+    amount:parsed.amount,
+
+    description:parsed.description,
+
+    category:parsed.category,
+
+    date:formatDate(),
+
+    icon:getIcon(
+      parsed.category
+    )
+
+  };
 
 
-  localStorage.setItem(
-    "bunexa_transactions",
-    JSON.stringify(transactions)
+  transactions.unshift(
+    transaction
   );
 
 
-  input.value="";
+  saveData();
 
-  document.getElementById("preview")
-    .style.display="none";
-
+  input.value = "";
 
   render();
 
-
   showToast(
-    "✓ "+result.description+
-    " "+(result.type==="income"?"+":"-")+
-    "$"+result.amount.toFixed(2)
+    "Transaction saved"
   );
 
-
-  /*
-    Keep focus so user can immediately
-    enter the next transaction.
-  */
-
-  setTimeout(()=>{
-    input.focus();
-  },100);
+  input.focus();
 
 }
 
 
-/* --------------------------------
-   RENDER HOME
--------------------------------- */
+/* =========================================
+   PARSER
+========================================= */
+
+function parseQuickEntry(text){
+
+  /*
+    Supported:
+
+    3.2 Lazada
+    Grab 5.5
+    Koufu 3
+    450 Cruise
+    Salary 4000
+    +500 Bonus
+    -20 Food
+  */
+
+
+  const amountMatch =
+    text.match(
+      /(?:\$|SGD)?\s*(\d+(?:\.\d{1,2})?)/
+    );
+
+
+  if(!amountMatch){
+    return null;
+  }
+
+
+  const amount =
+    parseFloat(
+      amountMatch[1]
+    );
+
+
+  if(
+    !amount ||
+    amount <= 0
+  ){
+    return null;
+  }
+
+
+  let description =
+    text
+      .replace(
+        amountMatch[0],
+        ""
+      )
+      .replace(
+        /^\s*[+-]\s*/,
+        ""
+      )
+      .trim();
+
+
+  if(!description){
+    description = "Transaction";
+  }
+
+
+  const lower =
+    description.toLowerCase();
+
+
+  let type =
+    "expense";
+
+
+  /*
+    Explicit income
+  */
+
+  if(
+    /(^|\s)\+/.test(text) ||
+    /salary|bonus|commission|income|pay|allowance|cashback|refund|reimbursement/.test(lower)
+  ){
+
+    type = "income";
+
+  }
+
+
+  /*
+    Explicit expense
+  */
+
+  if(
+    /(^|\s)-/.test(text)
+  ){
+
+    type = "expense";
+
+  }
+
+
+  return {
+
+    amount,
+
+    description:
+      cleanDescription(
+        description
+      ),
+
+    category:
+      detectCategory(
+        lower,
+        type
+      ),
+
+    type
+
+  };
+
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+function detectCategory(
+  text,
+  type
+){
+
+  if(
+    type === "income"
+  ){
+    return "Income";
+  }
+
+
+  /* ONLINE SHOPPING */
+
+  if(
+    contains(
+      text,
+      [
+        "lazada",
+        "shopee",
+        "shoppee",
+        "taobao",
+        "amazon",
+        "apple",
+        "daigou",
+        "online shopping"
+      ]
+    )
+  ){
+    return "Online Shopping";
+  }
+
+
+  /* FOOD */
+
+  if(
+    contains(
+      text,
+      [
+        "koufu",
+        "food",
+        "food republic",
+        "mcd",
+        "mcdonald",
+        "kfc",
+        "starbucks",
+        "toast box",
+        "yakun",
+        "ya kun",
+        "restaurant",
+        "cafe",
+        "coffee",
+        "lunch",
+        "dinner",
+        "breakfast",
+        "meal",
+        "hawker"
+      ]
+    )
+  ){
+    return "Food";
+  }
+
+
+  /* TRANSPORT */
+
+  if(
+    contains(
+      text,
+      [
+        "grab",
+        "bus",
+        "mrt",
+        "train",
+        "taxi",
+        "gojek",
+        "petrol",
+        "parking",
+        "erp",
+        "transport"
+      ]
+    )
+  ){
+    return "Transport";
+  }
+
+
+  /* ENTERTAINMENT */
+
+  if(
+    contains(
+      text,
+      [
+        "cinema",
+        "movie",
+        "movies",
+        "concert",
+        "netflix",
+        "spotify",
+        "gaming",
+        "game"
+      ]
+    )
+  ){
+    return "Entertainment";
+  }
+
+
+  /* TRAVEL */
+
+  if(
+    contains(
+      text,
+      [
+        "cruise",
+        "cruises",
+        "flight",
+        "airline",
+        "hotel",
+        "travel",
+        "holiday",
+        "trip",
+        "airbnb"
+      ]
+    )
+  ){
+    return "Travel";
+  }
+
+
+  /* BILLS */
+
+  if(
+    contains(
+      text,
+      [
+        "simba",
+        "tele",
+        "telephone",
+        "mobile",
+        "phone",
+        "internet",
+        "wifi",
+        "singtel",
+        "starhub",
+        "m1",
+        "bill",
+        "utilities",
+        "electricity",
+        "water"
+      ]
+    )
+  ){
+    return "Bills";
+  }
+
+
+  /* SHOPPING */
+
+  if(
+    contains(
+      text,
+      [
+        "shopping",
+        "mall",
+        "uniqlo",
+        "zara",
+        "clothes",
+        "clothing",
+        "shoes",
+        "bag",
+        "gift"
+      ]
+    )
+  ){
+    return "Shopping";
+  }
+
+
+  return "Other";
+
+}
+
+
+function contains(
+  text,
+  words
+){
+
+  return words.some(
+    word =>
+      text.includes(word)
+  );
+
+}
+
+
+/* =========================================
+   HELPERS
+========================================= */
+
+function cleanDescription(text){
+
+  return text
+    .replace(/\s+/g," ")
+    .trim()
+    .replace(
+      /\b\w/g,
+      c => c.toUpperCase()
+    );
+
+}
+
+
+function getIcon(category){
+
+  const icons = {
+
+    "Food":"🍜",
+
+    "Transport":"🚌",
+
+    "Online Shopping":"🛍️",
+
+    "Shopping":"🛒",
+
+    "Bills":"📱",
+
+    "Entertainment":"🎬",
+
+    "Travel":"✈️",
+
+    "Income":"💰",
+
+    "Other":"💳"
+
+  };
+
+  return (
+    icons[category]
+    || "💳"
+  );
+
+}
+
+
+function formatDate(){
+
+  return new Date()
+    .toLocaleDateString(
+      "en-SG",
+      {
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+      }
+    );
+
+}
+
+
+function money(value){
+
+  return "$" +
+    Number(value).toLocaleString(
+      "en-SG",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    );
+
+}
+
+
+function saveData(){
+
+  localStorage.setItem(
+    "bunexa_transactions",
+    JSON.stringify(
+      transactions
+    )
+  );
+
+}
+
+
+/* =========================================
+   RENDER
+========================================= */
 
 function render(){
 
-  let income=0;
+  let income = 0;
+  let expense = 0;
 
-  let expense=0;
 
+  transactions.forEach(
+    t => {
 
-  transactions.forEach(t=>{
+      const amount =
+        Number(t.amount) || 0;
 
-    if(t.type==="income"){
+      if(
+        t.type === "income"
+      ){
 
-      income += t.amount;
+        income += amount;
 
-    }else{
+      }else{
 
-      expense += t.amount;
+        expense += amount;
+
+      }
 
     }
+  );
 
-  });
 
-
-  document.getElementById("income")
+  document
+    .getElementById("income")
     .textContent =
-    "$"+income.toFixed(2);
+      money(income);
 
 
-  document.getElementById("expense")
+  document
+    .getElementById("expense")
     .textContent =
-    "$"+expense.toFixed(2);
+      money(expense);
 
 
-  document.getElementById("balance")
+  document
+    .getElementById("balance")
     .textContent =
-    "$"+(income-expense).toFixed(2);
+      money(
+        income - expense
+      );
 
 
-  document.getElementById("count")
-    .textContent =
-    transactions.length+" items";
+  renderTransactions();
 
+  renderReports();
+
+}
+
+
+function renderTransactions(){
 
   const box =
-    document.getElementById("transactions");
+    document.getElementById(
+      "transactions"
+    );
 
 
-  if(transactions.length===0){
+  if(
+    transactions.length === 0
+  ){
 
-    box.innerHTML=`
+    box.innerHTML = `
 
-      <div class="transaction">
+      <div class="empty">
 
-        <div class="left">
-
-          <div class="icon">
-            💰
-          </div>
-
-          <div>
-
-            <div class="name">
-              No transactions yet
-            </div>
-
-            <div class="date">
-              Try: 5.5 Koufu
-            </div>
-
-          </div>
-
+        <div class="empty-icon">
+          💰
         </div>
 
-        <div class="money">
-          —
+        <div class="empty-title">
+          No transactions yet
+        </div>
+
+        <div class="empty-text">
+          Enter your first transaction above.
         </div>
 
       </div>
@@ -1032,133 +1533,133 @@ function render(){
   box.innerHTML =
     transactions
       .slice(0,10)
-      .map(t=>`
+      .map(
+        (t,index)=>`
 
-        <div class="transaction">
+          <div class="transaction">
 
-          <div class="left">
+            <div class="transaction-left">
 
-            <div class="icon">
-              ${t.icon || "🛍️"}
+              <div class="icon">
+                ${t.icon || getIcon(t.category)}
+              </div>
+
+              <div class="transaction-info">
+
+                <div class="transaction-name">
+                  ${escapeHtml(t.description)}
+                </div>
+
+                <div class="transaction-meta">
+                  ${escapeHtml(t.category)}
+                  ·
+                  ${escapeHtml(t.date)}
+                </div>
+
+              </div>
+
             </div>
 
-            <div>
+            <div class="transaction-right">
 
-              <div class="name">
-                ${t.description}
+              <div
+                class="transaction-money ${
+                  t.type === "income"
+                    ? "income"
+                    : "expense"
+                }"
+              >
+                ${
+                  t.type === "income"
+                    ? "+"
+                    : "-"
+                }${money(t.amount)}
               </div>
 
-              <div class="date">
-                ${t.category} · ${t.date}
-              </div>
+              <button
+                class="delete"
+                onclick="deleteTransaction(${index})"
+              >
+                Delete
+              </button>
 
             </div>
 
           </div>
 
-          <div class="money ${
-            t.type
-          }">
-
-            ${
-              t.type==="income"
-              ? "+"
-              : "-"
-            }$${t.amount.toFixed(2)}
-
-          </div>
-
-        </div>
-
-      `)
+        `
+      )
       .join("");
 
 }
 
 
-/* --------------------------------
-   QUICK ACTIONS
--------------------------------- */
+/* =========================================
+   DELETE
+========================================= */
 
-function openQuick(type){
+function deleteTransaction(index){
 
-  const input =
-    document.getElementById("quickInput");
-
-  input.value =
-    type==="income"
-    ? "salary "
-    : "";
-
-  input.focus();
-
-  showPreview();
-
-}
+  if(
+    !confirm(
+      "Delete this transaction?"
+    )
+  ){
+    return;
+  }
 
 
-function focusQuick(){
-
-  const input =
-    document.getElementById("quickInput");
-
-  input.focus();
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* --------------------------------
-   TOAST
--------------------------------- */
-
-function showToast(message){
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent =
-    message;
-
-  toast.style.display="block";
-
-
-  setTimeout(()=>{
-
-    toast.style.display="none";
-
-  },1500);
-
-}
-
-
-/* --------------------------------
-   EVENTS
--------------------------------- */
-
-document
-  .getElementById("quickInput")
-  .addEventListener(
-    "input",
-    showPreview
+  transactions.splice(
+    index,
+    1
   );
 
 
-document
-  .getElementById("quickInput")
-  .addEventListener(
-    "keydown",
-    function(event){
+  saveData();
 
-      if(event.key==="Enter"){
+  render();
 
-        event.preventDefault();
+  showToast(
+    "Transaction deleted"
+  );
 
-        addTransaction();
+}
+
+
+/* =========================================
+   REPORTS
+========================================= */
+
+function renderReports(){
+
+  let income = 0;
+  let expense = 0;
+
+  const categories = {};
+
+
+  transactions.forEach(
+    t => {
+
+      const amount =
+        Number(t.amount) || 0;
+
+
+      if(
+        t.type === "income"
+      ){
+
+        income += amount;
+
+      }else{
+
+        expense += amount;
+
+        categories[t.category] =
+          (
+            categories[t.category]
+            || 0
+          ) + amount;
 
       }
 
@@ -1166,15 +1667,326 @@ document
   );
 
 
-document
-  .getElementById("quickAdd")
-  .addEventListener(
-    "click",
-    addTransaction
+  document
+    .getElementById(
+      "reportIncome"
+    )
+    .textContent =
+      money(income);
+
+
+  document
+    .getElementById(
+      "reportExpense"
+    )
+    .textContent =
+      money(expense);
+
+
+  document
+    .getElementById(
+      "reportBalance"
+    )
+    .textContent =
+      money(
+        income - expense
+      );
+
+
+  const report =
+    document.getElementById(
+      "categoryReport"
+    );
+
+
+  const sorted =
+    Object.entries(
+      categories
+    )
+    .sort(
+      (a,b)=>b[1]-a[1]
+    );
+
+
+  if(
+    sorted.length === 0
+  ){
+
+    report.innerHTML =
+      `<div class="empty-text">
+        No expense data available yet.
+      </div>`;
+
+    return;
+
+  }
+
+
+  report.innerHTML =
+    sorted
+      .map(
+        ([category,value])=>`
+
+          <div class="report-row">
+
+            <span>
+              ${escapeHtml(category)}
+            </span>
+
+            <strong>
+              ${money(value)}
+            </strong>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function showPage(page){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      p =>
+        p.classList.remove(
+          "active"
+        )
+    );
+
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(
+      b =>
+        b.classList.remove(
+          "active"
+        )
+    );
+
+
+  if(page === "home"){
+
+    document
+      .getElementById(
+        "homePage"
+      )
+      .classList.add(
+        "active"
+      );
+
+    document
+      .getElementById(
+        "navHome"
+      )
+      .classList.add(
+        "active"
+      );
+
+  }
+
+
+  if(page === "reports"){
+
+    document
+      .getElementById(
+        "reportsPage"
+      )
+      .classList.add(
+        "active"
+      );
+
+    document
+      .getElementById(
+        "navReports"
+      )
+      .classList.add(
+        "active"
+      );
+
+    renderReports();
+
+  }
+
+
+  if(page === "settings"){
+
+    document
+      .getElementById(
+        "settingsPage"
+      )
+      .classList.add(
+        "active"
+      );
+
+    document
+      .getElementById(
+        "navSettings"
+      )
+      .classList.add(
+        "active"
+      );
+
+  }
+
+}
+
+
+/* =========================================
+   QUICK BUTTON
+========================================= */
+
+function focusQuick(){
+
+  showPage("home");
+
+  const input =
+    document.getElementById(
+      "quickInput"
+    );
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+
+  setTimeout(
+    ()=>{
+      input.focus();
+    },
+    300
+  );
+
+}
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
   );
 
 
+  setTimeout(
+    ()=>{
+      toast.classList.remove(
+        "show"
+      );
+    },
+    1600
+  );
+
+}
+
+
+/* =========================================
+   GREETING
+========================================= */
+
+function updateGreeting(){
+
+  const hour =
+    new Date().getHours();
+
+  let greeting =
+    "Good evening 👋";
+
+
+  if(hour < 12){
+
+    greeting =
+      "Good morning ☀️";
+
+  }else if(hour < 18){
+
+    greeting =
+      "Good afternoon 👋";
+
+  }
+
+
+  document
+    .getElementById(
+      "greeting"
+    )
+    .textContent =
+      greeting;
+
+}
+
+
+/* =========================================
+   HTML SAFETY
+========================================= */
+
+function escapeHtml(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+applyTheme();
+
+updateGreeting();
+
 render();
+
+
+/* ENTER = ADD */
+
+document
+  .getElementById(
+    "quickInput"
+  )
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(
+        event.key === "Enter"
+      ){
+
+        event.preventDefault();
+
+        quickAdd();
+
+      }
+
+    }
+  );
 
 </script>
 
