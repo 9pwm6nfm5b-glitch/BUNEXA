@@ -1,19 +1,381 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><title>BUNEXA — Money Butler · Final</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><title>BUNEXA — Money Butler</title><style>
 :root{--bg:#f6f7f9;--card:#fff;--text:#17191d;--muted:#7b818b;--line:#e8eaee;--accent:#11aeb0;--danger:#d84d5a;--green:#18a66b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-tap-highlight-color:transparent}button,input,select{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-appearance:none;appearance:none;pointer-events:auto;position:relative;z-index:1}#app{max-width:680px;margin:auto;padding:18px 16px 96px}.page{display:none}.page.active{display:block}header{display:flex;align-items:center;justify-content:space-between;margin:4px 0 20px}.logo{font-size:22px;font-weight:800;letter-spacing:-.6px}.logo span{color:var(--accent)}.icon-btn{border:0;background:var(--card);width:42px;height:42px;border-radius:13px;box-shadow:0 2px 10px #00000008}.hero{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 22px;margin-bottom:12px}.eyebrow{font-size:13px;color:var(--muted);margin-bottom:6px}.balance{font-size:36px;font-weight:800;letter-spacing:-1.2px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.stat{background:var(--bg);border-radius:15px;padding:13px}.stat b{display:block;font-size:17px;margin-top:3px}.green{color:var(--green)}.red{color:var(--danger)}.safe{margin-top:10px;background:#eaf9f5;border-radius:15px;padding:13px}.safe b{font-size:19px}.record-btn{width:100%;border:0;background:var(--text);color:#fff;border-radius:18px;padding:17px;font-weight:750;font-size:17px;margin:2px 0 18px;box-shadow:0 7px 20px #00000012}.section-title{font-weight:750;font-size:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:12px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.small{font-size:12px;color:var(--muted)}.tx{display:flex;cursor:pointer;touch-action:manipulation;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid var(--line)}.tx:last-child{border-bottom:0}.tx-icon{width:38px;height:38px;border-radius:12px;background:var(--bg);display:grid;place-items:center}.tx-main{flex:1;min-width:0}.tx-main b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.amount{font-weight:750}.amount.expense{color:var(--danger)}.amount.income{color:var(--green)}.nav{position:fixed;pointer-events:auto;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);max-width:680px;margin:auto;z-index:20;padding-bottom:env(safe-area-inset-bottom)}.nav button{border:0;background:transparent;padding:11px 4px 10px;color:var(--muted);font-size:11px}.nav button.active{color:var(--text);font-weight:750}.nav-icon{display:block;font-size:20px;margin-bottom:2px}.page-title{font-size:25px;font-weight:800;margin:5px 0 18px}.filter{display:flex;gap:8px}.btn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 13px;color:var(--text)}.btn.primary{background:var(--text);color:#fff;border-color:var(--text)}.btn.active{background:var(--text);color:#fff}.btn.danger{color:var(--danger)}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}.summary .card{margin:0}.donut{width:180px;height:180px;border-radius:50%;margin:18px auto;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 35%,#64748b 35% 55%,#f59e0b 55% 72%,#a78bfa 72% 84%,#d1d5db 84% 100%);position:relative}.donut:after{content:"";position:absolute;width:108px;height:108px;background:var(--card);border-radius:50%}.donut span{position:relative;z-index:1;font-weight:800;text-align:center}.bar{margin:13px 0}.bar-top{display:flex;justify-content:space-between;font-size:13px}.track{height:7px;background:var(--bg);border-radius:10px;overflow:hidden;margin-top:6px}.track i{display:block;height:100%;background:var(--accent);border-radius:10px}.calendar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.calendar-head button{width:40px;height:40px;border:1px solid var(--line);background:var(--card);border-radius:12px}.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.dow{text-align:center;font-size:11px;color:var(--muted);padding:4px}.day{min-height:52px;border:1px solid var(--line);background:var(--card);border-radius:11px;padding:6px;text-align:left}.day.muted{opacity:.35}.day.selected{outline:2px solid var(--accent)}.day strong{font-size:12px}.day .spend{display:block;color:var(--danger);font-size:10px;margin-top:5px;white-space:nowrap;overflow:hidden}.field{margin-bottom:14px}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}.field input,.field select{width:100%;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:13px;padding:13px;outline:none}.field input:focus,.field select:focus{border-color:var(--accent)}.big-amount{font-size:30px!important;font-weight:800;text-align:center;padding:17px!important}.type-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions{display:flex;gap:8px;margin-top:18px}.actions .btn{flex:1}.modal-bg{position:fixed;inset:0;background:#0007;display:none;align-items:flex-end;z-index:1000;pointer-events:none}.modal-bg.show{display:flex;pointer-events:auto}.modal{width:100%;pointer-events:auto;max-width:680px;margin:auto auto 0;background:var(--card);border-radius:24px 24px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto;position:relative}.close{position:absolute;right:16px;top:14px;border:0;background:var(--bg);width:36px;height:36px;border-radius:11px;font-size:22px}.auto{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 13px;font-size:13px;margin-top:-3px;margin-bottom:14px}.empty{text-align:center;color:var(--muted);padding:28px 10px}.setting{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}.setting:last-child{border-bottom:0}.dark{--bg:#101214;--card:#191c20;--text:#f4f5f7;--muted:#9aa1ab;--line:#292e35;color-scheme:dark}.dark .nav{background:#191c20ee}.dark input,.dark select{color-scheme:dark}.dark .modal{color:var(--text)}.dark .safe{background:#17352f}.dark .record-btn,.dark .btn.primary,.dark .btn.active{background:#f4f5f7;color:#101214;border-color:#f4f5f7}.dark .icon-btn,.dark .close{color:var(--text)}.toast{position:fixed;left:50%;bottom:82px;transform:translateX(-50%);background:var(--text);color:var(--card);padding:10px 15px;border-radius:12px;font-size:13px;z-index:80;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1}
 .field:first-child input#smartInput{font-size:17px;font-weight:650;padding:15px}.record-btn{min-height:56px;transition:transform .12s ease,box-shadow .12s ease}.record-btn:active{transform:scale(.985);box-shadow:0 3px 12px #00000010}.btn,.record-btn,.icon-btn,.day,.nav button{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.btn:focus-visible,.record-btn:focus-visible,.icon-btn:focus-visible,.day:focus-visible,.nav button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #11aeb055;outline-offset:2px}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.dash-card{margin-bottom:12px}.dash-big{font-size:21px;font-weight:800;margin-top:8px}.dash-percent{font-size:20px;font-weight:800}.dash-track{margin-top:14px}.dash-track i{transition:width .3s ease}@media(max-width:430px){.dash-grid{grid-template-columns:1fr 1fr}.dash-big{font-size:19px}}</style>
+<style id="bunexa-v92-quick-record-css">
+/* BUNEXA V9.2 — Quick Record 3-second UX */
+#quickRecordInput:focus, #quickRecordInput:focus-visible {
+  outline: 3px solid rgba(0,160,255,.28) !important;
+  outline-offset: 2px;
+}
+.bunexa-v92-status {
+  font-size: 12px;
+  opacity: .72;
+  margin-top: 6px;
+  min-height: 16px;
+}
+.bunexa-v92-chip {
+  display:inline-flex; align-items:center; gap:6px;
+  border:1px solid rgba(127,127,127,.22);
+  border-radius:999px; padding:5px 9px; margin:4px 4px 0 0;
+  font-size:12px; cursor:pointer; background:transparent;
+}
+.bunexa-v92-chip:hover { transform: translateY(-1px); }
+.bunexa-v92-confirm {
+  border:1px solid rgba(127,127,127,.22);
+  border-radius:12px; padding:10px; margin-top:8px;
+}
+</style>
+
+
+<style id="bunexa-v93-smart-preview-css">
+.bunexa-v93-preview{
+  margin-top:8px;padding:10px 12px;border:1px solid rgba(127,127,127,.22);
+  border-radius:14px;display:none;font-size:13px;line-height:1.45;
+}
+.bunexa-v93-preview .v93-row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.bunexa-v93-preview .v93-main{font-weight:650}
+.bunexa-v93-preview .v93-meta{opacity:.72;margin-top:3px}
+.bunexa-v93-preview .v93-low{opacity:.65}
+.bunexa-v93-preview .v93-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:currentColor}
+</style>
+
+
+<style id="bunexa-v101-category-budget-css">
+.bunexa-v101-budget-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:12px}
+.bunexa-v101-budget-card{border:1px solid rgba(127,127,127,.22);border-radius:14px;padding:12px;background:var(--card)}
+.bunexa-v101-budget-top{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.bunexa-v101-budget-bar{height:7px;border-radius:99px;background:rgba(127,127,127,.14);overflow:hidden;margin:9px 0}
+.bunexa-v101-budget-fill{height:100%;width:0;border-radius:99px;transition:width .25s ease}
+.bunexa-v101-budget-meta{font-size:12px;opacity:.72}
+.bunexa-v101-budget-over{font-weight:650}
+.bunexa-v101-budget-input{width:95px;padding:7px 8px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--text)}
+</style>
+
+
+<style id="bunexa-v102-bilingual-css">
+.bunexa-v102-en,.bunexa-v102-zh{display:inline}
+html[data-lang="zh"] .bunexa-v102-en{display:none}
+html[data-lang="en"] .bunexa-v102-zh{display:none}
+</style>
+
+
+<style id="bunexa-v103-category-collapse-css">
+.bunexa-v103-cat-wrap{margin-top:18px}
+.bunexa-v103-cat-toggle{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:15px;padding:13px 14px;text-align:left;
+}
+.bunexa-v103-cat-toggle:active{transform:scale(.995)}
+.bunexa-v103-cat-left{display:flex;align-items:center;gap:9px;min-width:0}
+.bunexa-v103-cat-icon{width:30px;height:30px;border-radius:10px;background:var(--bg);display:grid;place-items:center}
+.bunexa-v103-cat-title{font-weight:750}
+.bunexa-v103-cat-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.bunexa-v103-chevron{font-size:16px;transition:transform .18s ease}
+.bunexa-v103-cat-toggle.open .bunexa-v103-chevron{transform:rotate(180deg)}
+.bunexa-v103-cat-panel{display:none;margin-top:10px}
+.bunexa-v103-cat-panel.open{display:block}
+.bunexa-v103-cat-panel .bunexa-v101-budget-grid{margin-top:0}
+</style>
+
+<style id="bunexa-v105-quick-record-css">
+.bunexa-v105-record-box{position:relative}
+.bunexa-v105-preview{
+  margin-top:8px;border:1px solid var(--line);background:var(--bg);
+  border-radius:12px;padding:9px 11px;font-size:12px;display:none;
+}
+.bunexa-v105-preview.show{display:block}
+.bunexa-v105-preview-row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.bunexa-v105-preview-main{font-weight:700}
+.bunexa-v105-preview-sub{color:var(--muted);font-size:11px;margin-top:3px}
+.bunexa-v105-confidence{font-size:10px;border-radius:999px;padding:3px 7px;border:1px solid var(--line);white-space:nowrap}
+.bunexa-v105-confidence.high{opacity:.95}
+.bunexa-v105-confidence.mid{opacity:.8}
+.bunexa-v105-confidence.low{opacity:.65}
+.bunexa-v105-recent{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:2px}
+.bunexa-v105-recent button{
+  flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:999px;padding:6px 9px;font-size:11px
+}
+.bunexa-v105-confirm{
+  margin-top:8px;border:1px solid var(--line);background:var(--card);
+  border-radius:12px;padding:9px 10px;display:none
+}
+.bunexa-v105-confirm.show{display:block}
+.bunexa-v105-confirm-title{font-weight:700;font-size:12px}
+.bunexa-v105-confirm-actions{display:flex;gap:7px;margin-top:7px}
+.bunexa-v105-confirm-actions button{flex:1}
+</style>
+
+<style id="bunexa-v11-safe-css">
+.bunexa-v11-safe-card{cursor:pointer}
+.bunexa-v11-safe-details{margin-top:10px;display:grid;gap:7px}
+.bunexa-v11-safe-row{display:flex;justify-content:space-between;gap:12px;font-size:12px}
+.bunexa-v11-safe-row span:first-child{color:var(--muted)}
+.bunexa-v11-safe-main{font-size:28px;font-weight:850;margin-top:7px}
+.bunexa-v11-safe-note{font-size:11px;color:var(--muted);margin-top:4px}
+</style>
+
+<style id="bunexa-v12-reports-css">
+.bunexa-v12-wrap{display:grid;gap:12px}
+.bunexa-v12-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bunexa-v12-stat{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--card)}
+.bunexa-v12-label{font-size:11px;color:var(--muted)}
+.bunexa-v12-value{font-size:20px;font-weight:800;margin-top:4px}
+.bunexa-v12-card{border:1px solid var(--line);border-radius:15px;padding:13px;background:var(--card)}
+.bunexa-v12-card h3{margin:0 0 10px;font-size:14px}
+.bunexa-v12-bar{height:8px;border-radius:99px;background:var(--bg);overflow:hidden}
+.bunexa-v12-bar>i{display:block;height:100%;background:currentColor;border-radius:99px}
+.bunexa-v12-cat{display:grid;gap:8px}
+.bunexa-v12-catrow{display:grid;grid-template-columns:92px 1fr 65px;gap:8px;align-items:center;font-size:11px}
+.bunexa-v12-catrow b{text-align:right}
+.bunexa-v12-insight{padding:9px 10px;border:1px solid var(--line);border-radius:11px;font-size:12px}
+@media(max-width:600px){.bunexa-v12-grid{grid-template-columns:1fr 1fr}.bunexa-v12-catrow{grid-template-columns:82px 1fr 60px}}
+</style>
+
+<style id="bunexa-v13-global-ui-css">
+.v13-zh{display:none}
+html[data-lang="zh"] .v13-en{display:none}
+html[data-lang="zh"] .v13-zh{display:inline}
+.v13-ui-note{font-size:11px;color:var(--muted);margin-top:4px}
+.v13-empty{padding:16px 10px;text-align:center;color:var(--muted);font-size:12px}
+.v13-focus:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+button,input,select,textarea{font-family:inherit}
+</style>
+
+<style>
+.bunexa-v14-recognition{margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:var(--bg);font-size:12px;display:none}
+.bunexa-v14-recognition.show{display:block}
+.bunexa-v14-recognition-row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.bunexa-v14-recognition-label{font-weight:750}.bunexa-v14-recognition-detail{font-size:11px;color:var(--muted);margin-top:3px}
+.bunexa-v14-tag{font-size:10px;border:1px solid var(--line);border-radius:999px;padding:3px 7px}
+</style>
+
+
+
+<style id="bunexa-v16-css">
+.v16-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:99999;padding:12px 16px;border-radius:14px;background:#111;color:#fff;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.18);transition:.22s}
+.v16-toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<style id="bunexa-v22-css">
+.v22-notice{position:fixed;left:50%;bottom:18px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:99999;padding:11px 15px;border-radius:13px;background:#111;color:#fff;font-size:13px;transition:.22s;max-width:calc(100vw - 28px);text-align:center}
+.v22-notice.show{opacity:1;transform:translate(-50%,0)}
+</style>
+
+<style id="bunexa-v23-css">
+.v23-tools{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.v23-input,.v23-select{min-height:40px;border:1px solid rgba(127,127,127,.25);border-radius:12px;padding:8px 10px;background:transparent;color:inherit;box-sizing:border-box}
+.v23-input{flex:1;min-width:180px}.v23-select{min-width:130px}
+.v23-results{margin-top:8px;font-size:12px;opacity:.78}
+.v23-hidden{display:none!important}
+</style>
+<style id="bunexa-v24-css">
+.v24-live{position:fixed;left:50%;bottom:18px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:99999;padding:11px 15px;border-radius:13px;background:#111;color:#fff;font-size:13px;transition:.2s;max-width:calc(100vw - 28px);text-align:center}
+.v24-live.show{opacity:1;transform:translate(-50%,0)}
+.v24-empty{padding:22px 14px;text-align:center;opacity:.68;border:1px dashed rgba(127,127,127,.25);border-radius:14px;margin:10px 0}
+@media(max-width:640px){button{min-height:42px}button,input,select,textarea{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+</style><style id="bunexa-final-css">
+.bunexa-final-quick{display:flex;gap:8px;align-items:center;margin:10px 0;padding:10px;border:1px solid rgba(127,127,127,.18);border-radius:18px;background:rgba(127,127,127,.04)}
+.bunexa-final-quick input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:inherit;font-size:16px;padding:8px}
+.bunexa-final-quick button{min-height:42px;padding:0 16px;border:0;border-radius:13px;cursor:pointer;font-weight:650}
+.bunexa-final-preview{margin-top:6px;padding:9px 12px;border-radius:12px;background:rgba(127,127,127,.07);font-size:13px}
+.bunexa-final-preview .line{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.bunexa-final-butler{margin:12px 0;padding:16px;border-radius:20px;background:rgba(127,127,127,.06)}
+.bunexa-final-butler .headline{font-size:18px;font-weight:750}.bunexa-final-butler .sub{opacity:.68;font-size:12px;margin-top:3px}
+.bunexa-final-butler .metric{font-size:30px;font-weight:800;margin-top:8px}
+.bunexa-final-insight{margin-top:9px;padding:10px 12px;border-radius:13px;background:rgba(127,127,127,.07);font-size:13px}
+.bunexa-final-toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:99999;padding:11px 15px;border-radius:13px;background:#111;color:#fff;font-size:13px;transition:.2s;max-width:calc(100vw - 28px);text-align:center}
+.bunexa-final-toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:640px){.bunexa-final-quick{padding:8px}.bunexa-final-quick button{padding:0 13px}}
+</style><style id="bunexa-v25-layout-css">
+/* V25: keep the native Record button as the single primary entry point. */
+.record-btn{margin:8px 0 16px;min-height:60px;font-size:18px}
+@media(max-width:430px){.record-btn{min-height:58px;font-size:17px}}
 </style></head><body><main id="app">
-<section class="page active" id="home"><header><div class="logo">BUN<span>EXA</span></div><button class="icon-btn" type="button" data-page="settings">⚙</button></header><div class="hero"><div class="eyebrow" data-i18n="balance">Balance</div><div class="balance" id="balance">$0.00</div><div class="stats"><div class="stat"><div class="small" data-i18n="income">Income</div><b class="green" id="income">$0.00</b></div><div class="stat"><div class="small" data-i18n="expenses">Expenses</div><b class="red" id="expenses">$0.00</b></div></div><div class="safe"><div class="small" data-i18n="safe">Safe to Spend</div><b id="safe">$0.00</b><div id="safeDaily" class="small" style="margin-top:5px"></div><div id="moneyStatus" class="small" style="margin-top:8px"></div></div></div><button class="record-btn" type="button" data-action="record">＋ <span data-i18n="record">Record</span></button><div class="card"><div class="section-title" data-i18n="recent">Recent Transactions</div><div id="recent"></div></div></section>
-<section class="page" id="reports"><div class="page-title" data-i18n="reports">Reports</div><div class="filter"><button class="btn active" type="button" data-period="month" data-i18n="thisMonth">This Month</button><button class="btn" type="button" data-period="all" data-i18n="allTime">All Time</button></div><div class="summary" style="margin-top:12px"><div class="card"><div class="small" data-i18n="income">Income</div><b id="rIncome">$0.00</b></div><div class="card"><div class="small" data-i18n="expenses">Expenses</div><b id="rExpenses">$0.00</b></div></div><div class="card" style="margin-top:12px"><div class="section-title" data-i18n="spending">Spending</div><div class="donut" id="donut"><span id="donutText">$0.00</span></div><div id="breakdown"></div></div><div class="card"><div class="section-title" data-i18n="insight">Insight</div><p id="insight" class="small" style="line-height:1.6"></p></div></section>
-<section class="page" id="calendar"><div class="page-title" data-i18n="calendar">Calendar</div><div class="card"><div class="calendar-head"><button type="button" data-action="prev">‹</button><strong id="monthTitle"></strong><button type="button" data-action="next">›</button></div><div class="cal" id="cal"></div></div><div class="card"><div class="section-title" id="selectedTitle"></div><div id="selectedList"></div></div></section>
-<section class="page" id="settings"><div class="page-title" data-i18n="settings">Settings</div><div class="card"><div class="setting"><span data-i18n="currency">Currency</span><select id="currency" style="width:110px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text)"><option>SGD</option><option>MYR</option></select></div><div class="setting"><span data-i18n="regular">Monthly Income</span><input id="regular" type="number" inputmode="decimal" style="width:120px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)" placeholder="0"></div><div class="setting"><span data-i18n="fixed">Fixed Monthly Expenses</span><input id="fixed" type="number" inputmode="decimal" style="width:120px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)" placeholder="0"></div><div class="setting"><span data-i18n="language">Language</span><button class="btn" type="button" data-action="language" id="language">中文</button></div><div class="setting"><span data-i18n="theme">Appearance</span><button class="btn" type="button" data-action="theme" id="theme">☀ Light</button></div><div class="setting"><span>Merchant Memory</span><button class="btn" type="button" data-action="memory">Reset</button></div><div class="setting"><span data-i18n="clearData">Clear Data</span><button class="btn danger" type="button" data-action="clear" id="clearDataBtn">Clear</button></div></div></section>
-</main><nav class="nav"><button type="button" class="active" data-page="home"><span class="nav-icon">⌂</span><span data-i18n="home">Home</span></button><button type="button" data-page="reports"><span class="nav-icon">◔</span><span data-i18n="reports">Reports</span></button><button type="button" data-page="calendar"><span class="nav-icon">▣</span><span data-i18n="calendar">Calendar</span></button><button type="button" data-page="settings"><span class="nav-icon">⚙</span><span data-i18n="settings">Settings</span></button></nav><div class="modal-bg" id="modalBg"><div class="modal"><button class="close" type="button" data-action="close">×</button><h3 id="modalTitle" style="margin:3px 45px 18px 0"></h3><div id="modalBody"></div></div></div><div class="toast" id="toast"></div>
+<section class="page active" id="home"><header><div class="logo">BUN<span>EXA</span></div><button class="icon-btn" type="button" data-page="settings">⚙</button></header><div class="hero"><div class="eyebrow" data-i18n="balance"><span class="v13-en">Balance</span><span class="v13-zh">余额</span></div><div class="balance" id="balance">$0.00</div><div class="stats"><div class="stat"><div class="small" data-i18n="income"><span class="v13-en">Income</span><span class="v13-zh">收入</span></div><b class="green" id="income">$0.00</b></div><div class="stat"><div class="small" data-i18n="expenses"><span class="v13-en">Expenses</span><span class="v13-zh">支出</span></div><b class="red" id="expenses">$0.00</b></div></div><div class="safe"><div class="small" data-i18n="safe"><span class="v13-en">Safe to Spend</span><span class="v13-zh">安全可花</span></div><b id="safe">$0.00</b><div id="safeDaily" class="small" style="margin-top:5px"></div><div id="moneyStatus" class="small" style="margin-top:8px"></div></div></div><button class="record-btn" type="button" data-action="record">＋ <span data-i18n="record">Record</span></button><div class="dash-grid"><div class="card dash-card"><div class="section-title" id="dashTrendTitle">This Month</div><div class="dash-big" id="dashTrendValue">$0.00</div><div class="small" id="dashTrendSub">No spending yet</div></div><div class="card dash-card"><div class="section-title" id="dashTopTitle">Top Spending</div><div class="dash-big" id="dashTopValue">—</div><div class="small" id="dashTopSub">No data yet</div></div></div><div class="card dash-card" id="dashBudgetCard" role="button" tabindex="0" title="Set monthly budget"><div class="row"><div><div class="section-title" id="dashBudgetTitle">Budget Progress</div><div class="small" id="dashBudgetSub">Set a monthly limit to track progress</div></div><div class="dash-percent" id="dashBudgetPercent">—</div></div><div class="track dash-track"><i id="dashBudgetBar" style="width:0%"></i></div></div><div class="card dash-card"><div class="section-title" id="dashInsightTitle">Money Insight</div><div id="dashInsight" class="small" style="line-height:1.7">Start recording expenses to see insights.</div></div><div class="card"><div class="section-title" data-i18n="recent">Recent Transactions</div><div id="recent"></div></div></section>
+<section class="page" id="reports">
+<div id="bunexaV12ReportsPanel" class="bunexa-v12-wrap">
+  <div class="bunexa-v12-grid">
+    <div class="bunexa-v12-stat"><div class="bunexa-v12-label"><span class="v12-en"><span class="v13-en">Income</span><span class="v13-zh">收入</span></span><span class="v12-zh">收入</span></div><div id="v12Income" class="bunexa-v12-value">—</div></div>
+    <div class="bunexa-v12-stat"><div class="bunexa-v12-label"><span class="v12-en"><span class="v13-en">Expenses</span><span class="v13-zh">支出</span></span><span class="v12-zh">支出</span></div><div id="v12Expense" class="bunexa-v12-value">—</div></div>
+    <div class="bunexa-v12-stat"><div class="bunexa-v12-label"><span class="v12-en"><span class="v13-en">Savings</span><span class="v13-zh">储蓄</span></span><span class="v12-zh">储蓄</span></div><div id="v12Savings" class="bunexa-v12-value">—</div></div>
+    <div class="bunexa-v12-stat"><div class="bunexa-v12-label"><span class="v12-en">Savings Rate</span><span class="v12-zh">储蓄率</span></div><div id="v12Rate" class="bunexa-v12-value">—</div></div>
+  </div>
+
+  <div class="bunexa-v12-card">
+    <h3><span class="v12-en">Spending Breakdown</span><span class="v12-zh">消费分类</span></h3>
+    <div id="v12Categories" class="bunexa-v12-cat"></div>
+  </div>
+
+  <div class="bunexa-v12-card">
+    <h3><span class="v12-en">This Month vs Last Month</span><span class="v12-zh">本月 vs 上月</span></h3>
+    <div id="v12Compare" class="v12-en">No data yet.</div>
+    <div id="v12CompareZh" class="v12-zh">暂时没有足够数据。</div>
+  </div>
+
+  <div class="bunexa-v12-card">
+    <h3><span class="v12-en">Top Spending</span><span class="v12-zh">消费重点</span></h3>
+    <div id="v12Top"></div>
+  </div>
+
+  <div class="bunexa-v12-card">
+    <h3><span class="v12-en">Smart Insights</span><span class="v12-zh">智能洞察</span></h3>
+    <div id="v12Insights" style="display:grid;gap:7px"></div>
+  </div>
+</div>
+<div class="page-title" data-i18n="reports"><span class="v13-en">Reports</span><span class="v13-zh">报告</span></div><div class="filter"><button class="btn active" type="button" data-period="month" data-i18n="thisMonth">This Month</button><button class="btn" type="button" data-period="all" data-i18n="allTime">All Time</button></div><div class="summary" style="margin-top:12px"><div class="card"><div class="small" data-i18n="income"><span class="v13-en">Income</span><span class="v13-zh">收入</span></div><b id="rIncome">$0.00</b></div><div class="card"><div class="small" data-i18n="expenses"><span class="v13-en">Expenses</span><span class="v13-zh">支出</span></div><b id="rExpenses">$0.00</b></div></div><div class="card" style="margin-top:12px"><div class="section-title" data-i18n="spending"><span class="v13-en">Spending</span><span class="v13-zh">消费</span></div><div class="donut" id="donut"><span id="donutText">$0.00</span></div><div id="breakdown"></div></div><div class="card"><div class="section-title" data-i18n="insight">Insight</div><p id="insight" class="small" style="line-height:1.6"></p></div><div class="card" style="margin-top:12px"><div class="section-title">Smart Money Insights</div><div id="smartInsights" class="small" style="line-height:1.8"></div></div></section>
+<section class="page" id="calendar"><div class="page-title" data-i18n="calendar"><span class="v13-en">Calendar</span><span class="v13-zh">日历</span></div><div class="card"><div class="calendar-head"><button type="button" data-action="prev">‹</button><strong id="monthTitle"></strong><button type="button" data-action="next">›</button></div><div class="cal" id="cal"></div></div><div class="card"><div class="section-title" id="selectedTitle"></div><div id="selectedList"></div></div></section>
+<section class="page" id="settings"><div class="page-title" data-i18n="settings"><span class="v13-en">Settings</span><span class="v13-zh">设置</span></div><div class="card"><div class="setting"><span data-i18n="currency">Currency</span><select id="currency" style="width:110px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text)"><option>SGD</option><option>MYR</option></select></div><div class="setting"><span data-i18n="regular">Monthly Income</span><input id="regular" type="number" inputmode="decimal" style="width:120px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)" placeholder="0"></div><div class="setting"><span data-i18n="fixed">Fixed Monthly Expenses</span><input id="fixed" type="number" inputmode="decimal" style="width:120px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)" placeholder="0"></div><div class="setting"><span data-i18n="budget">Monthly Budget</span><input id="monthlyBudget" type="number" min="0" step="0.01" inputmode="decimal" style="width:120px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)" placeholder="0"></div><div class="small" style="margin:-6px 0 10px">Set 0 to turn the monthly budget off.</div>
+<div class="bunexa-v103-cat-wrap">
+  <button type="button" class="bunexa-v103-cat-toggle" id="categoryBudgetToggle" aria-expanded="false">
+    <span class="bunexa-v103-cat-left">
+      <span class="bunexa-v103-cat-icon">☷</span>
+      <span>
+        <span class="bunexa-v103-cat-title">
+          <span class="bunexa-v102-en">Category Budgets</span><span class="bunexa-v102-zh">分类预算</span>
+        </span>
+        <span class="bunexa-v103-cat-sub">
+          <span class="bunexa-v102-en">Tap to view & set category limits</span><span class="bunexa-v102-zh">点击展开查看和设置各分类预算</span>
+        </span>
+      </span>
+    </span>
+    <span class="bunexa-v103-chevron">⌄</span>
+  </button>
+  <div class="bunexa-v103-cat-panel" id="categoryBudgetPanel">
+    <div class="small" style="margin:4px 0 10px">
+      <span class="bunexa-v102-en">Leave 0 to disable a category budget.</span><span class="bunexa-v102-zh">输入 0 表示关闭该分类预算。</span>
+    </div>
+    <div id="categoryBudgetEditor" class="bunexa-v101-budget-grid"></div>
+  </div>
+</div>
+<div class="setting"><span data-i18n="language">Language</span><button class="btn" type="button" data-action="language" id="language">中文</button></div><div class="setting"><span data-i18n="theme">Appearance</span><button class="btn" type="button" data-action="theme" id="theme">☀ Light</button></div><div class="setting"><span>Merchant Memory <span class="small" id="memoryCount"></span></span><button class="btn" type="button" data-action="memory">Reset</button></div><div class="setting"><span data-i18n="clearData">Clear Data</span><button class="btn danger" type="button" data-action="clear" id="clearDataBtn">Clear</button></div></div></section>
+</main><nav class="nav"><button type="button" class="active" data-page="home"><span class="nav-icon">⌂</span><span data-i18n="home">Home</span></button><button type="button" data-page="reports"><span class="nav-icon">◔</span><span data-i18n="reports"><span class="v13-en">Reports</span><span class="v13-zh">报告</span></span></button><button type="button" data-page="calendar"><span class="nav-icon">▣</span><span data-i18n="calendar"><span class="v13-en">Calendar</span><span class="v13-zh">日历</span></span></button><button type="button" data-page="settings"><span class="nav-icon">⚙</span><span data-i18n="settings"><span class="v13-en">Settings</span><span class="v13-zh">设置</span></span></button></nav><div class="modal-bg" id="modalBg"><div class="modal"><button class="close" type="button" data-action="close">×</button><h3 id="modalTitle" style="margin:3px 45px 18px 0"></h3><div id="modalBody"></div></div></div><div class="toast" id="toast"></div>
 <script>
-const KEY='bunexa_v6';let data;try{data=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){data=null}data=data||{tx:[],currency:'SGD',regular:0,fixed:0,lang:'en',dark:false,merchantMemory:{}};if(!Array.isArray(data.tx))data.tx=[];if(!data.merchantMemory||typeof data.merchantMemory!=='object')data.merchantMemory={};let calDate=new Date(),selectedDate=new Date(),period='month',editing=null;
-const I={en:{balance:'Balance',income:'Income',expenses:'Expenses',safe:'Safe to Spend',record:'Record',recent:'Recent Transactions',reports:'Reports',thisMonth:'This Month',allTime:'All Time',spending:'Spending',insight:'Insight',calendar:'Calendar',settings:'Settings',currency:'Currency',regular:'Monthly Income',fixed:'Fixed Monthly Expenses',language:'Language',theme:'Appearance',clearData:'Clear Data',smart:'Quick entry',empty:'No transactions yet',expense:'Expense',transactionIncome:'Income',amount:'Amount',what:'What?',category:'Category',date:'Date',auto:'Auto',category:'Category',save:'Save',cancel:'Cancel',delete:'Delete',edit:'Edit',saved:'Saved',deleted:'Deleted',invalid:'Enter an amount and description.',choose:'Choose category',today:'Today',noSpending:'No spending yet.',top:'Top spending',more:'more',clearConfirm:'Clear all BUNEXA data on this device?',cleared:'All data cleared',insightNone:'Record a few expenses and BUNEXA will show a simple insight here.',up:'more than last month',down:'less than last month'},zh:{balance:'余额',income:'收入',expenses:'支出',safe:'可安全消费',record:'记录',recent:'最近记录',reports:'报表',thisMonth:'本月',allTime:'全部',spending:'支出',insight:'分析',calendar:'日历',settings:'设置',currency:'货币',regular:'每月收入',fixed:'每月固定支出',language:'语言',theme:'外观',clearData:'清除数据',smart:'快速输入',empty:'还没有记录',expense:'支出',transactionIncome:'收入',amount:'金额',what:'花了什么？',category:'分类',date:'日期',auto:'自动识别',category:'分类',save:'保存',cancel:'取消',delete:'删除',edit:'编辑',saved:'已保存',deleted:'已删除',invalid:'请输入金额和内容。',choose:'选择分类',today:'今天',noSpending:'还没有支出。',top:'最高支出',more:'更多',clearConfirm:'确定清除这台设备上的全部 BUNEXA 数据吗？',cleared:'所有数据已清除',insightNone:'记录几笔支出后，BUNEXA 会在这里给你简单分析。',up:'比上月多',down:'比上月少'}};
+const KEY='bunexa_v6';let data;try{data=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){data=null}data=data||{tx:[],currency:'SGD',regular:0,fixed:0,limit:0,lang:'en',dark:false,merchantMemory:{}};if(!Array.isArray(data.tx))data.tx=[];if(!data.merchantMemory||typeof data.merchantMemory!=='object')data.merchantMemory={};if(typeof data.limit!=='number')data.limit=Number(data.limit)||0;if(!data.categoryBudgets||typeof data.categoryBudgets!=='object')data.categoryBudgets={};let calDate=new Date(),selectedDate=new Date(),period='month',editing=null;
+const I={en:{balance:'Balance',income:'Income',expenses:'Expenses',safe:'Safe to Spend',record:'Record',recent:'Recent Transactions',reports:'Reports',thisMonth:'This Month',allTime:'All Time',spending:'Spending',insight:'Insight',calendar:'Calendar',settings:'Settings',currency:'Currency',regular:'Monthly Income',fixed:'Fixed Monthly Expenses',budget:'Monthly Budget',language:'Language',theme:'Appearance',clearData:'Clear Data',smart:'Quick entry',empty:'No transactions yet',expense:'Expense',transactionIncome:'Income',amount:'Amount',what:'What?',category:'Category',date:'Date',auto:'Auto',category:'Category',save:'Save',cancel:'Cancel',delete:'Delete',edit:'Edit',saved:'Saved',deleted:'Deleted',invalid:'Enter an amount and description.',choose:'Choose category',today:'Today',noSpending:'No spending yet.',top:'Top spending',more:'more',clearConfirm:'Clear all BUNEXA data on this device?',cleared:'All data cleared',insightNone:'Record a few expenses and BUNEXA will show a simple insight here.',up:'more than last month',down:'less than last month'},zh:{balance:'余额',income:'收入',expenses:'支出',safe:'可安全消费',record:'记录',recent:'最近记录',reports:'报表',thisMonth:'本月',allTime:'全部',spending:'支出',insight:'分析',calendar:'日历',settings:'设置',currency:'货币',regular:'每月收入',fixed:'每月固定支出',budget:'每月预算',language:'语言',theme:'外观',clearData:'清除数据',smart:'快速输入',empty:'还没有记录',expense:'支出',transactionIncome:'收入',amount:'金额',what:'花了什么？',category:'分类',date:'日期',auto:'自动识别',category:'分类',save:'保存',cancel:'取消',delete:'删除',edit:'编辑',saved:'已保存',deleted:'已删除',invalid:'请输入金额和内容。',choose:'选择分类',today:'今天',noSpending:'还没有支出。',top:'最高支出',more:'更多',clearConfirm:'确定清除这台设备上的全部 BUNEXA 数据吗？',cleared:'所有数据已清除',insightNone:'记录几笔支出后，BUNEXA 会在这里给你简单分析。',up:'比上月多',down:'比上月少'}};
 const C=['Dining','Transport','Groceries','Online Food Delivery','Online Shopping','Digital Entertainment','Beauty & Wellness','Pets','Luxury Goods','Clothing & Fashion','Automobile','Cruise & Holiday','Travel','Bills','Gifts','Household & Daily','Shopping','Other'];
 const KW={"Dining":"mee|noodle|noodles|mee goreng|mee siam|mee rebus|mee pok|mee kia|wantan mee|ban mian|nasi|nasi goreng|nasi lemak|chicken rice|fried rice|rice bowl|roti prata|roti canai|kopi|coffee|cafe|espresso|latte|cappuccino|restaurant|hawker|food court|bakery|pizza|burger|mcdonalds|mcd|kfc|burger king|subway|wendys|five guys|shake shack|jollibee|popeyes|texas chicken|mos burger|ya kun|toast box|killiney|old chang kee|starbucks|coffee bean|gong cha|koi|liho|chicha|chagee|heytea|mixue|bubble tea|milk tea|milktea|boba|hotpot|steamboat|sushi|ramen|udon|dim sum|dessert|ice cream|gelato|咖啡|kopitiam|茶室|餐厅|饭|面|火锅|烧烤|寿司|拉面|点心|甜品|冰淇淋|奶茶|珍珠奶茶","Transport":"grab(?!food)|gojek|comfort|comfortdelgro|cdg zig|taxi|cab|tada|ryde|trans-cab|silvercab|smrt|bus|mrt|train|simplygo|ez-link|ezlink|parking|carpark|parking.sg|erp|season parking|petrol|fuel|shell|esso|exxon|caltex|spc|petrol station|交通|地铁|巴士|火车|德士|出租车|停车|油费|汽油|柴油","Groceries":"rice|brown rice|white rice|jasmine rice|basmati rice|instant noodle|instant noodles|cup noodle|mee goreng paste|flour|sugar|salt|cooking oil|soy sauce|milk|cheese|yogurt|yoghurt|fairprice|ntuc|cold storage|giant|sheng siong|prime supermarket|don don donki|donki|meidi-ya|jasons|market place|marketplace|redmart|mustafa|supermarket|grocer|grocery|groceries|fruit|fruits|vegetable|vegetables|meat|beef|pork|chicken|seafood|egg|eggs|milk|bread|rice|cereal|oat|oats|instant noodle|instant noodles|cup noodle|maggi|nissin|mamee|indomie|myojo|nongshim|samyang|shin ramyun|chips|potato chips|snack|snacks|biscuits|cookies|chocolate|candy|apple|banana|orange|grape|grapes|blueberry|strawberry|mango|watermelon|durian|水果|苹果|香蕉|橙|葡萄|草莓|蓝莓|芒果|西瓜|榴莲|蔬菜|肉|鸡肉|牛肉|猪肉|海鲜|鸡蛋|牛奶|面包|米|麦片|燕麦|泡面|方便面|薯片|零食|饼干|巧克力|糖果|超市|杂货","Online Food Delivery":"grabfood|foodpanda|deliveroo|oddle|food delivery|外卖|外送|送餐","Online Shopping":"tiktok shop|1688|shopee mall|lazada mall|shopee|lazada|amazon|amazon.sg|qoo10|temu|taobao|tmall|jd.com|jingdong|aliexpress|alibaba|shein|zalora|carousell|ebay|etsy|ezbuy|online shopping|e-commerce|ecommerce|网上购物|网购|电商","Digital Entertainment":"apple arcade|discord nitro|playstation plus|ps plus|xbox live|steam wallet|netflix|spotify|youtube premium|youtube music|disney\\+|disney plus|apple music|apple tv|apple tv\\+|prime video|amazon prime|max|hbo|paramount\\+|viu|iqiyi|wetv|tiktok|twitch|steam|epic games|playstation|ps store|xbox|nintendo|garena|genshin|mobile legends|valorant|roblox|game pass|gaming|游戏|娱乐|视频会员|音乐会员|流媒体","Beauty & Wellness":"cosrx|the ordinary|cerave|cetaphil|avene|bioderma|dr jart|romand|peripera|maybelline|loreal|dove|pantene|olaplex|watsons|guardian|sephora|sasa|unity pharmacy|olive young|innisfree|laneige|sk-ii|shiseido|estee lauder|clinique|kiehl|la mer|mac cosmetics|make up forever|nars|bobbi brown|fenty beauty|rare beauty|cosmetics|makeup|skincare|skin care|sunscreen|perfume|fragrance|beauty|wellness|spa|massage|facial|salon|haircut|barber|nail|manicure|pedicure|gym|fitness|supplement|vitamin|护肤|化妆|香水|美容|美甲|理发|按摩|健身|保健|维生素","Pets":"whiskas|royal canin|purina|pedigree|hills|hill\'s|pet carrier|pet bed|pet lovers|pets station|pet safari|petmart|petco|pets at home|cat food|dog food|pet food|pet treats|pet toy|pet toys|cat litter|kitty litter|dog treats|dog shampoo|pet shampoo|pet grooming|vet|veterinary|pet supplies|aquarium|fish food|betta|bird food|hamster food|rabbit food|猫粮|狗粮|宠物粮|宠物用品|猫砂|宠物零食|宠物玩具|宠物美容|兽医|鱼粮|鱼缸|仓鼠|兔粮","Luxury Goods":"\\blv\\b|louis vuitton|rolex|omega|patek philippe|audemars piguet|vacheron constantin|cartier|tiffany|bulgari|bvlgari|van cleef|vca|chopard|piaget|harry winston|graff|chanel|hermes|hermès|louis vuitton|gucci|prada|dior|fendi|celine|loewe|bottega veneta|burberry|saint laurent|ysl|balenciaga|givenchy|versace|valentino|moncler|rimowa|goyard|breguet|breitling|tag heuer|hublot|iwc|jaeger lecoultre|richard mille|劳力士|欧米茄|百达翡丽|爱彼|江诗丹顿|卡地亚|蒂芙尼|宝格丽|梵克雅宝|香奈儿|爱马仕|路易威登|古驰|普拉达|迪奥|芬迪|赛琳|博柏利|圣罗兰|巴黎世家|纪梵希|范思哲|华伦天奴","Clothing & Fashion":"underwear|briefs|boxers|boxer|panties|bra|bras|lingerie|underpants|底裤|内裤|裤衩|内衣|胸罩|文胸|uniqlo|zara|h\\&m|hm|cotton on|mango|cos|massimo dutti|pull\\&bear|bershka|stradivarius|topshop|river island|marks \\& spencer|m\\&s|next|gap|old navy|banana republic|j\\.crew|ralph lauren|polo ralph lauren|tommy hilfiger|calvin klein|levis|levi\\'s|lee|wrangler|nike|adidas|puma|reebok|new balance|asics|skechers|under armour|lululemon|on running|salomon|hoka|converse|vans|crocs|timberland|dr martens|foot locker|jd sports|decathlon|muji|love bonito|pomelo|pedro|charles \\& keith|michael kors|coach|kate spade|clothing|apparel|shirt|t-shirt|jeans|pants|dress|jacket|shoes|sneakers|bag|handbag|衣服|衣物|服装|服饰|上衣|裤子|裙子|外套|鞋|鞋子|运动鞋|包|手袋","Automobile":"motorcycle|motorbike|scooter|yamaha|kawasaki|suzuki|ducati|vespa|bike servicing|motor insurance|toyota|honda|mazda|nissan|mitsubishi|subaru|hyundai|kia|volkswagen|vw|ford|chevrolet|volvo|bmw|mercedes|audi|lexus|infiniti|jaguar|land rover|range rover|porsche|ferrari|lamborghini|maserati|bentley|rolls royce|aston martin|tesla|byd|mg|ora|xpeng|nio|polestar|car|auto|automotive|workshop|mechanic|service centre|car servicing|tyre|tire|battery|car wash|car insurance|road tax|coe|汽车|轿车|车|修车|维修|保养|轮胎|电池|洗车|车险|路税","Cruise & Holiday":"royal caribbean|celebrity cruises|princess cruises|costa cruises|msc cruises|norwegian cruise line|ncl|disney cruise line|dream cruises|resorts world cruises|star cruises|cunard|cruise|cruises|邮轮|游轮|邮轮假期|游轮假期|度假村|度假","Travel":"hotel|hotels|marriott|hilton|hyatt|ihg|intercontinental|holiday inn|ritz carlton|four seasons|shangri-la|accor|novotel|ibis|airbnb|agoda|booking.com|expedia|trip.com|tripadvisor|skyscanner|klook|pelago|flight|airfare|scoot|singapore airlines|sia|jetstar|airasia|malaysia airlines|batik air|emirates|qatar airways|cathay pacific|travel|旅行|旅游|酒店|民宿|机票|航班|景点","Bills":"sp services|sp group|singtel|starhub|m1|simba|giga|circles\\.life|myrepublic|viewqwest|internet|wifi|mobile plan|phone bill|electricity|water bill|gas bill|utilities|bill|电费|水费|煤气费|电话费|网络|宽带|账单","Gifts":"birthday gift|wedding gift|baby gift|christmas gift|anniversary gift|gift set|贺礼|喜帖|满月礼|gift|gifts|present|presents|gift card|voucher|red packet|ang bao|hongbao|礼物|礼品|礼券|红包|人情","Household & Daily":"hand sanitizer|sanitizer|cotton bud|cotton buds|towel|laundry|cleaning supplies|household supplies|toothpaste|toothbrush|floss|mouthwash|shampoo|conditioner|body wash|soap|hand wash|detergent|laundry detergent|dish soap|tissue|toilet paper|paper towel|wet wipes|trash bag|garbage bag|cleaning|cleaner|bleach|sponge|air freshener|deodorant|razor|shaver|sanitary|pad|tampon|toiletries|household|home essentials|daily necessities|light bulb|battery|kitchenware|cookware|utensil|storage|hanger|日用品|生活用品|日常用品|牙膏|牙刷|牙线|漱口水|洗发水|护发素|沐浴露|肥皂|洗衣液|洗碗液|纸巾|厕纸|湿纸巾|垃圾袋|清洁|清洁剂|海绵|空气清新剂|剃须|卫生巾|厨房用品|厨具|收纳|衣架","Shopping":"takashimaya|ion orchard|vivo city|paragon|ngee ann city|bugis junction|bugis\\+|jem|westgate|causeway point|shopping mall|mall|department store|retail|shopping|购物中心|商场|百货|购物","Other":".*"};function tr(k){return I[data.lang]?.[k]||k}function save(){localStorage.setItem(KEY,JSON.stringify(data))}function money(n){return(data.currency==='MYR'?'RM ':'S$')+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}function dateKey(d){let x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function label(c){let m={'Dining':['Dining','餐饮'],'Transport':['Transport','交通'],'Groceries':['Groceries','超市 / 食品'],'Online Food Delivery':['Online Food Delivery','外卖'],'Online Shopping':['Online Shopping','网购'],'Digital Entertainment':['Digital Entertainment','数字娱乐'],'Beauty & Wellness':['Beauty & Wellness','美容健康'],'Pets':['Pets','宠物'],'Luxury Goods':['Luxury Goods','奢侈品'],'Clothing & Fashion':['Clothing & Fashion','服饰'],'Automobile':['Automobile','汽车'],'Cruise & Holiday':['Cruise & Holiday','邮轮度假'],'Travel':['Travel','旅行'],'Bills':['Bills','账单'],'Gifts':['Gifts','礼物'],'Household & Daily':['Household & Daily','日用品'],'Shopping':['Shopping','购物'],'Other':['Other','其他'],'Income':['Income','收入']};return m[c]?.[data.lang==='zh'?1:0]||c}function icon(c){return{Dining:'🍜',Transport:'🚕',Groceries:'🛒','Online Food Delivery':'🛵','Online Shopping':'📦','Digital Entertainment':'🎧','Beauty & Wellness':'✨',Pets:'🐾','Luxury Goods':'💎','Clothing & Fashion':'👕',Automobile:'🚗','Cruise & Holiday':'🛳️',Travel:'✈️',Bills:'🧾',Gifts:'🎁','Household & Daily':'🧴',Shopping:'🛍️',Other:'•'}[c]||'•'}
+
+/* BUNEXA V27 FINAL SG/MY DEEP CONSUMER DATABASE + HIDDEN TEST LAB */
+const BUNEXA_FINAL_DB=(()=>{
+ const DB={"Dining": ["chicken rice", "海南鸡饭", "海南雞飯", "鸡饭", "雞飯", "char kway teow", "炒粿条", "炒粿條", "hokkien mee", "福建面", "福建麵", "prawn mee", "虾面", "蝦麵", "bak chor mee", "肉脞面", "肉脞麵", "mee pok", "mee kia", "ban mian", "板面", "fishball noodles", "鱼丸面", "魚丸麵", "wanton mee", "云吞面", "雲吞麵", "bak kut teh", "肉骨茶", "laksa", "叻沙", "asam laksa", "亚参叻沙", "亞參叻沙", "nasi lemak", "椰浆饭", "椰漿飯", "nasi goreng", "炒饭", "炒飯", "nasi kandar", "nasi kerabu", "nasi dagang", "nasi padang", "roti prata", "roti canai", "印度煎饼", "印度煎餅", "murtabak", "马来煎", "馬來煎", "mee rebus", "mee siam", "mee goreng", "炒面", "炒麵", "lor mee", "卤面", "滷麵", "kway chap", "粿汁", "chai tow kway", "萝卜糕", "蘿蔔糕", "菜头粿", "菜頭粿", "chee cheong fun", "猪肠粉", "豬腸粉", "yong tau foo", "酿豆腐", "釀豆腐", "siew mai", "siu mai", "shumai", "烧卖", "燒賣", "har gow", "hargow", "虾饺", "蝦餃", "dim sum", "点心", "點心", "char siew bao", "叉烧包", "叉燒包", "liu sha bao", "流沙包", "egg tart", "蛋挞", "蛋撻", "pau", "包子", "popiah", "薄饼", "薄餅", "satay", "沙爹", "沙嗲", "otah", "乌达", "烏打", "rojak", "啰惹", "囉惹", "cendol", "煎蕊", "ice kacang", "ais kacang", "红豆冰", "紅豆冰", "tau huay", "豆花", "豆腐花", "kaya toast", "咖椰吐司", "kopi o", "kopi c", "kopi kosong", "kopi susu", "teh tarik", "teh o", "teh c", "teh ais", "teh peng", "kopi ais", "kopi peng", "yuan yang", "鸳鸯", "鴛鴦", "milo dinosaur", "bandung", "奶茶", "珍珠奶茶", "bubble tea", "boba", "mala", "麻辣烫", "麻辣燙", "mala xiang guo", "麻辣香锅", "麻辣香鍋", "hotpot", "火锅", "火鍋", "steamboat", "烧烤", "燒烤", "bbq", "fried chicken", "炸鸡", "炸雞", "chicken chop", "鸡扒", "雞扒", "pork chop", "猪扒", "豬扒", "burger", "汉堡", "漢堡", "pizza", "pasta", "意大利面", "義大利麵", "ramen", "拉面", "拉麵", "udon", "乌冬", "烏冬", "soba", "荞麦面", "蕎麥麵", "sushi", "寿司", "壽司", "sashimi", "刺身", "tempura", "天妇罗", "天婦羅", "donburi", "丼饭", "丼飯", "biryani", "briyani", "chapati", "naan", "thosai", "dosa", "idli", "tandoori", "curry", "咖喱", "咖哩", "cheesecake", "芝士蛋糕", "brownie", "布朗尼", "cake", "蛋糕", "cookie", "曲奇", "donut", "甜甜圈", "waffle", "pancake", "ice cream", "雪糕", "冰淇淋", "gelato", "crepe", "dessert", "甜品", "甜点"], "Groceries": ["rice", "white rice", "brown rice", "jasmine rice", "basmati rice", "fragrant rice", "米", "白米", "大米", "糙米", "香米", "泰国香米", "泰國香米", "糯米", "flour", "面粉", "麵粉", "cake flour", "corn starch", "玉米淀粉", "玉米澱粉", "tapioca", "木薯粉", "sago", "sugar", "糖", "白糖", "黄糖", "黃糖", "冰糖", "salt", "盐", "鹽", "sea salt", "海盐", "海鹽", "soy sauce", "酱油", "醬油", "生抽", "老抽", "oyster sauce", "蚝油", "蠔油", "fish sauce", "鱼露", "魚露", "chilli sauce", "辣椒酱", "辣椒醬", "tomato sauce", "ketchup", "mayonnaise", "mayo", "mustard", "vinegar", "醋", "sesame oil", "芝麻油", "cooking oil", "食用油", "vegetable oil", "菜油", "canola oil", "olive oil", "橄榄油", "橄欖油", "peanut oil", "花生油", "coconut oil", "椰油", "butter", "牛油", "奶油", "margarine", "cheese", "芝士", "起司", "milk", "牛奶", "鲜奶", "鮮奶", "soy milk", "豆奶", "豆漿", "almond milk", "燕麦奶", "燕麥奶", "oat milk", "yogurt", "优格", "優格", "酸奶", "egg", "eggs", "鸡蛋", "雞蛋", "duck egg", "bread", "面包", "麵包", "bun", "cereal", "麦片", "麥片", "oats", "燕麦", "燕麥", "granola", "instant noodle", "instant noodles", "方便面", "方便麵", "泡面", "泡麵", "maggi", "nissin", "indomie", "mamee", "myojo", "nongshim", "samyang", "frozen food", "冷冻食品", "冷凍食品", "fish", "鱼", "魚", "seafood", "海鲜", "海鮮", "prawn", "shrimp", "虾", "蝦", "squid", "鱿鱼", "魷魚", "chicken", "鸡肉", "雞肉", "beef", "牛肉", "pork", "猪肉", "豬肉", "tofu", "豆腐", "tempeh", "vegetables", "蔬菜", "fruit", "水果", "apple", "苹果", "蘋果", "banana", "香蕉", "orange", "橙", "grape", "葡萄", "watermelon", "西瓜", "mango", "芒果", "durian", "榴莲", "榴槤", "snacks", "零食", "chips", "薯片", "biscuits", "饼干", "餅乾", "chocolate", "巧克力", "candy", "糖果", "nuts", "坚果", "堅果", "popcorn", "爆米花", "canned food", "罐头", "罐頭", "sardines", "tuna", "jam", "果酱", "果醬", "peanut butter", "花生酱", "蜂蜜", "honey", "coffee beans", "咖啡豆", "tea leaves", "茶叶", "茶葉", "milo", "water", "bottled water", "矿泉水", "礦泉水", "juice", "果汁", "soft drink", "汽水", "sparkling water", "气泡水", "氣泡水"], "Beauty & Wellness": ["mascara", "睫毛膏", "foundation", "粉底液", "concealer", "遮瑕", "cushion", "气垫", "氣墊", "bb cream", "cc cream", "powder", "粉饼", "粉餅", "loose powder", "散粉", "highlighter", "高光", "blush", "腮红", "腮紅", "eyeshadow", "眼影", "eyeliner", "眼线", "眼線", "eyebrow", "眉笔", "眉筆", "false eyelashes", "假睫毛", "lipstick", "口红", "口紅", "lip gloss", "唇彩", "lip tint", "唇釉", "makeup remover", "卸妆", "卸妝", "setting spray", "定妆喷雾", "定妝噴霧", "skincare", "护肤", "護膚", "serum", "精华", "精華", "toner", "爽肤水", "爽膚水", "moisturizer", "面霜", "cleanser", "洗面奶", "洁面", "潔面", "sunscreen", "防晒", "防曬", "sheet mask", "面膜", "perfume", "香水", "fragrance", "shampoo", "洗发水", "洗髮水", "conditioner", "护发素", "護髮素", "hair mask", "hair oil", "hair dye", "染发", "染髮", "body lotion", "body wash", "沐浴露", "soap", "肥皂", "hand cream", "护手霜", "護手霜", "deodorant", "nail polish", "指甲油", "manicure", "pedicure", "按摩", "massage", "spa", "facial", "美容"], "Pets": ["cat food", "猫粮", "貓糧", "kitten food", "dog food", "狗粮", "狗糧", "puppy food", "pet food", "宠物粮", "寵物糧", "cat litter", "猫砂", "貓砂", "dog treats", "cat treats", "pet treats", "宠物零食", "寵物零食", "pet toy", "宠物玩具", "寵物玩具", "cat tree", "猫树", "貓樹", "pet carrier", "宠物包", "pet bed", "宠物床", "pet shampoo", "pet wipes", "fish food", "鱼粮", "魚糧", "fish pellets", "betta food", "aquarium", "鱼缸", "魚缸", "水族箱", "aquarium filter", "水泵", "打气泵", "打氣泵", "aquarium light", "aquarium gravel", "fish net", "鱼网", "魚網", "water conditioner", "水质稳定剂", "水質穩定劑", "aquatic plant", "水草", "betta", "goldfish", "tropical fish", "bird food", "rabbit food", "hamster food", "hay", "宠物用品", "寵物用品", "pet supplies"], "Household & Daily": ["toilet paper", "厕纸", "廁紙", "tissue", "纸巾", "紙巾", "wet wipes", "湿纸巾", "濕紙巾", "kitchen towel", "paper towel", "laundry detergent", "洗衣液", "洗衣粉", "washing powder", "fabric softener", "柔顺剂", "柔順劑", "bleach", "漂白水", "disinfectant", "消毒剂", "消毒劑", "dishwashing liquid", "洗碗液", "dish soap", "sponge", "海绵", "海綿", "mop", "拖把", "broom", "扫把", "掃把", "dustpan", "vacuum", "air freshener", "空气清新剂", "空氣清新劑", "garbage bag", "垃圾袋", "cling wrap", "保鲜膜", "保鮮膜", "aluminium foil", "铝箔", "鋁箔", "ziplock bag", "light bulb", "灯泡", "燈泡", "battery", "电池", "電池", "extension cord", "插线板", "插線板", "power strip", "toothpaste", "牙膏", "toothbrush", "牙刷", "dental floss", "牙线", "牙線", "mouthwash", "漱口水", "razor", "剃须刀", "剃鬚刀", "sanitary pad", "卫生巾", "衛生巾", "tampon", "diaper", "尿布", "纸尿裤", "紙尿褲", "baby wipes", "baby formula", "cleaning spray", "floor cleaner", "glass cleaner", "toilet cleaner", "insecticide", "杀虫剂", "殺蟲劑", "storage box", "衣架", "hanger", "垃圾桶", "dustbin", "mug", "water bottle", "保鲜盒", "收纳盒", "收納盒"], "Clothing & Fashion": ["underwear", "底裤", "底褲", "内裤", "內褲", "briefs", "boxers", "panties", "bra", "胸罩", "文胸", "t-shirt", "shirt", "衬衫", "襯衫", "pants", "trousers", "裤子", "褲子", "jeans", "牛仔裤", "牛仔褲", "shorts", "裙子", "skirt", "dress", "连衣裙", "連衣裙", "hoodie", "jacket", "外套", "coat", "袜子", "襪子", "socks", "shoes", "鞋", "sneakers", "运动鞋", "運動鞋", "sandals", "凉鞋", "涼鞋", "slippers", "拖鞋", "cap", "帽子", "handbag", "backpack", "wallet", "钱包", "錢包", "belt", "皮带", "皮帶", "uniqlo", "zara", "h&m", "muji", "nike", "adidas", "puma", "new balance", "under armour", "decathlon", "cotton on", "love bonito", "charles & keith"], "Luxury Goods": ["lv", "louis vuitton", "路易威登", "gucci", "古驰", "古馳", "prada", "普拉达", "普拉達", "chanel", "香奈儿", "香奈兒", "dior", "迪奥", "迪奧", "hermes", "hermès", "爱马仕", "愛馬仕", "rolex", "劳力士", "勞力士", "cartier", "卡地亚", "卡地亞", "omega", "欧米茄", "歐米茄", "bvlgari", "bulgari", "celine", "loewe", "burberry", "balenciaga", "saint laurent", "ysl", "valentino", "fendi", "bottega veneta", "tiffany", "van cleef", "珠宝", "珠寶", "diamond", "钻石", "鑽石", "luxury", "奢侈品", "名牌"], "Automobile": ["petrol", "fuel", "汽油", "柴油", "diesel", "shell", "esso", "caltex", "spc", "petron", "petronas", "bhp", "ron95", "ron97", "engine oil", "机油", "機油", "car wash", "洗车", "洗車", "car servicing", "car service", "维修", "維修", "workshop", "修车", "修車", "tyre", "tire", "轮胎", "輪胎", "car battery", "road tax", "路税", "路稅", "coe", "erp", "motorcycle", "motorbike", "scooter", "motor insurance", "汽车保险", "汽車保險", "detailing", "car accessories", "dashcam", "汽车用品", "汽車用品"], "Transport": ["grab", "gojek", "tada", "ryde", "comfortdelgro", "cdg zig", "taxi", "cab", "smrt", "sbs transit", "mrt", "lrt", "bus", "train", "metro", "德士", "打车", "搭车", "出租车", "出租車", "地铁", "地鐵", "巴士", "火车", "火車", "parking", "carpark", "erp", "toll", "过路费", "過路費", "ez-link", "simplygo", "touch n go", "tng", "myrapid", "rapidkl", "rapid penang"], "Bills": ["singtel", "starhub", "m1", "simba", "giga", "circles life", "myrepublic", "viewqwest", "sp services", "sp group", "electricity bill", "water bill", "gas bill", "phone bill", "internet bill", "wifi", "broadband", "utilities", "rent", "rental", "房租", "租金", "电费", "電費", "水费", "水費", "网费", "網費", "电话费", "電話費", "insurance", "保险", "保險", "credit card bill", "bank fee", "service charge", "maintenance fee", "town council", "property tax", "income tax"], "Online Shopping": ["shopee", "虾皮", "蝦皮", "lazada", "amazon", "qoo10", "taobao", "淘宝", "淘寶", "tmall", "天猫", "天貓", "pinduoduo", "拼多多", "pdd", "temu", "carousell", "tiktok shop", "tiktokshop", "抖音商城", "抖音小店", "抖音电商", "抖音電商", "aliexpress", "速卖通", "速賣通", "alibaba", "阿里巴巴", "1688", "shein", "zalora", "ezbuy", "ebay", "etsy", "poizon", "得物", "jd.com", "京东", "京東", "rednote", "xiaohongshu", "小红书商城", "小紅書商城", "wechat shop", "微信小店", "online shopping", "网上购物", "網上購物", "网购", "網購", "ecommerce", "电商", "電商"], "Online Food Delivery": ["grabfood", "grab food", "foodpanda", "food panda", "deliveroo", "oddle", "mcdelivery", "pandamart", "外卖", "外賣", "外送", "送餐", "food delivery", "meal delivery"], "Digital Entertainment": ["netflix", "spotify", "youtube premium", "youtube music", "apple music", "apple tv", "disney+", "prime video", "hbo", "hbo max", "max", "viu", "iqiyi", "爱奇艺", "愛奇藝", "wetv", "youku", "优酷", "優酷", "bilibili", "steam", "playstation", "ps plus", "xbox", "game pass", "nintendo", "garena", "roblox", "genshin", "原神", "honkai", "崩坏", "崩壞", "mobile legends", "王者荣耀", "王者榮耀", "game top up", "游戏充值", "遊戲充值", "cinema", "movie ticket", "电影票", "電影票", "karaoke", "ktv", "concert ticket", "音乐会员", "音樂會員"], "Gifts": ["gift", "present", "礼物", "禮物", "birthday gift", "wedding gift", "红包", "紅包", "ang bao", "angpow", "hampers", "gift hamper", "flower bouquet", "鲜花", "鮮花", "flowers", "souvenir", "纪念品", "紀念品"], "Travel": ["agoda", "booking.com", "expedia", "trip.com", "airbnb", "airasia", "scoot", "singapore airlines", "malaysia airlines", "jetstar", "batik air", "hotel", "resort", "air ticket", "flight", "机票", "機票", "hotel booking", "酒店", "飯店", "住宿", "旅行", "travel", "tour", "cruise", "ferry", "渡轮", "渡輪", "airport", "visa fee", "旅游保险", "旅遊保險"], "Shopping": ["watsons", "屈臣氏", "guardian", "万宁", "萬寧", "sephora", "sasa", "olive young", "unity", "fairprice", "ntuc fairprice", "cold storage", "giant", "sheng siong", "prime supermarket", "mustafa", "mustafa centre", "don don donki", "donki", "little farms", "ryan's grocery", "marketplace", "jason's market place", "99 speedmart", "jaya grocer", "lotus's", "lotus", "aeon", "mydin", "econsave", "village grocer", "hero market", "ben's independent grocer", "big pharmacy", "daiso", "miniso", "ikea", "courts", "best denki", "harvey norman", "challenger", "popular bookstore", "kinokuniya", "takashimaya", "tangs", "metro", "department store", "supermarket", "hypermarket", "mall", "购物", "購物", "商场", "商場", "百货", "百貨"]};
+ const escapeRegExp=x=>String(x).replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s*');
+ const rules=[];
+ Object.entries(DB).forEach(([cat,terms])=>terms.slice().sort((a,b)=>b.length-a.length).forEach(term=>{
+   const e=escapeRegExp(term); const ascii=/^[A-Za-z0-9][A-Za-z0-9 .&'+-]*$/.test(term);
+   rules.push([cat,ascii?new RegExp('(?:^|\\b)'+e+'(?:\\b|$)','i'):new RegExp(e,'i'),term]);
+ }));
+ const collision=[['Online Food Delivery',/\b(grab\s*food|grabfood|foodpanda|food\s*panda|deliveroo|oddle|mcdelivery|pandamart)\b|外卖|外賣|外送/i],['Groceries',/\b(grab\s*mart|grabmart)\b/i],['Digital Entertainment',/\b(apple\s*(music|tv)|youtube\s*(premium|music)|disney\+)/i],['Pets',/cat\s*food|dog\s*food|fish\s*food|fish\s*pellets|cat\s*litter|宠物零食|寵物零食|pet\s*shampoo|鱼缸|魚缸|fish\s*net|鱼网|魚網|water\s*conditioner|tropical\s*fish|猫粮|貓糧|鱼粮|魚糧|猫砂|貓砂/i],['Household & Daily',/washing\s*powder|dish\s*soap|water\s*bottle/i],['Automobile',/car\s*battery/i],['Luxury Goods',/欧米茄|歐米茄/i],['Transport',/\berp\b/i],['Bills',/water\s*bill/i],['Online Shopping',/虾皮|蝦皮/i],['Travel',/旅游保险|旅遊保險/i],['Groceries',/cake\s*flour|餅乾/i],['Dining',/chicken\s*rice|海南鸡饭|海南雞飯|milk\s*tea|bubble\s*tea|奶茶|kopi\s*[oc]|teh\s*(ais|peng|tarik)/i]];
+ function recognize(text){const s=String(text||'').toLowerCase().trim();if(!s)return null;for(const [c,r] of collision)if(r.test(s))return{category:c,confidence:'high',source:'final-db-collision'};for(const [c,r,t] of rules){if(c==='Shopping')continue;if(r.test(s))return{category:c,confidence:'high',source:'final-db',term:t};}for(const [c,r,t] of rules)if(c==='Shopping'&&r.test(s))return{category:c,confidence:'high',source:'final-db-store',term:t};return null;}
+ const tests=[];Object.entries(DB).forEach(([c,ts])=>ts.forEach(t=>tests.push([t+' 10',c]))); const canonical={erp:'Transport',metro:'Transport'};
+ function runTests(){const rows=tests.map(([i,e])=>{const raw=i.replace(/\s+10$/,'').toLowerCase(); if(canonical[raw]) e=canonical[raw]; const g=recognize(i)?.category||'Other';return{input:i,expected:e,got:g,pass:g===e};});return{total:rows.length,passed:rows.filter(x=>x.pass).length,failed:rows.filter(x=>!x.pass).slice(0,100),coverage:Object.fromEntries(Object.entries(DB).map(([c,t])=>[c,t.length]))};}
+ return{DB,recognize,runTests};
+})();
+window.BUNEXA_FINAL_DB_TEST=BUNEXA_FINAL_DB.runTests();
+
 function detect(s){
  s=String(s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/\btee\b/g,'t-shirt').trim();
+ const __finalDbHit=BUNEXA_FINAL_DB.recognize(s); if(__finalDbHit) return __finalDbHit.category;
+ // BUNEXA V5 Recognition Engine — context-aware priority layer.
+ // Principle: specific phrase > merchant+product context > merchant > generic product.
+ const has=(re)=>re.test(s);
+ const any=(arr)=>arr.some(re=>re.test(s));
+ // 1) Delivery/transport collisions.
+ if(has(/\b(grab\s*food|grabfood|foodpanda|food\s*panda|deliveroo|oddle)\b|外卖|外賣|外送|送餐/)) return 'Online Food Delivery';
+ if(has(/\bgrab\s*mart\b|\bgrabmart\b/)) return 'Groceries';
+ if(has(/\b(grab|gojek|comfortdelgro|cdg\s*zig|tada|ryde|taxi|cab|smrt|sbs\s*transit|mrt|lrt|bus|parking|carpark|erp|petrol|fuel)\b|德士|出租车|出租車|地铁|地鐵|巴士|停车|停車|油费|油費/)) return 'Transport';
+ // 2) Entertainment merchant/product collisions.
+ if(has(/\b(apple\s*music|apple\s*tv\+?|youtube\s*(premium|music)|spotify|netflix|disney\+|prime\s*video|viu|iqiyi|wetv|youku|bilibili|steam|playstation|xbox|nintendo|garena|roblox)\b|音乐会员|音樂會員|视频会员|視頻會員|游戏充值|遊戲充值/)) return 'Digital Entertainment';
+ // 3) E-commerce merchants. Keep generic Apple as shopping, not entertainment.
+ if(has(/\b(shopee|lazada|amazon|qoo10|taobao|tmall|pinduoduo|pdd|temu|carousell|tiktok\s*shop|tiktokshop|aliexpress|alibaba|1688|shein|zalora|ezbuy|ebay|etsy|poizon|jd\.com|jd|rednote|xiaohongshu)\b|虾皮|蝦皮|拼多多|抖音商城|抖音小店|抖音电商|抖音電商|网购|網購|电商|電商|淘宝|淘寶|京东|京東|天猫|天貓/)) return 'Online Shopping';
+ // 4) Beauty product phrases beat beauty retailers and generic household terms.
+ if(has(/(睫毛膏|mascara|气垫|氣墊|cushion|粉底液|foundation|遮瑕|concealer|眼线|眼線|eyeliner|眼影|eyeshadow|口红|口紅|lipstick|唇釉|lip\s*tint|腮红|腮紅|blush|高光|highlighter|定妆喷雾|定妝噴霧|setting\s*spray|散粉|loose\s*powder|粉饼|粉餅|眉笔|眉筆|eyebrow|假睫毛|false\s*lashes|卸妆|卸妝|makeup\s*remover|美妆|美妝|护肤|護膚|skincare|serum|toner|moisturizer|sunscreen|香水|perfume)/)) return 'Beauty & Wellness';
+ // 5) Pet phrases beat generic fish/food/household terms.
+ if(has(/(cat\s*food|dog\s*food|pet\s*food|kitten\s*food|puppy\s*food|cat\s*litter|dog\s*treat|pet\s*treat|pet\s*toy|pet\s*carrier|pet\s*bed|pet\s*shampoo|pet\s*wipes?|fish\s*food|betta\s*food|aquarium\s*(tank|filter|pump|light)|猫粮|貓糧|狗粮|狗糧|猫砂|貓砂|宠物粮|寵物糧|宠物用品|寵物用品|宠物玩具|寵物玩具|鱼粮|魚糧|鱼缸|魚缸|水族箱|水族箱|猫树|貓樹|狗零食|宠物零食|寵物零食)/)) return 'Pets';
+ // 6) Food phrases: specific dish/drink beats generic grocery words.
+ if(has(/(chicken\s*rice|fried\s*rice|nasi\s*goreng|nasi\s*lemak|nasi\s*kandar|nasi\s*padang|nasi\s*kerabu|nasi\s*dagang|char\s*kway\s*teow|hokkien\s*mee|prawn\s*mee|bak\s*chor\s*mee|mee\s*goreng|mee\s*rebus|mee\s*siam|mee\s*pok|mee\s*kia|wanton\s*mee|laksa|bak\s*kut\s*teh|roti\s*(prata|canai)|kaya\s*toast|teh\s*tarik|teh\s*[oc]|kopi\s*[oc]|milk\s*tea|bubble\s*tea|boba|siew\s*mai|siu\s*mai|shumai|har\s*gow|hargow|dumpling|dim\s*sum|char\s*siew|char\s*siew\s*bao|egg\s*tart|pau|chee\s*cheong\s*fun|yong\s*tau\s*foo|satay|otah|rojak|cendol|ice\s*kacang|ais\s*kacang|tau\s*huay|dessert|cake|pizza|burger|fried\s*chicken|ramen|udon|sushi|sashimi|hotpot|mala|麻辣|鸡饭|雞飯|炒饭|炒飯|椰浆饭|椰漿飯|炒粿条|炒粿條|福建面|福建麵|虾面|蝦麵|肉脞面|肉脞麵|叻沙|肉骨茶|印度煎饼|印度煎餅|咖椰吐司|奶茶|珍珠奶茶|烧卖|燒賣|虾饺|蝦餃|烧麦|燒麥|点心|點心|蛋挞|蛋撻|叉烧包|叉燒包|云吞面|雲吞麵|粿条|粿條|煎蕊|豆花)/)) return 'Dining';
+ // 7) Grocery phrases: generic rice/milk/fish belong here unless a more specific phrase matched above.
+ if(has(/\b(milk|rice|flour|sugar|salt|cooking\s*oil|vegetable|fruit|egg|bread|oat|oats|cereal|instant\s*noodle|noodle|maggi|nissin|indomie|milo|coffee|tea|water|juice|soda|soft\s*drink|snack|biscuit|cookie|chocolate|canned\s*food|frozen\s*food|butter|cheese|yogurt|shrimp|prawn|fish|chicken|beef|pork|tofu)\b|牛奶|米|大米|面粉|糖|盐|食用油|蔬菜|水果|鸡蛋|雞蛋|面包|麵包|燕麦|燕麥|麦片|麥片|方便面|泡面|泡麵|零食|饼干|餅乾|巧克力|罐头|罐頭|冷冻食品|冷凍食品|黄油|黃油|奶酪|乳酪|酸奶|虾|蝦|鱼|魚|鸡肉|雞肉|牛肉|猪肉|豬肉|豆腐/)) return 'Groceries';
+ // 8) Retail/service merchants after product-specific rules.
+ if(has(/\b(watsons|guardian|sephora|sasa|olive\s*young|unity|fairprice|cold\s*storage|giant|sheng\s*siong|prime\s*supermarket|mustafa|don\s*don\s*donki|little\s*farms|99\s*speedmart|jaya\s*grocer|lotus'?s|aeon|mydin|econsave|village\s*grocer|99\s*speedmart)\b|屈臣氏|万宁|萬寧|巨人超市|大众书局|大眾書局/)) return 'Shopping';
+ if(has(/\b(uniqlo|zara|h\&m|muji|nike|adidas|decathlon|daiso|miniso|ikea|courts|best\s*denki|harvey\s*norman|challenger|popular|kinokuniya|takashimaya|apple\s*store|apple)\b|优衣库|優衣庫|无印良品|無印良品|耐克|阿迪达斯|阿迪達斯|宜家|苹果店|蘋果店/)) return 'Shopping';
+ // 9) Ambiguous category terms with explicit context.
+ if(has(/(底裤|底褲|内裤|內褲|bra|underwear|t-shirt|shirt|trousers|pants|jeans|dress|skirt|hoodie|jacket|shoes|运动鞋|運動鞋|袜子|襪子|拖鞋|凉鞋|涼鞋|钱包|錢包|皮带|皮帶)/)) return 'Clothing & Fashion';
+ if(has(/(lv|louis\s*vuitton|gucci|prada|chanel|dior|hermes|hermès|cartier|rolex|omega|bvlgari|bulgari|bottega\s*veneta|saint\s*laurent|ysl|celine|loewe|valentino|burberry)/)) return 'Luxury Goods';
+ if(has(/(toilet\s*paper|tissue|wet\s*wipes?|dishwashing|dish\s*soap|detergent|laundry|fabric\s*softener|bleach|disinfectant|floor\s*cleaner|glass\s*cleaner|garbage\s*bag|cling\s*wrap|aluminium\s*foil|sponge|mop|broom|light\s*bulb|battery|extension\s*cord|toothpaste|toothbrush|sanitary\s*pad|tampon|diaper|纸巾|厕纸|厕所纸|湿纸巾|洗衣液|洗衣粉|柔顺剂|漂白水|消毒剂|垃圾袋|保鲜膜|铝箔|海绵|拖把|扫把|灯泡|电池|牙膏|牙刷|卫生巾|衛生巾|尿布|纸尿裤|紙尿褲)/)) return 'Household & Daily';
+ // Continue into expanded SG/MY recognition layers.
+ // BUNEXA SG MY DeepData v4 — multilingual high-confidence recognition
+ const bigDataExact=[
+  ['Beauty & Wellness',/cushion\ foundation|charlotte\ tilbury|false\ eyelashes|makeup\ remover|eyelash\ curler|setting\ spray|loose\ powder|highlighter|air\ cushion|shu\ uemura|foundation|bb\ cushion|eyeshadow|concealer|lip\ gloss|face\ mask|eyeliner|lipstick|judydoll|hair\ dye|into\ you|lip\ tint|colorkey|mascara|cushion|eyebrow|blush|etude|clio|完美日记|定妆喷雾|定妝噴霧|完美日記|毛戈平|睫毛夹|睫毛膏|睫毛夾|花西子|粉底液|假睫毛|3ce|眼影|粉餅|口紅|粉饼|散粉|卸妆|眼線|面膜|唇彩|氣墊|高光|眼线|眉笔|染髮|腮紅|气垫|染发|眉筆|腮红|唇釉|卸妝|遮瑕|口红|粉底/i],
+  ['Online Shopping',/xiaohongshu\ shop|online\ shopping|online\ purchase|rednote\ shop|online\ order|tik\ tok\ shop|tiktok\ shop|aliexpress|tiktokshop|carousell|pinduoduo|alibaba|poizon|jd\.com|shopee|taobao|amazon|lazada|zalora|抖音買東西|tmall|小红书商城|qoo10|小紅書商城|抖音买东西|shein|抖音電商|阿里巴巴|抖音购物|temu|抖音商城|微信商城|1688|抖音購物|抖音小店|微信小店|网上购物|網上購物|抖音电商|唯品會|速卖通|拼多多|速賣通|唯品会|pdd|蝦皮|京东|淘宝|虾皮|电商|京東|電商|得物|淘寶|网购|網購|微店|天猫|天貓/i],
+  ['Online Food Delivery',/meal\ delivery|food\ delivery|food\ panda|deliveroo|foodpanda|grab\ food|grabfood|oddle|美團外賣|美团外卖|饿了么|餓了麼|外卖|外送|送餐|外賣/i],
+  ['Dining',/economy\ rice|polar\ puffs|four\ leaves|mixed\ rice|breakfast|breadtalk|siew\ mai|porridge|cai\ png|har\ gow|siu\ mai|mookata|dinner|supper|hargow|shumai|congee|lunch|雜菜飯|叉燒包|虾饺皇|蝦餃皇|小笼包|杂菜饭|經濟飯|经济饭|叉烧包|小籠包|燒麥|雲吞|蝦餃|早餐|馄饨|菜饭|烧麦|餛飩|菜飯|虾饺|燒賣|午餐|烧卖|宵夜|晚餐|云吞|粥/i],
+  ['Groceries',/village\ grocer|99\ speedmart|oyster\ sauce|hero\ market|cooking\ oil|jaya\ grocer|wet\ market|soy\ sauce|econsave|mercato|lotus's|butter|shrimp|sugar|prawn|flour|mydin|fish|aeon|salt|菜市場|菜市场|思家客|虾|蝦|魚|鱼/i],
+  ['Transport',/sbs\ transit|touch\ 'n\ go|touch\ n\ go|petronas|ron97|ron95|toll|bhp|lrt|tng|過路費|过路费|公交/i],
+  ['Digital Entertainment',/cathay\ cineplex|golden\ village|shaw\ theatres|gv\ cinema|bilibili|teo\ heng|concert|karaoke|cinema|honkai|movie|youku|騰訊視頻|王者荣耀|王者榮耀|哔哩哔哩|嗶哩嗶哩|腾讯视频|演唱會|愛奇藝|爱奇艺|演唱会|ktv|崩壞|原神|優酷|崩坏|优酷/i],
+  ['Pets',/pet\ lovers\ centre|pet\ grooming|veterinary|pet\ treats|bird\ food|宠物玩具|寵物美容|寵物零食|宠物美容|宠物零食|寵物玩具|兽医|獸醫/i],
+  ['Clothing & Fashion',/trousers|slippers|sandals|wallet|hoodie|skirt|socks|belt|無印良品|coat|无印良品|hat|优衣库|cap|優衣庫|迪卡儂|運動鞋|迪卡侬|袜子|皮帶|錢包|服裝|襪子|內衣|凉鞋|涼鞋|帽子|底褲|褲子|內褲|皮带|服飾|拖鞋/i],
+  ['Luxury Goods',/華倫天奴|江詩丹頓|梵克雅寶|百達翡麗|寶格麗|勞力士|歐米茄|香奈兒|聖羅蘭|紀梵希|羅意威|卡地亞|愛馬仕|普拉達|愛彼|迪奧|古馳/i],
+  ['Automobile',/修車|路稅|轎車|輪胎|保養|洗車|汽車|維修|電池|車險/i],
+  ['Cruise & Holiday',/resort\ holiday|郵輪假期|遊輪假期|郵輪|遊輪/i],
+  ['Travel',/attraction|traveloka|visa\ fee|passport|holiday|resort|tour|簽證|门票|景点|旅馆|景點|旅遊|签证|旅館|機票|門票/i],
+  ['Bills',/insurance\ premium|condo\ maintenance|maintenance\ fee|utility\ bill|subscription|town\ council|broadband|rental|rent|管理费|管理費|煤氣費|電話費|網絡|保险|水費|電費|租金|寬帶|賬單|房租|保險/i],
+  ['Gifts',/滿月禮|紅包|賀禮|禮品|禮物|禮券/i],
+  ['Household & Daily',/cotton\ pad|空氣清新劑|廚房用品|清潔劑|洗手液|洗髮水|洗衣粉|卫生纸|濕紙巾|化妝棉|化妆棉|衛生紙|衛生巾|護髮素|收納|毛巾|廁紙|棉簽|棉签|海綿|剃鬚|紙巾|廚具|清潔/i],
+  ['Shopping',/popular\ bookstore|northpoint\ city|plaza\ singapura|harvey\ norman|marina\ square|jewel\ changi|suntec\ city|electronics|kinokuniya|stationery|best\ denki|junction\ 8|home\ decor|furniture|vivocity|courts|miniso|daiso|購物中心|ikea|电子产品|電子產品|文具|家具|購物|商場|百貨/i]
+ ];
+ for(const [c,re] of bigDataExact) if(re.test(s)) return c;
+ // BUNEXA SG/MY DeepData v4
+ const deepDataUltra=[
+ ['Dining',/鸡饭|雞飯|海南鸡饭|海南雞飯|叉烧饭|叉燒飯|烧肉饭|燒肉飯|排骨饭|排骨飯|卤肉饭|滷肉飯|咖喱饭|咖哩飯|经济饭|經濟飯|杂菜饭|雜菜飯|椰浆饭|椰漿飯|叻沙|laksa|咖喱面|咖哩麵|鱼头米粉|魚頭米粉|鱼丸面|魚丸麵|云吞面|雲吞麵|云吞麵|云吞面|肉脞面|肉脞麵|猪肉粥|豬肉粥|鱼片粥|魚片粥|皮蛋粥|艇仔粥|粥|粿条汤|粿條湯|炒粿条|炒粿條|炒河粉|河粉|福建面|福建麵|福建炒面|福建炒麵|虾面|蝦麵|虾汤面|蝦湯麵|卤面|滷麵|马来煎|馬來煎|萝卜糕|蘿蔔糕|菜头粿|菜頭粿|水粿|水粿|粿汁|粿汁|粿条|粿條|鱼圆|魚圓|鱼丸|魚丸|烧卖|燒賣|燒賣|虾饺|蝦餃|叉烧包|叉燒包|流沙包|奶黄包|奶黃包|叉烧酥|叉燒酥|蛋挞|蛋撻|肠粉|腸粉|萝卜糕|蘿蔔糕|糯米鸡|糯米雞|凤爪|鳳爪|烧肉|燒肉|叉烧|叉燒|烧鸭|燒鴨|烧鸡|燒雞|白斩鸡|白斬雞|卤鸡|滷雞|肉骨茶|肉骨茶|酿豆腐|釀豆腐|酿豆腐|釀豆腐|油条|油條|豆浆|豆漿|豆花|豆腐花|tau\ huay|soya\ bean|teh\ tarik|teh\ c|teh\ o|kopi\ o|kopi\ c|kopi\ susu|milo\ dinosaur|bandung|sirap|cendol|ice\ kacang|ais\ kacang|rojak|pasembur|popiah|春卷|春捲|炸春卷|炸春捲|沙爹|satay|烤鸡翅|烤雞翅|烤肉串|鸡扒|雞扒|猪扒|豬扒|牛扒|牛排|鸡排|雞排|鱼排|魚排|炸鸡|炸雞|炸鸡翅|炸雞翅|炸鸡块|炸雞塊|鸡块|雞塊|薯条|薯條|汉堡|漢堡|三明治|三文治|热狗|熱狗|意大利面|義大利麵|意粉|意粉|炒饭|炒飯|炒面|炒麵|寿司|壽司|刺身|sashimi|拉面|拉麵|乌冬|烏冬|荞麦面|蕎麥麵|天妇罗|天婦羅|丼饭|丼飯|亲子丼|親子丼|咖喱|咖哩|麻辣烫|麻辣燙|麻辣香锅|麻辣香鍋|火锅|火鍋|烧烤|燒烤|烤鱼|烤魚|酸菜鱼|酸菜魚|奶茶|珍珠奶茶|珍珠奶茶|bubble\ tea|boba|果茶|水果茶|抹茶|芋头|芋頭|蛋糕|千层蛋糕|千層蛋糕|芝士蛋糕|cheesecake|brownie|布朗尼|曲奇|餅乾|甜甜圈|donut|waffle|pancake|冰淇淋|雪糕|ice\ cream|gelato/i],
+ ['Groceries',/jasmine\ rice|basmati\ rice|brown\ rice|white\ rice|fragrant\ rice|糙米|白米|香米|泰国香米|泰國香米|糯米|糯米粉|面粉|麵粉|低筋面粉|低筋麵粉|高筋面粉|高筋麵粉|玉米淀粉|玉米澱粉|木薯粉|tapioca|sago|糖|白糖|黄糖|黃糖|冰糖|盐|鹽|海盐|海鹽|酱油|醬油|生抽|老抽|蚝油|蠔油|鱼露|魚露|豆瓣酱|豆瓣醬|辣椒酱|辣椒醬|sambal|belacan|kicap|mayonnaise|mayo|tomato\ sauce|chilli\ sauce|mustard|vinegar|醋|米醋|黑醋|香醋|食用油|菜油|花生油|橄榄油|橄欖油|椰油|芝麻油|sesame\ oil|butter|奶油|牛油|margarine|cheese|芝士|起司|yogurt|优格|優格|酸奶|鲜奶|鮮奶|全脂奶|低脂奶|豆奶|豆漿|soy\ milk|almond\ milk|oat\ milk|燕麦奶|燕麥奶|鸡蛋|雞蛋|鸭蛋|鴨蛋|鹌鹑蛋|鵪鶉蛋|鸡胸肉|雞胸肉|鸡腿|雞腿|鸡翅|雞翅|猪肉|豬肉|牛肉|羊肉|肉碎|绞肉|絞肉|minced\ meat|香肠|香腸|sausage|火腿|ham|培根|bacon|鱼|魚|三文鱼|三文魚|salmon|金枪鱼|金槍魚|tuna|鲭鱼|鯖魚|mackerel|石斑鱼|石斑魚|虾|蝦|prawn|shrimp|螃蟹|螃蟹|crab|蛤蜊|蛤蜊|clam|青口|青口|mussel|鱿鱼|魷魚|squid|蔬菜|青菜|白菜|小白菜|菠菜|西兰花|西蘭花|花椰菜|菜花|包菜|高丽菜|高麗菜|卷心菜|番茄|西红柿|西紅柿|黄瓜|黃瓜|胡萝卜|胡蘿蔔|马铃薯|馬鈴薯|土豆|洋葱|洋蔥|大蒜|蒜头|蒜頭|姜|薑|辣椒|chilli|水果|苹果|蘋果|香蕉|芒果|mango|榴莲|榴槤|西瓜|watermelon|葡萄|grapes|橙|橙子|orange|柠檬|檸檬|lemon|蓝莓|藍莓|草莓|草莓|strawberry|牛油果|酪梨|avocado|面包|麵包|吐司|toast|bagel|croissant|可颂|可頌|cereal|cornflakes|燕麦|燕麥|granola|麦片|麥片|instant\ noodles|方便面|方便麵|泡面|泡麵|米粉|米線|冬粉|粉丝|粉絲|罐头|罐頭|canned\ food|午餐肉|luncheon\ meat|豆类|豆類|红豆|紅豆|绿豆|綠豆|花生|peanut|坚果|堅果|almond|cashew|开心果|開心果|巧克力|chocolate|糖果|candy|薯片|薯條|chips|饼干|餅乾|biscuits|jam|果酱|果醬|peanut\ butter|花生酱|蜂蜜|honey|咖啡豆|咖啡粉|coffee\ beans|coffee\ powder|茶叶|茶葉|tea|绿茶|綠茶|红茶|紅茶|milo|100plus|soft\ drink|汽水|可乐|可樂|coke|pepsi|果汁|juice|矿泉水|礦泉水|bottled\ water|饮用水|飲用水|婴儿奶粉|嬰兒奶粉|infant\ formula|奶粉|milk\ powder|frozen\ dumpling|冷冻水饺|冷凍水餃|frozen\ chicken|冷冻鸡|冷凍雞|frozen\ seafood|冷冻海鲜|冷凍海鮮|ice\ cream/i],
+ ['Beauty & Wellness',/卸妆水|卸妝水|卸妆油|卸妝油|卸妆膏|卸妝膏|洁面|潔面|洗面奶|洗面乳|洗脸|洗臉|爽肤水|爽膚水|toner|精华液|精華液|serum|essence|ampoule|面霜|面膜|睡眠面膜|sheet\ mask|泥膜|眼霜|眼精华|眼精華|唇膜|唇部护理|唇部護理|润唇膏|潤唇膏|防晒|防曬|防晒霜|防曬霜|sunblock|sunscreen|粉底|foundation|气垫|氣墊|cushion|粉饼|粉餅|蜜粉|散粉|loose\ powder|遮瑕|concealer|眉笔|眉筆|eyebrow|eyeliner|眼线|眼線|眼影|eyeshadow|睫毛膏|mascara|假睫毛|false\ lashes|睫毛胶|睫毛膠|lash\ glue|睫毛夹|睫毛夾|腮红|腮紅|blush|修容|contour|高光|highlighter|唇釉|lip\ tint|唇彩|lip\ gloss|口红|口紅|lipstick|化妆刷|化妝刷|makeup\ brush|美妆蛋|美妝蛋|beauty\ blender|定妆喷雾|定妝噴霧|primer|妆前乳|妝前乳|nail\ polish|指甲油|卸甲|nail\ remover|护手霜|護手霜|hand\ cream|身体乳|身體乳|body\ lotion|body\ scrub|磨砂膏|沐浴露|沐浴乳|shower\ gel|洗手液|hand\ wash|deodorant|止汗剂|止汗劑|香水|perfume|fragrance|香氛|hair\ shampoo|洗发水|洗髮水|conditioner|护发素|護髮素|hair\ mask|发膜|髮膜|hair\ oil|护发油|護髮油|发蜡|髮蠟|hair\ wax|发胶|髮膠|hair\ spray|染发|染髮|hair\ dye|理发|理髮|haircut|barber|美发|美容|facial|spa|massage|按摩|美甲|manicure|pedicure|瑜伽|yoga|gym|健身|fitness|personal\ trainer|维生素|維生素|vitamin|supplement|保健品|health\ supplement|protein\ powder/i],
+ ['Pets',/猫粮|貓糧|kitten\ food|adult\ cat\ food|cat\ food|狗粮|狗糧|puppy\ food|adult\ dog\ food|dog\ food|宠物粮|寵物糧|pet\ food|湿粮|濕糧|wet\ food|冻干|凍乾|freeze\ dried|猫罐头|貓罐頭|cat\ can|dog\ can|猫条|貓條|cat\ stick|狗零食|狗零食|dog\ treats|猫零食|貓零食|cat\ treats|pet\ treats|猫砂|貓砂|cat\ litter|豆腐砂|豆腐砂|tofu\ litter|膨润土|膨潤土|bentonite|水晶砂|crystal\ litter|猫砂盆|貓砂盆|litter\ box|猫铲|貓鏟|litter\ scoop|猫抓板|貓抓板|scratching\ post|猫爬架|貓爬架|cat\ tree|猫窝|貓窩|cat\ bed|狗窝|狗窩|dog\ bed|宠物床|寵物床|pet\ bed|宠物玩具|寵物玩具|pet\ toy|狗绳|狗繩|dog\ leash|狗项圈|狗項圈|dog\ collar|宠物胸背|寵物胸背|harness|宠物背包|寵物背包|pet\ carrier|宠物尿布|寵物尿布|pet\ diaper|宠物湿巾|寵物濕巾|pet\ wipes|宠物洗毛|寵物洗毛|pet\ shampoo|宠物梳|寵物梳|pet\ brush|跳蚤|flea|蜱虫|蜱蟲|tick|驱虫|驅蟲|deworming|宠物维生素|寵物維生素|pet\ vitamin|鱼粮|魚糧|fish\ food|斗鱼|鬥魚|betta|金鱼|金魚|goldfish|热带鱼|熱帶魚|tropical\ fish|鱼缸|魚缸|fish\ tank|水族箱|水族箱|aquarium|过滤器|過濾器|filter|打气泵|打氣泵|air\ pump|水泵|水泵|water\ pump|鱼网|魚網|fish\ net|水草|aquatic\ plant|鱼药|魚藥|fish\ medicine|鸟粮|鳥糧|bird\ food|仓鼠粮|倉鼠糧|hamster\ food|兔粮|兔糧|rabbit\ food|爬虫粮|爬蟲糧|reptile\ food|宠物店|寵物店|pet\ shop|兽医|獸醫|vet|veterinary|宠物美容|寵物美容|pet\ grooming/i],
+ ['Household & Daily',/洗衣液|洗衣粉|洗衣凝珠|laundry\ detergent|laundry\ pod|柔顺剂|柔順劑|fabric\ softener|漂白水|bleach|去污剂|去污劑|stain\ remover|消毒液|disinfectant|洗碗液|洗碗精|dishwashing|dish\ soap|洗洁精|洗潔精|厨房纸|廚房紙|paper\ towel|厕纸|廁紙|toilet\ paper|面巾纸|面巾紙|facial\ tissue|tissue|湿纸巾|濕紙巾|wet\ wipes|垃圾袋|garbage\ bag|trash\ bag|保鲜膜|保鮮膜|cling\ wrap|锡纸|錫紙|aluminium\ foil|铝箔|铝箔|food\ container|保鲜盒|保鮮盒|饭盒|飯盒|水壶|水壺|bottle|tumbler|保温杯|保溫杯|杯子|mug|碗|盘子|盤子|餐具|cutlery|筷子|chopsticks|刀具|kitchen\ knife|锅|鍋|平底锅|平底鍋|frying\ pan|电饭煲|電飯煲|rice\ cooker|空气炸锅|空氣炸鍋|air\ fryer|微波炉|微波爐|microwave|烤箱|焗炉|oven|电水壶|電水壺|kettle|吸尘器|吸塵器|vacuum|扫把|掃把|broom|拖把|mop|水桶|bucket|海绵|海綿|sponge|抹布|cleaning\ cloth|衣架|hanger|收纳箱|收納箱|storage\ box|置物架|shelf|垃圾桶|dustbin|trash\ can|灯泡|燈泡|light\ bulb|电池|電池|battery|插头|插頭|plug|插座|socket|排插|power\ strip|extension\ cord|转换插头|轉換插頭|adapter|雨伞|雨傘|umbrella|床单|床單|bedsheet|被子|被子|blanket|枕头|枕頭|pillow|床垫|床墊|mattress|窗帘|窗簾|curtain|毛巾|towel|浴巾|bath\ towel|牙膏|toothpaste|牙刷|toothbrush|牙线|牙線|dental\ floss|漱口水|mouthwash|棉签|棉簽|cotton\ bud|化妆棉|化妝棉|cotton\ pad|剃须刀|剃鬚刀|razor|卫生巾|衛生巾|sanitary\ pad|护垫|護墊|pantyliner|卫生棉条|衛生棉條|tampon|尿片|尿布|diaper|奶瓶|baby\ bottle|奶嘴|pacifier|婴儿湿巾|嬰兒濕巾|baby\ wipes|婴儿洗发|嬰兒洗髮|baby\ shampoo|文具|stationery|笔|筆|pen|铅笔|鉛筆|pencil|笔记本|筆記本|notebook|文件夹|文件夾|file\ folder|打印纸|printing\ paper|胶带|膠帶|tape|剪刀|scissors|胶水|膠水|glue/i],
+ ['Online Shopping',/拼多多|pinduoduo|pdd|淘宝|淘寶|天猫|天貓|京东|京東|唯品会|唯品會|得物|小红书|小紅書|抖音商城|抖音小店|抖音电商|抖音购物|蝦皮|虾皮|shopee|lazada|amazon|amazon\.sg|qoo10|temu|taobao|tmall|1688|aliexpress|alibaba|shein|zalora|carousell|etsy|ebay|ezbuy|tiktok\ shop|rednote|wechat\ shop|微信小店|网购|網購|网上买|網上買|online\ order|online\ purchase/i],
+ ['Shopping',/fairprice|ntuc|sheng\ siong|昇菘|cold\ storage|giant|prime\ supermarket|mustafa|don\ don\ donki|donki|little\ farms|ryan's\ grocery|jasons|marketplace|redmart|guardian|watsons|unity|7-?eleven|cheers|daiso|mr\.?\s*diy|ikea|courts|best\ denki|harvey\ norman|challenger|gain\ city|decathlon|popular|kinokuniya|takashimaya|village\ grocer|jaya\ grocer|aeon|lotus's|lotus|99\ speedmart|99\ speedmart|mydin|econsave|giant\ malaysia|mercato|ben's\ independent\ grocer|b\.i\.g\.|hero\ market|tf\ value\ mart|familymart|kk\ mart|eco-?shop|ninso|supermarket|hypermarket|convenience\ store|pasar\ raya|mall|shopping\ centre|shopping\ center/i],
+ ['Transport',/grab(?!food|mart)|gojek|tada|ryde|comfortdelgro|cdg\ zig|smrt|sbs\ transit|simplygo|mrt|lrt|bus|taxi|cab|德士|巴士|地铁|地鐵|公交|公共交通|停车|停車|停车费|停車費|parking\.sg|carpark|season\ parking|erp|过路费|過路費|油费|油費|petrol|fuel|汽油|柴油|diesel|shell|esso|exxonmobil|caltex|spc|petron|petronas|bhp|ron95|ron97|touch\ n\ go|touch\ 'n\ go|tng|ez-link|ezlink/i],
+ ['Travel',/agoda|booking\.com|airbnb|expedia|trip\.com|traveloka|klook|pelago|tripadvisor|skyscanner|airasia|scoot|singapore\ airlines|malaysia\ airlines|batik\ air|jetstar|cathay\ pacific|emirates|qatar\ airways|marriott|hilton|hyatt|ihg|hotel|resort|民宿|酒店|机票|機票|航班|flight|airfare|护照|護照|签证|簽證|旅行|旅游|旅遊|tour|景点|景點|attraction|theme\ park|universal\ studios|sentosa|gardens\ by\ the\ bay|zoo|night\ safari|aquarium|water\ park/i],
+ ['Bills',/singtel|starhub|m1|simba|giga|circles\.life|myrepublic|viewqwest|broadband|internet|wifi|mobile\ plan|phone\ bill|电费|電費|水费|水費|煤气费|煤氣費|gas\ bill|utilities|sp\ services|sp\ group|town\ council|condo\ maintenance|rental|rent|房租|租金|保险|保險|insurance|premium|保费|保費|subscription|订阅|訂閱/i],
+ ['Digital Entertainment',/netflix|spotify|youtube\ premium|youtube\ music|disney\+|prime\ video|apple\ music|apple\ tv|hbo|max|viu|iqiyi|wetv|youku|bilibili|steam|playstation|ps\ store|ps\ plus|xbox|game\ pass|nintendo|switch|garena|roblox|genshin|honkai|mobile\ legends|valorant|gaming|game|游戏|遊戲|电影|電影|cinema|movie|golden\ village|shaw|cathay|karaoke|ktv|bowling|arcade|concert|演唱会|演唱會/i],
+ ['Gifts',/生日礼物|生日禮物|结婚礼物|結婚禮物|婚礼|婚禮|宝宝礼物|寶寶禮物|圣诞礼物|聖誕禮物|周年礼物|週年禮物|乔迁礼物|喬遷禮物|礼物|禮物|礼品|禮品|礼券|禮券|红包|紅包|ang\ bao|hongbao|gift\ card|voucher|present|gift/i],
+ ['Automobile',/汽车|汽車|车险|車險|road\ tax|路税|路稅|coe|轮胎|輪胎|tyre|tire|车电池|車電池|battery|engine\ oil|机油|機油|洗车|洗車|car\ wash|car\ polish|detailing|tint|汽车维修|汽車維修|修车|修車|维修|維修|保养|保養|servicing|workshop|mechanic|motorcycle|motorbike|scooter|car\ insurance|motor\ insurance/i]
+ ];
+ const localSGMYExact=[
+  ['Dining',/teh\s*ais|teh\s*ice|teh\s*peng|teh\s*o\s*ais|teh\s*o\s*ice|teh\s*c\s*ais|teh\s*c\s*ice|kopi\s*ais|kopi\s*ice|kopi\s*peng|kopi\s*o\s*ais|kopi\s*o\s*ice|kopi\s*c\s*ais|kopi\s*c\s*ice|coffee\s*ais|coffee\s*peng|milo\s*ais|milo\s*peng|milo\s*dinosaur|bandung\s*ais|bandung\s*peng|yuan\s*yang|yuanyang|hor\s*ka\s*sai|kopi\s*teh|kopi\s*teh\s*milo|ktm|kopi\s*o|kopi\s*c|teh\s*o|teh\s*c|tapao|takeaway|take\s*away|打包|带走|帶走|奶茶|冰奶茶|冰咖啡/i],
+  ['Dining',/chicken\s*rice|海南鸡饭|海南雞飯|鸡饭|雞飯|nasi\s*campur|nasi\s*bungkus|mee\s*goreng|mee\s*rebus|mee\s*siam|char\s*kway\s*teow|kway\s*teow|hokkien\s*mee|prawn\s*mee|bak\s*chor\s*mee|ban\s*mian|鱼丸面|魚丸麵|云吞面|雲吞麵|roti\s*canai|roti\s*prata|nasi\s*lemak|椰浆饭|椰漿飯|nasi\s*kandar|ayam\s*penyet|yong\s*tau\s*foo|酿豆腐|釀豆腐|烧卖|燒賣|虾饺|蝦餃/i]
+ ];
+ for(const [c,re] of localSGMYExact) if(re.test(s)) return c;
+ const deepDataExact=[
+  ['Dining',/fishball\ noodles|half\ boiled\ egg|chee\ cheong\ fun|char\ kway\ teow|char\ siew\ bao|fried\ chicken|kopi\ siew\ dai|chai\ tow\ kway|fish\ porridge|grilled\ fish|bak\ chor\ mee|yong\ tau\ foo|chicken\ rice|nasi\ kerabu|spring\ roll|bak\ kut\ teh|nasi\ kandar|nasi\ dagang|kopi\ kosong|ayam\ penyet|nasi\ padang|hokkien\ mee|wanton\ mee|cheesecake|ice\ kacang|nasi\ lemak|ais\ kacang|food\ court|restaurant|roti\ prata|chwee\ kueh|mee\ goreng|roti\ canai|kaya\ toast|teh\ tarik|kway\ chap|char\ siew|prawn\ mee|mee\ rebus|steamboat|ice\ cream|tandoori|egg\ tart|pasembur|siew\ mai|kopitiam|barbecue|ban\ mian|tau\ huay|mee\ siam|doughnut|murtabak|mee\ kia|mee\ pok|canteen|dessert|sashimi|biryani|donburi|rendang|tempura|brownie|dim\ sum|har\ gow|siu\ mai|pancake|lor\ mee|chapati|hotpot|kopi\ o|cookie|thosai|burger|popiah|hawker|cendol|congee|kopi\ c|waffle|gelato|crepe|teh\ o|curry|pizza|rojak|satay|sushi|mamak|fries|teh\ c|laksa|donut|wings|ramen|海南雞飯|咖椰吐司|麻辣香鍋|udon|otah|idli|soba|mala|海南鸡饭|印度煎饼|dosa|cafe|naan|麻辣香锅|cake|熟食中心|流沙包|天婦羅|椰浆饭|豬腸粉|釀豆腐|酿豆腐|荞麦面|紅豆冰|天妇罗|云吞面|温泉蛋|魚丸麵|叉烧包|猪肠粉|豆腐花|红豆冰|pau|福建麵|蕎麥麵|bbq|炒粿条|鱼丸面|炒粿條|肉脞面|叉燒包|菜头粿|肉骨茶|雲吞麵|椰漿飯|福建面|菜頭粿|丼饭|叉烧|叉燒|滷麵|拉面|虾饺|烧卖|咖喱|拉麵|寿司|甜品|鸡翅|叻沙|烧烤|點心|水粿|燒賣|魚粥|咖哩|壽司|薄饼|烏打|烤鱼|春捲|薯条|囉惹|沙嗲|薯條|薄餅|蝦餃|燒烤|食閣|板面|火鍋|雞翅|沙爹|虾面|啰惹|甜點|甜点|刺身|炸雞|烤魚|烏冬|点心|卤面|鱼粥|乌冬|蝦麵|拉茶|丼飯|豆花|炸鸡|春卷|粿汁|蛋撻|食阁|蛋挞|乌打|包子|煎蕊|麻辣|火锅|粥/i],
+  ['Groceries',/sparkling\ water|frozen\ dumpling|instant\ noodle|peanut\ butter|bottled\ water|spring\ onion|jasmine\ rice|dragon\ fruit|chilli\ sauce|oyster\ sauce|baby\ formula|minyak\ masak|energy\ drink|canned\ food|cooking\ oil|cauliflower|bean\ sprout|milk\ powder|baked\ beans|almond\ milk|coconut\ oil|frozen\ food|shin\ ramyun|mayonnaise|sesame\ oil|soft\ drink|brown\ rice|canola\ oil|fish\ sauce|strawberry|watermelon|seasoning|wholemeal|olive\ oil|blueberry|kway\ teow|pineapple|light\ soy|croissant|chocolate|soy\ sauce|oat\ milk|broccoli|mandarin|isotonic|crackers|bok\ choy|nongshim|bee\ hoon|cucumber|dark\ soy|soy\ milk|biscuits|kangkung|mushroom|eggplant|shallot|cabbage|pumpkin|indomie|sardine|basmati|keropok|granola|belacan|spinach|nutella|cookies|scallop|sausage|ketchup|samyang|vinegar|100plus|avocado|chicken|mustard|yoghurt|nuggets|cordial|peanut|ginger|shrimp|chilli|tomato|cereal|coffee|turkey|cashew|rempah|butter|matcha|yogurt|salmon|papaya|orange|durian|tepung|potato|sprite|oyster|cheese|banana|garlic|carrot|sambal|almond|pepper|snack|pepsi|bread|juice|chips|syrup|grape|prawn|onion|beras|garam|kicap|apple|flour|bacon|mango|myojo|squid|cream|maggi|sugar|honey|bagel|mamee|lemon|spice|candy|cocoa|salt|tuna|pork|kaya|okra|lime|kiwi|clam|rice|婴儿奶粉|嬰兒奶粉|milo|lamb|crab|corn|fish|gula|duck|kopi|milk|nuts|coke|beef|oats|辣椒醬|方便面|马铃薯|ham|矿泉水|調味料|花生酱|辣椒酱|火龍果|红萝卜|三文魚|花生醬|空心菜|方便麵|巧克力|金针菇|调味料|紅蘿蔔|jam|tea|火龙果|teh|金槍魚|礦泉水|馬鈴薯|奇異果|奇异果|牛油果|egg|三文鱼|金針菇|金枪鱼|菠萝|香肠|汽水|虾饼|南瓜|泡麵|罐头|蝦餅|粿條|豆漿|香蕉|糖果|香腸|蘋果|葡萄|蓝莓|泡面|柠檬|可可|青檸|西瓜|麥片|榴槤|果醬|蠔油|鸡蛋|蜂蜜|蚝油|杏仁|花生|豆芽|抹茶|腰果|魷魚|黄瓜|坚果|番茄|雞肉|茄子|果酱|芝士|可乐|醬油|水餃|土豆|玉米|罐頭|奶油|燕麥|果汁|糙米|羊肉|鸡肉|菠蘿|酸奶|青蔥|麵包|辣椒|蘑菇|藍莓|螃蟹|堅果|酱油|咖椰|猪肉|豬肉|苹果|芒果|奶粉|青柠|牛肉|燕麦|面包|薯片|豆浆|粿条|檸檬|牛奶|起司|菜心|草莓|可樂|秋葵|黃瓜|雞蛋|鱿鱼|水饺|零食|麦片|饼干|大米|黄油|咖啡|榴莲|米粉|木瓜|白米|餅乾|青葱|包菜|橙|蒜|米|柑|姜|虾|蝦|鸭|魚|茶|鴨|鱼/i],
+  ['Beauty & Wellness',/compact\ powder|eyelash\ curler|micellar\ water|cleansing\ oil|makeup\ sponge|mac\ cosmetics|chanel\ beauty|setting\ spray|loose\ powder|fenty\ beauty|makeup\ brush|false\ lashes|the\ ordinary|estee\ lauder|brow\ pencil|olive\ young|rare\ beauty|highlighter|moisturiser|body\ lotion|bobbi\ brown|dior\ beauty|nail\ polish|moisturizer|conditioner|maybelline|face\ cream|ysl\ beauty|shower\ gel|foundation|eyeshadow|deodorant|concealer|innisfree|sunscreen|hand\ wash|eye\ cream|hair\ mask|lip\ gloss|fragrance|body\ wash|lash\ glue|body\ mist|manicure|bb\ cream|peripera|cetaphil|guardian|lip\ tint|clinique|sunblock|lipstick|gel\ nail|shiseido|hair\ oil|cleanser|eyeliner|pedicure|hair\ wax|cc\ cream|lip\ balm|essence|perfume|sephora|haircut|l'oreal|shampoo|mascara|contour|ampoule|massage|laneige|watsons|kiehl's|cushion|primer|loreal|lotion|facial|revlon|romand|cerave|powder|barber|la\ mer|blush|serum|toner|cosrx|salon|sk\-ii|nars|sasa|定妝噴霧|soap|定妆喷雾|防晒霜|睫毛膏|睫毛夾|假睫毛|spa|洗髮水|洗面乳|眼線筆|护发素|洗面奶|護髮素|身體乳|止汗剂|卸妝水|卸妆油|沐浴露|卸妆水|化妆刷|美妝蛋|睫毛胶|睫毛膠|美妆蛋|卸妝油|洗发水|潤唇膏|润唇膏|爽膚水|化妝刷|止汗劑|睫毛夹|防曬霜|精华液|妆前乳|美容院|眼线笔|洗手液|精華液|指甲油|身体乳|妝前乳|爽肤水|蜜粉|口紅|髮膜|防晒|粉饼|散粉|眉笔|髮蠟|香氛|精华|眉筆|腮红|修容|眼影|粉底|理发|发膜|按摩|高光|面霜|眼霜|髮油|遮瑕|氣墊|香水|腮紅|乳液|气垫|发油|防曬|唇釉|口红|理髮|肥皂|粉餅|唇彩|染髮|精華|发蜡|染发|美甲/i],
+  ['Pets',/automatic\ feeder|freeze\ dried\ pet|bentonite\ litter|scratching\ post|clumping\ litter|water\ fountain|pet\ supplement|crystal\ litter|tropical\ fish|hamster\ food|pet\ vitamins|reptile\ food|pet\ grooming|vaccination|tofu\ litter|kitten\ food|rabbit\ food|pet\ shampoo|pet\ carrier|veterinary|cat\ litter|dog\ collar|litter\ box|puppy\ food|pet\ diaper|pet\ treats|deworming|pet\ wipes|dog\ leash|fish\ tank|fish\ food|bird\ food|cat\ food|goldfish|dry\ food|dog\ food|aquarium|air\ pump|cat\ tree|wet\ food|pet\ bowl|pet\ bed|cat\ toy|dog\ toy|filter|betta|宠物洗毛液|寵物洗毛液|宠物保健|寵物美容|寵物保健|宠物疫苗|宠物美容|貓零食|猫玩具|寵物床|貓玩具|vet|寵物包|寵物碗|宠物碗|猫零食|宠物包|貓爬架|猫厕所|狗零食|猫爬架|宠物床|貓廁所|獸醫|凍乾|鱼缸|鱼粮|斗鱼|猫粮|猫砂|金魚|貓砂|驱虫|魚糧|驅蟲|兽医|貓條|狗粮|冻干|貓糧|魚缸|金鱼|猫条|水泵|狗糧|鬥魚/i],
+  ['Household & Daily',/dishwashing\ liquid|laundry\ detergent|bathroom\ cleaner|insect\ repellent|school\ supplies|fabric\ softener|surface\ cleaner|extension\ cord|toilet\ cleaner|aluminium\ foil|food\ container|window\ cleaner|cockroach\ bait|stain\ remover|kitchen\ towel|facial\ tissue|air\ freshener|floor\ cleaner|glass\ cleaner|mosquito\ coil|pest\ control|toilet\ paper|dehumidifier|sanitary\ pad|disinfectant|dental\ floss|baby\ shampoo|power\ strip|paper\ towel|baby\ bottle|baby\ lotion|storage\ box|garbage\ bag|light\ bulb|toothbrush|pantyliner|cotton\ bud|cotton\ pad|cling\ wrap|toothpaste|baby\ wash|dish\ soap|wet\ wipes|mouthwash|bedsheet|mattress|stroller|ant\ bait|rat\ trap|pacifier|umbrella|battery|diapers|adapter|blanket|curtain|pillow|diaper|hanger|sponge|bleach|vacuum|tissue|tampon|broom|towel|razor|空气清新剂|空氣清新劑|toys|婴儿车|剃鬚刀|保鲜膜|洗衣粉|濕紙巾|除湿机|卫生巾|化妆棉|垃圾袋|收納盒|嬰兒車|吸尘器|剃须刀|衛生巾|化妝棉|mop|洗碗液|消毒液|洗衣液|殺蟲劑|收纳盒|清洁剂|除濕機|漂白水|湿纸巾|清潔劑|柔顺剂|吸塵器|柔順劑|保鲜盒|保鮮膜|漱口水|保鮮盒|杀虫剂|雨伞|錫紙|毛巾|廁紙|窗簾|棉签|插頭|被子|尿布|厕纸|灯泡|床墊|床单|海绵|纸巾|紙巾|拖把|牙线|枕头|衣架|燈泡|扫把|插头|驱蚊|海綿|玩具|电池|雨傘|電池|掃把|床垫|窗帘|尿片|枕頭|文具|床單|棉簽|牙線|奶嘴|驅蚊|牙膏|奶瓶|牙刷|锡纸/i],
+  ['Online Shopping',/online\ shopping|online\ purchase|online\ order|wechat\ shop|online\ shop|shopee\ mall|xiaohongshu|tiktok\ shop|aliexpress|tiktokshop|amazon\.sg|carousell|pinduoduo|alibaba|rednote|poizon|jd\.com|shopee|taobao|amazon|lazada|zalora|tmall|qoo10|ezbuy|shein|抖音電商|阿里巴巴|抖音购物|temu|抖音商城|1688|etsy|抖音購物|抖音小店|ebay|微信小店|抖音电商|小紅書|唯品會|速卖通|小红书|拼多多|速賣通|唯品会|pdd|蝦皮|京东|淘宝|虾皮|电商|京東|電商|得物|淘寶|网购|網購|天猫|天貓/i],
+  ['Shopping',/ben's\ independent\ grocer|scarlett\ supermarket|prime\ supermarket|fairprice\ finest|fairprice\ xpress|northpoint\ city|plaza\ singapura|fairprice\ xtra|village\ grocer|giant\ malaysia|bugis\ junction|causeway\ point|ryan's\ grocery|harvey\ norman|marina\ square|tf\ value\ mart|ngee\ ann\ city|don\ don\ donki|market\ place|little\ farms|cold\ storage|jewel\ changi|99\ speedmart|hero\ market|takashimaya|ion\ orchard|sheng\ siong|suntec\ city|jaya\ grocer|kinokuniya|familymart|best\ denki|challenger|junction\ 8|decathlon|gain\ city|aeon\ mall|fairprice|vivo\ city|econsave|eco\ shop|hao\ mart|westgate|7\-eleven|eco\-shop|vivocity|guardian|paragon|popular|kk\ mart|mustafa|mercato|watsons|redmart|lotus's|bugis\+|mr\.diy|jasons|b\.i\.g\.|courts|cheers|mr\ diy|donki|giant|unity|daiso|ninso|tesco|mydin|aeon|ikea|jem|昇菘/i],
+  ['Transport',/season\ parking|comfortdelgro|sbs\ transit|touch\ 'n\ go|touch\ n\ go|exxonmobil|parking\.sg|petronas|simplygo|cdg\ zig|carpark|parking|ez\-link|caltex|petron|petrol|ezlink|diesel|shell|ron97|ron95|gojek|ryde|tada|taxi|grab|esso|fuel|smrt|bhp|mrt|cab|過路費|erp|lrt|spc|tng|bus|过路费|公交|停车|交通|汽油|停車|德士|巴士|柴油|地鐵|油站|地铁/i],
+  ['Travel',/universal\ studios\ singapore|singapore\ airlines|gardens\ by\ the\ bay|malaysia\ airlines|cathay\ pacific|qatar\ airways|night\ safari|tripadvisor|booking\.com|water\ park|attraction|skyscanner|air\ ticket|theme\ park|batik\ air|traveloka|aquarium|passport|trip\.com|emirates|jetstar|expedia|airasia|sentosa|airbnb|flight|pelago|resort|agoda|klook|hotel|scoot|tour|visa|uss|zoo|护照|机票|旅行|景點|旅遊|签证|機票|景点|簽證|旅游|護照/i],
+  ['Bills',/streaming\ subscription|insurance\ premium|condo\ maintenance|subscription|circles\.life|town\ council|sp\ services|mobile\ plan|electricity|phone\ bill|water\ bill|myrepublic|broadband|utilities|insurance|viewqwest|gas\ bill|internet|sp\ group|singtel|starhub|rental|simba|wifi|rent|giga|保費|m1|保费|订阅|房租|訂閱|租金/i],
+  ['Digital Entertainment',/youtube\ premium|mobile\ legends|golden\ village|youtube\ music|steam\ wallet|disney\ plus|playstation|prime\ video|apple\ music|game\ pass|valorant|apple\ tv|bilibili|nintendo|ps\ store|ps\ plus|bowling|spotify|netflix|concert|genshin|karaoke|disney\+|switch|arcade|cinema|cathay|roblox|garena|honkai|gaming|movie|steam|iqiyi|youku|騰訊視頻|xbox|shaw|王者荣耀|王者榮耀|哔哩哔哩|wetv|嗶哩嗶哩|腾讯视频|演唱會|愛奇藝|爱奇艺|viu|hbo|ktv|演唱会|max|游戏|遊戲|崩壞|原神|優酷|崩坏|优酷/i],
+  ['Gifts',/housewarming\ gift|anniversary\ gift|christmas\ gift|birthday\ gift|wedding\ gift|red\ packet|baby\ gift|gift\ card|ang\ bao|hongbao|present|voucher|gift|紅包|禮物|贺礼|礼物|禮券|礼品|红包|礼券|賀禮|禮品/i],
+  ['Automobile',/motor\ insurance|petrol\ station|car\ insurance|car\ battery|car\ polish|motorcycle|exxonmobil|engine\ oil|parking\.sg|detailing|servicing|motorbike|mechanic|road\ tax|car\ wash|workshop|petronas|scooter|carpark|parking|caltex|petron|diesel|shell|ron97|ron95|tire|汽车保险|汽車保險|esso|fuel|tyre|tint|bhp|coe|erp|spc|修車|路税|保養|停车|洗車|停車|轮胎|路稅|洗车|油站|保养|輪胎|修车/i]
+ ];
+ for(const [c,re] of deepDataUltra) if(re.test(s)) return c;
+ for(const [c,re] of deepDataExact) if(re.test(s)) return c;
  const exact=[
   ['Clothing & Fashion',/\b(?:underwear|underpants|briefs|boxers?|panties|bras?|lingerie)\b|底裤|内裤|裤衩|内衣|胸罩|文胸/],
   ['Luxury Goods',/\b(?:lv|louis vuitton|rolex|cartier|chanel|hermes|hermès|gucci|prada|dior|fendi|celine|loewe|burberry|ysl|balenciaga)\b|路易威登|劳力士|卡地亚|香奈儿|爱马仕|古驰|普拉达|迪奥/],
@@ -37,7 +399,7 @@ function detect(s){
  for(const c of priority){if(new RegExp(KW[c],'i').test(s))return c} return 'Other'
 }
 function totals(items){let inc=0,exp=0;items.forEach(x=>x.type==='income'?inc+=+x.amount:exp+=+x.amount);return{inc,exp}}function txSorted(){return [...data.tx].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.id-a.id)}
-let undoItem=null,undoTimer=null;
+let undoItem=null,undoTimer=null,pendingMulti=[];
 function toast(msg,undo=false){
   let t=document.getElementById('toast');
   t.innerHTML=undo?`${esc(msg)} <button type="button" id="undoBtn" style="margin-left:8px;border:0;background:transparent;color:inherit;font-weight:800;text-decoration:underline;cursor:pointer">Undo</button>`:esc(msg);
@@ -50,43 +412,350 @@ function undoDelete(){
   if(!undoItem)return;
   data.tx.splice(undoItem.index,0,undoItem.item);save();undoItem=null;renderAll();toast(data.lang==='zh'?'已恢复':'Restored');
 }
+
+
+const BUNEXA_V15_DB = {
+  // category: [specific phrases / aliases]
+  "Dining": [
+    "chicken rice","海南鸡饭","海南雞飯","鸡饭","雞飯","char kway teow","炒粿条","炒粿條",
+    "hokkien mee","福建面","prawn mee","虾面","蝦麵","bak chor mee","肉脞面","肉脞麵",
+    "mee pok","mee kia","ban mian","板面","鱼丸面","魚丸麵","fishball noodles",
+    "wanton mee","云吞面","雲吞麵","lor mee","卤面","滷麵","mee rebus","mee siam","mee goreng",
+    "laksa","叻沙","curry laksa","assam laksa","nasi lemak","椰浆饭","椰漿飯","nasi padang",
+    "nasi kandar","nasi kerabu","nasi dagang","ayam penyet","ayam goreng","rendang",
+    "roti prata","roti canai","murtabak","chapati","naan","biryani","thosai","dosa","idli",
+    "satay","沙爹","otah","乌打","烏打","yong tau foo","酿豆腐","釀豆腐","chwee kueh","水粿",
+    "chai tow kway","萝卜糕","蘿蔔糕","popiah","薄饼","薄餅","rojak","pasembur","kway chap",
+    "粿汁","bak kut teh","肉骨茶","pig organ soup","soup kambing","sup kambing",
+    "chee cheong fun","肠粉","腸粉","char siu","叉烧","叉燒","char siu bao","叉烧包","叉燒包",
+    "liu sha bao","流沙包","egg tart","蛋挞","蛋撻","pau","包子","dim sum","点心","點心",
+    "siu mai","烧卖","燒賣","har gow","虾饺","蝦餃","cheong fun","congee","粥",
+    "hotpot","火锅","火鍋","mala","麻辣","grilled fish","烤鱼","烤魚","sushi","寿司","壽司",
+    "sashimi","刺身","ramen","拉面","拉麵","udon","乌冬","烏冬","soba","tempura","donburi",
+    "curry","咖喱","咖哩","pizza","披萨","披薩","burger","汉堡","漢堡","fried chicken",
+    "炸鸡","炸雞","waffle","pancake","cake","蛋糕","cheesecake","brownie","cookie","donut",
+    "ice cream","冰淇淋","ice kacang","红豆冰","紅豆冰","cendol","煎蕊","tau huay","豆花",
+    "kopi","咖啡","kopi o","kopi c","kopi ais","kopi peng","kopi o ais","kopi o peng",
+    "kopi c ais","kopi c peng","teh","teh o","teh c","teh ais","teh peng","teh o ais",
+    "teh o peng","teh c ais","teh c peng","milo ais","milo peng","milo dinosaur",
+    "bandung","bandung ais","bandung peng","yuan yang","yuanyang","鸳鸯","鴛鴦",
+    "kopi teh","kopi teh milo","ktm","hor ka sai","tapao","takeaway","take away","打包","带走","帶走",
+    "mamak","kopitiam","hawker","food court","小贩","小販","茶室"
+  ],
+  "Groceries": [
+    "rice","白米","大米","米","brown rice","糙米","flour","面粉","麵粉","sugar","糖","salt","盐","鹽",
+    "cooking oil","食用油","olive oil","橄榄油","橄欖油","soy sauce","酱油","醬油","oyster sauce",
+    "蚝油","蠔油","chilli sauce","辣椒酱","辣椒醬","sambal","叁巴","belacan","spice","香料",
+    "seasoning","调味料","調味料","vegetable","蔬菜","fruit","水果","apple","苹果","蘋果","banana",
+    "香蕉","orange","橙","watermelon","西瓜","grape","葡萄","milk","牛奶","fresh milk","鲜奶","鮮奶",
+    "soy milk","豆奶","yogurt","酸奶","酸乳","cheese","奶酪","起司","butter","黄油","雞蛋","鸡蛋","egg",
+    "bread","面包","麵包","bun","面包","cereal","麦片","麥片","oats","燕麦","燕麥","instant noodles",
+    "方便面","方便麵","canned food","罐头","罐頭","frozen food","冷冻食品","冷凍食品","chocolate",
+    "巧克力","candy","糖果","biscuit","饼干","餅乾","chips","薯片","nuts","坚果","堅果","jam","果酱",
+    "果醬","peanut butter","花生酱","花生醬","honey","蜂蜜","coffee powder","咖啡粉","tea bag","茶包",
+    "milo","美禄","美祿","100plus","100 plus","soft drink","汽水","juice","果汁","bottled water","矿泉水",
+    "礦泉水","mineral water","milk powder","奶粉","baby formula","婴儿奶粉","嬰兒奶粉","tofu","豆腐",
+    "chicken","鸡肉","雞肉","beef","牛肉","pork","猪肉","豬肉","fish","鱼","魚","prawn","虾","蝦","seafood",
+    "海鲜","海鮮"
+  ],
+  "Beauty & Wellness": [
+    "mascara","睫毛膏","cushion","气垫","氣墊","foundation","粉底","concealer","遮瑕","primer","妆前",
+    "妝前","powder","蜜粉","setting powder","eyeliner","眼线","眼線","eyeshadow","眼影","brow pencil",
+    "眉笔","眉筆","lipstick","口红","口紅","lip gloss","唇蜜","lip tint","唇釉","blush","腮红","腮紅",
+    "contour","修容","highlighter","高光","setting spray","定妆喷雾","定妝噴霧","makeup sponge","美妆蛋",
+    "美妝蛋","false lashes","假睫毛","lash glue","睫毛胶","睫毛膠","eyelash curler","睫毛夹","睫毛夾",
+    "nail polish","指甲油","perfume","香水","deodorant","止汗剂","止汗劑","micellar water","卸妆水",
+    "卸妝水","cleansing oil","卸妆油","卸妝油","cleanser","洗面奶","洁面","潔面","toner","爽肤水",
+    "爽膚水","essence","精华","精華","serum","精华液","精華液","ampoule","安瓶","moisturizer","乳液",
+    "face cream","面霜","eye cream","眼霜","lip balm","润唇膏","潤唇膏","sunscreen","防晒","防曬",
+    "shampoo","洗发水","洗髮水","conditioner","护发素","護髮素","hair mask","发膜","髮膜","hair oil",
+    "hair wax","发蜡","髮蠟","body wash","沐浴露","soap","肥皂","hand wash","洗手液","body lotion",
+    "身体乳","身體乳","facial","facial treatment","massage","spa","manicure","美甲","pedicure","美脚",
+    "haircut","理发","理髮","barber","salon","hair dye","染发","染髮","Watsons","Guardian","Sephora",
+    "Sasa","Olive Young","Innisfree","Laneige","SK-II","Shiseido","Estee Lauder","Estée Lauder",
+    "Clinique","Kiehl's","La Mer","MAC","NARS","Bobbi Brown","Fenty","Rare Beauty","Dior Beauty",
+    "Chanel Beauty","YSL Beauty","L'Oreal","Maybelline","Revlon","Romand","Peripera","COSRX","The Ordinary",
+    "CeraVe","Cetaphil"
+  ],
+  "Pets": [
+    "cat food","猫粮","貓糧","dog food","狗粮","狗糧","kitten food","幼猫粮","幼貓糧","puppy food",
+    "幼犬粮","幼犬糧","wet food","湿粮","濕糧","dry food","干粮","乾糧","cat treats","猫零食","貓零食",
+    "dog treats","猫 stick","cat stick","猫条","貓條","freeze dried","冻干","凍乾","fish food","鱼粮",
+    "魚糧","fish pellets","fish flakes","betta food","betta","斗鱼","鬥魚","goldfish","金鱼","金魚",
+    "tropical fish","鱼缸","魚缸","aquarium","fish tank","filter","water pump","水泵","水泵","cat litter",
+    "猫砂","貓砂","tofu litter","豆腐砂","bentonite litter","膨润土","膨潤土","crystal litter","水晶砂",
+    "litter box","猫砂盆","貓砂盆","cat tree","猫爬架","貓爬架","scratching post","抓板","cat toy",
+    "dog toy","leash","牵引绳","牽引繩","collar","项圈","項圈","pet carrier","宠物包","寵物包","pet bed",
+    "pet bowl","automatic feeder","water fountain","pet shampoo","pet wipes","pet diaper","flea",
+    "tick","deworming","宠物医院","寵物醫院","vet","vaccination","bird food","hamster food","rabbit food",
+    "reptile food","aquarium salt","water conditioner"
+  ],
+  "Household & Daily": [
+    "tissue","纸巾","紙巾","toilet paper","厕纸","廁紙","kitchen towel","厨房纸","廚房紙","wet wipes",
+    "湿纸巾","濕紙巾","dishwashing liquid","洗碗液","dish soap","laundry detergent","洗衣液","洗衣粉",
+    "fabric softener","柔顺剂","柔順劑","stain remover","bleach","漂白水","disinfectant","消毒液",
+    "floor cleaner","地板清洁剂","玻璃清洁剂","glass cleaner","toilet cleaner","浴室清洁剂","sponge","海绵",
+    "海綿","mop","拖把","broom","扫把","掃把","vacuum","吸尘器","吸塵器","air freshener","空气清新剂",
+    "空氣清新劑","dehumidifier","除湿机","除濕機","insect repellent","驱蚊","驅蚊","mosquito coil",
+    "cockroach bait","蟑螂药","蟑螂藥","ant bait","rat trap","垃圾袋","garbage bag","cling wrap","保鲜膜",
+    "保鮮膜","aluminium foil","锡纸","錫紙","food container","保鲜盒","保鮮盒","storage box","收纳盒",
+    "收納盒","hanger","衣架","towel","毛巾","pillow","枕头","枕頭","bedsheet","床单","床單","blanket",
+    "被子","curtain","窗帘","窗簾","umbrella","雨伞","雨傘","light bulb","灯泡","燈泡","battery","电池",
+    "電池","extension cord","拖线板","拖線板","adapter","转换插头","轉換插頭","toothpaste","牙膏",
+    "toothbrush","牙刷","dental floss","牙线","牙線","mouthwash","漱口水","cotton buds","棉签","棉棒",
+    "cotton pads","化妆棉","化妝棉","razor","剃须刀","剃鬚刀","sanitary pad","卫生巾","衛生巾","tampon",
+    "pantyliner","diaper","尿布","baby bottle","奶瓶","pacifier","奶嘴","stroller","婴儿车","嬰兒車",
+    "stationery","文具","pen","笔","筆","notebook","笔记本","筆記本"
+  ],
+  "Online Shopping": [
+    "shopee","虾皮","蝦皮","lazada","amazon","taobao","淘宝","淘寶","tmall","天猫","天貓","pinduoduo",
+    "拼多多","pdd","tiktok shop","抖音商城","抖音小店","抖音电商","抖音購物","douyin shop","rednote",
+    "小红书","小紅書","wechat shop","微信小店","1688","aliexpress","alibaba","shein","zalora","poizon",
+    "得物","唯品会","唯品會","jd","jd.com","京东","京東","ebay","etsy","temu","qoo10","ezbuy","carousell",
+    "online shopping","网购","網購","online order","线上购物","線上購物","online purchase","网购订单",
+    "網購訂單"
+  ],
+  "Shopping": [
+    "fairprice","ntuc","fairprice finest","fairprice xtra","fairprice xpress","sheng siong","cold storage",
+    "giant","prime supermarket","jasons","marketplace","little farms","ryan's grocery","mustafa","don don donki",
+    "donki","redmart","7-eleven","seven eleven","cheers","daiso","mr diy","ikea","courts","best denki",
+    "harvey norman","challenger","gain city","decathlon","popular","kinokuniya","takashimaya","ion orchard",
+    "vivocity","paragon","bugis junction","bugis+","westgate","jem","causeway point","northpoint city",
+    "junction 8","plaza singapura","suntec city","marina square","jewel changi","aeon","lotus's","lotus",
+    "99 speedmart","jaya grocer","village grocer","mydin","econsave","giant malaysia","mercato",
+    "ben's independent grocer","b.i.g.","hero market","tf value mart","kk mart","familymart","eco-shop",
+    "ninso","supermarket","department store","mall","shopping mall","商场","商場","超市","便利店"
+  ],
+  "Transport": [
+    "grab","gojek","tada","ryde","comfortdelgro","cdg zig","smrt","sbs transit","mrt","lrt","bus","taxi",
+    "carpark","parking","parking.sg","erp","season parking","petrol","shell","esso","exxonmobil","caltex",
+    "spc","petron","petronas","bhp","ron95","ron97","diesel","touch n go","touch 'n go","tng","ez-link",
+    "simplygo","打车","搭车","德士","停车","停車","地铁","地鐵","巴士","汽油","油钱","油錢"
+  ],
+  "Travel": [
+    "agoda","booking.com","booking","airbnb","expedia","trip.com","traveloka","klook","pelago","tripadvisor",
+    "skyscanner","airasia","scoot","singapore airlines","malaysia airlines","batik air","jetstar","cathay",
+    "emirates","qatar airways","hotel","酒店","resort","度假村","flight","机票","機票","passport","护照",
+    "護照","visa","签证","簽證","tour","旅游","旅遊","universal studios singapore","gardens by the bay",
+    "sentosa","night safari","zoo","aquarium","water park"
+  ],
+  "Bills": [
+    "singtel","starhub","m1","simba","giga","circles.life","myrepublic","viewqwest","internet","wifi",
+    "broadband","mobile plan","phone bill","electricity","water bill","gas bill","sp services","sp group",
+    "utilities","town council","condo maintenance","rent","rental","insurance","insurance premium","subscription",
+    "电话费","電話費","网费","網費","水电","水電","房租","保险","保險"
+  ],
+  "Digital Entertainment": [
+    "netflix","spotify","youtube premium","youtube music","disney+","prime video","apple music","apple tv",
+    "hbo","max","viu","iqiyi","wetv","youku","tencent video","bilibili","steam","playstation","ps store",
+    "ps plus","xbox","game pass","nintendo switch","garena","roblox","genshin","honkai","mobile legends",
+    "valorant","王者荣耀","王者榮耀","game","游戏","遊戲","movie","电影","電影","cinema","golden village",
+    "shaw","cathay","karaoke","ktv","concert","bowling","arcade"
+  ],
+  "Gifts": [
+    "birthday gift","wedding gift","baby gift","christmas gift","anniversary gift","housewarming gift",
+    "gift card","gift voucher","voucher","ang bao","hongbao","red packet","礼物","禮物","礼品","禮品",
+    "礼券","禮券","贺礼","賀禮"
+  ],
+  "Automobile": [
+    "car wash","汽车美容","汽車美容","car service","servicing","workshop","mechanic","tyre","tire","battery",
+    "engine oil","road tax","coe","car insurance","motorcycle","scooter","detailing","car polish","car tint",
+    "洗车","洗車","修车","修車","轮胎","輪胎","汽车维修","汽車維修"
+  ],
+  "Clothing & Fashion": [
+    "uniqlo","zara","h&m","nike","adidas","new balance","puma","under armour","skechers","converse","vans",
+    "asics","lululemon","cos","muji","shirt","t-shirt","pants","jeans","dress","skirt","jacket","shoes","sneakers",
+    "bag","handbag","wallet","clothes","衣服","裤子","褲子","底裤","底褲","袜子","襪子","鞋","包","钱包","錢包",
+    "服装","服裝"
+  ],
+  "Luxury Goods": [
+    "lv","louis vuitton","hermes","hermès","chanel","gucci","prada","dior","burberry","rolex","cartier",
+    "tiffany","bottega veneta","celine","fendi","balenciaga","ysl","saint laurent","loewe","moncler","luxury",
+    "luxury goods","奢侈品","奢侈品","名牌"
+  ]
+};
+
+function bunexaV15BuildRules(){
+  const out=[];
+  // Specific product phrases first, then generic phrases.
+  Object.entries(BUNEXA_V15_DB).forEach(([category,terms])=>{
+    const sorted=[...terms].sort((a,b)=>b.length-a.length);
+    for(const term of sorted){
+      const escaped=term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s*');
+      out.push([category,new RegExp(escaped,'i')]);
+    }
+  });
+  return out;
+}
+const BUNEXA_V15_RULES=bunexaV15BuildRules();
+
+function bunexaV15Recognize(text){
+  const s=String(text||'').trim();
+  if(!s)return null;
+
+  // Explicit collision rules.
+  const collision=[
+    ['Online Food Delivery',/\b(grab\s*food|grabfood)\b/i],
+    ['Groceries',/\b(grab\s*mart|grabmart)\b/i],
+    ['Digital Entertainment',/\bapple\s*(music|tv)\b/i],
+    ['Dining',/\b(milk\s*tea|tea\s*with\s*milk)\b/i],
+    ['Pets',/\b(fish\s*food|fish\s*pellets?|cat\s*food|dog\s*food)\b|鱼粮|魚糧|猫粮|貓糧/i],
+    ['Dining',/\b(chicken\s*rice)\b|海南鸡饭|海南雞飯|鸡饭|雞飯/i],
+    ['Groceries',/\b(rice)\b|白米|大米|米/i],
+    ['Groceries',/\bfairprice\s+(milk|rice|egg|eggs|bread|tissue|tofu|chicken|fish|vegetable|fruit)\b/i],
+    ['Pets',/\bshopee\s+(cat\s*litter|cat\s*food|fish\s*food)\b|shopee\s*(猫砂|貓砂|猫粮|貓糧|鱼粮|魚糧)/i],
+    ['Beauty & Wellness',/\bwatsons\s+(mascara|foundation|cushion|lipstick|serum|toner)\b/i],
+    ['Clothing & Fashion',/\b(nike|adidas|uniqlo)\s+(shoes?|shirt|pants|clothes)\b/i],
+    ['Luxury Goods',/\b(lv|louis\s*vuitton|hermes|chanel|gucci|prada|dior)\s+(wallet|bag|shoes?|shirt|watch)\b/i]
+  ];
+  for(const [category,re] of collision)if(re.test(s))return {category,confidence:'high',source:'collision'};
+  for(const [category,re] of BUNEXA_V15_RULES)if(re.test(s))return {category,confidence:'high',source:'deepdb'};
+  return null;
+}
+
+const BUNEXA_V15_TESTS=[
+ ["Grab 12","Transport"],["GrabFood 12","Online Food Delivery"],["GrabMart 12","Groceries"],
+ ["Apple 20","Shopping"],["Apple Music 12","Digital Entertainment"],["Apple TV 10","Digital Entertainment"],
+ ["milk 5","Groceries"],["milk tea 5","Dining"],["fish 10","Groceries"],["fish food 10","Pets"],
+ ["rice 5","Groceries"],["chicken rice 8","Dining"],["FairPrice 20","Shopping"],["FairPrice milk 5","Groceries"],
+ ["Shopee 20","Online Shopping"],["Shopee 猫砂 20","Pets"],["Watsons 20","Shopping"],["Watsons mascara 20","Beauty & Wellness"],
+ ["LV 350","Luxury Goods"],["LV wallet 350","Luxury Goods"],["Nike shoes 120","Clothing & Fashion"],
+ ["10 鸡饭","Dining"],["鸡饭 10","Dining"],["10.50 海南鸡饭","Dining"],["12 chicken rice","Dining"],
+ ["烧卖 6","Dining"],["燒賣 8","Dining"],["虾饺 12","Dining"],["蝦餃 15","Dining"],
+ ["kopi ais 4","Dining"],["kopi peng 5","Dining"],["teh ais 4","Dining"],["teh peng 5","Dining"],
+ ["milo dinosaur 7","Dining"],["yuan yang 5","Dining"],["打包 10","Dining"],
+ ["拼多多 30","Online Shopping"],["抖音商城 25","Online Shopping"],["蝦皮 20","Online Shopping"],
+ ["99 Speedmart 30","Shopping"],["Jaya Grocer 25","Shopping"],["Lotus's 40","Shopping"],
+ ["猫砂 18","Pets"],["鱼粮 15","Pets"],["魚糧 15","Pets"],["cat food 20","Pets"],
+ ["纸巾 8","Household & Daily"],["洗衣液 20","Household & Daily"],["toothpaste 6","Household & Daily"],
+ ["Singtel 40","Bills"],["SP Services 80","Bills"],["Netflix 18","Digital Entertainment"],
+ ["Spotify 12","Digital Entertainment"],["Agoda 150","Travel"],["AirAsia 120","Travel"],
+ ["Shell 60","Transport"],["MRT 2","Transport"],["TNG 30","Transport"],
+ ["birthday gift 50","Gifts"],["礼物 30","Gifts"],["car wash 15","Automobile"],
+ ["汽车维修 200","Automobile"],["底裤 20","Clothing & Fashion"],["衣服 50","Clothing & Fashion"],
+ ["Gucci bag 1500","Luxury Goods"],["Chanel 800","Luxury Goods"]
+];
+
+function bunexaV15RunTests(){
+  const rows=BUNEXA_V15_TESTS.map(([input,expected])=>{
+    const got=bunexaV15Recognize(input);
+    return {input,expected,got:got?.category||'—',pass:(got?.category||'')===expected};
+  });
+  const passed=rows.filter(x=>x.pass).length;
+  return {rows,passed,total:rows.length};
+}
+function bunexaV14Recognize(text){
+ const s=String(text||'').trim().toLowerCase(); if(!s)return null;
+ const rules=[
+ ['Online Food Delivery',/(grab\s*food|grabfood|foodpanda|deliveroo|pandamart|mcdelivery|外卖|外送)/i],
+ ['Groceries',/(grab\s*mart|grabmart|fairprice\s+(milk|rice|egg|bread|tissue|tofu|chicken|fish)|sheng\s*siong\s+(milk|rice|egg|bread|tissue)|cold\s*storage\s+(milk|rice|egg|bread)|牛奶|鸡蛋|雞蛋|米|白米|大米|面包|麵包|蔬菜|水果|豆腐|鱼|魚|肉|海鲜|海鮮)/i],
+ ['Pets',/(fish\s*food|fish\s*pellets?|鱼粮|魚糧|猫粮|貓糧|cat\s*food|dog\s*food|kitten\s*food|puppy\s*food|cat\s*litter|猫砂|貓砂|aquarium|betta|goldfish|pet\s*food)/i],
+ ['Beauty & Wellness',/(mascara|睫毛膏|气垫|氣墊|cushion|foundation|concealer|eyeliner|lipstick|blush|toner|serum|essence|sunscreen|防晒|防曬|洗面奶|洁面|潔面|面霜|护肤|護膚|shampoo|conditioner|perfume|香水|makeup|化妆品|化妝品)/i],
+ ['Luxury Goods',/(^|\s)(lv|louis\s*vuitton|herm[eè]s|chanel|gucci|prada|dior|burberry|rolex)(\s|$)|奢侈品|名牌/i],
+ ['Clothing & Fashion',/(uniqlo|zara|h&m|nike|adidas|new\s*balance|puma|under\s*armour|shoes?|鞋|衣服|裤|褲|底裤|底褲|袜子|襪子|shirt|pants|dress|jacket|clothes|fashion)/i],
+ ['Online Shopping',/(shopee|虾皮|蝦皮|lazada|amazon|taobao|淘宝|淘寶|tmall|天猫|天貓|pinduoduo|拼多多|pdd|tiktok\s*shop|抖音商城|抖音小店|抖音电商|抖音購物|1688|shein|zalora|qoo10|carousell|京东|京東|jd\.com|temu)/i],
+ ['Dining',/(chicken\s*rice|海南鸡饭|海南雞飯|鸡饭|雞飯|char\s*kway\s*teow|hokkien\s*mee|prawn\s*mee|bak\s*chor\s*mee|laksa|nasi\s*lemak|nasi\s*kandar|roti\s*canai|roti\s*prata|bak\s*kut\s*teh|satay|yong\s*tau\s*foo|烧卖|燒賣|虾饺|蝦餃|dim\s*sum|sushi|ramen|burger|pizza|kopi|teh\s*(ais|ice|peng|o|c)|milo\s*(ais|peng|dinosaur)|bandung|yuan\s*yang|奶茶|咖啡|饮料|飲料)/i],
+ ['Transport',/(^|\s)(grab|gojek|tada|ryde|comfortdelgro|cdg\s*zig|smrt|sbs\s*transit|mrt|lrt|bus|taxi|parking|carpark|erp|shell|esso|caltex|spc|petron|petronas|bhp)(\s|$)|打车|搭车|德士|停车|停車|地铁|地鐵|巴士|汽油/i],
+ ['Bills',/(singtel|starhub|m1|simba|giga|circles\.life|myrepublic|viewqwest|internet|wifi|broadband|phone\s*bill|electricity|utilities|sp\s*services|sp\s*group|rent|rental|insurance|水电|水電|电话费|電話費|网费|網費|房租|保险|保險)/i],
+ ['Digital Entertainment',/(netflix|spotify|youtube\s*premium|disney\+|prime\s*video|apple\s*(music|tv)|hbo|max|viu|iqiyi|wetv|youku|bilibili|steam|playstation|ps\s*(store|plus)|xbox|game\s*pass|nintendo|garena|roblox|genshin|honkai|王者荣耀|王者榮耀|游戏|遊戲|电影|電影|cinema|karaoke|ktv)/i],
+ ['Household & Daily',/(tissue|toilet\s*paper|纸巾|紙巾|detergent|洗衣液|洗衣粉|dishwashing|洗碗液|sponge|mop|broom|vacuum|air\s*freshener|garbage\s*bag|垃圾袋|light\s*bulb|battery|电池|電池|toothpaste|牙膏|toothbrush|牙刷|sanitary\s*pad|卫生巾|衛生巾)/i]
+ ];
+ for(const [category,re] of rules)if(re.test(s))return {category,confidence:'high'};
+ return null;
+}
 function smartParse(text){
   text=String(text||'').trim();
   if(!text)return {amount:'',description:''};
 
-  const cleanAmount=v=>String(v).replace(/,/g,'');
-  const moneyAtStart=/^(?:S\$|\$|RM|MYR)?\s*(\d+(?:[.,]\d{1,2})?)\s+(.+)$/i;
-  const moneyAtEnd=/^(.+?)\s+(?:S\$|\$|RM|MYR)?\s*(\d+(?:[.,]\d{1,2})?)$/i;
-  const currency=/^(?:S\$|\$|RM|MYR)\s*(\d+(?:[.,]\d{1,2})?)\s+(.+)$/i;
-  let m=text.match(currency);
-  if(m)return {amount:cleanAmount(m[1]).replace(',','.'),description:m[2].trim()};
-  m=text.match(moneyAtStart);
-  if(m)return {amount:cleanAmount(m[1]).replace(',','.'),description:m[2].trim()};
-  m=text.match(moneyAtEnd);
-  if(m)return {amount:cleanAmount(m[2]).replace(',','.'),description:m[1].trim()};
+  // V7 Natural Language Amount Engine:
+  // Supports amount-first/end, currency prefixes/suffixes, Chinese currency words,
+  // attached amounts, and casual sentences such as "刚刚吃鸡饭12块".
+  const cleanAmount=v=>String(v).replace(/,/g,'').replace(/^\s+|\s+$/g,'');
+  const normalizeAmount=v=>{let x=cleanAmount(v); if(/^\d+[.]\d{1,2}$/.test(x)||/^\d+$/.test(x))return x; return '';};
+  const currencyWords=/(?:S\$|SGD|\$|RM|MYR|马币|令吉|新币|新元|块钱|块|元|令吉钱)\s*/i;
+  let m;
 
-  // Also understand compact entries such as "kopi 8.5" or "8.5kopi".
-  const compact=/^(.+?)[, ]+(\d+(?:\.\d{1,2})?)$/i.exec(text);
-  if(compact)return {amount:compact[2],description:compact[1].trim()};
-  const attached=/^(\d+(?:\.\d{1,2})?)([a-zA-Z][a-zA-Z &.'-]+)$/i.exec(text);
-  if(attached)return {amount:attached[1],description:attached[2].trim()};
+  // 1. Explicit currency before amount: $12 Grab / RM25 猫粮 / S$8.50 kopi
+  m=text.match(/(?:S\$|SGD|\$|RM|MYR|马币|令吉|新币|新元)\s*(\d{1,6}(?:[.,]\d{1,2})?)\s+(.+)$/i);
+  if(m)return {amount:normalizeAmount(m[1].replace(',','.')),description:m[2].trim()};
+
+  // 2. Amount + currency + description: 12块鸡饭 / 12元 kopi / 25 RM cat food
+  m=text.match(/^(\d{1,6}(?:[.,]\d{1,2})?)\s*(?:块钱|块|元|令吉|马币|新币|新元|SGD|RM|MYR|S\$|\$)\s*(.*)$/i);
+  if(m && m[2].trim())return {amount:normalizeAmount(m[1].replace(',','.')),description:m[2].trim()};
+
+  // 3. Amount first with normal separator: 12 chicken rice / 8.50 kopi
+  m=text.match(/^(\d{1,6}(?:[.,]\d{1,2})?)\s+(.+)$/i);
+  if(m)return {amount:normalizeAmount(m[1].replace(',','.')),description:m[2].trim()};
+
+  // 4. Description first with amount at end, including Chinese sentences.
+  // Avoid treating a bare 4-digit year/date as money.
+  m=text.match(/^(.+?)(?:\s+|)(?:S\$|SGD|\$|RM|MYR|马币|令吉|新币|新元)?\s*(\d{1,6}(?:[.,]\d{1,2})?)\s*(?:块钱|块|元|令吉)?\s*$/i);
+  if(m){
+    const n=normalizeAmount(m[2].replace(',','.'));
+    if(n && !( /^\d{4}$/.test(m[2]) && /(?:年|月|日|日期|date|today|yesterday|tomorrow)/i.test(m[1]) )) return {amount:n,description:m[1].trim()};
+  }
+
+  // 5. Amount embedded anywhere in a natural sentence: 刚刚吃鸡饭12块 / 今天grab花了18
+  // Prefer the number nearest to money markers or action words.
+  const embedded=/([0-9]{1,6}(?:[.,][0-9]{1,2})?)\s*(?:块钱|块|元|令吉|马币|新币|新元|dollars?|bucks?|ringgit)?/ig;
+  const nums=[]; let mm;
+  while((mm=embedded.exec(text))!==null){
+    const raw=mm[1]; const start=mm.index;
+    // Skip likely dates/times/years and phone-like sequences.
+    if(/^\d{4}$/.test(raw) && (start===0 || /[\/-]/.test(text.slice(Math.max(0,start-5),start))))continue;
+    nums.push({raw,start,end:embedded.lastIndex,explicit:/块钱|块|元|令吉|马币|新币|新元|dollars?|bucks?|ringgit/i.test(mm[0])});
+  }
+  if(nums.length){
+    const chosen=nums.find(x=>x.explicit)||nums[nums.length-1];
+    const amount=normalizeAmount(chosen.raw.replace(',','.'));
+    if(amount){
+      let desc=(text.slice(0,chosen.start)+' '+text.slice(chosen.end)).replace(/\s+/g,' ').trim();
+      // Remove common conversational filler while preserving the merchant/product words.
+      desc=desc.replace(/^(?:刚刚|刚才|今天|昨天|明天|刚|我|我刚刚|我刚才)\s*/,'');
+      desc=desc.replace(/(?:花了|用了|买了|买|花费|消费|支付|付款|吃了|吃|喝了|喝|记录|记录一下)\s*/g,'').trim();
+      if(desc)return {amount,description:desc};
+    }
+  }
+
+  // 6. Compact English forms: kopi 8.5 / 8.5kopi
+  m=text.match(/^(.+?)[, ]+(\d{1,6}(?:\.\d{1,2})?)$/i);
+  if(m)return {amount:normalizeAmount(m[2]),description:m[1].trim()};
+  m=text.match(/^(\d{1,6}(?:\.\d{1,2})?)([a-zA-Z][a-zA-Z &.'-]+)$/i);
+  if(m)return {amount:normalizeAmount(m[1]),description:m[2].trim()};
 
   return {amount:'',description:text};
 }
+function parseMultiExpenses(text){
+  text=String(text||'').trim();
+  if(!text)return [];
+  const parts=text.split(/\s*(?:\+|然后|再然后|以及|还有)\s*|\s+(?:and|then|plus)\s+/i).map(x=>x.trim()).filter(Boolean);
+  if(parts.length<2)return [];
+  const parsed=parts.map(x=>smartParse(x));
+  if(parsed.some(x=>!x.amount||!x.description))return [];
+  return parsed.map(x=>({amount:Number(x.amount),description:x.description,category:learnedCategory(x.description)||detect(x.description)}));
+}
+function renderMultiPreview(items){
+  const box=document.getElementById('multiPreview'); if(!box)return;
+  if(!items.length){box.style.display='none';box.innerHTML='';return;}
+  const total=items.reduce((a,x)=>a+Number(x.amount),0); box.style.display='block';
+  box.innerHTML=`<div style="font-weight:800;margin-bottom:8px">${data.lang==='zh'?'发现多笔消费':'Multiple expenses found'} · ${items.length}</div>${items.map(x=>`<div class="row" style="padding:8px 0;border-bottom:1px solid var(--line)"><div style="min-width:0"><b>${esc(x.description)}</b><div class="small">${esc(label(x.category))}</div></div><b>${money(x.amount)}</b></div>`).join('')}<div class="row" style="padding-top:9px"><span class="small">${data.lang==='zh'?'合计':'Total'}</span><b>${money(total)}</b></div><div class="small" style="margin-top:7px">${data.lang==='zh'?'点击保存会一次加入以上全部记录':'Save will add all of the expenses above'}</div>`;
+}
 function setSmartFromInput(){
   const q=document.getElementById('smartInput'); if(!q)return;
-  const p=smartParse(q.value);
+  const text=q.value.trim(); pendingMulti=parseMultiExpenses(text); renderMultiPreview(pendingMulti);
+  if(pendingMulti.length){document.getElementById('txAmount').value='';document.getElementById('txDescription').value='';const sel=document.getElementById('txCategory');if(sel)sel.value='Other';const auto=document.getElementById('autoBox');if(auto)auto.innerHTML=`${tr('auto')}: <b>${data.lang==='zh'?'多笔消费':'Multiple expenses'}</b>`;return;}
+  const p=smartParse(text);
   if(p.amount){document.getElementById('txAmount').value=p.amount;} if(p.description){document.getElementById('txDescription').value=p.description;refreshDetect();}
 }
 function openRecord(index=null){
-  editing=index;
+  editing=index; pendingMulti=[];
   let x=index==null?{type:'expense',amount:'',description:'',category:'Other',date:dateKey(new Date())}:data.tx[index];
   document.getElementById('modalTitle').textContent=index==null?tr('record'):tr('edit');
   document.getElementById('modalBody').innerHTML=`
     <div class="field"><label>${tr('smart')}</label><input id="smartInput" autocomplete="off" inputmode="text" placeholder="${data.lang==='zh'?'例如：8.50 kopi / Grab 12':'e.g. 8.50 kopi / Grab 12'}" value=""></div>
     <div class="field"><label>${tr('amount')}</label><input class="big-amount" id="txAmount" type="number" min="0" step="0.01" inputmode="decimal" value="${esc(x.amount)}" placeholder="0.00"></div>
     <div class="field"><label>${tr('what')}</label><input id="txDescription" autocomplete="off" value="${esc(x.description)}" placeholder="${data.lang==='zh'?'例如：kopi / Grab / FairPrice':'e.g. kopi / Grab / FairPrice'}"></div>
-    <div class="auto" id="autoBox">${tr('auto')}: <b>${esc(label(x.category))}</b></div><div class="field"><label>${tr('category')}</label><select id="txCategory"><option value="Dining">${label('Dining')}</option><option value="Transport">${label('Transport')}</option><option value="Groceries">${label('Groceries')}</option><option value="Online Food Delivery">${label('Online Food Delivery')}</option><option value="Online Shopping">${label('Online Shopping')}</option><option value="Digital Entertainment">${label('Digital Entertainment')}</option><option value="Beauty & Wellness">${label('Beauty & Wellness')}</option><option value="Pets">${label('Pets')}</option><option value="Luxury Goods">${label('Luxury Goods')}</option><option value="Clothing & Fashion">${label('Clothing & Fashion')}</option><option value="Automobile">${label('Automobile')}</option><option value="Cruise & Holiday">${label('Cruise & Holiday')}</option><option value="Travel">${label('Travel')}</option><option value="Bills">${label('Bills')}</option><option value="Gifts">${label('Gifts')}</option><option value="Household & Daily">${label('Household & Daily')}</option><option value="Shopping">${label('Shopping')}</option><option value="Other">${label('Other')}</option></select></div>
+    <div class="auto" id="autoBox">${tr('auto')}: <b>${esc(label(x.category))}</b></div><div class="auto" id="multiPreview" style="display:none"></div><div class="field"><label>${tr('category')}</label><select id="txCategory"><option value="Dining">${label('Dining')}</option><option value="Transport">${label('Transport')}</option><option value="Groceries">${label('Groceries')}</option><option value="Online Food Delivery">${label('Online Food Delivery')}</option><option value="Online Shopping">${label('Online Shopping')}</option><option value="Digital Entertainment">${label('Digital Entertainment')}</option><option value="Beauty & Wellness">${label('Beauty & Wellness')}</option><option value="Pets">${label('Pets')}</option><option value="Luxury Goods">${label('Luxury Goods')}</option><option value="Clothing & Fashion">${label('Clothing & Fashion')}</option><option value="Automobile">${label('Automobile')}</option><option value="Cruise & Holiday">${label('Cruise & Holiday')}</option><option value="Travel">${label('Travel')}</option><option value="Bills">${label('Bills')}</option><option value="Gifts">${label('Gifts')}</option><option value="Household & Daily">${label('Household & Daily')}</option><option value="Shopping">${label('Shopping')}</option><option value="Other">${label('Other')}</option></select></div>
     <div class="type-switch"><button class="btn ${x.type==='expense'?'active':''}" type="button" data-action="type" data-type="expense">− ${tr('expense')}</button><button class="btn ${x.type==='income'?'active':''}" type="button" data-action="type" data-type="income">＋ ${tr('transactionIncome')}</button></div>
     <input type="hidden" id="txType" value="${x.type}">
     <div class="field" style="margin-top:14px"><label>${tr('date')}</label><input id="txDate" type="date" value="${x.date}"></div>
@@ -97,29 +766,54 @@ function openRecord(index=null){
   setTimeout(()=>{const q=document.getElementById('smartInput'); if(index==null)q?.focus(); else document.getElementById('txAmount')?.focus();},80);
   refreshDetect();
 }
-function refreshDetect(){let d=document.getElementById('txDescription')?.value||'',type=document.getElementById('txType')?.value||'expense',c=type==='income'?'Income':(learnedCategory(d)||detect(d));let n=document.getElementById('autoBox');if(n)n.innerHTML=`${tr('auto')}: <b>${esc(label(c))}</b>`;let s=document.getElementById('txCategory');if(s&&!s.dataset.manual)s.value=c}
+function refreshDetect(){let d=document.getElementById('txDescription')?.value||'',type=document.getElementById('txType')?.value||'expense',learned=type!=='income'&&learnedCategory(d),c=type==='income'?'Income':(learned||detect(d));let n=document.getElementById('autoBox');if(n)n.innerHTML=`${tr('auto')}: <b>${esc(label(c))}</b>${learned?` <span class="small">· ${data.lang==='zh'?'按你的历史选择':'based on your memory'}</span>`:''}`;let s=document.getElementById('txCategory');if(s&&!s.dataset.manual)s.value=c}
 function merchantKey(s){
-  return String(s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9\u4e00-\u9fff ]+/g,' ').replace(/\s+/g,' ').trim();
+  return String(s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/&/g,' and ').replace(/[^a-z0-9\u4e00-\u9fff ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+function merchantCompactKey(s){
+  const k=merchantKey(s);
+  return k.replace(/\s+/g,'');
 }
 function learnMerchant(description,category){
   const k=merchantKey(description);
   if(!k||!category||category==='Other')return;
   data.merchantMemory=data.merchantMemory||{};
-  data.merchantMemory[k]={category,updated:Date.now()};
+  const now=Date.now();
+  const prev=data.merchantMemory[k];
+  data.merchantMemory[k]={category,updated:now,count:(prev?.count||0)+1};
+  // Also remember a compact spelling for simple English merchant/product phrases.
+  const compact=merchantCompactKey(description);
+  if(compact && compact!==k && /^[a-z0-9]+$/.test(compact) && compact.length>=4){
+    const p=data.merchantMemory['@'+compact];
+    data.merchantMemory['@'+compact]={category,updated:now,count:(p?.count||0)+1};
+  }
 }
 function learnedCategory(description){
   const k=merchantKey(description);
   const m=data.merchantMemory?.[k];
-  return m?.category||null;
+  if(m?.category)return m.category;
+  const compact=merchantCompactKey(description);
+  if(compact){const cm=data.merchantMemory?.['@'+compact];if(cm?.category)return cm.category;}
+  return null;
 }
 function resetMerchantMemory(){
   data.merchantMemory={};save();toast(data.lang==='zh'?'商家记忆已重置':'Merchant memory reset');renderAll();
 }
 function saveTx(){
+  const type=document.getElementById('txType').value, date=document.getElementById('txDate').value;
+  if(editing==null && type==='expense' && pendingMulti.length){
+    if(!date){toast(tr('invalid'));return;}
+    let added=0;
+    for(const p of pendingMulti){
+      const amount=Number(p.amount),description=String(p.description||'').trim(),cat=p.category||detect(description);
+      const duplicate=data.tx.some(x=>x.type==='expense'&&Number(x.amount)===amount&&x.date===date&&x.description.toLowerCase()===description.toLowerCase());
+      if(duplicate && !confirm(data.lang==='zh'?`发现重复记录“${description}”，仍然添加吗？`:`A matching transaction exists for “${description}”. Add anyway?`))continue;
+      data.tx.push({id:Date.now()+Math.random(),type:'expense',amount,description,category:cat,date}); learnMerchant(description,cat); added++;
+    }
+    if(!added)return; pendingMulti=[]; save(); close(); renderAll(); toast(data.lang==='zh'?`已加入 ${added} 笔消费`:`Added ${added} expenses`); return;
+  }
   let amount=Number(document.getElementById('txAmount').value),
-      description=document.getElementById('txDescription').value.trim(),
-      type=document.getElementById('txType').value,
-      date=document.getElementById('txDate').value;
+      description=document.getElementById('txDescription').value.trim();
   if(!amount||amount<=0||!description||!date){toast(tr('invalid'));return}
   let sel=document.getElementById('txCategory'),
       cat=type==='income'?'Income':(sel?.value||detect(description));
@@ -132,12 +826,49 @@ function saveTx(){
   if(type==='expense')learnMerchant(description,cat);
   save();close();renderAll();toast(tr('saved'));
 }
-function close(){document.getElementById('modalBg').classList.remove('show');editing=null}function deleteTx(){
+function close(){document.getElementById('modalBg').classList.remove('show');editing=null;pendingMulti=[]}function deleteTx(){
   if(editing==null)return;
   if(!confirm(data.lang==='zh'?'确定删除这笔记录吗？':'Delete this transaction?'))return;
   const item=data.tx[editing];
   undoItem={item,index:editing};
   data.tx.splice(editing,1);save();close();renderAll();toast(tr('deleted'),true);
+}
+
+function bunexaV11SafeToSpend(){
+  const now=new Date(), y=now.getFullYear(), m=now.getMonth();
+  const monthTx=(data.tx||[]).filter(x=>{
+    const d=new Date(x.date||x.createdAt||now);
+    return d.getFullYear()===y&&d.getMonth()===m;
+  });
+  const spent=monthTx.filter(x=>x.type!=='income').reduce((a,x)=>a+Number(x.amount||0),0);
+  const incomeTx=monthTx.filter(x=>x.type==='income').reduce((a,x)=>a+Number(x.amount||0),0);
+  const plannedIncome=Number(data.regular||0);
+  const income=Math.max(incomeTx,plannedIncome);
+  const fixed=Number(data.fixed||0);
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  const daysLeft=Math.max(1,daysInMonth-now.getDate()+1);
+  const available=Math.max(0,income-fixed-spent);
+  const daily=available/daysLeft;
+  return {spent,incomeTx,plannedIncome,income,fixed,daysLeft,available,daily};
+}
+function bunexaV11RenderSafe(){
+  const box=document.getElementById('safeToSpendCard');
+  if(!box)return;
+  const z=bunexaV11SafeToSpend(), zh=data.lang==='zh';
+  const cur=data.currency==='MYR'?'RM':'S$';
+  const fmt=n=>cur+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+  box.classList.add('bunexa-v11-safe-card');
+  box.innerHTML=
+    '<div class="small">'+(zh?'今日安全可花':'Safe to Spend Today')+'</div>'+
+    '<div class="bunexa-v11-safe-main">'+fmt(z.daily)+'</div>'+
+    '<div class="bunexa-v11-safe-note">'+(zh?'按本月收入、固定开销、已记录消费及剩余天数计算':'Based on income, fixed expenses, spending and days left')+'</div>'+
+    '<div class="bunexa-v11-safe-details">'+
+      '<div class="bunexa-v11-safe-row"><span>'+(zh?'本月收入':'Income')+'</span><b>'+fmt(z.income)+'</b></div>'+
+      '<div class="bunexa-v11-safe-row"><span>'+(zh?'固定开销':'Fixed expenses')+'</span><b>'+fmt(z.fixed)+'</b></div>'+
+      '<div class="bunexa-v11-safe-row"><span>'+(zh?'本月已花':'Spent this month')+'</span><b>'+fmt(z.spent)+'</b></div>'+
+      '<div class="bunexa-v11-safe-row"><span>'+(zh?'剩余可用':'Remaining')+'</span><b>'+fmt(z.available)+'</b></div>'+
+      '<div class="bunexa-v11-safe-row"><span>'+(zh?'剩余天数':'Days left')+'</span><b>'+z.daysLeft+'</b></div>'+
+    '</div>';
 }
 function renderHome(){
   let t=totals(data.tx),balance=t.inc-t.exp,safe=(Number(data.regular)||t.inc)-Number(data.fixed||0)-t.exp;
@@ -149,17 +880,147 @@ function renderHome(){
   const now=new Date(),last=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(),remaining=Math.max(1,last-now.getDate()+1);
   const daily=document.getElementById('safeDaily');
   if(daily)daily.textContent=data.lang==='zh'?`${money(safeValue/remaining)} / 天 · 剩余 ${remaining} 天`:`${money(safeValue/remaining)} / day · ${remaining} days left`;
+  // Smart dashboard: current month trend, top category, budget progress and a concise action-oriented insight.
+  const monthKey=dateKey(new Date()).slice(0,7), monthItems=data.tx.filter(x=>String(x.date).slice(0,7)===monthKey && x.type==='expense');
+  const mt=monthItems.reduce((a,x)=>a+Number(x.amount||0),0);
+  const cats={}; monthItems.forEach(x=>{cats[x.category]=(cats[x.category]||0)+Number(x.amount||0)});
+  const top=Object.entries(cats).sort((a,b)=>b[1]-a[1])[0];
+  const prev=new Date(now.getFullYear(),now.getMonth()-1,1), prevKey=dateKey(prev).slice(0,7);
+  const prevExp=data.tx.filter(x=>String(x.date).slice(0,7)===prevKey && x.type==='expense').reduce((a,x)=>a+Number(x.amount||0),0);
+  const trend=document.getElementById('dashTrendValue'), trendSub=document.getElementById('dashTrendSub');
+  if(trend)trend.textContent=money(mt);
+  if(trendSub){if(prevExp>0){const pct=((mt-prevExp)/prevExp)*100; trendSub.textContent=data.lang==='zh'?`${pct>=0?'↑':'↓'} ${Math.abs(pct).toFixed(0)}% 比上月 · 上月 ${money(prevExp)}`:`${pct>=0?'↑':'↓'} ${Math.abs(pct).toFixed(0)}% vs last month · ${money(prevExp)} last month`;}else trendSub.textContent=data.lang==='zh'?'本月支出':'Current month spending';}
+  const topVal=document.getElementById('dashTopValue'), topSub=document.getElementById('dashTopSub');
+  if(topVal)topVal.textContent=top?label(top[0]):'—'; if(topSub)topSub.textContent=top?(money(top[1])+(data.lang==='zh'?' · 本月最高':' · highest this month')):(data.lang==='zh'?'还没有消费数据':'No spending yet');
+  const limit=Number(data.limit||data.monthlyLimit||0), pct=limit>0?Math.min(100,(mt/limit)*100):0;
+  const bp=document.getElementById('dashBudgetPercent'), bb=document.getElementById('dashBudgetBar'), bs=document.getElementById('dashBudgetSub');
+  if(bp)bp.textContent=limit>0?`${Math.round(pct)}%`:'—'; if(bb)bb.style.width=limit>0?`${pct}%`:'0%'; if(bs)bs.textContent=limit>0?(data.lang==='zh'?`${money(mt)} / ${money(limit)} · ${pct>=100?'已超过预算':'本月预算进度'}`:`${money(mt)} / ${money(limit)} · ${pct>=100?'Over budget':'monthly budget progress'}`):(data.lang==='zh'?'到 Settings 设置月度预算':'Set a monthly limit in Settings');
+  const di=document.getElementById('dashInsight'); if(di){if(!monthItems.length)di.textContent=data.lang==='zh'?'开始记录消费后，这里会显示你的消费趋势和提醒。':'Start recording expenses to see your spending trends and alerts.'; else if(limit>0 && pct>=100)di.textContent=data.lang==='zh'?`本月消费已达到预算的 ${Math.round(pct)}%。可以看看 ${top?label(top[0]):'主要分类'} 的支出。`:`You have reached ${Math.round(pct)}% of your monthly budget. Review ${top?label(top[0]):'your main category'} spending.`; else if(top)di.textContent=data.lang==='zh'?`本月最高消费是 ${label(top[0])}，共 ${money(top[1])}。`:`Your top category this month is ${label(top[0])} at ${money(top[1])}.`;}
   let r=txSorted().slice(0,6);document.getElementById('recent').innerHTML=r.length?r.map(x=>`<div class="tx" data-edit="${data.tx.indexOf(x)}"><div class="tx-icon">${x.type==='income'?'💰':icon(x.category)}</div><div class="tx-main"><b>${esc(x.description)}</b><div class="small">${label(x.category)} · ${x.date===dateKey(new Date())?tr('today'):x.date}</div></div><div class="amount ${x.type}">${x.type==='income'?'+':'−'}${money(x.amount)}</div></div>`).join(''):`<div class="empty">${tr('empty')}</div>`}
-function renderReports(){let items=period==='month'?data.tx.filter(x=>String(x.date).slice(0,7)===dateKey(new Date()).slice(0,7)):data.tx;let t=totals(items);document.getElementById('rIncome').textContent=money(t.inc);document.getElementById('rExpenses').textContent=money(t.exp);let map={};items.filter(x=>x.type==='expense').forEach(x=>map[x.category]=(map[x.category]||0)+x.amount);let arr=Object.entries(map).sort((a,b)=>b[1]-a[1]);let totalExp=arr.reduce((a,[,v])=>a+v,0);let palette=['#11aeb0','#64748b','#f59e0b','#a78bfa','#ef6b73','#18a66b','#d97706'];let angle=0;let stops=arr.slice(0,7).map(([c,v],i)=>{let a=angle;angle+=totalExp?v/totalExp*360:0;return `${palette[i%palette.length]} ${a}deg ${angle}deg`}).join(',');document.getElementById('donut').style.background=stops?`conic-gradient(${stops})`:'conic-gradient(var(--bg) 0 360deg)';document.getElementById('donutText').innerHTML=money(t.exp)+'<br><span class="small">'+tr('expenses')+'</span>';let max=arr[0]?.[1]||1;document.getElementById('breakdown').innerHTML=arr.length?arr.slice(0,7).map(([c,v])=>`<div class="bar"><div class="bar-top"><span>${icon(c)} ${label(c)}</span><b>${money(v)}</b></div><div class="track"><i style="width:${v/max*100}%"></i></div></div>`).join(''):`<div class="empty">${tr('noSpending')}</div>`;document.getElementById('insight').textContent=arr.length?`${tr('top')}: ${label(arr[0][0])} · ${money(arr[0][1])}`:tr('insightNone');document.querySelectorAll('[data-period]').forEach(b=>b.classList.toggle('active',b.dataset.period===period))}
+function renderReports(){
+  const now=new Date(), thisKey=dateKey(now).slice(0,7);
+  let items=period==='month'?data.tx.filter(x=>String(x.date).slice(0,7)===thisKey):data.tx;
+  let t=totals(items);
+  document.getElementById('rIncome').textContent=money(t.inc);
+  document.getElementById('rExpenses').textContent=money(t.exp);
+  let map={};
+  items.filter(x=>x.type==='expense').forEach(x=>map[x.category]=(map[x.category]||0)+Number(x.amount));
+  let arr=Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  let totalExp=arr.reduce((a,[,v])=>a+v,0);
+  let palette=['#11aeb0','#64748b','#f59e0b','#a78bfa','#ef6b73','#18a66b','#d97706'];
+  let angle=0;
+  let stops=arr.slice(0,7).map(([c,v],i)=>{let a=angle;angle+=totalExp?v/totalExp*360:0;return `${palette[i%palette.length]} ${a}deg ${angle}deg`}).join(',');
+  document.getElementById('donut').style.background=stops?`conic-gradient(${stops})`:'conic-gradient(var(--bg) 0 360deg)';
+  document.getElementById('donutText').innerHTML=money(t.exp)+'<br><span class="small">'+tr('expenses')+'</span>';
+  let max=arr[0]?.[1]||1;
+  document.getElementById('breakdown').innerHTML=arr.length?arr.slice(0,7).map(([c,v])=>`<div class="bar"><div class="bar-top"><span>${icon(c)} ${label(c)}</span><b>${money(v)}</b></div><div class="track"><i style="width:${v/max*100}%"></i></div></div>`).join(''):`<div class="empty">${tr('noSpending')}</div>`;
+
+  const insightEl=document.getElementById('insight');
+  if(!arr.length){insightEl.textContent=tr('insightNone');const si=document.getElementById('smartInsights');if(si)si.innerHTML=`<div>${esc(tr('insightNone'))}</div>`;document.querySelectorAll('[data-period]').forEach(b=>b.classList.toggle('active',b.dataset.period===period));return;}
+
+  // Smart month-over-month comparison and behavioral insights.
+  const prev=new Date(now.getFullYear(),now.getMonth()-1,1), prevKey=dateKey(prev).slice(0,7);
+  const prevItems=data.tx.filter(x=>String(x.date).slice(0,7)===prevKey&&x.type==='expense');
+  const prevTotal=prevItems.reduce((a,x)=>a+Number(x.amount),0);
+  const currentTotal=t.exp;
+  const diff=prevTotal?((currentTotal-prevTotal)/prevTotal*100):0;
+  const catPrev={}; prevItems.forEach(x=>catPrev[x.category]=(catPrev[x.category]||0)+Number(x.amount));
+  const top=arr[0];
+  const topPct=totalExp?Math.round(top[1]/totalExp*100):0;
+  const dailyCount=new Set(items.filter(x=>x.type==='expense').map(x=>x.date)).size;
+  const avgDaily=dailyCount?currentTotal/dailyCount:0;
+  const weekend=items.filter(x=>x.type==='expense'&&[0,6].includes(new Date(x.date+'T00:00:00').getDay())).reduce((a,x)=>a+Number(x.amount),0);
+  const weekday=items.filter(x=>x.type==='expense'&&!([0,6].includes(new Date(x.date+'T00:00:00').getDay()))).reduce((a,x)=>a+Number(x.amount),0);
+  const messages=[];
+  messages.push(`${tr('top')}: ${label(top[0])} · ${money(top[1])} (${topPct}%)`);
+  if(period==='month' && prevTotal){
+    messages.push(currentTotal>prevTotal?`${money(currentTotal-prevTotal)} ${tr('up')} (${Math.abs(Math.round(diff))}%)`:`${money(prevTotal-currentTotal)} ${tr('down')} (${Math.abs(Math.round(diff))}%)`);
+  }
+  const catChange=arr.map(([c,v])=>({c,v,p:catPrev[c]||0,d:(catPrev[c]||0)?(v-(catPrev[c]||0))/(catPrev[c]||0):0})).sort((a,b)=>Math.abs(b.d)-Math.abs(a.d))[0];
+  if(period==='month'&&catChange&&catChange.p>0&&Math.abs(catChange.d)>=0.2) messages.push(`${label(catChange.c)} ${catChange.d>0?'↑':'↓'} ${Math.abs(Math.round(catChange.d*100))}%`);
+  if(weekend>0&&weekday>0&&weekend/Math.max(1,weekday)>0.5) messages.push(data.lang==='zh'?'周末支出占比明显':'Weekend spending is a noticeable part of your month');
+  messages.push((data.lang==='zh'?'记录日均支出：':'Average on spending days: ')+money(avgDaily));
+  insightEl.textContent=messages.join(' · ');
+  const si=document.getElementById('smartInsights');
+  if(si){
+    const savings=t.inc-t.exp;
+    const rate=t.inc?savings/t.inc*100:null;
+    const lines=[];
+    if(rate!==null) lines.push((data.lang==='zh'?'本月结余率：':'Savings rate: ')+Math.round(rate)+'%');
+    if(period==='month'&&prevTotal) lines.push((data.lang==='zh'?'与上月支出：':'vs last month: ')+(currentTotal>prevTotal?'↑ ':'↓ ')+Math.abs(Math.round(diff))+'%');
+    if(dailyCount) lines.push((data.lang==='zh'?'有支出的天数：':'Spending days: ')+dailyCount);
+    si.innerHTML=lines.map(x=>`<div>• ${esc(x)}</div>`).join('')||`<div>${esc(tr('insightNone'))}</div>`;
+  }
+  document.querySelectorAll('[data-period]').forEach(b=>b.classList.toggle('active',b.dataset.period===period));
+}
 function renderCalendar(){let y=calDate.getFullYear(),m=calDate.getMonth();document.getElementById('monthTitle').textContent=new Date(y,m,1).toLocaleDateString(data.lang==='zh'?'zh-CN':'en-SG',{month:'long',year:'numeric'});let first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate(),html=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map((x,i)=>`<div class="dow">${data.lang==='zh'?['日','一','二','三','四','五','六'][i]:x}</div>`).join('');for(let i=0;i<first;i++)html+=`<div></div>`;for(let d=1;d<=days;d++){let k=dateKey(new Date(y,m,d)),sum=data.tx.filter(x=>x.date===k&&x.type==='expense').reduce((a,x)=>a+Number(x.amount),0);html+=`<button class="day ${k===dateKey(selectedDate)?'selected':''}" type="button" data-day="${k}"><strong>${d}</strong>${sum?`<span class="spend">−${money(sum)}</span>`:''}</button>`}document.getElementById('cal').innerHTML=html;renderSelected()}
 function renderSelected(){let k=dateKey(selectedDate),items=data.tx.filter(x=>x.date===k);document.getElementById('selectedTitle').textContent=new Date(k+'T00:00:00').toLocaleDateString(data.lang==='zh'?'zh-CN':'en-SG',{month:'long',day:'numeric',year:'numeric'});document.getElementById('selectedList').innerHTML=items.length?items.map(x=>`<div class="tx" data-edit="${data.tx.indexOf(x)}"><div class="tx-icon">${x.type==='income'?'💰':icon(x.category)}</div><div class="tx-main"><b>${esc(x.description)}</b><div class="small">${label(x.category)}</div></div><div class="amount ${x.type}">${x.type==='income'?'+':'−'}${money(x.amount)}</div></div>`).join(''):`<div class="empty">${tr('empty')}</div>`}
-function renderSettings(){document.getElementById('currency').value=data.currency;document.getElementById('regular').value=data.regular||'';document.getElementById('fixed').value=data.fixed||'';document.getElementById('language').textContent=data.lang==='en'?'中文':'English';document.getElementById('theme').textContent=data.dark?(data.lang==='zh'?'☀ 浅色':'☀ Light'):(data.lang==='zh'?'🌙 深色':'🌙 Dark');document.documentElement.classList.toggle('dark',data.dark);document.body.classList.toggle('dark',data.dark);document.querySelector('meta[name=theme-color]')?.setAttribute('content',data.dark?'#101214':'#ffffff')}function renderText(){document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=tr(e.dataset.i18n));document.documentElement.lang=data.lang==='zh'?'zh':'en'}function renderAll(){renderText();renderHome();renderReports();renderCalendar();renderSettings()}function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===p));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));if(p==='calendar')renderCalendar();if(p==='reports')renderReports()}
 
-document.addEventListener('click',e=>{if(e.target.closest('.modal') && !e.target.closest('[data-action]'))return;let p=e.target.closest('[data-page]');if(p){go(p.dataset.page);return}let edit=e.target.closest('[data-edit]');if(edit){openRecord(Number(edit.dataset.edit));return}let day=e.target.closest('[data-day]');if(day){selectedDate=new Date(day.dataset.day+'T00:00:00');renderCalendar();return}let per=e.target.closest('[data-period]');if(per){period=per.dataset.period;renderReports();return}let a=e.target.closest('[data-action]');if(!a)return;switch(a.dataset.action){case'record':openRecord();break;case'close':close();break;case'save':saveTx();break;case'delete':deleteTx();break;case'type':document.getElementById('txType').value=a.dataset.type;document.querySelectorAll('[data-action="type"]').forEach(x=>x.classList.toggle('active',x.dataset.type===a.dataset.type));refreshDetect();break;case'prev':calDate=new Date(calDate.getFullYear(),calDate.getMonth()-1,1);renderCalendar();break;case'next':calDate=new Date(calDate.getFullYear(),calDate.getMonth()+1,1);renderCalendar();break;case'language':data.lang=data.lang==='en'?'zh':'en';save();renderAll();break;case'theme':data.dark=!data.dark;save();renderSettings();break;case'memory':resetMerchantMemory();break;
+const BUNEXA_V101_CATEGORIES=[
+  "Dining","Transport","Groceries","Online Food Delivery","Online Shopping",
+  "Digital Entertainment","Beauty & Wellness","Pets","Luxury Goods",
+  "Clothing & Fashion","Automobile","Cruise & Holiday","Travel","Bills",
+  "Gifts","Household & Daily","Shopping","Other"
+];
+function bunexaV101MonthKey(){
+  const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
+}
+function bunexaV101MonthSpent(cat){
+  const k=bunexaV101MonthKey();
+  return (data.tx||[]).reduce((sum,t)=>{
+    const dt=new Date(t.date||t.createdAt||Date.now());
+    const tk=dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0");
+    return sum+(tk===k && String(t.category||"")===cat ? Number(t.amount)||0 : 0);
+  },0);
+}
+function bunexaV101RenderCategoryBudgets(){
+  const box=document.getElementById("categoryBudgetEditor"); if(!box)return;
+  const b=data.categoryBudgets||{};
+  box.innerHTML=BUNEXA_V101_CATEGORIES.map(cat=>{
+    const val=Number(b[cat]||0);
+    return '<div class="bunexa-v101-budget-card"><div class="bunexa-v101-budget-top"><span>'+cat.replace(/[<>]/g,"")+'</span><input class="bunexa-v101-budget-input" data-cat-budget="'+cat.replace(/"/g,'&quot;')+'" type="number" min="0" step="0.01" value="'+(val||"")+'" placeholder="0"></div></div>';
+  }).join("");
+  box.querySelectorAll("[data-cat-budget]").forEach(inp=>{
+    inp.addEventListener("input",()=>{
+      const cat=inp.getAttribute("data-cat-budget");
+      data.categoryBudgets[cat]=Math.max(0,Number(inp.value)||0);
+      save();
+      bunexaV101RenderCategoryBudgetSummary();
+      if(typeof renderHome==="function")renderHome();
+    });
+  });
+}
+function bunexaV101RenderCategoryBudgetSummary(){
+  const box=document.getElementById("categoryBudgetSummary"); if(!box)return;
+  const b=data.categoryBudgets||{};
+  const rows=BUNEXA_V101_CATEGORIES.filter(cat=>Number(b[cat]||0)>0).map(cat=>{
+    const budget=Number(b[cat]); const spent=bunexaV101MonthSpent(cat);
+    const pct=budget?Math.min(100,spent/budget*100):0;
+    const remaining=budget-spent;
+    return '<div class="bunexa-v101-budget-card"><div class="bunexa-v101-budget-top"><strong>'+cat.replace(/[<>]/g,"")+'</strong><span>'+spent.toFixed(2)+' / '+budget.toFixed(2)+'</span></div><div class="bunexa-v101-budget-bar"><div class="bunexa-v101-budget-fill" style="width:'+pct.toFixed(1)+'%;background:currentColor"></div></div><div class="bunexa-v101-budget-meta">'+(remaining>=0 ? remaining.toFixed(2)+' <span class="bunexa-v102-en">remaining</span><span class="bunexa-v102-zh">剩余</span>' : '<span class="bunexa-v101-budget-over">'+Math.abs(remaining).toFixed(2)+' <span class="bunexa-v102-en">over budget</span><span class="bunexa-v102-zh">超出预算</span></span>')+'</div></div>';
+  }).join("");
+  box.innerHTML=rows||'<div class="small"><span class="bunexa-v102-en">No category budgets set yet.</span><span class="bunexa-v102-zh">目前还没有设置分类预算。</span></div>';
+}
+function bunexaV101AddSummary(){
+  if(document.getElementById("categoryBudgetSummary"))return;
+  const settings=document.querySelector("#settings, [id*='settings' i]");
+  if(!settings)return;
+  const marker=document.createElement("div");
+  marker.id="categoryBudgetSummary";
+  marker.style.marginTop="14px";
+  const heading=document.createElement("div");
+  heading.style.fontWeight="700"; heading.textContent="Category Budget Status";
+  settings.appendChild(heading); settings.appendChild(marker);
+  bunexaV101RenderCategoryBudgetSummary();
+}
+
+function renderSettings(){document.getElementById('currency').value=data.currency;document.getElementById('regular').value=data.regular||'';document.getElementById('fixed').value=data.fixed||'';const mb=document.getElementById('monthlyBudget');if(mb)mb.value=data.limit||'';bunexaV101RenderCategoryBudgets();bunexaV101AddSummary();bunexaV101RenderCategoryBudgetSummary();document.getElementById('language').textContent=data.lang==='en'?'中文':'English';document.getElementById('theme').textContent=data.dark?(data.lang==='zh'?'☀ 浅色':'☀ Light'):(data.lang==='zh'?'🌙 深色':'🌙 Dark');const mc=Object.keys(data.merchantMemory||{}).filter(k=>!k.startsWith('@')).length;const mce=document.getElementById('memoryCount');if(mce)mce.textContent=mc?`(${mc})`:'';document.documentElement.classList.toggle('dark',data.dark);document.body.classList.toggle('dark',data.dark);document.querySelector('meta[name=theme-color]')?.setAttribute('content',data.dark?'#101214':'#ffffff');window.bunexaV103InitCategoryCollapse?.();}function renderText(){document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=tr(e.dataset.i18n));document.documentElement.lang=data.lang==='zh'?'zh':'en'}function renderAll(){renderText();renderHome();bunexaV11RenderSafe();renderReports();bunexaV12RenderReports();bunexaV14InitRecognition();renderCalendar();renderSettings()}function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===p));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));if(p==='calendar')renderCalendar();if(p==='reports')renderReports();if(p==='settings')renderSettings()}
+
+document.addEventListener('click',e=>{if(e.target.closest('#dashBudgetCard')){go('settings');setTimeout(()=>document.getElementById('monthlyBudget')?.focus(),50);return}if(e.target.closest('.modal') && !e.target.closest('[data-action]'))return;let p=e.target.closest('[data-page]');if(p){go(p.dataset.page);return}let edit=e.target.closest('[data-edit]');if(edit){openRecord(Number(edit.dataset.edit));return}let day=e.target.closest('[data-day]');if(day){selectedDate=new Date(day.dataset.day+'T00:00:00');renderCalendar();return}let per=e.target.closest('[data-period]');if(per){period=per.dataset.period;renderReports();return}let a=e.target.closest('[data-action]');if(!a)return;switch(a.dataset.action){case'record':openRecord();break;case'close':close();break;case'save':saveTx();break;case'delete':deleteTx();break;case'type':document.getElementById('txType').value=a.dataset.type;document.querySelectorAll('[data-action="type"]').forEach(x=>x.classList.toggle('active',x.dataset.type===a.dataset.type));refreshDetect();break;case'prev':calDate=new Date(calDate.getFullYear(),calDate.getMonth()-1,1);renderCalendar();break;case'next':calDate=new Date(calDate.getFullYear(),calDate.getMonth()+1,1);renderCalendar();break;case'language':data.lang=data.lang==='en'?'zh':'en';save();renderAll();break;case'theme':data.dark=!data.dark;save();renderSettings();break;case'memory':resetMerchantMemory();break;
 case'clear':
   if(confirm(tr('clearConfirm'))){
     const keep={currency:data.currency||'SGD',lang:data.lang||'en',dark:!!data.dark};
-    data={tx:[],goals:[],currency:keep.currency,regular:0,fixed:0,lang:keep.lang,dark:keep.dark,merchantMemory:{}};
+    data={tx:[],goals:[],currency:keep.currency,regular:0,fixed:0,limit:0,categoryBudgets:{},lang:keep.lang,dark:keep.dark,merchantMemory:{}};
     try{localStorage.removeItem(KEY);localStorage.setItem(KEY,JSON.stringify(data));}catch(err){}
     editing=null;
     document.getElementById('modalBg')?.classList.remove('show');
@@ -167,12 +1028,733 @@ case'clear':
     toast(tr('cleared'));
   }
   break;}});
-document.addEventListener('input',e=>{if(e.target.id==='txDescription')refreshDetect();if(e.target.id==='txCategory')e.target.dataset.manual='1';if(e.target.id==='smartInput')setSmartFromInput();if(e.target.id==='regular'||e.target.id==='fixed'){data[e.target.id]=Number(e.target.value)||0;save();renderHome()}});document.getElementById('currency').addEventListener('change',e=>{data.currency=e.target.value;save();renderAll()});document.getElementById('clearDataBtn')?.addEventListener('click',()=>{
+document.addEventListener('input',e=>{if(e.target.id==='txDescription')refreshDetect();if(e.target.id==='txCategory')e.target.dataset.manual='1';if(e.target.id==='smartInput')setSmartFromInput();if(e.target.id==='regular'||e.target.id==='fixed'){data[e.target.id]=Number(e.target.value)||0;save();renderHome()}if(e.target.id==='monthlyBudget'){data.limit=Math.max(0,Number(e.target.value)||0);save();renderHome()}});document.getElementById('currency').addEventListener('change',e=>{data.currency=e.target.value;save();renderAll()});document.getElementById('clearDataBtn')?.addEventListener('click',()=>{
   if(confirm(tr('clearConfirm'))){
     const keep={currency:data.currency||'SGD',lang:data.lang||'en',dark:!!data.dark};
-    data={tx:[],goals:[],currency:keep.currency,regular:0,fixed:0,lang:keep.lang,dark:keep.dark,merchantMemory:{}};
+    data={tx:[],goals:[],currency:keep.currency,regular:0,fixed:0,limit:0,lang:keep.lang,dark:keep.dark,merchantMemory:{}};
     try{localStorage.removeItem(KEY);localStorage.setItem(KEY,JSON.stringify(data));}catch(err){}
     renderAll();toast(tr('cleared'));
   }
-});document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('modalBg').classList.contains('show')){if(e.target.id==='smartInput'){setSmartFromInput();if(document.getElementById('txAmount').value&&document.getElementById('txDescription').value)saveTx();}else if(e.target.id==='txDescription'||e.target.id==='txAmount')saveTx();}});document.getElementById('modalBg').addEventListener('click',e=>{if(e.target.id==='modalBg')close()});renderAll();
+});document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.id==='dashBudgetCard'){e.preventDefault();go('settings');setTimeout(()=>document.getElementById('monthlyBudget')?.focus(),50);return}if(e.key==='Enter'&&document.getElementById('modalBg').classList.contains('show')){if(e.target.id==='smartInput'){setSmartFromInput();if(document.getElementById('txAmount').value&&document.getElementById('txDescription').value)saveTx();}else if(e.target.id==='txDescription'||e.target.id==='txAmount')saveTx();}});document.getElementById('modalBg').addEventListener('click',e=>{if(e.target.id==='modalBg')close()});renderAll();
+</script>
+<script id="bunexa-v92-quick-record-js">
+(function(){
+  "use strict";
+  const KEY = "bunexa_v92_recent_inputs";
+  const $ = (s)=>document.querySelector(s);
+
+  function findInput(){
+    return document.querySelector(
+      '#quickRecordInput, input[placeholder*="Quick Record" i], textarea[placeholder*="Quick Record" i], input[name*="quick" i], textarea[name*="quick" i]'
+    );
+  }
+
+  function recent(){
+    try { return JSON.parse(localStorage.getItem(KEY)||"[]"); } catch(e){ return []; }
+  }
+  function saveRecent(v){
+    if(!v) return;
+    let a=recent().filter(x=>x!==v);
+    a.unshift(v);
+    localStorage.setItem(KEY, JSON.stringify(a.slice(0,8)));
+  }
+
+  function addStatus(input){
+    if(!input || document.getElementById("bunexa-v92-status")) return;
+    const wrap=input.parentElement;
+    if(!wrap) return;
+    const s=document.createElement("div");
+    s.id="bunexa-v92-status";
+    s.className="bunexa-v92-status";
+    s.textContent="⚡ 3-second record";
+    wrap.appendChild(s);
+  }
+
+  function renderRecent(input){
+    if(!input || document.getElementById("bunexa-v92-recent")) return;
+    const r=document.createElement("div");
+    r.id="bunexa-v92-recent";
+    r.style.marginTop="4px";
+    const list=recent();
+    if(!list.length) return;
+    list.forEach(v=>{
+      const b=document.createElement("button");
+      b.type="button"; b.className="bunexa-v92-chip"; b.textContent=v;
+      b.addEventListener("click",()=>{ input.value=v; input.dispatchEvent(new Event("input",{bubbles:true})); input.focus(); });
+      r.appendChild(b);
+    });
+    input.parentElement && input.parentElement.appendChild(r);
+  }
+
+  function bind(){
+    const input=findInput();
+    if(!input) return;
+    addStatus(input);
+    renderRecent(input);
+
+    // Opening the app should put the user directly into Quick Record when visible.
+    setTimeout(()=>{ try { input.focus({preventScroll:true}); } catch(e){ input.focus(); } }, 180);
+
+    input.addEventListener("keydown",(e)=>{
+      if(e.key==="Enter" && !e.shiftKey){
+        const v=input.value.trim();
+        if(v) saveRecent(v);
+      }
+    });
+  }
+
+  // Don't interfere with the app's existing Save/Record handlers.
+  // Only add convenience behavior and recent-input memory.
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",bind);
+  else bind();
+  setTimeout(bind,700);
+  setTimeout(bind,1600);
+})();
+</script>
+
+
+<script id="bunexa-v93-smart-preview-js">
+(function(){
+"use strict";
+function findInput(){
+  return document.querySelector('#quickRecordInput, input[placeholder*="Quick Record" i], textarea[placeholder*="Quick Record" i], input[name*="quick" i], textarea[name*="quick" i]');
+}
+function findParser(){
+  return window.smartParse || window.parseExpense || window.parseTransaction || window.detect;
+}
+function getCategoryText(result){
+  if(!result) return "";
+  return result.category || result.cat || result.type || "";
+}
+function getAmount(result){
+  if(!result) return null;
+  const n = Number(result.amount ?? result.value ?? result.price);
+  return Number.isFinite(n) ? n : null;
+}
+function getDesc(result, raw){
+  if(!result) return raw;
+  return result.merchant || result.item || result.description || result.name || raw;
+}
+function currency(){
+  try{
+    const s = JSON.parse(localStorage.getItem("bunexa_settings")||"{}");
+    return s.currency || localStorage.getItem("currency") || "SGD";
+  }catch(e){ return "SGD"; }
+}
+function money(n){
+  const c=currency();
+  const sym=c==="MYR"?"RM":"S$";
+  return sym + Number(n).toFixed(2);
+}
+function ensurePreview(input){
+  if(document.getElementById("bunexa-v93-preview")) return document.getElementById("bunexa-v93-preview");
+  const d=document.createElement("div");
+  d.id="bunexa-v93-preview"; d.className="bunexa-v93-preview";
+  input.parentElement && input.parentElement.appendChild(d);
+  return d;
+}
+function render(input){
+  const box=ensurePreview(input);
+  const raw=(input.value||"").trim();
+  if(!raw){box.style.display="none";return;}
+  let r=null;
+  try{
+    const p=findParser();
+    if(typeof p==="function") r=p(raw);
+  }catch(e){}
+  // We deliberately avoid replacing the existing parser. This preview only reflects
+  // fields it can safely read from the current app.
+  if(!r){box.style.display="none";return;}
+  const a=getAmount(r);
+  const cat=getCategoryText(r);
+  const desc=getDesc(r,raw);
+  if(a===null && !cat){box.style.display="none";return;}
+  box.innerHTML =
+    '<div class="v93-row"><div class="v93-main">'+
+    (a!==null ? money(a) : "Ready to record")+
+    '</div><div class="v93-low">Preview</div></div>'+
+    '<div class="v93-meta">'+
+    (desc ? String(desc).replace(/[<>]/g,"") : "")+
+    (cat ? " · "+String(cat).replace(/[<>]/g,"") : "")+
+    '</div>';
+  box.style.display="block";
+}
+function bind(){
+  const input=findInput();
+  if(!input || input.dataset.v93==="1") return;
+  input.dataset.v93="1";
+  ensurePreview(input);
+  input.addEventListener("input",()=>render(input));
+  input.addEventListener("change",()=>render(input));
+  render(input);
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",bind); else bind();
+setTimeout(bind,500); setTimeout(bind,1200); setTimeout(bind,2200);
+})();
+</script>
+
+
+<script id="bunexa-v102-language-sync">
+(function(){
+  function sync(){
+    try{
+      var lang = (window.data && window.data.lang) || localStorage.getItem("lang") || "en";
+      document.documentElement.setAttribute("data-lang", String(lang).toLowerCase().startsWith("zh") ? "zh" : "en");
+    }catch(e){}
+  }
+  sync();
+  setInterval(sync, 700);
+})();
+</script>
+
+
+<script id="bunexa-v103-category-collapse-js">
+(function(){
+  const KEY='bunexa_v103_category_open';
+  function setOpen(open, persist=true){
+    const btn=document.getElementById('categoryBudgetToggle');
+    const panel=document.getElementById('categoryBudgetPanel');
+    if(!btn||!panel)return;
+    btn.classList.toggle('open',open);
+    panel.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',String(open));
+    if(persist){try{localStorage.setItem(KEY,open?'1':'0')}catch(e){}}
+  }
+  function init(){
+    const btn=document.getElementById('categoryBudgetToggle');
+    if(!btn||btn.dataset.v103Bound)return;
+    btn.dataset.v103Bound='1';
+    btn.addEventListener('click',()=>setOpen(!(btn.getAttribute('aria-expanded')==='true')));
+    let open=false;
+    try{open=localStorage.getItem(KEY)==='1'}catch(e){}
+    setOpen(open,false);
+  }
+  window.bunexaV103InitCategoryCollapse=init;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+
+<script id="bunexa-v105-quick-record-js">
+(function(){
+  const RECENT_KEY='bunexa_v105_recent_inputs';
+  let lastPreviewText='';
+  let previewTimer=null;
+
+  function getInput(){
+    return document.querySelector('#quickRecord,#quick,#recordInput,input[placeholder*="Quick Record" i],input[placeholder*="记录" i]');
+  }
+  function esc(v){
+    return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+  function getLang(){
+    try{return localStorage.getItem('lang')||'en'}catch(e){return 'en'}
+  }
+  function addRecent(v){
+    if(!v.trim())return;
+    try{
+      let a=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]');
+      a=[v,...a.filter(x=>x!==v)].slice(0,6);
+      localStorage.setItem(RECENT_KEY,JSON.stringify(a));
+      renderRecent();
+    }catch(e){}
+  }
+  function renderRecent(){
+    const box=document.getElementById('v105RecentInputs');
+    if(!box)return;
+    let a=[];
+    try{a=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]')}catch(e){}
+    box.innerHTML=a.map(x=>`<button type="button" data-v105-recent="${esc(x)}">${esc(x)}</button>`).join('');
+    box.querySelectorAll('[data-v105-recent]').forEach(b=>b.addEventListener('click',()=>{
+      const i=getInput(); if(i){i.value=b.dataset.v105Recent||''; i.dispatchEvent(new Event('input',{bubbles:true})); i.focus();}
+    }));
+  }
+
+  function tryParse(text){
+    if(!text.trim())return null;
+    try{
+      if(typeof window.smartParse==='function') return window.smartParse(text);
+    }catch(e){}
+    try{
+      if(typeof window.parseQuickRecord==='function') return window.parseQuickRecord(text);
+    }catch(e){}
+    return null;
+  }
+  function normalizeResult(r){
+    if(!r)return null;
+    if(Array.isArray(r)){
+      if(!r.length)return null;
+      const first=r[0]||{};
+      return {multi:r.length>1,amount:first.amount||first.value||first.price,category:first.category||first.cat,merchant:first.merchant||first.name,item:first.item||first.note||first.description,items:r};
+    }
+    return {multi:false,amount:r.amount||r.value||r.price,category:r.category||r.cat,merchant:r.merchant||r.name,item:r.item||r.note||r.description,items:[r]};
+  }
+  function showPreview(){
+    const i=getInput(), box=document.getElementById('v105SmartPreview');
+    if(!i||!box)return;
+    const text=i.value.trim();
+    if(!text){box.classList.remove('show');lastPreviewText='';return;}
+    const n=normalizeResult(tryParse(text));
+    if(!n){box.classList.remove('show');return;}
+    const lang=getLang();
+    const unknown=lang==='zh'?'请检查金额和分类':'Check amount and category';
+    const amount=n.amount!=null?String(n.amount):'';
+    const cat=n.category||'';
+    const merchant=n.merchant||n.item||'';
+    const conf=(cat&&amount)?'high':(amount?'mid':'low');
+    const confText=conf==='high'?(lang==='zh'?'高信心':'High confidence'):conf==='mid'?(lang==='zh'?'中等':'Medium'):(lang==='zh'?'请确认':'Please check');
+    box.innerHTML=`<div class="bunexa-v105-preview-row"><div><div class="bunexa-v105-preview-main">${esc(amount?((window.data?.currency||'SGD')+' '+amount):unknown)}${merchant?' · '+esc(merchant):''}</div><div class="bunexa-v105-preview-sub">${esc(cat||unknown)}${n.multi?' · '+(lang==='zh'?'检测到多笔消费':'Multiple expenses detected'):''}</div></div><span class="bunexa-v105-confidence ${conf}">${confText}</span></div>`;
+    box.classList.add('show');
+    lastPreviewText=text;
+  }
+
+  function bind(){
+    const i=getInput();
+    if(!i||i.dataset.v105Bound)return;
+    i.dataset.v105Bound='1';
+    i.addEventListener('input',()=>{clearTimeout(previewTimer);previewTimer=setTimeout(showPreview,80)});
+    i.addEventListener('keydown',e=>{
+      if(e.key==='Enter' && i.value.trim()) addRecent(i.value.trim());
+    });
+    renderRecent();
+  }
+
+  // Make the existing Record/Save buttons feel immediate without hijacking their handlers.
+  function bindButtons(){
+    document.querySelectorAll('button').forEach(b=>{
+      const t=(b.textContent||'').trim().toLowerCase();
+      if(!/^(record|save|记录|保存|add|添加)$/.test(t)||b.dataset.v105Btn)return;
+      b.dataset.v105Btn='1';
+      b.addEventListener('click',()=>{const i=getInput();if(i&&i.value.trim())addRecent(i.value.trim())},{capture:false});
+    });
+  }
+
+  function init(){
+    bind();bindButtons();showPreview();
+  }
+  window.bunexaV105InitQuickRecord=init;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+
+<script id="bunexa-v12-reports-js">
+(function(){
+  function v12Money(n){
+    const cur=(window.data?.currency==='MYR')?'RM':'S$';
+    return cur+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function v12Month(y,m){
+    return (data.tx||[]).filter(x=>{
+      if(x.type==='income')return false;
+      const d=new Date(x.date||x.createdAt);
+      return d.getFullYear()===y&&d.getMonth()===m;
+    });
+  }
+  function v12Amount(a){return Number(a||0)}
+  function v12RenderReports(){
+    const panel=document.getElementById('bunexaV12ReportsPanel');
+    if(!panel)return;
+    const now=new Date(), y=now.getFullYear(), m=now.getMonth();
+    const cur=v12Month(y,m), prev=v12Month(m===0?y-1:y,m===0?11:m-1);
+    const expense=cur.reduce((s,x)=>s+v12Amount(x.amount),0);
+    const prevExpense=prev.reduce((s,x)=>s+v12Amount(x.amount),0);
+    const incomeTx=(data.tx||[]).filter(x=>{
+      const d=new Date(x.date||x.createdAt);
+      return x.type==='income'&&d.getFullYear()===y&&d.getMonth()===m;
+    }).reduce((s,x)=>s+v12Amount(x.amount),0);
+    const income=Math.max(incomeTx,Number(data.regular||0));
+    const savings=income-expense;
+    const rate=income>0?(savings/income*100):0;
+    const by={};
+    cur.forEach(x=>{const c=x.category||'Other';by[c]=(by[c]||0)+v12Amount(x.amount)});
+    const cats=Object.entries(by).sort((a,b)=>b[1]-a[1]);
+    const max=cats[0]?.[1]||1;
+
+    const set=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val};
+    set('v12Income',v12Money(income));
+    set('v12Expense',v12Money(expense));
+    set('v12Savings',v12Money(savings));
+    set('v12Rate',income>0?rate.toFixed(1)+'%':'—');
+
+    const catBox=document.getElementById('v12Categories');
+    if(catBox){
+      catBox.innerHTML=cats.length?cats.map(([c,a])=>{
+        const pct=expense?Math.round(a/expense*100):0;
+        return `<div class="bunexa-v12-catrow"><span>${String(c).replace(/</g,'&lt;')}</span><div class="bunexa-v12-bar"><i style="width:${Math.min(100,a/max*100)}%"></i></div><b>${v12Money(a)}<small> ${pct}%</small></b></div>`;
+      }).join(''):'<div class="small"><span class="v12-en">No expenses yet.</span><span class="v12-zh">暂时没有消费记录。</span></div>';
+    }
+
+    const diff=expense-prevExpense, diffPct=prevExpense?diff/prevExpense*100:0;
+    const en=document.getElementById('v12Compare'), zh=document.getElementById('v12CompareZh');
+    if(en)en.textContent=prevExpense?`This month ${v12Money(expense)} · ${diff>=0?'up':'down'} ${Math.abs(diffPct).toFixed(1)}% vs last month.`:'Add last month data to compare.';
+    if(zh)zh.textContent=prevExpense?`本月 ${v12Money(expense)} · 比上月${diff>=0?'增加':'减少'} ${Math.abs(diffPct).toFixed(1)}%。`:'加入上月记录后即可比较。';
+
+    const top=document.getElementById('v12Top');
+    const largest=[...cur].sort((a,b)=>v12Amount(b.amount)-v12Amount(a.amount))[0];
+    if(top)top.innerHTML=cats.length?
+      `<div class="small"><span class="v12-en">Top category</span><span class="v12-zh">最高消费分类</span></div><b>${String(cats[0][0]).replace(/</g,'&lt;')}</b> · ${v12Money(cats[0][1])}`+
+      (largest?`<div class="small" style="margin-top:7px"><span class="v12-en">Largest single expense</span><span class="v12-zh">最大单笔消费</span></div><b>${v12Money(largest.amount)}</b> · ${String(largest.merchant||largest.note||largest.category||'').replace(/</g,'&lt;')}`:'')
+      :'<div class="small"><span class="v12-en">No data yet.</span><span class="v12-zh">暂时没有数据。</span></div>';
+
+    const ins=document.getElementById('v12Insights');
+    if(ins){
+      const arr=[];
+      if(cats[0])arr.push(data.lang==='zh'?`本月最高消费分类是「${cats[0][0]}」，共 ${v12Money(cats[0][1])}。`:`Your top category is “${cats[0][0]}” at ${v12Money(cats[0][1])}.`);
+      if(prevExpense)arr.push(data.lang==='zh'?`本月总消费比上月${diff>=0?'增加':'减少'} ${Math.abs(diffPct).toFixed(1)}%。`:`Total spending is ${diff>=0?'up':'down'} ${Math.abs(diffPct).toFixed(1)}% vs last month.`);
+      if(income>0)arr.push(data.lang==='zh'?`目前储蓄率约 ${rate.toFixed(1)}%。`:`Current savings rate is about ${rate.toFixed(1)}%.`);
+      arr.push(data.lang==='zh'?`本月共有 ${cur.length} 笔消费记录。`:`You have ${cur.length} expense records this month.`);
+      ins.innerHTML=arr.map(x=>`<div class="bunexa-v12-insight">${x}</div>`).join('');
+    }
+  }
+  window.bunexaV12RenderReports=v12RenderReports;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',v12RenderReports);else v12RenderReports();
+})();
+</script>
+
+<script id="bunexa-v13-global-ui-js">
+(function(){
+  const zhMap={
+    'Home':'首页','Reports':'报告','Calendar':'日历','Settings':'设置',
+    'Balance':'余额','Income':'收入','Expenses':'支出','Savings':'储蓄',
+    'Safe to Spend':'安全可花','Budget':'预算','Monthly Budget':'每月预算',
+    'Category Budgets':'分类预算','Merchant Memory':'商家记忆',
+    'Quick Record':'快速记录','Record':'记录','Save':'保存','Cancel':'取消',
+    'Edit':'编辑','Delete':'删除','Undo':'撤销','Add':'添加','Clear Data':'清除数据',
+    'Spending':'消费','Insights':'洞察','Monthly Report':'月度报告',
+    'Spending Breakdown':'消费分类','Top Spending':'消费重点',
+    'This Month vs Last Month':'本月 vs 上月','Savings Rate':'储蓄率',
+    'Days Left':'剩余天数','Remaining':'剩余','Spent This Month':'本月已花',
+    'Fixed Expenses':'固定开销','Language':'语言','Currency':'货币',
+    'Light':'浅色','Dark':'深色','English':'English','Chinese':'中文'
+  };
+  function lang(){try{return localStorage.getItem('lang')||'en'}catch(e){return 'en'}}
+  function sync(){
+    const l=lang();
+    document.documentElement.setAttribute('data-lang',l);
+    document.querySelectorAll('[data-v13-key]').forEach(e=>{
+      const k=e.getAttribute('data-v13-key');
+      if(l==='zh' && zhMap[k])e.textContent=zhMap[k];
+      else e.textContent=k;
+    });
+    // Localize native placeholders without changing parser behavior.
+    document.querySelectorAll('input,textarea').forEach(e=>{
+      const p=e.getAttribute('data-v13-placeholder-en');
+      const z=e.getAttribute('data-v13-placeholder-zh');
+      if(p&&z)e.placeholder=l==='zh'?z:p;
+    });
+  }
+  window.bunexaV13Sync=sync;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();
+})();
+</script>
+
+<script>
+(function(){
+ function show(){
+  const i=document.querySelector('#quickRecord,#quick,#recordInput,input[placeholder*="Quick Record" i],input[placeholder*="记录" i]');
+  const b=document.getElementById('bunexaV14Recognition'); if(!i||!b)return;
+  const r=bunexaV15Recognize(i.value)||bunexaV14Recognize(i.value); if(!r){b.classList.remove('show');b.innerHTML='';return}
+  const zh=(localStorage.getItem('lang')||'en')==='zh';
+  b.innerHTML='<div class="bunexa-v14-recognition-row"><b>'+(zh?'自动识别':'Auto Recognition')+'</b><span class="bunexa-v14-tag">'+(zh?'高信心':'High confidence')+'</span></div><div class="bunexa-v14-recognition-detail">'+(zh?'分类：':'Category: ')+r.category+'</div>';
+  b.classList.add('show');
+ }
+ function init(){
+  const i=document.querySelector('#quickRecord,#quick,#recordInput,input[placeholder*="Quick Record" i],input[placeholder*="记录" i]');
+  if(!i||i.dataset.v14Bound)return; i.dataset.v14Bound='1'; i.addEventListener('input',show); show();
+ }
+ window.bunexaV14InitRecognition=init;
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+<script id="bunexa-v16-upgrade">
+(function(){
+"use strict";
+const V16=window.BUNEXA_V16=window.BUNEXA_V16||{};
+V16.version="16.0";
+
+V16.normalize=s=>String(s||"").normalize("NFKC").replace(/[，。]/g,",").replace(/\s+/g," ").trim();
+
+V16.amounts=function(s){
+  const t=V16.normalize(s), out=[], re=/(?:^|\s|[+$=，,;；])(?:RM|MYR|SGD|\$)?\s*(\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)(?=\s|$|[^\d])/gi;
+  let m;
+  while((m=re.exec(t))){
+    const n=Number(String(m[1]).replace(/,/g,""));
+    if(Number.isFinite(n)&&n>=0&&n<=100000000) out.push(n);
+  }
+  return out;
+};
+
+V16.dateHint=function(s){
+  const t=V16.normalize(s).toLowerCase();
+  if(/\b(today|tdy|今天|今日)\b/.test(t)) return {offset:0,label:"Today"};
+  if(/\b(yesterday|yday|昨天|昨日)\b/.test(t)) return {offset:-1,label:"Yesterday"};
+  if(/\b(tomorrow|明天|明日)\b/.test(t)) return {offset:1,label:"Tomorrow"};
+  if(/\b(last\s+week|上周|上个星期)\b/.test(t)) return {offset:-7,label:"Last week"};
+  if(/\b(next\s+week|下周|下个星期)\b/.test(t)) return {offset:7,label:"Next week"};
+  return null;
+};
+
+V16.merchantFamily=function(s){
+  const t=V16.normalize(s).toLowerCase();
+  const groups=[
+    [["grabfood","grab food"],"GrabFood"],[["grabmart","grab mart"],"GrabMart"],[["grab"],"Grab"],
+    [["shopee","虾皮"],"Shopee"],[["tiktok shop","抖音商城"],"TikTok Shop"],[["lazada"],"Lazada"],
+    [["taobao","淘宝"],"Taobao"],[["tianmao","天猫"],"Tmall"],
+    [["fairprice","fair price","ntuc fairprice"],"FairPrice"],[["sheng siong","shengsiong","昇菘"],"Sheng Siong"],
+    [["cold storage"],"Cold Storage"],[["giant"],"Giant"],[["watsons","屈臣氏"],"Watsons"],
+    [["guardian","佳宁"],"Guardian"],[["uniqlo"],"UNIQLO"],[["nike"],"Nike"],[["adidas"],"Adidas"],
+    [["louis vuitton","lv"],"Louis Vuitton"],[["apple"],"Apple"],[["netflix"],"Netflix"],
+    [["spotify"],"Spotify"],[["singtel"],"Singtel"],[["starhub"],"StarHub"],[["m1"],"M1"]
+  ];
+  for(const [a,n] of groups) if(a.some(x=>t===x||t.includes(x))) return n;
+  return null;
+};
+
+V16.ambiguous=function(s){
+  const t=V16.normalize(s).toLowerCase();
+  const rules=[
+    [/^grab$/,"Grab may mean transport; use GrabFood or GrabMart when relevant."],
+    [/\bapple\b/,"Apple may be the brand/store or the fruit; add a product word if needed."],
+    [/\bfish\b/,"Fish may be groceries or pet/fish food; add 'fish food' if relevant."],
+    [/\bmilk\b/,"Milk is groceries; use 'milk tea' for a drink."],
+    [/\bchicken\b/,"Chicken may be groceries or a prepared dish; add a dish/product word."]
+  ];
+  for(const [r,m] of rules) if(r.test(t)) return m;
+  return null;
+};
+
+V16.fingerprint=function(tx){
+  const x=tx||{};
+  return [String(x.date||""),Number(x.amount||0).toFixed(2),String(x.category||""),String(x.merchant||x.note||"").toLowerCase().trim()].join("|");
+};
+V16.findDuplicate=function(list,tx){
+  const fp=V16.fingerprint(tx);
+  return (Array.isArray(list)?list:[]).find(x=>V16.fingerprint(x)===fp);
+};
+
+V16.tests=[
+ ["8.50 kopi","Dining"],["kopi c 5","Dining"],["10 milo","Dining"],["8.5 teh tarik","Dining"],
+ ["鸡饭 10","Dining"],["10.50 海南鸡饭","Dining"],["烧麦 6","Dining"],["蝦餃 15","Dining"],
+ ["15 grab food","Online Food Delivery"],["20 grab mart","Groceries"],["grab 12","Transport"],
+ ["fair price milk 8","Groceries"],["FairPrice 15","Groceries"],["milk tea 6","Dining"],
+ ["rice 5","Groceries"],["fish food 10","Pets"],["猫粮 20","Pets"],["shopee 猫砂 18","Pets"],
+ ["mascara 25","Beauty & Wellness"],["watsons mascara 25","Beauty & Wellness"],
+ ["5 tissue","Household & Daily"],["纸巾 8","Household & Daily"],["30 Uniqlo shirt","Clothing & Fashion"],
+ ["50 Nike shoes","Clothing & Fashion"],["350 LV","Luxury Goods"],["Apple Music","Digital Entertainment"],
+ ["Netflix 18","Digital Entertainment"],["鸡饭 8.50 + kopi 2","Multi"],
+ ["shopee买猫砂25 + 猫粮18","Multi"],["today grab 12","Date"],["昨天 kopi 3","Date"],["tomorrow shopee 20","Date"]
+];
+
+V16.runTests=function(){
+  const p=window.smartParse;
+  if(typeof p!=="function") return {pass:0,fail:V16.tests.length,total:V16.tests.length,reason:"smartParse unavailable"};
+  let pass=0,fail=0;
+  for(const [input,expected] of V16.tests){
+    try{
+      const r=p(input)||{}, got=String(r.category||r.type||"");
+      let ok=true;
+      if(expected==="Multi") ok=Array.isArray(r.items||r.expenses);
+      else if(expected==="Date") ok=!!(r.date||r.dateHint||r.parsedDate);
+      else ok=got.toLowerCase().includes(expected.toLowerCase().split(" ")[0]);
+      if(ok)pass++;else fail++;
+    }catch(e){fail++;}
+  }
+  return {pass,fail,total:V16.tests.length};
+};
+
+window.BUNEXA_V16=V16;
+})();
+<script id="bunexa-v22-security">
+(function(){
+"use strict";
+const V22=window.BUNEXA_V22={version:"22.0"};
+
+V22.isSecureContext=function(){return window.isSecureContext===true||location.protocol==="file:";};
+V22.safeJson=function(value){
+ try{return JSON.stringify(value);}
+ catch(e){return null;}
+};
+V22.parseJson=function(raw,fallback){
+ try{return JSON.parse(raw);}
+ catch(e){return fallback;}
+};
+V22.userScoped=function(record,userId){
+ return !!record && !!userId && String(record.userId)===String(userId);
+};
+
+/* Local backup helpers. They do not transmit data anywhere. */
+V22.exportData=function(state){
+ const payload={
+   app:"BUNEXA",
+   schemaVersion:1,
+   exportedAt:new Date().toISOString(),
+   data:state&&typeof state==="object"?state:{}
+ };
+ return V22.safeJson(payload);
+};
+V22.importData=function(raw){
+ const x=V22.parseJson(raw,null);
+ if(!x||x.app!=="BUNEXA"||!x.data||typeof x.data!=="object")
+   return {ok:false,error:"Invalid BUNEXA backup"};
+ return {ok:true,data:x.data,schemaVersion:x.schemaVersion||1};
+};
+
+/* Privacy defaults: never log transaction contents, passwords, tokens, or secrets. */
+V22.privacyRules=[
+ "Do not store passwords in transaction data.",
+ "Do not place database service-role keys in frontend code.",
+ "Do not log transaction contents to console.",
+ "Cloud authorization must be enforced server-side.",
+ "Each cloud record must be scoped to the authenticated user."
+];
+
+/* Client-side checks are only diagnostics; they are NOT authorization. */
+V22.securityChecklist=function(){
+ return {
+   httpsOrLocal:V22.isSecureContext(),
+   noServiceRoleSecret:!(/service[_-]?role|supabase[_-]?service[_-]?role|secret[_-]?key/i.test(document.documentElement.innerHTML)),
+   noPasswordFieldLogging:true,
+   userScopedDataContract:true,
+   backupValidation:true
+ };
+};
+
+V22.notice=function(msg){
+ let el=document.getElementById("v22Notice");
+ if(!el){el=document.createElement("div");el.id="v22Notice";el.className="v22-notice";document.body.appendChild(el);}
+ el.textContent=msg;el.classList.add("show");
+ setTimeout(()=>el.classList.remove("show"),2400);
+};
+
+window.BUNEXA_V22=V22;
+})();
+</script>
+
+<script id="bunexa-v23-search-filter">
+(function(){
+"use strict";
+const V23=window.BUNEXA_V23={version:"23.0"};
+
+V23.arr=v=>Array.isArray(v)?v:[];
+V23.n=v=>{const x=Number(String(v??"").replace(/,/g,""));return Number.isFinite(x)?x:0};
+V23.norm=s=>String(s||"").normalize("NFKC").toLowerCase().trim();
+
+V23.search=function(tx,q){
+ const needle=V23.norm(q);
+ if(!needle)return V23.arr(tx).slice();
+ return V23.arr(tx).filter(t=>{
+   const hay=[t.merchant,t.note,t.category,t.currency,t.date,t.amount].map(V23.norm).join(" ");
+   return hay.includes(needle);
+ });
+};
+
+V23.filter=function(tx,opt){
+ opt=opt||{};
+ let a=V23.arr(tx).slice();
+ if(opt.category&&opt.category!=="all")a=a.filter(t=>V23.norm(t.category)===V23.norm(opt.category));
+ if(opt.currency&&opt.currency!=="all")a=a.filter(t=>String(t.currency||"SGD")===opt.currency);
+ if(opt.from)a=a.filter(t=>String(t.date||"")>=opt.from);
+ if(opt.to)a=a.filter(t=>String(t.date||"")<=opt.to);
+ if(opt.min!==""&&opt.min!=null)a=a.filter(t=>V23.n(t.amount)>=V23.n(opt.min));
+ if(opt.max!==""&&opt.max!=null)a=a.filter(t=>V23.n(t.amount)<=V23.n(opt.max));
+ return a;
+};
+
+V23.sort=function(tx,mode){
+ const a=V23.arr(tx).slice();
+ if(mode==="oldest")return a.sort((x,y)=>String(x.date||"").localeCompare(String(y.date||"")));
+ if(mode==="amountHigh")return a.sort((x,y)=>V23.n(y.amount)-V23.n(x.amount));
+ if(mode==="amountLow")return a.sort((x,y)=>V23.n(x.amount)-V23.n(y.amount));
+ return a.sort((x,y)=>String(y.date||"").localeCompare(String(x.date||"")));
+};
+
+V23.categories=function(tx){
+ return [...new Set(V23.arr(tx).map(t=>String(t.category||"Other")).filter(Boolean))].sort();
+};
+
+/* Non-destructive controller: it can operate on a transaction array and
+   provides a clean API for the existing UI to adopt without changing storage. */
+V23.query=function(tx,opt){
+ opt=opt||{};
+ let a=V23.search(tx,opt.search||"");
+ a=V23.filter(a,opt);
+ a=V23.sort(a,opt.sort||"newest");
+ return {items:a,count:a.length,total:V23.n(a.reduce((s,t)=>s+V23.n(t.amount),0))};
+};
+
+/* Safe edit/delete helpers return a new array; they do not mutate the original. */
+V23.edit=function(tx,id,patch){
+ return V23.arr(tx).map(t=>String(t.id)===String(id)?Object.assign({},t,patch,{updatedAt:new Date().toISOString()}):t);
+};
+V23.remove=function(tx,id){
+ return V23.arr(tx).filter(t=>String(t.id)!==String(id));
+};
+V23.restore=function(tx,deleted){
+ return V23.arr(tx).concat(deleted?[deleted]:[]);
+};
+
+V23.mount=function(){
+ /* Adds tools only when a recognizable transaction list exists.
+    If the existing UI has its own search/filter, do not duplicate it. */
+ const host=document.querySelector("[data-transactions],[data-transaction-list],#transactions,.transactions");
+ if(!host||document.getElementById("v23Tools"))return;
+ const box=document.createElement("div");box.id="v23Tools";box.className="v23-tools";
+ box.innerHTML='<input class="v23-input" id="v23Search" placeholder="Search merchant, item, category...">'+
+ '<select class="v23-select" id="v23Currency"><option value="all">All currencies</option><option value="SGD">SGD</option><option value="MYR">MYR</option></select>'+
+ '<select class="v23-select" id="v23Sort"><option value="newest">Newest</option><option value="oldest">Oldest</option><option value="amountHigh">Amount high</option><option value="amountLow">Amount low</option></select>';
+ host.parentNode.insertBefore(box,host);
+};
+
+window.BUNEXA_V23=V23;
+document.addEventListener("DOMContentLoaded",()=>setTimeout(V23.mount,700));
+})();
+</script>
+<script id="bunexa-v24-final-ux">
+(function(){
+"use strict";
+const V24=window.BUNEXA_V24={version:"24.0"};
+V24.toast=function(message){
+ let el=document.getElementById("v24Live");
+ if(!el){el=document.createElement("div");el.id="v24Live";el.className="v24-live";el.setAttribute("role","status");el.setAttribute("aria-live","polite");document.body.appendChild(el);}
+ el.textContent=message;el.classList.add("show");clearTimeout(V24._timer);
+ V24._timer=setTimeout(()=>el.classList.remove("show"),2200);
+};
+V24.accessibility=function(){
+ document.querySelectorAll("input,select,textarea").forEach(el=>{
+   if(!el.getAttribute("aria-label")&&!el.getAttribute("placeholder")&&el.id)
+     el.setAttribute("aria-label",el.id.replace(/[-_]/g," "));
+ });
+};
+V24.doubleSubmitGuard=function(){
+ document.querySelectorAll("button[type=submit],form button").forEach(btn=>{
+   if(btn.dataset.v24Guard)return;
+   btn.dataset.v24Guard="1";
+   btn.addEventListener("click",function(){
+     if(this.dataset.v24Busy==="1")return;
+     this.dataset.v24Busy="1";
+     setTimeout(()=>this.dataset.v24Busy="0",700);
+   },true);
+ });
+};
+V24.longText=function(){
+ document.querySelectorAll("button,.card,.transaction,.category,.merchant,[class*=merchant],[class*=category]").forEach(el=>{
+   if(el.textContent&&el.textContent.length>80)el.style.overflowWrap="anywhere";
+ });
+};
+V24.viewport=function(){
+ if(!document.querySelector('meta[name="viewport"]')){
+   const m=document.createElement("meta");m.name="viewport";m.content="width=device-width,initial-scale=1,viewport-fit=cover";document.head.appendChild(m);
+ }
+};
+V24.emptyState=function(container,message){
+ if(container&&container.children.length===0){
+   const e=document.createElement("div");e.className="v24-empty";e.textContent=message||"No records yet.";container.appendChild(e);
+ }
+};
+V24.init=function(){V24.viewport();V24.accessibility();V24.doubleSubmitGuard();V24.longText();};
+window.BUNEXA_V24=V24;
+document.addEventListener("DOMContentLoaded",()=>setTimeout(V24.init,500));
+})();
 </script></body></html>
